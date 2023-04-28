@@ -31,6 +31,8 @@
 		91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */; };
 		91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1129FC47CE009CFECF /* UIView+Extension.swift */; };
 		91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1329FC489C009CFECF /* PostsTableView.swift */; };
+		91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1629FC5481009CFECF /* NetworkMonitor.swift */; };
+		91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1829FC549C009CFECF /* NoNetworkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		91487F1129FC47CE009CFECF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		91487F1329FC489C009CFECF /* PostsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableView.swift; sourceTree = "<group>"; };
+		91487F1629FC5481009CFECF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		91487F1829FC549C009CFECF /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		91487EDF29FC3950009CFECF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				91487F1529FC5463009CFECF /* NetworkMonitor */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF929FC3B28009CFECF /* Extension */,
 				91487EF029FC3AA3009CFECF /* Base */,
@@ -246,6 +251,15 @@
 			path = SubscriberPosts;
 			sourceTree = "<group>";
 		};
+		91487F1529FC5463009CFECF /* NetworkMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				91487F1629FC5481009CFECF /* NetworkMonitor.swift */,
+				91487F1829FC549C009CFECF /* NoNetworkView.swift */,
+			);
+			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -343,6 +357,8 @@
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
 				91487EEA29FC3A2B009CFECF /* KeyWordPostsViewController.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
+				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
+				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* PostsTableViewCell.swift in Sources */,
 			);

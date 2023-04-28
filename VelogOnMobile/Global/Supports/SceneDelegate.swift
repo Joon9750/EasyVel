@@ -10,9 +10,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var errorWindow: UIWindow?
+    private var networkMonitor: NetworkMonitor = NetworkMonitor()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        startMonitoringNetwork(on: scene)
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let rootViewController = UINavigationController(rootViewController: SubscribePostsViewController())
@@ -51,3 +54,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    private func startMonitoringNetwork(on scene: UIScene) {
+        networkMonitor.startMonitoring(statusUpdateHandler: { [weak self] connectionStatus in
+            switch connectionStatus {
+            case .satisfied: self?.removeNetworkErrorWindow()
+            case .unsatisfied: self?.loadNetworkErrorWindow(on: scene)
+            default: break
+            }
+        })
+    }
+    
+    private func removeNetworkErrorWindow() {
+        DispatchQueue.main.async { [weak self] in
+            self?.errorWindow?.resignKey()
+            self?.errorWindow?.isHidden = true
+            self?.errorWindow = nil
+        }
+    }
+    
+    private func loadNetworkErrorWindow(on scene: UIScene) {
+        if let windowScene = scene as? UIWindowScene {
+            DispatchQueue.main.async { [weak self] in
+                let window = UIWindow(windowScene: windowScene)
+                window.windowLevel = .statusBar
+                window.makeKeyAndVisible()
+                let noNetworkView = NoNetworkView(frame: window.bounds)
+                window.addSubview(noNetworkView)
+                self?.errorWindow = window
+            }
+        }
+    }
+}
