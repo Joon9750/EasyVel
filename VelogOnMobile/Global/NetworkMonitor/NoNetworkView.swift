@@ -11,9 +11,9 @@ import SnapKit
 
 final class NoNetworkView: BaseUIView {
     
-    // MARK: - network fail 이미지 추가
     private let networkfailImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "wifi.slash")
         return imageView
     }()
     
@@ -23,7 +23,9 @@ final class NoNetworkView: BaseUIView {
     
     override func render() {
         self.addSubview(networkfailImageView)
+    
         networkfailImageView.snp.makeConstraints {
+            $0.height.width.equalTo(95)
             $0.center.equalToSuperview()
         }
     }

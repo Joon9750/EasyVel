@@ -31,7 +31,7 @@ class BaseViewController: UIViewController {
     }
     
     func configUI() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
     }
     
     func setupNavigationBar() {
