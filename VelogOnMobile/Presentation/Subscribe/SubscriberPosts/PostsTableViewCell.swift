@@ -13,7 +13,7 @@ import Kingfisher
 
 final class PostsTableViewCell: BaseTableViewCell {
 
-    static let identifier = "PostCell"
+    static let identifier = "PostsTableViewCell"
     
     let imgView: UIImageView = {
         let view = UIImageView()

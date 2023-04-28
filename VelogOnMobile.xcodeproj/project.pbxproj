@@ -33,6 +33,9 @@
 		91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1329FC489C009CFECF /* PostsTableView.swift */; };
 		91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1629FC5481009CFECF /* NetworkMonitor.swift */; };
 		91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1829FC549C009CFECF /* NoNetworkView.swift */; };
+		91487F1C29FC598D009CFECF /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1B29FC598D009CFECF /* ListTableViewCell.swift */; };
+		91487F1E29FC5A49009CFECF /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1D29FC5A49009CFECF /* ListTableView.swift */; };
+		91487F2029FC5BCC009CFECF /* SubsciberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		91487F1329FC489C009CFECF /* PostsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableView.swift; sourceTree = "<group>"; };
 		91487F1629FC5481009CFECF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		91487F1829FC549C009CFECF /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
+		91487F1B29FC598D009CFECF /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		91487F1D29FC5A49009CFECF /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
+		91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsciberListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
+				91487F1A29FC5950009CFECF /* SubscriberList */,
 			);
 			path = Subscribe;
 			sourceTree = "<group>";
@@ -258,6 +265,16 @@
 				91487F1829FC549C009CFECF /* NoNetworkView.swift */,
 			);
 			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
+		91487F1A29FC5950009CFECF /* SubscriberList */ = {
+			isa = PBXGroup;
+			children = (
+				91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */,
+				91487F1D29FC5A49009CFECF /* ListTableView.swift */,
+				91487F1B29FC598D009CFECF /* ListTableViewCell.swift */,
+			);
+			path = SubscriberList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,12 +368,15 @@
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
+				91487F1C29FC598D009CFECF /* ListTableViewCell.swift in Sources */,
+				91487F1E29FC5A49009CFECF /* ListTableView.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
 				91487EEA29FC3A2B009CFECF /* KeyWordPostsViewController.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
+				91487F2029FC5BCC009CFECF /* SubsciberListViewController.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,

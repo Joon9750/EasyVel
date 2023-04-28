@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubscribePostsViewController: BaseViewController {
+final class SubscribePostsViewController: BaseViewController {
 
     private let postsTableView = PostsTableView()
     
