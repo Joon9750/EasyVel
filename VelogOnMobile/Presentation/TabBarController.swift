@@ -15,10 +15,10 @@ class TabBarController: UITabBarController{
     
     fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
     
-    let KeyWordVC = KeyWordPostsViewController()
-    let subScribeVC = SubscribeTabManViewController()
+    let PostsVC = PostsTabManViewController()
+    let ListVC = SubscriberListViewController()
     let notifiVC = NotificationViewController()
-    let myPageVC = MyPageViewController()
+    let settingVC = MyPageViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +32,18 @@ class TabBarController: UITabBarController{
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = .white
 
-        KeyWordVC.title = "Keyword"
-        subScribeVC.title = "Subscribe"
-        notifiVC.title = "Notification"
-        myPageVC.title = "My Page"
+        PostsVC.title = "Posts"
+        ListVC.title = "Lists"
+        notifiVC.title = "Alerm"
+        settingVC.title = "Setting"
 
-        let ViewControllers:[UIViewController] = [KeyWordVC,subScribeVC,notifiVC,myPageVC]
+        let ViewControllers:[UIViewController] = [PostsVC,ListVC,notifiVC,settingVC]
         self.setViewControllers(ViewControllers, animated: true)
 
-        KeyWordVC.tabBarItem.image = UIImage(systemName: "text.book.closed")
-        subScribeVC.tabBarItem.image = UIImage(systemName: "person.2")
+        PostsVC.tabBarItem.image = UIImage(systemName: "books.vertical")
+        ListVC.tabBarItem.image = UIImage(systemName: "folder")
         notifiVC.tabBarItem.image = UIImage(systemName: "megaphone")
-        myPageVC.tabBarItem.image = UIImage(systemName: "person.crop.square")
+        settingVC.tabBarItem.image = UIImage(systemName: "gear")
         
         self.hidesBottomBarWhenPushed = false
         viewWillLayoutSubviews()

@@ -7,6 +7,6 @@
 
 import UIKit
 
-class KeyWordPostsViewController: BaseViewController {
+class ListsViewController: BaseViewController {
 
 }

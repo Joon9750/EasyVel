@@ -25,7 +25,6 @@ final class NoNetworkView: BaseUIView {
         self.addSubview(networkfailImageView)
     
         networkfailImageView.snp.makeConstraints {
-            $0.height.width.equalTo(95)
             $0.center.equalToSuperview()
         }
     }

@@ -35,13 +35,20 @@ extension ListTableView: UITableViewDelegate {
         // MARK: - 구독자 삭제 추가
         print("cell touched")
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
 }
 
 extension ListTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         // MARK: - fix
-        return 10
+        switch section {
+        case 0: return 5
+        case 1: return 10
+        default: return Int()
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -11,24 +11,18 @@ import Tabman
 import Pageboy
 import SnapKit
 
-class SubscribeTabManViewController: TabmanViewController {
+class PostsTabManViewController: TabmanViewController {
 
     private let finalView = UIView()
     private let tabManBarView = UIView()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Subscribe"
+        label.text = "Posts"
         label.font = UIFont(name: "Avenir-Black", size: 30)
         return label
     }()
     private let bar = TMBar.ButtonBar()
-    lazy var addButton: UIButton = {
-        let button = UIButton()
-        button.setImage(ImageLiterals.addButtonIcon, for: .normal)
-        button.addTarget(self, action: #selector(addSubscribe), for: .touchUpInside)
-        return button
-    }()
-    private var viewControllers: Array<UIViewController> = [SubscribePostsViewController(), SubscriberListViewController()]
+    private var viewControllers: Array<UIViewController> = [SubscribePostsViewController(), SubscribePostsViewController()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +37,6 @@ class SubscribeTabManViewController: TabmanViewController {
         
         finalView.addSubviews(
             titleLabel,
-            addButton,
             tabManBarView
         )
         
@@ -54,12 +47,6 @@ class SubscribeTabManViewController: TabmanViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(20)
-        }
-        
-        addButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview().inset(30)
-            $0.height.width.equalTo(20)
         }
         
         tabManBarView.snp.makeConstraints {
@@ -78,7 +65,7 @@ class SubscribeTabManViewController: TabmanViewController {
     
     func settingTabBar(ctBar: TMBar.ButtonBar) {
         ctBar.layout.transitionStyle = .snap
-        ctBar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 40.0, bottom: 0.0, right: 0.0)
+        ctBar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 30.0, bottom: 0.0, right: 0.0)
         ctBar.layout.interButtonSpacing = UIScreen.main.bounds.width - 340
         ctBar.backgroundView.style = .blur(style: .light)
         ctBar.buttons.customize { (button) in
@@ -90,25 +77,15 @@ class SubscribeTabManViewController: TabmanViewController {
         ctBar.indicator.weight = .custom(value: 2)
         ctBar.indicator.tintColor = .brandColor
     }
-    
-    @objc func addSubscribe(){
-        let nextVC = SubscriberSearchViewController()
-        nextVC.modalPresentationStyle = .pageSheet
-        if let sheet = nextVC.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-        }
-        self.present(nextVC, animated: true)
-    }
 }
 
-extension SubscribeTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
+extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
   func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
       switch index {
       case 0:
-          return TMBarItem(title: "Following Post")
+          return TMBarItem(title: "Keyword posts")
       case 1:
-          return TMBarItem(title: "Following List")
+          return TMBarItem(title: "Subscriber posts")
       default:
           let title = "Page \(index)"
           return TMBarItem(title: title)
