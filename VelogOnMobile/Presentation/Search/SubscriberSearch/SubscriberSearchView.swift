@@ -28,6 +28,14 @@ final class SubscriberSearchView: BaseUIView {
         return button
     }()
     
+    let dismissBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("dismiss", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
+        return button
+    }()
+    
     let textField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "velog 아이디를 입력해주세요."
@@ -47,11 +55,19 @@ final class SubscriberSearchView: BaseUIView {
         setTextField()
 
         self.addSubviews(
+            dismissBtn,
             titleLabel,
             textField,
             label,
             addSubscriberBtn
         )
+        
+        dismissBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(15)
+            $0.trailing.equalToSuperview().inset(15)
+            $0.height.equalTo(40)
+            $0.width.equalTo(80)
+        }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(60)

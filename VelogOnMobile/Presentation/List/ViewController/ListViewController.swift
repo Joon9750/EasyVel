@@ -60,7 +60,7 @@ final class ListViewController: BaseViewController {
 
 // MARK: - button Action
 
-extension ListViewController {
+private extension ListViewController {
     @objc
     func presentActionSheet() {
         let searchKeywordButtonAction = UIAlertAction(title: "Keyword", style: .default) { [weak self] action in

@@ -11,7 +11,7 @@ import Tabman
 import Pageboy
 import SnapKit
 
-class PostsTabManViewController: TabmanViewController {
+final class PostsTabManViewController: TabmanViewController {
 
     private let finalView = UIView()
     private let tabManBarView = UIView()

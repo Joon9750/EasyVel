@@ -11,7 +11,23 @@ final class KeywordSearchViewController: BaseViewController {
     
     private let searchView = KeywordSearchView()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setButtonAction()
+    }
+    
     override func render() {
         self.view = searchView
+    }
+}
+
+private extension KeywordSearchViewController {
+    func setButtonAction() {
+        searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+    }
+    
+    @objc
+    func dismissButtonAction() {
+        self.dismiss(animated: true)
     }
 }
