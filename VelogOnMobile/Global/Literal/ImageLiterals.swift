@@ -9,9 +9,15 @@ import UIKit
 
 enum ImageLiterals {
     
+    // MARK: - subscribe post dummy image
+    static var dummyImage: UIImage { .load(name: "dummyImage") }
+    
+    // MARK: - navigation button icon
+    
+    static var addButtonIcon: UIImage { .load(name: "AddButtonIcon") }
 }
 
-extension ImageLiterals {
+extension UIImage {
     static func load(name: String) -> UIImage {
         guard let image = UIImage(named: name, in: nil, compatibleWith: nil) else {
             return UIImage()

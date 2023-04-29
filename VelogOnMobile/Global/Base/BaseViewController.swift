@@ -35,15 +35,8 @@ class BaseViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-        guard let navigationBar = navigationController?.navigationBar else { return }
-        let appearance = UINavigationBarAppearance()
-        
-        appearance.shadowColor = .clear
-        appearance.backgroundColor = .white
-
-        navigationBar.standardAppearance = appearance
-        navigationBar.compactAppearance = appearance
-        navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.topItem?.title = ""
     }
     
     func setupNavigationPopGesture() {

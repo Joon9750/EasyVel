@@ -16,10 +16,12 @@ final class PostsTableViewCell: BaseTableViewCell {
     static let identifier = "PostsTableViewCell"
     
     let imgView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFit
-        view.clipsToBounds = true
-        return view
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        imageView.image = ImageLiterals.dummyImage
+        imageView.clipsToBounds = true
+        return imageView
     }()
     
     let textView: UITextView = {
@@ -29,7 +31,7 @@ final class PostsTableViewCell: BaseTableViewCell {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.font = UIFont.systemFont(ofSize: 15)
-        textView.text = "자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!"
+        textView.text = "자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!"
         return textView
     }()
     

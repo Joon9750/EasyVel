@@ -16,7 +16,7 @@ class TabBarController: UITabBarController{
     fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
     
     let KeyWordVC = KeyWordPostsViewController()
-    let subScribeVC = SubscribePostsViewController()
+    let subScribeVC = SubscribeTabManViewController()
     let notifiVC = NotificationViewController()
     let myPageVC = MyPageViewController()
     
@@ -29,6 +29,8 @@ class TabBarController: UITabBarController{
     func setUpTabBar(){
         self.tabBar.tintColor = .brandColor
         self.tabBar.unselectedItemTintColor = .black
+        self.tabBar.isTranslucent = false
+        self.tabBar.backgroundColor = .white
 
         KeyWordVC.title = "Keyword"
         subScribeVC.title = "Subscribe"

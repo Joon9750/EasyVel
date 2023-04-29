@@ -39,6 +39,9 @@
 		91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2129FC5F2A009CFECF /* TabBarController.swift */; };
 		91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2429FC5F7C009CFECF /* NotificationViewController.swift */; };
 		91487F2829FD0641009CFECF /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 91487F2729FD0641009CFECF /* Tabman */; };
+		91487F2A29FD0693009CFECF /* SubscribeTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2929FD0693009CFECF /* SubscribeTabManViewController.swift */; };
+		91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */; };
+		91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,9 @@
 		91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsciberListViewController.swift; sourceTree = "<group>"; };
 		91487F2129FC5F2A009CFECF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		91487F2429FC5F7C009CFECF /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		91487F2929FD0693009CFECF /* SubscribeTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeTabManViewController.swift; sourceTree = "<group>"; };
+		91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchViewController.swift; sourceTree = "<group>"; };
+		91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,8 @@
 		91487EE529FC39D8009CFECF /* Subscribe */ = {
 			isa = PBXGroup;
 			children = (
+				91487F2929FD0693009CFECF /* SubscribeTabManViewController.swift */,
+				91487F2B29FD07F7009CFECF /* SubscriberSearch */,
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
 				91487F1A29FC5950009CFECF /* SubscriberList */,
 			);
@@ -291,6 +299,15 @@
 				91487F2429FC5F7C009CFECF /* NotificationViewController.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		91487F2B29FD07F7009CFECF /* SubscriberSearch */ = {
+			isa = PBXGroup;
+			children = (
+				91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */,
+				91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */,
+			);
+			path = SubscriberSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,8 +401,10 @@
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
+				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
+				91487F2A29FD0693009CFECF /* SubscribeTabManViewController.swift in Sources */,
 				91487F1C29FC598D009CFECF /* ListTableViewCell.swift in Sources */,
 				91487F1E29FC5A49009CFECF /* ListTableView.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
@@ -398,6 +417,7 @@
 				91487F2029FC5BCC009CFECF /* SubsciberListViewController.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
 				91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */,
+				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* PostsTableViewCell.swift in Sources */,
