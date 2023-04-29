@@ -1,15 +1,15 @@
 //
-//  SubsciberListViewController.swift
+//  ListViewController.swift
 //  VelogOnMobile
 //
-//  Created by 홍준혁 on 2023/04/29.
+//  Created by 홍준혁 on 2023/04/30.
 //
 
 import UIKit
 
 import SnapKit
 
-final class SubscriberListViewController: BaseViewController {
+final class ListViewController: BaseViewController {
     
     private let subscriberListTableView = ListTableView(frame: CGRect.zero, style: .insetGrouped)
     private let postsHeadView = ListHeadView()
