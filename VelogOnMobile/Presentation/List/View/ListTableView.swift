@@ -31,13 +31,23 @@ final class ListTableView: UITableView {
 
 extension ListTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // MARK: - 구독자 삭제 추가
         print("cell touched")
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "Keywords"
+        case 1: return "Subscribers"
+        default: return String()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
     }
 }
 
