@@ -1,15 +1,15 @@
 //
-//  ListTableView.swift
+//  KeywordsTableView.swift
 //  VelogOnMobile
 //
-//  Created by 홍준혁 on 2023/04/29.
+//  Created by 홍준혁 on 2023/04/30.
 //
 
 import UIKit
 
 import SnapKit
 
-final class ListTableView: UITableView {
+final class KeywordsTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -21,7 +21,7 @@ final class ListTableView: UITableView {
     }
 
     private func setupTableView() {
-        register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
+        register(KeywordsTableViewCell.self, forCellReuseIdentifier: KeywordsTableViewCell.identifier)
         dataSource = self
         delegate = self
         separatorStyle = .singleLine
@@ -29,35 +29,25 @@ final class ListTableView: UITableView {
     }
 }
 
-extension ListTableView: UITableViewDelegate {
+extension KeywordsTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // MARK: - 구독자 삭제 추가
         print("cell touched")
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
     }
 }
 
-extension ListTableView: UITableViewDataSource {
+extension KeywordsTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // MARK: - fix
-        switch section {
-        case 0: return 5
-        case 1: return 10
-        default: return Int()
-        }
+        // PostData.Post.subscribePostDtoList.count
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier) as? ListTableViewCell ?? ListTableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell ?? KeywordsTableViewCell()
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        return 280
     }
 }

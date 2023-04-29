@@ -8,17 +8,16 @@
 import UIKit
 
 import SnapKit
-import Moya
 
-
-class TabBarController: UITabBarController{
+final class TabBarController: UITabBarController{
     
     fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
     
+    let listViewModel = ListViewModel()
     let PostsVC = PostsTabManViewController()
-    let ListVC = SubscriberListViewController()
+    lazy var ListVC = ListViewController(viewModel: listViewModel)
     let notifiVC = NotificationViewController()
-    let settingVC = MyPageViewController()
+    let settingVC = SettingViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,4 +48,3 @@ class TabBarController: UITabBarController{
         viewWillLayoutSubviews()
     }
 }
-

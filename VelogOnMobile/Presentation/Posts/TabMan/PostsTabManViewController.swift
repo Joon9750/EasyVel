@@ -11,7 +11,7 @@ import Tabman
 import Pageboy
 import SnapKit
 
-class PostsTabManViewController: TabmanViewController {
+final class PostsTabManViewController: TabmanViewController {
 
     private let finalView = UIView()
     private let tabManBarView = UIView()
@@ -22,7 +22,7 @@ class PostsTabManViewController: TabmanViewController {
         return label
     }()
     private let bar = TMBar.ButtonBar()
-    private var viewControllers: Array<UIViewController> = [SubscribePostsViewController(), SubscribePostsViewController()]
+    private var viewControllers: Array<UIViewController> = [KeywordsPostsViewController(), SubscribePostsViewController()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,9 +83,9 @@ extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataS
   func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
       switch index {
       case 0:
-          return TMBarItem(title: "Keyword posts")
+          return TMBarItem(title: "Keyword Posts")
       case 1:
-          return TMBarItem(title: "Subscriber posts")
+          return TMBarItem(title: "Subscriber Posts")
       default:
           let title = "Page \(index)"
           return TMBarItem(title: title)

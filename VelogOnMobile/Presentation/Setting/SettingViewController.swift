@@ -7,6 +7,6 @@
 
 import UIKit
 
-class MyPageViewController: BaseViewController {
+final class SettingViewController: BaseViewController {
 
 }

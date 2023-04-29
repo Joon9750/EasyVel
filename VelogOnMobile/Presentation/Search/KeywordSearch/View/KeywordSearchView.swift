@@ -1,26 +1,26 @@
 //
-//  SubscriberSearchView.swift
+//  KeywordSearchView.swift
 //  VelogOnMobile
 //
-//  Created by 홍준혁 on 2023/04/29.
+//  Created by 홍준혁 on 2023/04/30.
 //
 
 import UIKit
 
 import SnapKit
 
-final class SubscriberSearchView: BaseUIView {
+final class KeywordSearchView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add Subscribers"
+        label.text = "Search Keyword"
         label.font = UIFont(name: "Avenir-Black", size: 20)
         return label
     }()
     
     let addSubscriberBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("구독 추가", for: .normal)
+        button.setTitle("Add", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.backgroundColor = .brandColor
@@ -28,9 +28,17 @@ final class SubscriberSearchView: BaseUIView {
         return button
     }()
     
+    let dismissBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("dismiss", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
+        return button
+    }()
+    
     let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "velog 아이디를 입력해주세요."
+        textField.placeholder = "키워드를 입력해주세요."
         textField.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         return textField
     }()
@@ -47,11 +55,19 @@ final class SubscriberSearchView: BaseUIView {
         setTextField()
 
         self.addSubviews(
+            dismissBtn,
             titleLabel,
             textField,
             label,
             addSubscriberBtn
         )
+        
+        dismissBtn.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(15)
+            $0.trailing.equalToSuperview().inset(15)
+            $0.height.equalTo(40)
+            $0.width.equalTo(80)
+        }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(60)
@@ -82,4 +98,3 @@ final class SubscriberSearchView: BaseUIView {
         textField.clearButtonMode = .always
     }
 }
-
