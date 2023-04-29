@@ -15,7 +15,6 @@
 		91487ED729FC38CC009CFECF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED629FC38CC009CFECF /* SnapKit */; };
 		91487EDA29FC3921009CFECF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED929FC3921009CFECF /* Moya */; };
 		91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EE729FC3A19009CFECF /* SignUpViewController.swift */; };
-		91487EEA29FC3A2B009CFECF /* KeyWordPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EE929FC3A2B009CFECF /* KeyWordPostsViewController.swift */; };
 		91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */; };
 		91487EEF29FC3A4D009CFECF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEE29FC3A4D009CFECF /* MyPageViewController.swift */; };
 		91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF129FC3AAE009CFECF /* BaseViewController.swift */; };
@@ -26,6 +25,23 @@
 		91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EFD29FC3BD0009CFECF /* ImageLiterals.swift */; };
 		91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EFF29FC3BFE009CFECF /* TextLiterals.swift */; };
 		91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F0129FC3C16009CFECF /* SizeLiterals.swift */; };
+		91487F0B29FC45E9009CFECF /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F0A29FC45E9009CFECF /* PostsTableViewCell.swift */; };
+		91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 91487F0D29FC4656009CFECF /* Kingfisher */; };
+		91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */; };
+		91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1129FC47CE009CFECF /* UIView+Extension.swift */; };
+		91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1329FC489C009CFECF /* PostsTableView.swift */; };
+		91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1629FC5481009CFECF /* NetworkMonitor.swift */; };
+		91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1829FC549C009CFECF /* NoNetworkView.swift */; };
+		91487F1C29FC598D009CFECF /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1B29FC598D009CFECF /* ListTableViewCell.swift */; };
+		91487F1E29FC5A49009CFECF /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1D29FC5A49009CFECF /* ListTableView.swift */; };
+		91487F2029FC5BCC009CFECF /* SubsciberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */; };
+		91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2129FC5F2A009CFECF /* TabBarController.swift */; };
+		91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2429FC5F7C009CFECF /* NotificationViewController.swift */; };
+		91487F2829FD0641009CFECF /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 91487F2729FD0641009CFECF /* Tabman */; };
+		91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2929FD0693009CFECF /* PostsTabManViewController.swift */; };
+		91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */; };
+		91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */; };
+		91487F3529FD2ACE009CFECF /* ListTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F3429FD2ACE009CFECF /* ListTableHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +53,6 @@
 		91487ECD29FC380C009CFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91487ECF29FC380C009CFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91487EE729FC3A19009CFECF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		91487EE929FC3A2B009CFECF /* KeyWordPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyWordPostsViewController.swift; sourceTree = "<group>"; };
 		91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribePostsViewController.swift; sourceTree = "<group>"; };
 		91487EEE29FC3A4D009CFECF /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		91487EF129FC3AAE009CFECF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +63,21 @@
 		91487EFD29FC3BD0009CFECF /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		91487EFF29FC3BFE009CFECF /* TextLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLiterals.swift; sourceTree = "<group>"; };
 		91487F0129FC3C16009CFECF /* SizeLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeLiterals.swift; sourceTree = "<group>"; };
+		91487F0A29FC45E9009CFECF /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		91487F1129FC47CE009CFECF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		91487F1329FC489C009CFECF /* PostsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableView.swift; sourceTree = "<group>"; };
+		91487F1629FC5481009CFECF /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		91487F1829FC549C009CFECF /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
+		91487F1B29FC598D009CFECF /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		91487F1D29FC5A49009CFECF /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
+		91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsciberListViewController.swift; sourceTree = "<group>"; };
+		91487F2129FC5F2A009CFECF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		91487F2429FC5F7C009CFECF /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		91487F2929FD0693009CFECF /* PostsTabManViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTabManViewController.swift; sourceTree = "<group>"; };
+		91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchViewController.swift; sourceTree = "<group>"; };
+		91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchView.swift; sourceTree = "<group>"; };
+		91487F3429FD2ACE009CFECF /* ListTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */,
+				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
 				91487ED729FC38CC009CFECF /* SnapKit in Frameworks */,
 			);
@@ -115,10 +147,12 @@
 		91487EDE29FC3946009CFECF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				91487F2129FC5F2A009CFECF /* TabBarController.swift */,
 				91487EE229FC39AF009CFECF /* SignIn */,
 				91487EE329FC39BB009CFECF /* SignUp */,
-				91487EE529FC39D8009CFECF /* Subscribe */,
-				91487EE429FC39C3009CFECF /* Keyword */,
+				91487EE529FC39D8009CFECF /* Posts */,
+				91487EE429FC39C3009CFECF /* List */,
+				91487F2329FC5F65009CFECF /* Notification */,
 				91487EE629FC39E8009CFECF /* MyPage */,
 			);
 			path = Presentation;
@@ -127,8 +161,8 @@
 		91487EDF29FC3950009CFECF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				91487F1529FC5463009CFECF /* NetworkMonitor */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
-				91487EF929FC3B28009CFECF /* Extension */,
 				91487EF029FC3AA3009CFECF /* Base */,
 				91487EE129FC399E009CFECF /* Resource */,
 				91487EE029FC395D009CFECF /* Supports */,
@@ -171,20 +205,22 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
-		91487EE429FC39C3009CFECF /* Keyword */ = {
+		91487EE429FC39C3009CFECF /* List */ = {
 			isa = PBXGroup;
 			children = (
-				91487EE929FC3A2B009CFECF /* KeyWordPostsViewController.swift */,
+				91487F1A29FC5950009CFECF /* SubscriberList */,
+				91487F2B29FD07F7009CFECF /* SubscriberSearch */,
 			);
-			path = Keyword;
+			path = List;
 			sourceTree = "<group>";
 		};
-		91487EE529FC39D8009CFECF /* Subscribe */ = {
+		91487EE529FC39D8009CFECF /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */,
+				91487F2929FD0693009CFECF /* PostsTabManViewController.swift */,
+				91487F0929FC45AD009CFECF /* SubscriberPosts */,
 			);
-			path = Subscribe;
+			path = Posts;
 			sourceTree = "<group>";
 		};
 		91487EE629FC39E8009CFECF /* MyPage */ = {
@@ -198,6 +234,7 @@
 		91487EF029FC3AA3009CFECF /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				91487EF929FC3B28009CFECF /* Extension */,
 				91487EF129FC3AAE009CFECF /* BaseViewController.swift */,
 				91487EF329FC3AD8009CFECF /* BaseUIView.swift */,
 				91487EF529FC3AEF009CFECF /* BaseTableViewCell.swift */,
@@ -210,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				91487EFA29FC3B6A009CFECF /* UIColor+Extension.swift */,
+				91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */,
+				91487F1129FC47CE009CFECF /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -222,6 +261,53 @@
 				91487F0129FC3C16009CFECF /* SizeLiterals.swift */,
 			);
 			path = Literal;
+			sourceTree = "<group>";
+		};
+		91487F0929FC45AD009CFECF /* SubscriberPosts */ = {
+			isa = PBXGroup;
+			children = (
+				91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */,
+				91487F1329FC489C009CFECF /* PostsTableView.swift */,
+				91487F0A29FC45E9009CFECF /* PostsTableViewCell.swift */,
+			);
+			path = SubscriberPosts;
+			sourceTree = "<group>";
+		};
+		91487F1529FC5463009CFECF /* NetworkMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				91487F1629FC5481009CFECF /* NetworkMonitor.swift */,
+				91487F1829FC549C009CFECF /* NoNetworkView.swift */,
+			);
+			path = NetworkMonitor;
+			sourceTree = "<group>";
+		};
+		91487F1A29FC5950009CFECF /* SubscriberList */ = {
+			isa = PBXGroup;
+			children = (
+				91487F1F29FC5BCC009CFECF /* SubsciberListViewController.swift */,
+				91487F3429FD2ACE009CFECF /* ListTableHeaderView.swift */,
+				91487F1D29FC5A49009CFECF /* ListTableView.swift */,
+				91487F1B29FC598D009CFECF /* ListTableViewCell.swift */,
+			);
+			path = SubscriberList;
+			sourceTree = "<group>";
+		};
+		91487F2329FC5F65009CFECF /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				91487F2429FC5F7C009CFECF /* NotificationViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		91487F2B29FD07F7009CFECF /* SubscriberSearch */ = {
+			isa = PBXGroup;
+			children = (
+				91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */,
+				91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */,
+			);
+			path = SubscriberSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +329,8 @@
 			packageProductDependencies = (
 				91487ED629FC38CC009CFECF /* SnapKit */,
 				91487ED929FC3921009CFECF /* Moya */,
+				91487F0D29FC4656009CFECF /* Kingfisher */,
+				91487F2729FD0641009CFECF /* Tabman */,
 			);
 			productName = VelogOnMobile;
 			productReference = 91487EBE29FC380A009CFECF /* VelogOnMobile.app */;
@@ -275,6 +363,8 @@
 			packageReferences = (
 				91487ED529FC38CC009CFECF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				91487ED829FC3921009CFECF /* XCRemoteSwiftPackageReference "Moya" */,
+				91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = 91487EBF29FC380A009CFECF /* Products */;
 			projectDirPath = "";
@@ -304,19 +394,33 @@
 			files = (
 				91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */,
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
+				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* MyPageViewController.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
+				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
+				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
+				91487F3529FD2ACE009CFECF /* ListTableHeaderView.swift in Sources */,
+				91487F1C29FC598D009CFECF /* ListTableViewCell.swift in Sources */,
+				91487F1E29FC5A49009CFECF /* ListTableView.swift in Sources */,
+				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
+				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
-				91487EEA29FC3A2B009CFECF /* KeyWordPostsViewController.swift in Sources */,
+				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
+				91487F2029FC5BCC009CFECF /* SubsciberListViewController.swift in Sources */,
+				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
+				91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */,
+				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
+				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
+				91487F0B29FC45E9009CFECF /* PostsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +646,22 @@
 				kind = branch;
 			};
 		};
+		91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -554,6 +674,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 91487ED829FC3921009CFECF /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
+		};
+		91487F0D29FC4656009CFECF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		91487F2729FD0641009CFECF /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

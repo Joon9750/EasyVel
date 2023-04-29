@@ -10,8 +10,8 @@ import UIKit
 extension UIColor {
     
     // MARK: - Brand Color
-    static var blueLight: UIColor {
-        return UIColor(hex: "#00ECFF")
+    static var brandColor: UIColor {
+        return UIColor(hex: "#1EC897")
     }
 }
 
