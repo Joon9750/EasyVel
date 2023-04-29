@@ -15,8 +15,9 @@ class TabBarController: UITabBarController{
     
     fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
     
+    let listViewModel = ListViewModel()
     let PostsVC = PostsTabManViewController()
-    let ListVC = ListViewController()
+    lazy var ListVC = ListViewController(viewModel: listViewModel)
     let notifiVC = NotificationViewController()
     let settingVC = MyPageViewController()
     

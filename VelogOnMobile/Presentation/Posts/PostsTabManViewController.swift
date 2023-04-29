@@ -83,9 +83,9 @@ extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataS
   func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
       switch index {
       case 0:
-          return TMBarItem(title: "Keyword posts")
+          return TMBarItem(title: "Keyword Posts")
       case 1:
-          return TMBarItem(title: "Subscriber posts")
+          return TMBarItem(title: "Subscriber Posts")
       default:
           let title = "Page \(index)"
           return TMBarItem(title: title)
