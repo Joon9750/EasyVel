@@ -16,7 +16,7 @@
 		91487EDA29FC3921009CFECF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED929FC3921009CFECF /* Moya */; };
 		91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EE729FC3A19009CFECF /* SignUpViewController.swift */; };
 		91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */; };
-		91487EEF29FC3A4D009CFECF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEE29FC3A4D009CFECF /* MyPageViewController.swift */; };
+		91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEE29FC3A4D009CFECF /* SettingViewController.swift */; };
 		91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF129FC3AAE009CFECF /* BaseViewController.swift */; };
 		91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF329FC3AD8009CFECF /* BaseUIView.swift */; };
 		91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF529FC3AEF009CFECF /* BaseTableViewCell.swift */; };
@@ -45,6 +45,10 @@
 		91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4229FD8AC9009CFECF /* ListViewModel.swift */; };
 		91487F4B29FD9838009CFECF /* KeywordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4A29FD9838009CFECF /* KeywordSearchView.swift */; };
 		91487F4D29FD9858009CFECF /* KeywordSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */; };
+		91487F5229FDA143009CFECF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5129FDA143009CFECF /* SettingView.swift */; };
+		91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */; };
+		91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5A29FDA287009CFECF /* KeywordsTableView.swift */; };
+		91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +61,7 @@
 		91487ECF29FC380C009CFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91487EE729FC3A19009CFECF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribePostsViewController.swift; sourceTree = "<group>"; };
-		91487EEE29FC3A4D009CFECF /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		91487EEE29FC3A4D009CFECF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		91487EF129FC3AAE009CFECF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		91487EF329FC3AD8009CFECF /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		91487EF529FC3AEF009CFECF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -84,6 +88,10 @@
 		91487F4229FD8AC9009CFECF /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		91487F4A29FD9838009CFECF /* KeywordSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSearchView.swift; sourceTree = "<group>"; };
 		91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSearchViewController.swift; sourceTree = "<group>"; };
+		91487F5129FDA143009CFECF /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
+		91487F5A29FDA287009CFECF /* KeywordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableView.swift; sourceTree = "<group>"; };
+		91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +144,7 @@
 				91487EE529FC39D8009CFECF /* Posts */,
 				91487EE429FC39C3009CFECF /* List */,
 				91487F2329FC5F65009CFECF /* Notification */,
-				91487EE629FC39E8009CFECF /* MyPage */,
+				91487EE629FC39E8009CFECF /* Setting */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -202,18 +210,20 @@
 		91487EE529FC39D8009CFECF /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				91487F2929FD0693009CFECF /* PostsTabManViewController.swift */,
+				91487F6229FDA348009CFECF /* TabMan */,
+				91487F5729FDA256009CFECF /* KeywordPosts */,
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
 		};
-		91487EE629FC39E8009CFECF /* MyPage */ = {
+		91487EE629FC39E8009CFECF /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				91487EEE29FC3A4D009CFECF /* MyPageViewController.swift */,
+				91487EEE29FC3A4D009CFECF /* SettingViewController.swift */,
+				91487F5129FDA143009CFECF /* SettingView.swift */,
 			);
-			path = MyPage;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		91487EF029FC3AA3009CFECF /* Base */ = {
@@ -250,9 +260,8 @@
 		91487F0929FC45AD009CFECF /* SubscriberPosts */ = {
 			isa = PBXGroup;
 			children = (
-				91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */,
-				91487F1329FC489C009CFECF /* PostsTableView.swift */,
-				91487F0A29FC45E9009CFECF /* PostsTableViewCell.swift */,
+				91487F6129FDA33A009CFECF /* View */,
+				91487F6029FDA32E009CFECF /* ViewController */,
 			);
 			path = SubscriberPosts;
 			sourceTree = "<group>";
@@ -277,8 +286,8 @@
 		91487F2B29FD07F7009CFECF /* SubscriberSearch */ = {
 			isa = PBXGroup;
 			children = (
-				91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */,
-				91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */,
+				91487F5629FDA231009CFECF /* View */,
+				91487F5529FDA227009CFECF /* ViewController */,
 			);
 			path = SubscriberSearch;
 			sourceTree = "<group>";
@@ -321,8 +330,8 @@
 		91487F4929FD966B009CFECF /* KeywordSearch */ = {
 			isa = PBXGroup;
 			children = (
-				91487F4A29FD9838009CFECF /* KeywordSearchView.swift */,
-				91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */,
+				91487F5429FDA21F009CFECF /* View */,
+				91487F5329FDA213009CFECF /* ViewController */,
 			);
 			path = KeywordSearch;
 			sourceTree = "<group>";
@@ -333,6 +342,89 @@
 				91487F2129FC5F2A009CFECF /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		91487F5329FDA213009CFECF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		91487F5429FDA21F009CFECF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91487F4A29FD9838009CFECF /* KeywordSearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		91487F5529FDA227009CFECF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		91487F5629FDA231009CFECF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		91487F5729FDA256009CFECF /* KeywordPosts */ = {
+			isa = PBXGroup;
+			children = (
+				91487F5F29FDA2F8009CFECF /* ViewController */,
+				91487F5E29FDA2F0009CFECF /* View */,
+			);
+			path = KeywordPosts;
+			sourceTree = "<group>";
+		};
+		91487F5E29FDA2F0009CFECF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */,
+				91487F5A29FDA287009CFECF /* KeywordsTableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		91487F5F29FDA2F8009CFECF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		91487F6029FDA32E009CFECF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91487EEC29FC3A3E009CFECF /* SubscribePostsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		91487F6129FDA33A009CFECF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91487F1329FC489C009CFECF /* PostsTableView.swift */,
+				91487F0A29FC45E9009CFECF /* PostsTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		91487F6229FDA348009CFECF /* TabMan */ = {
+			isa = PBXGroup;
+			children = (
+				91487F2929FD0693009CFECF /* PostsTabManViewController.swift */,
+			);
+			path = TabMan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +512,7 @@
 				91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */,
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
-				91487EEF29FC3A4D009CFECF /* MyPageViewController.swift in Sources */,
+				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
@@ -433,11 +525,14 @@
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
+				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
+				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
+				91487F5229FDA143009CFECF /* SettingView.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
@@ -447,6 +542,7 @@
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
+				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* PostsTableViewCell.swift in Sources */,
 			);

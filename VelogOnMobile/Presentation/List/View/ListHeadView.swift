@@ -39,7 +39,7 @@ final class ListHeadView: BaseUIView {
         
         addButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(10)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(30)
             $0.height.width.equalTo(25)
         }
     }
