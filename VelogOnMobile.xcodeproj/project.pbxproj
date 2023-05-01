@@ -12,7 +12,7 @@
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
 		913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */; };
 		913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EF29FFD6FB000E1ED1 /* NetworkService.swift */; };
-		913441F429FFD742000E1ED1 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F329FFD742000E1ED1 /* SignInRouter.swift */; };
+		913441F429FFD742000E1ED1 /* TagRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F329FFD742000E1ED1 /* TagRouter.swift */; };
 		913441F629FFD74C000E1ED1 /* SignInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F529FFD74C000E1ED1 /* SignInAPI.swift */; };
 		913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F829FFD776000E1ED1 /* SignUpRequest.swift */; };
 		913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */; };
@@ -33,6 +33,11 @@
 		9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422629FFF9BC000E1ED1 /* ListView.swift */; };
 		913442292A0001EC000E1ED1 /* KeywordsPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442282A0001EC000E1ED1 /* KeywordsPostsView.swift */; };
 		9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */; };
+		9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422C2A00418A000E1ED1 /* URLConstants.swift */; };
+		913442302A004352000E1ED1 /* SubscriberRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422F2A004352000E1ED1 /* SubscriberRouter.swift */; };
+		913442322A004663000E1ED1 /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442312A004663000E1ED1 /* PostsRouter.swift */; };
+		913442342A004795000E1ED1 /* SignRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442332A004795000E1ED1 /* SignRouter.swift */; };
+		913442362A00491C000E1ED1 /* NotificationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442352A00491C000E1ED1 /* NotificationRouter.swift */; };
 		91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC129FC380A009CFECF /* AppDelegate.swift */; };
 		91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC329FC380A009CFECF /* SceneDelegate.swift */; };
 		91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC529FC380A009CFECF /* SignInViewController.swift */; };
@@ -83,7 +88,7 @@
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
 		913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		913441EF29FFD6FB000E1ED1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		913441F329FFD742000E1ED1 /* SignInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
+		913441F329FFD742000E1ED1 /* TagRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRouter.swift; sourceTree = "<group>"; };
 		913441F529FFD74C000E1ED1 /* SignInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAPI.swift; sourceTree = "<group>"; };
 		913441F829FFD776000E1ED1 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
@@ -104,6 +109,11 @@
 		9134422629FFF9BC000E1ED1 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		913442282A0001EC000E1ED1 /* KeywordsPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsView.swift; sourceTree = "<group>"; };
 		9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribersPostsView.swift; sourceTree = "<group>"; };
+		9134422C2A00418A000E1ED1 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		9134422F2A004352000E1ED1 /* SubscriberRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRouter.swift; sourceTree = "<group>"; };
+		913442312A004663000E1ED1 /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
+		913442332A004795000E1ED1 /* SignRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRouter.swift; sourceTree = "<group>"; };
+		913442352A00491C000E1ED1 /* NotificationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRouter.swift; sourceTree = "<group>"; };
 		91487EBE29FC380A009CFECF /* VelogOnMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VelogOnMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91487EC129FC380A009CFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91487EC329FC380A009CFECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,12 +174,12 @@
 		913441E229FFD5BE000E1ED1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				913441F729FFD760000E1ED1 /* DTO */,
 				913441E829FFD63A000E1ED1 /* Foundation */,
 				91487F1529FC5463009CFECF /* NetworkMonitor */,
 				913441E529FFD611000E1ED1 /* MoyaPluggin */,
 				913441E429FFD5FA000E1ED1 /* Router */,
 				913441E329FFD5D1000E1ED1 /* API */,
+				913441F729FFD760000E1ED1 /* DTO */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -185,7 +195,11 @@
 		913441E429FFD5FA000E1ED1 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				913441F329FFD742000E1ED1 /* SignInRouter.swift */,
+				913441F329FFD742000E1ED1 /* TagRouter.swift */,
+				9134422F2A004352000E1ED1 /* SubscriberRouter.swift */,
+				913442312A004663000E1ED1 /* PostsRouter.swift */,
+				913442332A004795000E1ED1 /* SignRouter.swift */,
+				913442352A00491C000E1ED1 /* NotificationRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -205,6 +219,7 @@
 				913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */,
 				913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */,
 				913441EF29FFD6FB000E1ED1 /* NetworkService.swift */,
+				9134422C2A00418A000E1ED1 /* URLConstants.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -685,10 +700,12 @@
 			files = (
 				91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */,
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
+				913442322A004663000E1ED1 /* PostsRouter.swift in Sources */,
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
+				913442302A004352000E1ED1 /* SubscriberRouter.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
@@ -699,7 +716,9 @@
 				913441F629FFD74C000E1ED1 /* SignInAPI.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487F4D29FD9858009CFECF /* KeywordSearchViewController.swift in Sources */,
+				913442362A00491C000E1ED1 /* NotificationRouter.swift in Sources */,
 				9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */,
+				9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */,
 				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
@@ -709,6 +728,7 @@
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
+				913442342A004795000E1ED1 /* SignRouter.swift in Sources */,
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
@@ -723,7 +743,7 @@
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
 				9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */,
 				9134420529FFD965000E1ED1 /* SignInResponse.swift in Sources */,
-				913441F429FFD742000E1ED1 /* SignInRouter.swift in Sources */,
+				913441F429FFD742000E1ED1 /* TagRouter.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
