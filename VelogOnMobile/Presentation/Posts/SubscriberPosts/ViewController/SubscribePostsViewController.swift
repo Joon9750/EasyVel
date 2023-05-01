@@ -7,18 +7,11 @@
 
 import UIKit
 
-import SnapKit
-
 final class SubscribePostsViewController: BaseViewController {
 
-    private let postsTableView = PostsTableView()
+    private let subscribersPostsView = SubscribersPostsView()
     
     override func render() {
-        view.addSubview(postsTableView)
-        
-        postsTableView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(210)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
+        self.view = subscribersPostsView
     }
 }

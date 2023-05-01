@@ -28,7 +28,7 @@ final class PostsTabManViewController: TabmanViewController {
         super.viewDidLoad()
         dataSource = self
         bounces = false
-        
+    
         setUI()
         settingTabBar(ctBar: bar)
     }
@@ -57,7 +57,7 @@ final class PostsTabManViewController: TabmanViewController {
         }
         
         finalView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalToSuperview().offset(60)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(120)
         }

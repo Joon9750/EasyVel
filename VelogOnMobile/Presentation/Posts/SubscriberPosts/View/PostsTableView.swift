@@ -21,7 +21,7 @@ final class PostsTableView: UITableView {
     }
 
     private func setupTableView() {
-        register(PostsTableViewCell.self, forCellReuseIdentifier: PostsTableViewCell.identifier)
+        register(SubscribersPostsTableViewCell.self, forCellReuseIdentifier: SubscribersPostsTableViewCell.identifier)
         dataSource = self
         delegate = self
         separatorStyle = .singleLine
@@ -37,12 +37,11 @@ extension PostsTableView: UITableViewDelegate {
 
 extension PostsTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // PostData.Post.subscribePostDtoList.count
         return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostsTableViewCell.identifier, for: indexPath) as? PostsTableViewCell ?? PostsTableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: SubscribersPostsTableViewCell.identifier, for: indexPath) as? SubscribersPostsTableViewCell ?? SubscribersPostsTableViewCell()
         cell.selectionStyle = .none
         return cell
     }

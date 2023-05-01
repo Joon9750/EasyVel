@@ -7,18 +7,11 @@
 
 import UIKit
 
-import SnapKit
-
 final class KeywordsPostsViewController: BaseViewController {
-
-    private let keywordsTableView = KeywordsTableView()
+    
+    private let keywordsPostsView = KeywordsPostsView()
     
     override func render() {
-        view.addSubview(keywordsTableView)
-        
-        keywordsTableView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(210)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
+        self.view = keywordsPostsView
     }
 }
