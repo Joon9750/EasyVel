@@ -9,4 +9,9 @@ import UIKit
 
 final class SettingViewController: BaseViewController {
 
+    private let settingView = SettingView()
+    
+    override func render() {
+        self.view = settingView
+    }
 }

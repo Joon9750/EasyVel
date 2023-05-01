@@ -7,12 +7,9 @@
 
 import UIKit
 
-import SnapKit
-
 final class ListViewController: BaseViewController {
     
-    private let subscriberListTableView = ListTableView(frame: CGRect.zero, style: .insetGrouped)
-    private let postsHeadView = ListHeadView()
+    private let listView = ListView()
     private let viewModel: ListViewModelInputOutput?
     
     init(viewModel: ListViewModel) {
@@ -21,40 +18,20 @@ final class ListViewController: BaseViewController {
         bind()
     }
     
+    override func render() {
+        self.view = listView
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func render() {
-        view.addSubviews(
-            subscriberListTableView,
-            postsHeadView
-        )
-        
-        postsHeadView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(120)
-        }
-        
-        subscriberListTableView.snp.makeConstraints {
-            $0.top.equalTo(postsHeadView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-    }
-    
-    override func configUI() {}
     
     override func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = true
     }
     
     private func bind() {
-        self.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
+        self.listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
     }
 }
 

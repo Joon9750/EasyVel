@@ -9,9 +9,9 @@ import UIKit
 
 import SnapKit
 
-final class PostsTableViewCell: BaseTableViewCell {
+final class SubscribersPostsTableViewCell: BaseTableViewCell {
 
-    static let identifier = "PostsTableViewCell"
+    static let identifier = "SubscribersPostsTableViewCell"
     
     let imgView: UIImageView = {
         let imageView = UIImageView()
