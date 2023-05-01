@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
+		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
+		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
+		913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */; };
+		913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EF29FFD6FB000E1ED1 /* NetworkService.swift */; };
+		913441F429FFD742000E1ED1 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F329FFD742000E1ED1 /* SignInRouter.swift */; };
+		913441F629FFD74C000E1ED1 /* SignInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F529FFD74C000E1ED1 /* SignInAPI.swift */; };
+		913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F829FFD776000E1ED1 /* SignUpRequest.swift */; };
+		913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */; };
+		9134420529FFD965000E1ED1 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420429FFD965000E1ED1 /* SignInResponse.swift */; };
+		9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420629FFD9F9000E1ED1 /* SignUpResponse.swift */; };
+		9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420829FFDA32000E1ED1 /* SignOutRequest.swift */; };
+		9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420A29FFDA71000E1ED1 /* SignOutResponse.swift */; };
+		9134420F29FFDB33000E1ED1 /* GetSubscriberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420E29FFDB33000E1ED1 /* GetSubscriberResponse.swift */; };
+		9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */; };
+		9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */; };
+		9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */; };
+		9134421829FFE622000E1ED1 /* GetTagResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421729FFE622000E1ED1 /* GetTagResponse.swift */; };
+		9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421929FFE692000E1ED1 /* GetTagPostResponse.swift */; };
+		9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421C29FFEAC9000E1ED1 /* BroadcastResponse.swift */; };
+		9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421E29FFEAF7000E1ED1 /* BroadcastRequest.swift */; };
 		91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC129FC380A009CFECF /* AppDelegate.swift */; };
 		91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC329FC380A009CFECF /* SceneDelegate.swift */; };
 		91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC529FC380A009CFECF /* SignInViewController.swift */; };
@@ -52,6 +73,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
+		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
+		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
+		913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		913441EF29FFD6FB000E1ED1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		913441F329FFD742000E1ED1 /* SignInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
+		913441F529FFD74C000E1ED1 /* SignInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAPI.swift; sourceTree = "<group>"; };
+		913441F829FFD776000E1ED1 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		9134420429FFD965000E1ED1 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		9134420629FFD9F9000E1ED1 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		9134420829FFDA32000E1ED1 /* SignOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutRequest.swift; sourceTree = "<group>"; };
+		9134420A29FFDA71000E1ED1 /* SignOutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutResponse.swift; sourceTree = "<group>"; };
+		9134420E29FFDB33000E1ED1 /* GetSubscriberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscriberResponse.swift; sourceTree = "<group>"; };
+		9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubscriberResponse.swift; sourceTree = "<group>"; };
+		9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscriberPostResponse.swift; sourceTree = "<group>"; };
+		9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnSubsribeResponse.swift; sourceTree = "<group>"; };
+		9134421729FFE622000E1ED1 /* GetTagResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTagResponse.swift; sourceTree = "<group>"; };
+		9134421929FFE692000E1ED1 /* GetTagPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTagPostResponse.swift; sourceTree = "<group>"; };
+		9134421C29FFEAC9000E1ED1 /* BroadcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastResponse.swift; sourceTree = "<group>"; };
+		9134421E29FFEAF7000E1ED1 /* BroadcastRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastRequest.swift; sourceTree = "<group>"; };
 		91487EBE29FC380A009CFECF /* VelogOnMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VelogOnMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91487EC129FC380A009CFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91487EC329FC380A009CFECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +151,107 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		913441E229FFD5BE000E1ED1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				913441F729FFD760000E1ED1 /* DTO */,
+				913441E829FFD63A000E1ED1 /* Foundation */,
+				91487F1529FC5463009CFECF /* NetworkMonitor */,
+				913441E529FFD611000E1ED1 /* MoyaPluggin */,
+				913441E429FFD5FA000E1ED1 /* Router */,
+				913441E329FFD5D1000E1ED1 /* API */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		913441E329FFD5D1000E1ED1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				913441F529FFD74C000E1ED1 /* SignInAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		913441E429FFD5FA000E1ED1 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				913441F329FFD742000E1ED1 /* SignInRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		913441E529FFD611000E1ED1 /* MoyaPluggin */ = {
+			isa = PBXGroup;
+			children = (
+				913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */,
+			);
+			path = MoyaPluggin;
+			sourceTree = "<group>";
+		};
+		913441E829FFD63A000E1ED1 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				913441E929FFD649000E1ED1 /* BaseTargetType.swift */,
+				913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */,
+				913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */,
+				913441EF29FFD6FB000E1ED1 /* NetworkService.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		913441F729FFD760000E1ED1 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				9134421B29FFEAA4000E1ED1 /* NotificationDTO */,
+				9134421629FFDCCF000E1ED1 /* TagDTO */,
+				9134420D29FFDADB000E1ED1 /* SubscribeDTO */,
+				9134420C29FFDAA6000E1ED1 /* SignDTO */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		9134420C29FFDAA6000E1ED1 /* SignDTO */ = {
+			isa = PBXGroup;
+			children = (
+				913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */,
+				9134420429FFD965000E1ED1 /* SignInResponse.swift */,
+				913441F829FFD776000E1ED1 /* SignUpRequest.swift */,
+				9134420629FFD9F9000E1ED1 /* SignUpResponse.swift */,
+				9134420829FFDA32000E1ED1 /* SignOutRequest.swift */,
+				9134420A29FFDA71000E1ED1 /* SignOutResponse.swift */,
+			);
+			path = SignDTO;
+			sourceTree = "<group>";
+		};
+		9134420D29FFDADB000E1ED1 /* SubscribeDTO */ = {
+			isa = PBXGroup;
+			children = (
+				9134420E29FFDB33000E1ED1 /* GetSubscriberResponse.swift */,
+				9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */,
+				9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */,
+				9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */,
+			);
+			path = SubscribeDTO;
+			sourceTree = "<group>";
+		};
+		9134421629FFDCCF000E1ED1 /* TagDTO */ = {
+			isa = PBXGroup;
+			children = (
+				9134421729FFE622000E1ED1 /* GetTagResponse.swift */,
+				9134421929FFE692000E1ED1 /* GetTagPostResponse.swift */,
+			);
+			path = TagDTO;
+			sourceTree = "<group>";
+		};
+		9134421B29FFEAA4000E1ED1 /* NotificationDTO */ = {
+			isa = PBXGroup;
+			children = (
+				9134421C29FFEAC9000E1ED1 /* BroadcastResponse.swift */,
+				9134421E29FFEAF7000E1ED1 /* BroadcastRequest.swift */,
+			);
+			path = NotificationDTO;
+			sourceTree = "<group>";
+		};
 		91487EB529FC380A009CFECF = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +271,7 @@
 		91487EC029FC380A009CFECF /* VelogOnMobile */ = {
 			isa = PBXGroup;
 			children = (
+				913441E229FFD5BE000E1ED1 /* Network */,
 				91487EDE29FC3946009CFECF /* Presentation */,
 				91487EDF29FC3950009CFECF /* Global */,
 			);
@@ -153,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				91487EF929FC3B28009CFECF /* Extension */,
-				91487F1529FC5463009CFECF /* NetworkMonitor */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF029FC3AA3009CFECF /* Base */,
 				91487EE129FC399E009CFECF /* Resource */,
@@ -513,35 +656,56 @@
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
+				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
+				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
+				9134420F29FFDB33000E1ED1 /* GetSubscriberResponse.swift in Sources */,
+				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
 				91487F4B29FD9838009CFECF /* KeywordSearchView.swift in Sources */,
+				913441F629FFD74C000E1ED1 /* SignInAPI.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487F4D29FD9858009CFECF /* KeywordSearchViewController.swift in Sources */,
 				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
+				9134421829FFE622000E1ED1 /* GetTagResponse.swift in Sources */,
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
+				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
+				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
+				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
+				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
+				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
+				9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */,
+				9134420529FFD965000E1ED1 /* SignInResponse.swift in Sources */,
+				913441F429FFD742000E1ED1 /* SignInRouter.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingView.swift in Sources */,
+				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
+				913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
+				913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */,
 				91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */,
+				9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */,
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
+				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
+				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
+				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
 				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* PostsTableViewCell.swift in Sources */,

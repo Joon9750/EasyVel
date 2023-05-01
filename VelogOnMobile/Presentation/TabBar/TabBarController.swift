@@ -41,8 +41,8 @@ final class TabBarController: UITabBarController{
 
         PostsVC.tabBarItem.image = UIImage(systemName: "books.vertical")
         ListVC.tabBarItem.image = UIImage(systemName: "folder")
-        notifiVC.tabBarItem.image = UIImage(systemName: "megaphone")
-        settingVC.tabBarItem.image = UIImage(systemName: "gear")
+        notifiVC.tabBarItem.image = UIImage(systemName: "bell")
+        settingVC.tabBarItem.image = UIImage(systemName: "gearshape")
         
         self.hidesBottomBarWhenPushed = false
         viewWillLayoutSubviews()
