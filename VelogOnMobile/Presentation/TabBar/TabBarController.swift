@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class TabBarController: UITabBarController{
+final class TabBarController: UITabBarController {
     
     fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
     
