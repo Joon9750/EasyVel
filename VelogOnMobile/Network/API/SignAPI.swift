@@ -9,13 +9,13 @@ import Foundation
 
 import Moya
 
-enum SignRouter {
+enum SignAPI {
     case signIn(body: SignInRequest)
     case signOut(body: SignOutRequest)
     case signUp(body: SignUpRequest)
 }
 
-extension SignRouter: BaseTargetType {
+extension SignAPI: BaseTargetType {
     var path: String {
         switch self {
         case .signIn:

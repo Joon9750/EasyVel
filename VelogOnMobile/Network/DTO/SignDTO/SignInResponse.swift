@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SigninResponse: Codable {
+struct SignInResponse: Codable {
     let code: Int?
     let msg: String?
     let success: Bool?

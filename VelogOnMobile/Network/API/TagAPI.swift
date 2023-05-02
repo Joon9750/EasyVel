@@ -9,13 +9,13 @@ import Foundation
 
 import Moya
 
-enum TagRouter {
+enum TagAPI {
     case addTag(tag: String)
     case deleteTag(tag: String)
     case getTag
 }
 
-extension TagRouter: BaseTargetType {
+extension TagAPI: BaseTargetType {
     var path: String {
         switch self {
         case .addTag:

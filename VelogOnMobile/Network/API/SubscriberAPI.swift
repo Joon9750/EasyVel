@@ -9,14 +9,14 @@ import Foundation
 
 import Moya
 
-enum SubscriberRouter {
+enum SubscriberAPI {
     case addSubscriber(fcmToken: String, name: String)
     case getSubscriber
     case searchSubscriber(name: String)
     case deleteSubscriber(targetName: String)
 }
 
-extension SubscriberRouter: BaseTargetType {
+extension SubscriberAPI: BaseTargetType {
     var path: String {
         switch self {
         case .addSubscriber:

@@ -9,11 +9,11 @@ import Foundation
 
 import Moya
 
-enum NotificationRouter {
+enum NotificationAPI {
     case broadCast(body: BroadcastRequest)
 }
 
-extension NotificationRouter: BaseTargetType {
+extension NotificationAPI: BaseTargetType {
     var path: String {
         switch self {
         case .broadCast:

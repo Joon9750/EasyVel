@@ -9,12 +9,12 @@ import Foundation
 
 import Moya
 
-enum PostsRouter {
+enum PostsAPI {
     case getSubscriberPosts
     case getTagPosts
 }
 
-extension PostsRouter: BaseTargetType {
+extension PostsAPI: BaseTargetType {
     var path: String {
         switch self {
         case .getSubscriberPosts:

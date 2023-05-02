@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct SubscriberListResponse: Codable {
+struct GetSubscriberResponse: Codable {
     let result: [String]?
 }
