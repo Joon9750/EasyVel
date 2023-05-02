@@ -11,12 +11,12 @@ final class ListViewController: BaseViewController {
     
     private let listView = ListView()
     private var viewModel: ListViewModelInputOutput?
-    private var tagList: TagListModel? {
+    private var tagList: [String]? {
         didSet {
             listView.listTableView.reloadData()
         }
     }
-    private var subscriberList: SubscriberListModel? {
+    private var subscriberList: [String]? {
         didSet {
             listView.listTableView.reloadData()
         }
@@ -62,8 +62,8 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // MARK: - fix
         switch section {
-        case 0: return tagList?.tagList.count ?? 0
-        case 1: return subscriberList?.subscriberList.count ?? 0
+        case 0: return tagList?.count ?? 0
+        case 1: return subscriberList?.count ?? 0
         default: return Int()
         }
     }
@@ -74,8 +74,8 @@ extension ListViewController: UITableViewDataSource {
         let section = indexPath.section
         let row = indexPath.row
         switch section {
-        case 0: cell.listText.text = tagList?.tagList[row]
-        case 1: cell.listText.text = subscriberList?.subscriberList[row]
+        case 0: cell.listText.text = tagList?[row]
+        case 1: cell.listText.text = subscriberList?[row]
         default: return cell
         }
         return cell

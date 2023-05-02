@@ -19,11 +19,9 @@
 		9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420629FFD9F9000E1ED1 /* SignUpResponse.swift */; };
 		9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420829FFDA32000E1ED1 /* SignOutRequest.swift */; };
 		9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420A29FFDA71000E1ED1 /* SignOutResponse.swift */; };
-		9134420F29FFDB33000E1ED1 /* GetSubscriberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420E29FFDB33000E1ED1 /* GetSubscriberResponse.swift */; };
 		9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */; };
 		9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */; };
 		9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */; };
-		9134421829FFE622000E1ED1 /* GetTagResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421729FFE622000E1ED1 /* GetTagResponse.swift */; };
 		9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421929FFE692000E1ED1 /* GetTagPostResponse.swift */; };
 		9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421C29FFEAC9000E1ED1 /* BroadcastResponse.swift */; };
 		9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134421E29FFEAF7000E1ED1 /* BroadcastRequest.swift */; };
@@ -84,8 +82,6 @@
 		91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */; };
 		91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5A29FDA287009CFECF /* KeywordsTableView.swift */; };
 		91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */; };
-		91DEF3D22A013224001B6A9D /* TagListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3D12A013224001B6A9D /* TagListModel.swift */; };
-		91DEF3D42A013293001B6A9D /* SubscriberListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3D32A013293001B6A9D /* SubscriberListModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
 		91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178A2A00E59900158787 /* PostsRepository.swift */; };
@@ -109,11 +105,9 @@
 		9134420629FFD9F9000E1ED1 /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		9134420829FFDA32000E1ED1 /* SignOutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutRequest.swift; sourceTree = "<group>"; };
 		9134420A29FFDA71000E1ED1 /* SignOutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutResponse.swift; sourceTree = "<group>"; };
-		9134420E29FFDB33000E1ED1 /* GetSubscriberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscriberResponse.swift; sourceTree = "<group>"; };
 		9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSubscriberResponse.swift; sourceTree = "<group>"; };
 		9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubscriberPostResponse.swift; sourceTree = "<group>"; };
 		9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnSubsribeResponse.swift; sourceTree = "<group>"; };
-		9134421729FFE622000E1ED1 /* GetTagResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTagResponse.swift; sourceTree = "<group>"; };
 		9134421929FFE692000E1ED1 /* GetTagPostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTagPostResponse.swift; sourceTree = "<group>"; };
 		9134421C29FFEAC9000E1ED1 /* BroadcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastResponse.swift; sourceTree = "<group>"; };
 		9134421E29FFEAF7000E1ED1 /* BroadcastRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastRequest.swift; sourceTree = "<group>"; };
@@ -172,8 +166,6 @@
 		91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
 		91487F5A29FDA287009CFECF /* KeywordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableView.swift; sourceTree = "<group>"; };
 		91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewController.swift; sourceTree = "<group>"; };
-		91DEF3D12A013224001B6A9D /* TagListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListModel.swift; sourceTree = "<group>"; };
-		91DEF3D32A013293001B6A9D /* SubscriberListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberListModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
 		91ED178A2A00E59900158787 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
@@ -285,7 +277,6 @@
 		9134420D29FFDADB000E1ED1 /* SubscribeDTO */ = {
 			isa = PBXGroup;
 			children = (
-				9134420E29FFDB33000E1ED1 /* GetSubscriberResponse.swift */,
 				9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */,
 				9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */,
 				9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */,
@@ -296,7 +287,6 @@
 		9134421629FFDCCF000E1ED1 /* TagDTO */ = {
 			isa = PBXGroup;
 			children = (
-				9134421729FFE622000E1ED1 /* GetTagResponse.swift */,
 				9134421929FFE692000E1ED1 /* GetTagPostResponse.swift */,
 			);
 			path = TagDTO;
@@ -420,7 +410,6 @@
 		91487EE429FC39C3009CFECF /* List */ = {
 			isa = PBXGroup;
 			children = (
-				91DEF3D02A013214001B6A9D /* Model */,
 				91487F4129FD8ABF009CFECF /* ViewModel */,
 				91487F3F29FD8A95009CFECF /* ViewController */,
 				91487F3E29FD895D009CFECF /* View */,
@@ -651,15 +640,6 @@
 			path = TabMan;
 			sourceTree = "<group>";
 		};
-		91DEF3D02A013214001B6A9D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				91DEF3D12A013224001B6A9D /* TagListModel.swift */,
-				91DEF3D32A013293001B6A9D /* SubscriberListModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		91ED17852A00E55600158787 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -804,7 +784,6 @@
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
-				9134420F29FFDB33000E1ED1 /* GetSubscriberResponse.swift in Sources */,
 				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
 				91487F4B29FD9838009CFECF /* KeywordSearchView.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
@@ -816,7 +795,6 @@
 				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
-				9134421829FFE622000E1ED1 /* GetTagResponse.swift in Sources */,
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
 				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
@@ -826,7 +804,6 @@
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
 				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
-				91DEF3D22A013224001B6A9D /* TagListModel.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
 				913442292A0001EC000E1ED1 /* KeywordsPostsView.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
@@ -860,7 +837,6 @@
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
-				91DEF3D42A013293001B6A9D /* SubscriberListModel.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,

@@ -34,13 +34,13 @@ class BaseRepository {
         case .addTag: return .success(AnyObject.self)
         case .deleteTag: return .success(AnyObject.self)
         case .getTag:
-            guard let decodedData = try? decoder.decode(GetTagResponse.self, from: data) else {
+            guard let decodedData = try? decoder.decode([String].self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
         case .addSubscriber: return .success(AnyObject.self)
         case .getSubscriber:
-            guard let decodedData = try? decoder.decode(GetSubscriberResponse.self, from: data) else {
+            guard let decodedData = try? decoder.decode([String].self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

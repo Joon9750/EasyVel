@@ -12,15 +12,15 @@ protocol ListViewModelInput {
 }
 
 protocol ListViewModelOutput {
-    var tagListOutput: ((TagListModel) -> Void)? { get set }
-    var subscriberListOutput: ((SubscriberListModel) -> Void)? { get set }
+    var tagListOutput: (([String]) -> Void)? { get set }
+    var subscriberListOutput: (([String]) -> Void)? { get set }
 }
 
 protocol ListViewModelInputOutput: ListViewModelInput, ListViewModelOutput {}
 
 final class ListViewModel: ListViewModelInputOutput {
     
-    var tagList: TagListModel? {
+    var tagList: [String]? {
         didSet {
             if let tagListOutput,
                let tagList {
@@ -29,7 +29,7 @@ final class ListViewModel: ListViewModelInputOutput {
         }
     }
     
-    var subscriberList: SubscriberListModel? {
+    var subscriberList: [String]? {
         didSet {
             if let subscriberListOutput,
                let subscriberList {
@@ -40,17 +40,66 @@ final class ListViewModel: ListViewModelInputOutput {
     
     // MARK: - Output
     
-    var tagListOutput: ((TagListModel) -> Void)?
-    var subscriberListOutput: ((SubscriberListModel) -> Void)?
+    var tagListOutput: (([String]) -> Void)?
+    var subscriberListOutput: (([String]) -> Void)?
 }
 
 // MARK: - Input
 
 extension ListViewModel {
     func viewWillAppear() {
-        var tagList = TagListModel()
-        var subscriberList = SubscriberListModel()
-        self.tagList = tagList
-        self.subscriberList = subscriberList
+        getTagListForServer()
+        getSubscribeListForServer()
+    }
+}
+
+private extension ListViewModel {
+    
+    func getTagListForServer() {
+        self.getTagList() { [weak self] response in
+            guard let self = self else {
+                return
+            }
+            print(response)
+            self.tagList = response
+        }
+    }
+    
+    func getSubscribeListForServer() {
+        self.getSubscriberList() { [weak self] response in
+            guard let self = self else {
+                return
+            }
+            print(response)
+            self.subscriberList = response
+        }
+    }
+    
+    func getTagList(completion: @escaping ([String]) -> Void) {
+        NetworkService.shared.tagRepository.getTag() { result in
+            switch result {
+            case .success(let response):
+                guard let list = response as? [String] else { return }
+                completion(list)
+            case .requestErr(let errResponse):
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func getSubscriberList(completion: @escaping ([String]) -> Void) {
+        NetworkService.shared.subscriberRepository.getSubscriber() { result in
+            switch result {
+            case .success(let response):
+                guard let list = response as? [String] else { return }
+                completion(list)
+            case .requestErr(let errResponse):
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
     }
 }
