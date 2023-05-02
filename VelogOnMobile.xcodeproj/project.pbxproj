@@ -12,7 +12,7 @@
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
 		913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */; };
 		913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EF29FFD6FB000E1ED1 /* NetworkService.swift */; };
-		913441F429FFD742000E1ED1 /* TagRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F329FFD742000E1ED1 /* TagRouter.swift */; };
+		913441F429FFD742000E1ED1 /* TagAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F329FFD742000E1ED1 /* TagAPI.swift */; };
 		913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441F829FFD776000E1ED1 /* SignUpRequest.swift */; };
 		913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */; };
 		9134420529FFD965000E1ED1 /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134420429FFD965000E1ED1 /* SignInResponse.swift */; };
@@ -33,15 +33,15 @@
 		913442292A0001EC000E1ED1 /* KeywordsPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442282A0001EC000E1ED1 /* KeywordsPostsView.swift */; };
 		9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */; };
 		9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422C2A00418A000E1ED1 /* URLConstants.swift */; };
-		913442302A004352000E1ED1 /* SubscriberRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422F2A004352000E1ED1 /* SubscriberRouter.swift */; };
-		913442322A004663000E1ED1 /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442312A004663000E1ED1 /* PostsRouter.swift */; };
-		913442342A004795000E1ED1 /* SignRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442332A004795000E1ED1 /* SignRouter.swift */; };
-		913442362A00491C000E1ED1 /* NotificationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442352A00491C000E1ED1 /* NotificationRouter.swift */; };
-		913442382A004B91000E1ED1 /* TagAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442372A004B91000E1ED1 /* TagAPI.swift */; };
-		9134423A2A004B9B000E1ED1 /* SubscriberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442392A004B9B000E1ED1 /* SubscriberAPI.swift */; };
-		9134423C2A004BA2000E1ED1 /* PostsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134423B2A004BA2000E1ED1 /* PostsAPI.swift */; };
-		9134423E2A004BA8000E1ED1 /* SignAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134423D2A004BA8000E1ED1 /* SignAPI.swift */; };
-		913442402A004BB1000E1ED1 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134423F2A004BB1000E1ED1 /* NotificationAPI.swift */; };
+		913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134422F2A004352000E1ED1 /* SubscriberAPI.swift */; };
+		913442322A004663000E1ED1 /* PostsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442312A004663000E1ED1 /* PostsAPI.swift */; };
+		913442342A004795000E1ED1 /* SignAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442332A004795000E1ED1 /* SignAPI.swift */; };
+		913442362A00491C000E1ED1 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442352A00491C000E1ED1 /* NotificationAPI.swift */; };
+		913442382A004B91000E1ED1 /* DefaultTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442372A004B91000E1ED1 /* DefaultTagRepository.swift */; };
+		9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913442392A004B9B000E1ED1 /* DefaultSubscriberRepository.swift */; };
+		9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134423B2A004BA2000E1ED1 /* DefaultPostsRepository.swift */; };
+		9134423E2A004BA8000E1ED1 /* DefaultSignRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134423D2A004BA8000E1ED1 /* DefaultSignRepository.swift */; };
+		913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9134423F2A004BB1000E1ED1 /* DefaultNotificationRepository.swift */; };
 		91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC129FC380A009CFECF /* AppDelegate.swift */; };
 		91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC329FC380A009CFECF /* SceneDelegate.swift */; };
 		91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EC529FC380A009CFECF /* SignInViewController.swift */; };
@@ -84,6 +84,14 @@
 		91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */; };
 		91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5A29FDA287009CFECF /* KeywordsTableView.swift */; };
 		91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */; };
+		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
+		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
+		91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178A2A00E59900158787 /* PostsRepository.swift */; };
+		91ED178D2A00E5A600158787 /* SignRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178C2A00E5A600158787 /* SignRepository.swift */; };
+		91ED178F2A00E5B100158787 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178E2A00E5B100158787 /* NotificationRepository.swift */; };
+		91ED17912A00E92800158787 /* ResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17902A00E92800158787 /* ResponseData.swift */; };
+		91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17922A00EA8F00158787 /* ErrorResponse.swift */; };
+		91ED179A2A00F00800158787 /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17992A00F00800158787 /* BaseRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +100,7 @@
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
 		913441ED29FFD6E3000E1ED1 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		913441EF29FFD6FB000E1ED1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		913441F329FFD742000E1ED1 /* TagRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRouter.swift; sourceTree = "<group>"; };
+		913441F329FFD742000E1ED1 /* TagAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAPI.swift; sourceTree = "<group>"; };
 		913441F829FFD776000E1ED1 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		913441FA29FFD8AC000E1ED1 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		9134420429FFD965000E1ED1 /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
@@ -113,15 +121,15 @@
 		913442282A0001EC000E1ED1 /* KeywordsPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsView.swift; sourceTree = "<group>"; };
 		9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribersPostsView.swift; sourceTree = "<group>"; };
 		9134422C2A00418A000E1ED1 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
-		9134422F2A004352000E1ED1 /* SubscriberRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRouter.swift; sourceTree = "<group>"; };
-		913442312A004663000E1ED1 /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
-		913442332A004795000E1ED1 /* SignRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRouter.swift; sourceTree = "<group>"; };
-		913442352A00491C000E1ED1 /* NotificationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRouter.swift; sourceTree = "<group>"; };
-		913442372A004B91000E1ED1 /* TagAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAPI.swift; sourceTree = "<group>"; };
-		913442392A004B9B000E1ED1 /* SubscriberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberAPI.swift; sourceTree = "<group>"; };
-		9134423B2A004BA2000E1ED1 /* PostsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsAPI.swift; sourceTree = "<group>"; };
-		9134423D2A004BA8000E1ED1 /* SignAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAPI.swift; sourceTree = "<group>"; };
-		9134423F2A004BB1000E1ED1 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		9134422F2A004352000E1ED1 /* SubscriberAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberAPI.swift; sourceTree = "<group>"; };
+		913442312A004663000E1ED1 /* PostsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsAPI.swift; sourceTree = "<group>"; };
+		913442332A004795000E1ED1 /* SignAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignAPI.swift; sourceTree = "<group>"; };
+		913442352A00491C000E1ED1 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		913442372A004B91000E1ED1 /* DefaultTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTagRepository.swift; sourceTree = "<group>"; };
+		913442392A004B9B000E1ED1 /* DefaultSubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSubscriberRepository.swift; sourceTree = "<group>"; };
+		9134423B2A004BA2000E1ED1 /* DefaultPostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPostsRepository.swift; sourceTree = "<group>"; };
+		9134423D2A004BA8000E1ED1 /* DefaultSignRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSignRepository.swift; sourceTree = "<group>"; };
+		9134423F2A004BB1000E1ED1 /* DefaultNotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNotificationRepository.swift; sourceTree = "<group>"; };
 		91487EBE29FC380A009CFECF /* VelogOnMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VelogOnMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91487EC129FC380A009CFECF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91487EC329FC380A009CFECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +170,14 @@
 		91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
 		91487F5A29FDA287009CFECF /* KeywordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableView.swift; sourceTree = "<group>"; };
 		91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewController.swift; sourceTree = "<group>"; };
+		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
+		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
+		91ED178A2A00E59900158787 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
+		91ED178C2A00E5A600158787 /* SignRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignRepository.swift; sourceTree = "<group>"; };
+		91ED178E2A00E5B100158787 /* NotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
+		91ED17902A00E92800158787 /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
+		91ED17922A00EA8F00158787 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		91ED17992A00F00800158787 /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,38 +198,38 @@
 		913441E229FFD5BE000E1ED1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				913441E829FFD63A000E1ED1 /* Foundation */,
-				91487F1529FC5463009CFECF /* NetworkMonitor */,
-				913441E529FFD611000E1ED1 /* MoyaPluggin */,
-				913441E429FFD5FA000E1ED1 /* Router */,
-				913441E329FFD5D1000E1ED1 /* API */,
+				91ED179D2A00F73200158787 /* Common */,
+				913441E429FFD5FA000E1ED1 /* API */,
+				913441E329FFD5D1000E1ED1 /* Repository */,
 				913441F729FFD760000E1ED1 /* DTO */,
 			);
 			path = Network;
 			sourceTree = "<group>";
 		};
-		913441E329FFD5D1000E1ED1 /* API */ = {
+		913441E329FFD5D1000E1ED1 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				913442372A004B91000E1ED1 /* TagAPI.swift */,
-				913442392A004B9B000E1ED1 /* SubscriberAPI.swift */,
-				9134423B2A004BA2000E1ED1 /* PostsAPI.swift */,
-				9134423D2A004BA8000E1ED1 /* SignAPI.swift */,
-				9134423F2A004BB1000E1ED1 /* NotificationAPI.swift */,
+				91ED179B2A00F2DB00158787 /* BaseRepository */,
+				91ED17852A00E55600158787 /* Protocol */,
+				913442372A004B91000E1ED1 /* DefaultTagRepository.swift */,
+				913442392A004B9B000E1ED1 /* DefaultSubscriberRepository.swift */,
+				9134423B2A004BA2000E1ED1 /* DefaultPostsRepository.swift */,
+				9134423D2A004BA8000E1ED1 /* DefaultSignRepository.swift */,
+				9134423F2A004BB1000E1ED1 /* DefaultNotificationRepository.swift */,
 			);
-			path = API;
+			path = Repository;
 			sourceTree = "<group>";
 		};
-		913441E429FFD5FA000E1ED1 /* Router */ = {
+		913441E429FFD5FA000E1ED1 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				913441F329FFD742000E1ED1 /* TagRouter.swift */,
-				9134422F2A004352000E1ED1 /* SubscriberRouter.swift */,
-				913442312A004663000E1ED1 /* PostsRouter.swift */,
-				913442332A004795000E1ED1 /* SignRouter.swift */,
-				913442352A00491C000E1ED1 /* NotificationRouter.swift */,
+				913441F329FFD742000E1ED1 /* TagAPI.swift */,
+				9134422F2A004352000E1ED1 /* SubscriberAPI.swift */,
+				913442312A004663000E1ED1 /* PostsAPI.swift */,
+				913442332A004795000E1ED1 /* SignAPI.swift */,
+				913442352A00491C000E1ED1 /* NotificationAPI.swift */,
 			);
-			path = Router;
+			path = API;
 			sourceTree = "<group>";
 		};
 		913441E529FFD611000E1ED1 /* MoyaPluggin */ = {
@@ -239,6 +255,8 @@
 		913441F729FFD760000E1ED1 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				91ED179C2A00F2FE00158787 /* ResponseData */,
+				91ED17942A00EAE200158787 /* ErrorDTO */,
 				9134421B29FFEAA4000E1ED1 /* NotificationDTO */,
 				9134421629FFDCCF000E1ED1 /* TagDTO */,
 				9134420D29FFDADB000E1ED1 /* SubscribeDTO */,
@@ -628,6 +646,52 @@
 			path = TabMan;
 			sourceTree = "<group>";
 		};
+		91ED17852A00E55600158787 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				91ED17862A00E57700158787 /* TagRepository.swift */,
+				91ED17882A00E58D00158787 /* SubscriberRepository.swift */,
+				91ED178A2A00E59900158787 /* PostsRepository.swift */,
+				91ED178C2A00E5A600158787 /* SignRepository.swift */,
+				91ED178E2A00E5B100158787 /* NotificationRepository.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		91ED17942A00EAE200158787 /* ErrorDTO */ = {
+			isa = PBXGroup;
+			children = (
+				91ED17922A00EA8F00158787 /* ErrorResponse.swift */,
+			);
+			path = ErrorDTO;
+			sourceTree = "<group>";
+		};
+		91ED179B2A00F2DB00158787 /* BaseRepository */ = {
+			isa = PBXGroup;
+			children = (
+				91ED17992A00F00800158787 /* BaseRepository.swift */,
+			);
+			path = BaseRepository;
+			sourceTree = "<group>";
+		};
+		91ED179C2A00F2FE00158787 /* ResponseData */ = {
+			isa = PBXGroup;
+			children = (
+				91ED17902A00E92800158787 /* ResponseData.swift */,
+			);
+			path = ResponseData;
+			sourceTree = "<group>";
+		};
+		91ED179D2A00F73200158787 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				913441E529FFD611000E1ED1 /* MoyaPluggin */,
+				91487F1529FC5463009CFECF /* NetworkMonitor */,
+				913441E829FFD63A000E1ED1 /* Foundation */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -711,27 +775,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */,
-				9134423E2A004BA8000E1ED1 /* SignAPI.swift in Sources */,
+				9134423E2A004BA8000E1ED1 /* DefaultSignRepository.swift in Sources */,
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
-				913442322A004663000E1ED1 /* PostsRouter.swift in Sources */,
+				913442322A004663000E1ED1 /* PostsAPI.swift in Sources */,
+				91ED178D2A00E5A600158787 /* SignRepository.swift in Sources */,
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
-				9134423A2A004B9B000E1ED1 /* SubscriberAPI.swift in Sources */,
+				9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
-				913442302A004352000E1ED1 /* SubscriberRouter.swift in Sources */,
+				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
+				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
 				9134420F29FFDB33000E1ED1 /* GetSubscriberResponse.swift in Sources */,
 				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
 				91487F4B29FD9838009CFECF /* KeywordSearchView.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487F4D29FD9858009CFECF /* KeywordSearchViewController.swift in Sources */,
-				913442362A00491C000E1ED1 /* NotificationRouter.swift in Sources */,
+				913442362A00491C000E1ED1 /* NotificationAPI.swift in Sources */,
 				9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */,
-				913442382A004B91000E1ED1 /* TagAPI.swift in Sources */,
+				913442382A004B91000E1ED1 /* DefaultTagRepository.swift in Sources */,
 				9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */,
 				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
@@ -742,8 +808,9 @@
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
-				913442342A004795000E1ED1 /* SignRouter.swift in Sources */,
+				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
+				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
 				913442292A0001EC000E1ED1 /* KeywordsPostsView.swift in Sources */,
@@ -757,21 +824,25 @@
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
 				9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */,
 				9134420529FFD965000E1ED1 /* SignInResponse.swift in Sources */,
-				913441F429FFD742000E1ED1 /* TagRouter.swift in Sources */,
+				913441F429FFD742000E1ED1 /* TagAPI.swift in Sources */,
+				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
-				913442402A004BB1000E1ED1 /* NotificationAPI.swift in Sources */,
+				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
+				91ED179A2A00F00800158787 /* BaseRepository.swift in Sources */,
 				913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
 				913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */,
+				91ED178F2A00E5B100158787 /* NotificationRepository.swift in Sources */,
 				91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */,
 				9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */,
+				91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */,
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
-				9134423C2A004BA2000E1ED1 /* PostsAPI.swift in Sources */,
+				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
@@ -779,6 +850,7 @@
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
 				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
+				91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* SubscribersPostsTableViewCell.swift in Sources */,
 			);
