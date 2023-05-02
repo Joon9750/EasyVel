@@ -1,5 +1,5 @@
 # VelogOniOS
-Refactoring to MVVM + C &amp; Clean Architecture
+Refactoring to MVVM + C
 
 https://github.com/SSUDevelog/VelogInMobile
 
