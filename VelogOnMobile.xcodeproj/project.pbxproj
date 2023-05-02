@@ -76,12 +76,13 @@
 		91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F3A29FD892B009CFECF /* ListTableView.swift */; };
 		91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F3C29FD893D009CFECF /* ListHeadView.swift */; };
 		91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4229FD8AC9009CFECF /* ListViewModel.swift */; };
-		91487F4B29FD9838009CFECF /* KeywordSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4A29FD9838009CFECF /* KeywordSearchView.swift */; };
-		91487F4D29FD9858009CFECF /* KeywordSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */; };
+		91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4A29FD9838009CFECF /* TagSearchView.swift */; };
+		91487F4D29FD9858009CFECF /* TagSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4C29FD9858009CFECF /* TagSearchViewController.swift */; };
 		91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5129FDA143009CFECF /* SettingTableViewCell.swift */; };
 		91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */; };
 		91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5A29FDA287009CFECF /* KeywordsTableView.swift */; };
 		91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */; };
+		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
 		91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178A2A00E59900158787 /* PostsRepository.swift */; };
@@ -160,12 +161,13 @@
 		91487F3A29FD892B009CFECF /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 		91487F3C29FD893D009CFECF /* ListHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeadView.swift; sourceTree = "<group>"; };
 		91487F4229FD8AC9009CFECF /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		91487F4A29FD9838009CFECF /* KeywordSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSearchView.swift; sourceTree = "<group>"; };
-		91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSearchViewController.swift; sourceTree = "<group>"; };
+		91487F4A29FD9838009CFECF /* TagSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchView.swift; sourceTree = "<group>"; };
+		91487F4C29FD9858009CFECF /* TagSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewController.swift; sourceTree = "<group>"; };
 		91487F5129FDA143009CFECF /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
 		91487F5A29FDA287009CFECF /* KeywordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableView.swift; sourceTree = "<group>"; };
 		91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewController.swift; sourceTree = "<group>"; };
+		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
 		91ED178A2A00E59900158787 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
@@ -532,19 +534,20 @@
 		91487F4829FD9663009CFECF /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				91487F4929FD966B009CFECF /* KeywordSearch */,
+				91487F4929FD966B009CFECF /* TagSearch */,
 				91487F2B29FD07F7009CFECF /* SubscriberSearch */,
 			);
 			path = Search;
 			sourceTree = "<group>";
 		};
-		91487F4929FD966B009CFECF /* KeywordSearch */ = {
+		91487F4929FD966B009CFECF /* TagSearch */ = {
 			isa = PBXGroup;
 			children = (
+				91DEF3DB2A017764001B6A9D /* ViewModel */,
 				91487F5429FDA21F009CFECF /* View */,
 				91487F5329FDA213009CFECF /* ViewController */,
 			);
-			path = KeywordSearch;
+			path = TagSearch;
 			sourceTree = "<group>";
 		};
 		91487F4E29FD9902009CFECF /* TabBar */ = {
@@ -558,7 +561,7 @@
 		91487F5329FDA213009CFECF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				91487F4C29FD9858009CFECF /* KeywordSearchViewController.swift */,
+				91487F4C29FD9858009CFECF /* TagSearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -566,7 +569,7 @@
 		91487F5429FDA21F009CFECF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				91487F4A29FD9838009CFECF /* KeywordSearchView.swift */,
+				91487F4A29FD9838009CFECF /* TagSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -638,6 +641,14 @@
 				91487F2929FD0693009CFECF /* PostsTabManViewController.swift */,
 			);
 			path = TabMan;
+			sourceTree = "<group>";
+		};
+		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		91ED17852A00E55600158787 /* Protocol */ = {
@@ -785,9 +796,9 @@
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
 				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
-				91487F4B29FD9838009CFECF /* KeywordSearchView.swift in Sources */,
+				91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
-				91487F4D29FD9858009CFECF /* KeywordSearchViewController.swift in Sources */,
+				91487F4D29FD9858009CFECF /* TagSearchViewController.swift in Sources */,
 				913442362A00491C000E1ED1 /* NotificationAPI.swift in Sources */,
 				9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */,
 				913442382A004B91000E1ED1 /* DefaultTagRepository.swift in Sources */,
@@ -802,6 +813,7 @@
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
+				91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */,
 				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,

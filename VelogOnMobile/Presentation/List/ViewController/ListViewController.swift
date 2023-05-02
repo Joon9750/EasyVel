@@ -28,6 +28,10 @@ final class ListViewController: BaseViewController {
         bind()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func render() {
         self.view = listView
     }
@@ -35,10 +39,6 @@ final class ListViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.viewWillAppear()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func setupNavigationBar() {
@@ -128,13 +128,14 @@ private extension ListViewController {
     }
     
     func addKeywordButtonTap() {
-        let keywordSearchVC = KeywordSearchViewController()
-        keywordSearchVC.modalPresentationStyle = .pageSheet
-        if let sheet = keywordSearchVC.sheetPresentationController {
+        let tagSerchViewModel = TagSearchViewModel()
+        let tagSearchVC = TagSearchViewController(viewModel: tagSerchViewModel)
+        tagSearchVC.modalPresentationStyle = .pageSheet
+        if let sheet = tagSearchVC.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
         }
-        present(keywordSearchVC, animated: true)
+        present(tagSearchVC, animated: true)
     }
     
     func addSubscriberButtonTap() {

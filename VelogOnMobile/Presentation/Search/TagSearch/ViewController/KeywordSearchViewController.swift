@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class KeywordSearchViewController: BaseViewController {
+final class TagSearchViewController: BaseViewController {
     
     private let searchView = KeywordSearchView()
     

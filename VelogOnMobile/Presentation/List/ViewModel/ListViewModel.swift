@@ -22,8 +22,8 @@ final class ListViewModel: ListViewModelInputOutput {
     
     var tagList: [String]? {
         didSet {
-            if let tagListOutput,
-               let tagList {
+            if let tagListOutput = tagListOutput,
+               let tagList = tagList {
                 tagListOutput(tagList)
             }
         }
@@ -31,8 +31,8 @@ final class ListViewModel: ListViewModelInputOutput {
     
     var subscriberList: [String]? {
         didSet {
-            if let subscriberListOutput,
-               let subscriberList {
+            if let subscriberListOutput = subscriberListOutput,
+               let subscriberList = subscriberList {
                 subscriberListOutput(subscriberList)
             }
         }
@@ -42,25 +42,23 @@ final class ListViewModel: ListViewModelInputOutput {
     
     var tagListOutput: (([String]) -> Void)?
     var subscriberListOutput: (([String]) -> Void)?
-}
-
-// MARK: - Input
-
-extension ListViewModel {
+    
+    // MARK: - Input
+    
     func viewWillAppear() {
         getTagListForServer()
         getSubscribeListForServer()
     }
 }
 
+// MARK: - API
+
 private extension ListViewModel {
-    
     func getTagListForServer() {
         self.getTagList() { [weak self] response in
             guard let self = self else {
                 return
             }
-            print(response)
             self.tagList = response
         }
     }
@@ -70,7 +68,6 @@ private extension ListViewModel {
             guard let self = self else {
                 return
             }
-            print(response)
             self.subscriberList = response
         }
     }
