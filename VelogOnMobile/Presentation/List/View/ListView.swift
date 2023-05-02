@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 
 final class ListView: BaseUIView {
-    private let subscriberListTableView = ListTableView(frame: CGRect.zero, style: .insetGrouped)
+    let listTableView = ListTableView(frame: CGRect.zero, style: .insetGrouped)
     let postsHeadView = ListHeadView()
     
     override func render() {
         self.addSubviews(
-            subscriberListTableView,
+            listTableView,
             postsHeadView
         )
         
@@ -25,7 +25,7 @@ final class ListView: BaseUIView {
             $0.height.equalTo(120)
         }
         
-        subscriberListTableView.snp.makeConstraints {
+        listTableView.snp.makeConstraints {
             $0.top.equalTo(postsHeadView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }

@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class KeywordSearchView: BaseUIView {
+final class TagSearchView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -18,7 +18,7 @@ final class KeywordSearchView: BaseUIView {
         return label
     }()
     
-    let addSubscriberBtn: UIButton = {
+    let addTagBtn: UIButton = {
         let button = UIButton()
         button.setTitle("Add", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -59,7 +59,7 @@ final class KeywordSearchView: BaseUIView {
             titleLabel,
             textField,
             label,
-            addSubscriberBtn
+            addTagBtn
         )
         
         dismissBtn.snp.makeConstraints {
@@ -85,7 +85,7 @@ final class KeywordSearchView: BaseUIView {
             $0.leading.equalTo(textField.snp.leading)
         }
         
-        addSubscriberBtn.snp.makeConstraints {
+        addTagBtn.snp.makeConstraints {
             $0.top.equalTo(textField.snp.bottom).offset(50)
             $0.leading.equalTo(textField.snp.leading)
             $0.trailing.equalTo(textField.snp.trailing)

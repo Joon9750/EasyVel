@@ -9,5 +9,5 @@ import Foundation
 
 struct BaseURLConstant {
     // MARK: - baseURL
-    static let base = "http://144.24.85.88:8080/v2/api-docs"
+    static let base = "http://144.24.85.88:8080"
 }

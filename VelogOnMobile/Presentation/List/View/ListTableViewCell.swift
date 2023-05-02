@@ -13,17 +13,16 @@ final class ListTableViewCell: BaseTableViewCell {
     
     static let identifier = "ListTableViewCell"
     
-    var subscriberName: UILabel = {
+    var listText: UILabel = {
         let label = UILabel()
-        label.text = "홍준혁"
         label.tintColor = .black
         return label
     }()
     
     override func render() {
-        self.addSubview(subscriberName)
+        self.addSubview(listText)
         
-        subscriberName.snp.makeConstraints {
+        listText.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
         }

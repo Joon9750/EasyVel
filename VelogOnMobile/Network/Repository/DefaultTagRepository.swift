@@ -14,16 +14,11 @@ final class DefaultTagRepository: BaseRepository, TagRepository {
     let provider = MoyaProvider<TagAPI>(plugins: [MoyaLoggerPlugin()])
     
     func addTag(
-        tag: String,
-        completion: @escaping (NetworkResult<Any>) -> Void
+        tag: String
     ) {
         provider.request(.addTag(tag: tag)) { result in
             switch result {
-            case.success(let response):
-                let statusCode = response.statusCode
-                let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .addTag)
-                completion(networkResult)
+            case .success(_): break
             case .failure(let err):
                 print(err)
             }
