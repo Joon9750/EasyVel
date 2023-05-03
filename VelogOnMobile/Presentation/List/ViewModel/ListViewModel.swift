@@ -54,13 +54,21 @@ final class ListViewModel: ListViewModelInputOutput {
     
     func tagDeleteButtonDidTap(tag: String) {
         deleteTag(tag: tag) { [weak self] response in
-            guard self != nil else { return }
+            guard let self = self else {
+                return
+            }
+            self.getTagListForServer()
+            self.getSubscribeListForServer()
         }
     }
     
     func subscriberDeleteButtonDidTap(target: String) {
         deleteSubscriber(targetName: target) { [weak self] response in
-            guard self != nil else { return }
+            guard let self = self else {
+                return
+            }
+            self.getTagListForServer()
+            self.getSubscribeListForServer()
         }
     }
 }

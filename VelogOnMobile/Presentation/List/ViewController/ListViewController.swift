@@ -87,21 +87,31 @@ extension ListViewController: UITableViewDataSource {
 }
 
 extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentCell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else {
-            return
-        }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let selectedCell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
         let section = indexPath.section
         switch section {
         case 0:
-            if let tag = currentCell.listText.text {
-                viewModel?.tagDeleteButtonDidTap(tag: tag)
-            }
+            let swipeAction = UIContextualAction(style: .destructive, title: "삭제", handler: { action, view, completionHaldler in
+                if let tag = selectedCell.listText.text {
+                    self.viewModel?.tagDeleteButtonDidTap(tag: tag)
+                }
+                completionHaldler(true)
+            })
+            let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
+            return configuration
         case 1:
-            if let target = currentCell.listText.text {
-                viewModel?.subscriberDeleteButtonDidTap(target: target)
-            }
-        default: return
+            let swipeAction = UIContextualAction(style: .destructive, title: "삭제", handler: { action, view, completionHaldler in
+                if let target = selectedCell.listText.text {
+                    self.viewModel?.subscriberDeleteButtonDidTap(target: target)
+                }
+                completionHaldler(true)
+            })
+            let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
+            return configuration
+        default:
+            let configuration = UISwipeActionsConfiguration()
+            return configuration
         }
     }
     
