@@ -14,6 +14,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
 
     static let identifier = "KeywordsTableViewCell"
     
+    var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -96,6 +97,7 @@ extension KeywordsTableViewCell {
         title.text = model.title
         name.text = model.name
         date.text = model.date
+        url = model.url ?? String()
         textView.text = model.summary
         if let image = model.img {
             if image == "" {
