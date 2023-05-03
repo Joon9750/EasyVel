@@ -98,12 +98,13 @@ extension ListViewController: UITableViewDelegate {
                 viewModel?.tagDeleteButtonDidTap(tag: tag)
             }
         case 1:
-            // MARK: - delete Subscriber
-            return
+            if let target = currentCell.listText.text {
+                viewModel?.subscriberDeleteButtonDidTap(target: target)
+            }
         default: return
         }
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
