@@ -43,7 +43,7 @@ final class SubscriberSearchView: BaseUIView {
         return textField
     }()
     
-    let label: UILabel = {
+    let searchStatusLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.textColor = UIColor.red
@@ -58,7 +58,7 @@ final class SubscriberSearchView: BaseUIView {
             dismissBtn,
             titleLabel,
             textField,
-            label,
+            searchStatusLabel,
             addSubscriberBtn
         )
         
@@ -80,7 +80,7 @@ final class SubscriberSearchView: BaseUIView {
             $0.trailing.equalToSuperview().offset(-47)
         }
         
-        label.snp.makeConstraints {
+        searchStatusLabel.snp.makeConstraints {
             $0.top.equalTo(textField.snp.bottom).offset(5)
             $0.leading.equalTo(textField.snp.leading)
         }
