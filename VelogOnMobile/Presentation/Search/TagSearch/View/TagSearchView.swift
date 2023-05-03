@@ -13,7 +13,7 @@ final class TagSearchView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Search Keyword"
+        label.text = "Add Keyword"
         label.font = UIFont(name: "Avenir-Black", size: 20)
         return label
     }()

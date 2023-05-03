@@ -26,7 +26,7 @@ extension SubscriberAPI: BaseTargetType {
         case .searchSubscriber(let name):
             return URLConstants.subscriber + "/inputname/" + name
         case .deleteSubscriber(let targetName):
-            return URLConstants.subscriber + "/unsubscribe" + targetName
+            return URLConstants.subscriber + "/unsubscribe/" + targetName
         }
     }
     
