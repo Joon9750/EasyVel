@@ -67,6 +67,9 @@ extension SubscribePostsViewController: UITableViewDataSource {
 
 extension SubscribePostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell touched")
+        let selectedCell = tableView.cellForRow(at: indexPath) as! SubscribersPostsTableViewCell
+        let url = selectedCell.url
+        let webViewController = WebViewController(url: url)
+        navigationController?.pushViewController(webViewController, animated: true)
     }
 }
