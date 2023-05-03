@@ -82,6 +82,7 @@
 		91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */; };
 		91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5A29FDA287009CFECF /* KeywordsTableView.swift */; };
 		91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */; };
+		914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -167,6 +168,7 @@
 		91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
 		91487F5A29FDA287009CFECF /* KeywordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableView.swift; sourceTree = "<group>"; };
 		91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewController.swift; sourceTree = "<group>"; };
+		914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchViewModel.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 		91487F2B29FD07F7009CFECF /* SubscriberSearch */ = {
 			isa = PBXGroup;
 			children = (
+				914D8DCC2A02416300516B4C /* ViewModel */,
 				91487F5629FDA231009CFECF /* View */,
 				91487F5529FDA227009CFECF /* ViewController */,
 			);
@@ -641,6 +644,14 @@
 				91487F2929FD0693009CFECF /* PostsTabManViewController.swift */,
 			);
 			path = TabMan;
+			sourceTree = "<group>";
+		};
+		914D8DCC2A02416300516B4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
@@ -849,6 +860,7 @@
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
+				914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,

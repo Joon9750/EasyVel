@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SubscriberRepository {
-    func addSubscriber(fcmToken: String, name: String, completion: @escaping (NetworkResult<Any>) -> Void)
+    func addSubscriber(fcmToken: String, name: String)
     func getSubscriber(completion: @escaping (NetworkResult<Any>) -> Void)
     func searchSubscriber(name: String, completion: @escaping (NetworkResult<Any>) -> Void)
     func deleteSubscriber(targetName: String, completion: @escaping (NetworkResult<Any>) -> Void)

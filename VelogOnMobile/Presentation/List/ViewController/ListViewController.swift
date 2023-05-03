@@ -139,7 +139,8 @@ private extension ListViewController {
     }
     
     func addSubscriberButtonTap() {
-        let subscriberSearchVC = SubscriberSearchViewController()
+        let viewModel = SubscriberSearchViewModel()
+        let subscriberSearchVC = SubscriberSearchViewController(viewModel: viewModel)
         subscriberSearchVC.modalPresentationStyle = .pageSheet
         if let sheet = subscriberSearchVC.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
