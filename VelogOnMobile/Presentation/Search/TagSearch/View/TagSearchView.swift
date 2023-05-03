@@ -28,6 +28,13 @@ final class TagSearchView: BaseUIView {
         return button
     }()
     
+    let addStatusLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
+        label.textColor = .red
+        return label
+    }()
+    
     let dismissBtn: UIButton = {
         let button = UIButton()
         button.setTitle("dismiss", for: .normal)
@@ -43,14 +50,6 @@ final class TagSearchView: BaseUIView {
         return textField
     }()
     
-    let label: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = UIColor.red
-        label.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
-        return label
-    }()
-    
     override func render() {
         setTextField()
 
@@ -58,7 +57,7 @@ final class TagSearchView: BaseUIView {
             dismissBtn,
             titleLabel,
             textField,
-            label,
+            addStatusLabel,
             addTagBtn
         )
         
@@ -80,7 +79,7 @@ final class TagSearchView: BaseUIView {
             $0.trailing.equalToSuperview().offset(-47)
         }
         
-        label.snp.makeConstraints {
+        addStatusLabel.snp.makeConstraints {
             $0.top.equalTo(textField.snp.bottom).offset(5)
             $0.leading.equalTo(textField.snp.leading)
         }
