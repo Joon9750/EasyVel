@@ -47,7 +47,7 @@ final class SubscriberSearchView: BaseUIView {
         let label = UILabel()
         label.text = ""
         label.textColor = UIColor.red
-        label.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
+        label.font = UIFont(name: "Apple SD Gothic Neo", size: 13)
         return label
     }()
     
