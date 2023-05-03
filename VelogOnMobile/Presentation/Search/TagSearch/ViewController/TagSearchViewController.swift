@@ -20,6 +20,7 @@ final class TagSearchViewController: BaseViewController {
     init(viewModel: TagSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +29,25 @@ final class TagSearchViewController: BaseViewController {
     
     override func render() {
         self.view = searchView
+    }
+    
+    private func bind() {
+        viewModel?.tagAddStatus = { [weak self] isSuccess, statusText in
+            switch isSuccess {
+            case true:
+                self?.searchView.addStatusLabel.textColor = .brandColor
+                self?.searchView.addStatusLabel.text = statusText
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self?.searchView.addStatusLabel.text = ""
+                }
+            case false:
+                self?.searchView.addStatusLabel.textColor = .red
+                self?.searchView.addStatusLabel.text = statusText
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self?.searchView.addStatusLabel.text = ""
+                }
+            }
+        }
     }
 }
 

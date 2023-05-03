@@ -20,7 +20,7 @@ final class DefaultSubscriberRepository: BaseRepository, SubscriberRepository {
     ) {
         provider.request(.addSubscriber(fcmToken: fcmToken, name: name)) { result in
             switch result {
-            case.success(let response):
+            case .success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .addSubscriber)
