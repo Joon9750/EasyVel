@@ -17,7 +17,6 @@ final class SubscribersPostsTableViewCell: BaseTableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 8
-        imageView.image = ImageLiterals.dummyImage
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -29,28 +28,24 @@ final class SubscribersPostsTableViewCell: BaseTableViewCell {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.font = UIFont.systemFont(ofSize: 15)
-        textView.text = "자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!\n자~~ 리팩토링 해보자!!!"
         return textView
     }()
     
     let title: UILabel = {
         let title = UILabel()
         title.font = UIFont(name: "Avenir-Black", size: 15)
-        title.text = "Velog On Mobile"
         return title
     }()
     
     let date: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
-        label.text = "2023-03-01"
         return label
     }()
     
     let name: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Black", size: 13)
-        label.text = "홍준혁"
         return label
     }()
 
@@ -83,13 +78,30 @@ final class SubscribersPostsTableViewCell: BaseTableViewCell {
         
         title.snp.makeConstraints {
             $0.top.equalTo(name.snp.bottom).offset(5)
-            $0.leading.equalTo(name)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
 
         textView.snp.makeConstraints {
             $0.top.equalTo(title.snp.bottom).offset(5)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(60)
+        }
+    }
+}
+
+extension SubscribersPostsTableViewCell {
+    public func binding(model: SubscribePostDtoList){
+        title.text = model.title
+        name.text = model.name
+        date.text = model.date
+        textView.text = model.summary
+        if let image = model.img {
+            if image == "" {
+                imgView.image = UIImage(systemName: "photo.on.rectangle.angled")?.withTintColor(.gray)
+            } else {
+                let url = URL(string: image)
+                imgView.kf.setImage(with: url)
+            }
         }
     }
 }

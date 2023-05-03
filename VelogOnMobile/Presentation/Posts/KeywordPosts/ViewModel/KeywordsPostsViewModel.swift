@@ -35,20 +35,20 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     // MARK: - Input
     
     func viewWillAppear() {
-        getSubscriberPostsForserver()
+        getTagPostsForserver()
     }
 }
 
 // MARK: - API
 
 private extension KeywordsPostsViewModel {
-    func getSubscriberPostsForserver() {
-        getSubscriberPosts() { [weak self] result in
+    func getTagPostsForserver() {
+        getTagPosts() { [weak self] result in
             self?.tagPosts = result
         }
     }
     
-    func getSubscriberPosts(completion: @escaping (GetTagPostResponse) -> Void) {
+    func getTagPosts(completion: @escaping (GetTagPostResponse) -> Void) {
         NetworkService.shared.postsRepository.getTagPosts() { result in
             switch result {
             case .success(let response):
