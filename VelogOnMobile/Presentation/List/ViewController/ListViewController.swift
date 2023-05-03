@@ -120,7 +120,7 @@ private extension ListViewController {
             self?.addSubscriberButtonTap()
         }
         let cancelAction = UIAlertAction(title: "Canel", style: .cancel)
-        let actionSheet = UIAlertController(title: "검색", message: "검색할 기준을 선택해주세요.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "추가", message: "추가할 기준을 선택해주세요.", preferredStyle: .actionSheet)
         actionSheet.addAction(searchKeywordButtonAction)
         actionSheet.addAction(searchSubscriberButtonAction)
         actionSheet.addAction(cancelAction)

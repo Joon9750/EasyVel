@@ -501,8 +501,8 @@
 			isa = PBXGroup;
 			children = (
 				914D8DCC2A02416300516B4C /* ViewModel */,
-				91487F5629FDA231009CFECF /* View */,
 				91487F5529FDA227009CFECF /* ViewController */,
+				91487F5629FDA231009CFECF /* View */,
 			);
 			path = SubscriberSearch;
 			sourceTree = "<group>";
@@ -547,8 +547,8 @@
 			isa = PBXGroup;
 			children = (
 				91DEF3DB2A017764001B6A9D /* ViewModel */,
-				91487F5429FDA21F009CFECF /* View */,
 				91487F5329FDA213009CFECF /* ViewController */,
+				91487F5429FDA21F009CFECF /* View */,
 			);
 			path = TagSearch;
 			sourceTree = "<group>";

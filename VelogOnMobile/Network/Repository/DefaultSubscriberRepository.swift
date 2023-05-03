@@ -15,7 +15,8 @@ final class DefaultSubscriberRepository: BaseRepository, SubscriberRepository {
     
     func addSubscriber(
         fcmToken: String,
-        name: String
+        name: String,
+        completion: @escaping (NetworkResult<Any>) -> Void
     ) {
         provider.request(.addSubscriber(fcmToken: fcmToken, name: name)) { result in
             switch result {

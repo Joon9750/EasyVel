@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TagRepository {
-    func addTag(tag: String)
+    func addTag(tag: String, completion: @escaping (NetworkResult<Any>) -> Void)
     func deleteTag(tag: String, completion: @escaping (NetworkResult<Any>) -> Void)
     func getTag(completion: @escaping (NetworkResult<Any>) -> Void)
 }
