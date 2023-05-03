@@ -9,6 +9,7 @@ import UIKit
 
 protocol ListViewModelInput {
     func viewWillAppear()
+    func tagDeleteButtonDidTap(tag: String)
 }
 
 protocol ListViewModelOutput {
@@ -48,6 +49,14 @@ final class ListViewModel: ListViewModelInputOutput {
     func viewWillAppear() {
         getTagListForServer()
         getSubscribeListForServer()
+    }
+    
+    func tagDeleteButtonDidTap(tag: String) {
+        deleteTag(tag: tag) { [weak self] response in
+            guard self != nil else {
+                return
+            }
+        }
     }
 }
 
@@ -92,6 +101,19 @@ private extension ListViewModel {
             case .success(let response):
                 guard let list = response as? [String] else { return }
                 completion(list)
+            case .requestErr(let errResponse):
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func deleteTag(tag: String, completion: @escaping (String) -> Void) {
+        NetworkService.shared.tagRepository.deleteTag(tag: tag) { result in
+            switch result {
+            case .success(_):
+                completion("success")
             case .requestErr(let errResponse):
                 dump(errResponse)
             default:

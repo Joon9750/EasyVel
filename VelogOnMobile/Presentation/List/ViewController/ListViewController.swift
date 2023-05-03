@@ -88,7 +88,20 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell touched")
+        guard let currentCell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else {
+            return
+        }
+        let section = indexPath.section
+        switch section {
+        case 0:
+            if let tag = currentCell.listText.text {
+                viewModel?.tagDeleteButtonDidTap(tag: tag)
+            }
+        case 1:
+            // MARK: - delete Subscriber
+            return
+        default: return
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
