@@ -32,17 +32,12 @@ final class WebViewController: UIViewController {
     }()
     
     private func setActivityIndicator() {
-            // 불투명 뷰 추가
             view.addSubview(loadingBgView)
-            // activity indicator 추가
             loadingBgView.addSubview(activityIndicator)
-
             NSLayoutConstraint.activate([
                 activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
-
-            // 애니메이션 시작
             activityIndicator.startAnimating()
     }
     
@@ -63,7 +58,6 @@ final class WebViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        //super.init(coder: coder) 이것도 됨
     }
 
 
