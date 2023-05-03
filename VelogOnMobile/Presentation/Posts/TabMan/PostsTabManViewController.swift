@@ -22,7 +22,7 @@ final class PostsTabManViewController: TabmanViewController {
         return label
     }()
     private let bar = TMBar.ButtonBar()
-    private var viewControllers: Array<UIViewController> = [KeywordsPostsViewController(), SubscribePostsViewController()]
+    private var viewControllers: Array<UIViewController> = [KeywordsPostsViewController(viewModel: KeywordsPostsViewModel()), SubscribePostsViewController()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
