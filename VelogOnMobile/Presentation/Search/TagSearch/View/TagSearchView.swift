@@ -31,7 +31,6 @@ final class TagSearchView: BaseUIView {
     let addStatusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
-        label.textColor = .red
         return label
     }()
     

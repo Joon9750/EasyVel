@@ -12,7 +12,7 @@ protocol TagSearchViewModelInput {
 }
 
 protocol TagSearchViewModelOutput {
-    var tagAddStatus: ((String) -> Void)? { get set }
+    var tagAddStatus: ((Bool, String) -> Void)? { get set }
 }
 
 protocol TagSearchViewModelInputOutput: TagSearchViewModelInput, TagSearchViewModelOutput {}
@@ -21,7 +21,7 @@ final class TagSearchViewModel: TagSearchViewModelInputOutput {
 
     // MARK: - Output
     
-    var tagAddStatus: ((String) -> Void)?
+    var tagAddStatus: ((Bool, String) -> Void)?
     
     // MARK: - Input
     
@@ -35,16 +35,19 @@ final class TagSearchViewModel: TagSearchViewModelInputOutput {
 }
 
 private extension TagSearchViewModel {
-    func addTag(tag: String, completion: @escaping ([String]) -> Void) {
+    func addTag(tag: String, completion: @escaping (String) -> Void) {
         NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
             switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
+            case .success(_):
+                let text: String = "키워드가 추가되었습니다."
+                if let tagAddStatus = self?.tagAddStatus {
+                    tagAddStatus(true, text)
+                }
+                completion("success")
             case .requestErr(let errResponse):
                 let text: String = "이미 추가된 관심 키워드입니다."
                 if let tagAddStatus = self?.tagAddStatus {
-                    tagAddStatus(text)
+                    tagAddStatus(false, text)
                 }
                 dump(errResponse)
             default:

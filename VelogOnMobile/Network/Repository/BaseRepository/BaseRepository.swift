@@ -31,7 +31,8 @@ class BaseRepository {
     func isValidData(data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         switch responseData {
-        case .addTag: return .success(AnyObject.self)
+        case .addTag:
+            return .success((Any).self)
         case .deleteTag: return .success(AnyObject.self)
         case .getTag:
             guard let decodedData = try? decoder.decode([String].self, from: data) else {

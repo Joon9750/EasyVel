@@ -32,10 +32,20 @@ final class TagSearchViewController: BaseViewController {
     }
     
     private func bind() {
-        viewModel?.tagAddStatus = { [weak self] statusText in
-            self?.searchView.addStatusLabel.text = statusText
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self?.searchView.addStatusLabel.text = ""
+        viewModel?.tagAddStatus = { [weak self] isSuccess, statusText in
+            switch isSuccess {
+            case true:
+                self?.searchView.addStatusLabel.textColor = .brandColor
+                self?.searchView.addStatusLabel.text = statusText
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self?.searchView.addStatusLabel.text = ""
+                }
+            case false:
+                self?.searchView.addStatusLabel.textColor = .red
+                self?.searchView.addStatusLabel.text = statusText
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self?.searchView.addStatusLabel.text = ""
+                }
             }
         }
     }
