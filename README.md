@@ -1,5 +1,5 @@
 # VelogOniOS
-Refactoring to MVVM + C
+Refactoring to MVVM
 
 https://github.com/SSUDevelog/VelogInMobile
 
