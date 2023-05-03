@@ -85,6 +85,8 @@
 		914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */; };
 		914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */; };
 		914D8DD42A02A4B500516B4C /* SubscriberPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD32A02A4B500516B4C /* SubscriberPostsViewModel.swift */; };
+		914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD82A02B22A00516B4C /* WebViewController.swift */; };
+		914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -173,6 +175,7 @@
 		914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchViewModel.swift; sourceTree = "<group>"; };
 		914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewModel.swift; sourceTree = "<group>"; };
 		914D8DD32A02A4B500516B4C /* SubscriberPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberPostsViewModel.swift; sourceTree = "<group>"; };
+		914D8DD82A02B22A00516B4C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -190,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */,
+				914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */,
 				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
 				91487ED729FC38CC009CFECF /* SnapKit in Frameworks */,
@@ -428,6 +432,7 @@
 		91487EE529FC39D8009CFECF /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				914D8DD72A02B17000516B4C /* WebView */,
 				91487F6229FDA348009CFECF /* TabMan */,
 				91487F5729FDA256009CFECF /* KeywordPosts */,
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
@@ -676,6 +681,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		914D8DD72A02B17000516B4C /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,6 +764,7 @@
 				91487ED929FC3921009CFECF /* Moya */,
 				91487F0D29FC4656009CFECF /* Kingfisher */,
 				91487F2729FD0641009CFECF /* Tabman */,
+				914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */,
 			);
 			productName = VelogOnMobile;
 			productReference = 91487EBE29FC380A009CFECF /* VelogOnMobile.app */;
@@ -785,6 +799,7 @@
 				91487ED829FC3921009CFECF /* XCRemoteSwiftPackageReference "Moya" */,
 				91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */,
+				914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = 91487EBF29FC380A009CFECF /* Products */;
 			projectDirPath = "";
@@ -889,6 +904,7 @@
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
+				914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */,
 				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
 				91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,
@@ -1134,6 +1150,14 @@
 				kind = branch;
 			};
 		};
+		914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1156,6 +1180,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
+		};
+		914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

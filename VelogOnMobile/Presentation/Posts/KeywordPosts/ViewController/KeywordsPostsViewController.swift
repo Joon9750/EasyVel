@@ -67,6 +67,9 @@ extension KeywordsPostsViewController: UITableViewDataSource {
 
 extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("cell touched")
+        let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
+        let url = selectedCell.url
+        let webViewController = WebViewController(url: url)
+        navigationController?.pushViewController(webViewController, animated: true)
     }
 }
