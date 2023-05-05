@@ -77,22 +77,22 @@ final class KeywordsTableViewCell: BaseTableViewCell {
 
         textView.snp.makeConstraints {
             $0.top.equalTo(name.snp.bottom).offset(10)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(140)
-        }
-
-        imgView.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(5)
-            $0.leading.equalTo(textView.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview()
         }
         
         date.snp.makeConstraints {
             $0.top.equalTo(title.snp.bottom).offset(5)
             $0.height.equalTo(15)
-            $0.trailing.equalTo(textView.snp.trailing)
+            $0.trailing.equalToSuperview().inset(10)
+        }
+
+        imgView.snp.makeConstraints {
+            $0.top.equalTo(name.snp.bottom).offset(10)
+            $0.leading.equalTo(textView.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }
