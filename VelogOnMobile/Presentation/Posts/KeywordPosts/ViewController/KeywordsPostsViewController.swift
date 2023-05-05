@@ -73,6 +73,16 @@ extension KeywordsPostsViewController: UITableViewDataSource {
 extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
+        let index = indexPath.section
+        let post = StoragePost(
+            img: keywordsPosts?.tagPostDtoList?[index].img,
+            name: keywordsPosts?.tagPostDtoList?[index].name,
+            summary: keywordsPosts?.tagPostDtoList?[index].summary,
+            title: keywordsPosts?.tagPostDtoList?[index].title,
+            url: keywordsPosts?.tagPostDtoList?[index].url
+        )
+        // MARK: - fix me
+        viewModel?.cellDidTap(input: post)
         let url = selectedCell.url
         let webViewController = WebViewController(url: url)
         navigationController?.pushViewController(webViewController, animated: true)

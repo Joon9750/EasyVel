@@ -16,7 +16,7 @@ final class TabBarController: UITabBarController {
     let listViewModel = ListViewModel()
     let PostsVC = PostsTabManViewController()
     lazy var ListVC = ListViewController(viewModel: listViewModel)
-    let storageVC = StorageViewController()
+    let storageVC = StorageViewController(viewModel: StorageViewModel())
     let settingVC = SettingViewController()
     
     override func viewDidLoad() {

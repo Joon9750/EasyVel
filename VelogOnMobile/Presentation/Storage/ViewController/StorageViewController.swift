@@ -10,19 +10,26 @@ import UIKit
 final class StorageViewController: BaseViewController {
     
     private let storageView = StorageView()
+    private var viewModel: StorageViewModelInputOutput?
     private var storagePosts: [StoragePost]? {
         didSet {
             storageView.listTableView.reloadData()
         }
     }
     
-    init() {
+    init(viewModel: StorageViewModel) {
         super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
         bind()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.viewWillAppear()
     }
     
     override func render() {
@@ -32,12 +39,16 @@ final class StorageViewController: BaseViewController {
     private func bind() {
         storageView.listTableView.dataSource = self
         storageView.listTableView.delegate = self
+        viewModel?.storagePosts = { [weak self] posts in
+            self?.storagePosts = posts
+            print(posts.count)
+        }
     }
 }
 
 extension StorageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return storagePosts?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,7 +65,7 @@ extension StorageViewController: UITableViewDataSource {
 
 extension StorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 150
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -66,9 +77,8 @@ extension StorageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
-        let index = indexPath.row
         let swipeAction = UIContextualAction(style: .destructive, title: "삭제", handler: { action, view, completionHaldler in
-            // MARK: - add Realm delete
+            self.viewModel?.deletePostButtonDidTap(url: selectedCell.url)
             completionHaldler(true)
         })
         let configuration = UISwipeActionsConfiguration(actions: [swipeAction])

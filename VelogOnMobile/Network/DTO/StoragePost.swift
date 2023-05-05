@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoragePost: Codable {
+struct StoragePost: Codable, Equatable {
     let img: String?
     let name: String?
     let summary: String?

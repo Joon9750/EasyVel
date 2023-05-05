@@ -96,6 +96,8 @@
 		917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3442A050631000409B7 /* StorageViewModel.swift */; };
 		917BA34C2A050861000409B7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 917BA34B2A050861000409B7 /* Realm */; };
 		917BA34E2A050861000409B7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 917BA34D2A050861000409B7 /* RealmSwift */; };
+		917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3512A050903000409B7 /* RealmStoragePost.swift */; };
+		917BA3552A0509D8000409B7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3542A0509D8000409B7 /* RealmService.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -192,6 +194,8 @@
 		917BA3402A03E8FE000409B7 /* StorageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTableViewCell.swift; sourceTree = "<group>"; };
 		917BA3422A0503D5000409B7 /* StoragePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePost.swift; sourceTree = "<group>"; };
 		917BA3442A050631000409B7 /* StorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewModel.swift; sourceTree = "<group>"; };
+		917BA3512A050903000409B7 /* RealmStoragePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStoragePost.swift; sourceTree = "<group>"; };
+		917BA3542A0509D8000409B7 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -281,13 +285,13 @@
 		913441F729FFD760000E1ED1 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				917BA3422A0503D5000409B7 /* StoragePost.swift */,
 				91ED179C2A00F2FE00158787 /* ResponseData */,
 				91ED17942A00EAE200158787 /* ErrorDTO */,
 				9134421B29FFEAA4000E1ED1 /* NotificationDTO */,
 				9134421629FFDCCF000E1ED1 /* TagDTO */,
 				9134420D29FFDADB000E1ED1 /* SubscribeDTO */,
 				9134420C29FFDAA6000E1ED1 /* SignDTO */,
-				917BA3422A0503D5000409B7 /* StoragePost.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -369,6 +373,7 @@
 		91487EC029FC380A009CFECF /* VelogOnMobile */ = {
 			isa = PBXGroup;
 			children = (
+				917BA34F2A0508DF000409B7 /* Realm */,
 				913441E229FFD5BE000E1ED1 /* Network */,
 				91487EDE29FC3946009CFECF /* Presentation */,
 				91487EDF29FC3950009CFECF /* Global */,
@@ -746,6 +751,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		917BA34F2A0508DF000409B7 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				917BA3532A0509C9000409B7 /* Service */,
+				917BA3502A0508EA000409B7 /* DTO */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		917BA3502A0508EA000409B7 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				917BA3512A050903000409B7 /* RealmStoragePost.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		917BA3532A0509C9000409B7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				917BA3542A0509D8000409B7 /* RealmService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,6 +926,7 @@
 				9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
+				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
@@ -920,6 +951,7 @@
 				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
+				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,

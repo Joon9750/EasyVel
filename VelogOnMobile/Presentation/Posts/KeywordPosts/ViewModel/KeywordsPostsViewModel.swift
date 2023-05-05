@@ -5,10 +5,14 @@
 //  Created by 홍준혁 on 2023/05/03.
 //
 
-import UIKit
+import Foundation
+
+import RealmSwift
 
 protocol KeywordsPostsViewModelInput {
     func viewWillAppear()
+    // MARK: - fix me
+    func cellDidTap(input: StoragePost)
 }
 
 protocol KeywordsPostsViewModelOutput {
@@ -19,6 +23,8 @@ protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, Keyword
 
 final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
+    let realm = RealmService()
+    
     var tagPosts: GetTagPostResponse? {
         didSet {
             if let tagPosts = tagPosts,
@@ -28,14 +34,22 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
         }
     }
     
-    // MARK: - Output
-    
-    var tagPostsListOutput: ((GetTagPostResponse) -> Void)?
-    
     // MARK: - Input
     
     func viewWillAppear() {
         getTagPostsForserver()
+    }
+    
+    func cellDidTap(input: StoragePost) {
+        addPostRealm(post: input)
+    }
+    
+    // MARK: - Output
+    
+    var tagPostsListOutput: ((GetTagPostResponse) -> Void)?
+    
+    private func addPostRealm(post: StoragePost) {
+        realm.addPost(item: post)
     }
 }
 

@@ -16,7 +16,6 @@ final class StorageTableViewCell: BaseTableViewCell {
     var url = String()
     let listTitle: UILabel = {
         let label = UILabel()
-        label.text = "MVVM"
         label.numberOfLines = 2
         label.tintColor = .black
         label.font = UIFont(name: "Avenir-Black", size: 15)
@@ -25,7 +24,6 @@ final class StorageTableViewCell: BaseTableViewCell {
     
     let listText: UILabel = {
         let label = UILabel()
-        label.text = "MVVM 해보고 싶다..MVVM 해보고 싶다..MVVM 해보고 싶다..MVVM 해보고 싶다..MVVM 해보고 싶다..MVVM 해보고 싶다..MVVM 해보고 싶다..MVVM 해보고 싶다.."
         label.numberOfLines = 5
         label.textColor = UIColor.darkGray
         label.font = UIFont(name: "Avenir-Black", size: 12)
@@ -34,7 +32,6 @@ final class StorageTableViewCell: BaseTableViewCell {
     
     let listWriter: UILabel = {
         let label = UILabel()
-        label.text = "홍준혁"
         label.tintColor = .black
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
@@ -72,6 +69,7 @@ final class StorageTableViewCell: BaseTableViewCell {
             $0.top.equalTo(listWriter.snp.bottom).offset(5)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(120)
+            $0.bottom.equalToSuperview().inset(5)
         }
         
         imgView.snp.makeConstraints {
