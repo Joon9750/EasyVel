@@ -46,14 +46,19 @@ final class KeywordsPostsViewController: BaseViewController {
 }
 
 extension KeywordsPostsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return keywordsPosts?.tagPostDtoList?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell ?? KeywordsTableViewCell()
         cell.selectionStyle = .none
-        if let data = keywordsPosts?.tagPostDtoList?[indexPath.row] {
+        let index = indexPath.section
+        if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
             return cell
         }

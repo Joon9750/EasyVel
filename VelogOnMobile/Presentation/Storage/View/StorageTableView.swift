@@ -1,15 +1,15 @@
 //
-//  KeywordsTableView.swift
+//  StorageTableView.swift
 //  VelogOnMobile
 //
-//  Created by 홍준혁 on 2023/04/30.
+//  Created by 홍준혁 on 2023/05/04.
 //
 
 import UIKit
 
 import SnapKit
 
-final class KeywordsTableView: UITableView {
+final class StorageTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -21,7 +21,9 @@ final class KeywordsTableView: UITableView {
     }
 
     private func setupTableView() {
-        register(KeywordsTableViewCell.self, forCellReuseIdentifier: KeywordsTableViewCell.identifier)
+        register(StorageTableViewCell.self, forCellReuseIdentifier:
+                    StorageTableViewCell.identifier)
+        separatorStyle = .singleLine
         showsVerticalScrollIndicator = true
     }
 }
