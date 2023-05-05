@@ -28,25 +28,25 @@ final class SubscribersPostsTableViewCell: BaseTableViewCell {
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
-        textView.font = UIFont.systemFont(ofSize: 15)
+        textView.font = UIFont(name: "Avenir-Black", size: 12)
         return textView
     }()
     
     let title: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Avenir-Black", size: 15)
+        title.font = UIFont(name: "Avenir-Black", size: 17)
         return title
     }()
     
     let date: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont(name: "Avenir-Black", size: 10)
         return label
     }()
     
     let name: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir-Black", size: 13)
+        label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
 
@@ -61,31 +61,37 @@ final class SubscribersPostsTableViewCell: BaseTableViewCell {
             textView
         )
 
-        imgView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(150)
+        title.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.height.equalTo(20)
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
         
         name.snp.makeConstraints {
-            $0.top.equalTo(imgView.snp.bottom).offset(5)
-            $0.leading.equalToSuperview().inset(20)
-        }
-        
-        date.snp.makeConstraints {
-            $0.top.equalTo(imgView.snp.bottom).offset(5)
-            $0.trailing.equalToSuperview().inset(20)
-        }
-        
-        title.snp.makeConstraints {
-            $0.top.equalTo(name.snp.bottom).offset(5)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(title.snp.bottom).offset(5)
+            $0.height.equalTo(15)
+            $0.width.equalTo(120)
+            $0.leading.equalToSuperview().inset(10)
         }
 
         textView.snp.makeConstraints {
+            $0.top.equalTo(name.snp.bottom).offset(10)
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().inset(140)
+        }
+
+        imgView.snp.makeConstraints {
             $0.top.equalTo(title.snp.bottom).offset(5)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(60)
+            $0.leading.equalTo(textView.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview()
+        }
+        
+        date.snp.makeConstraints {
+            $0.top.equalTo(title.snp.bottom).offset(5)
+            $0.height.equalTo(15)
+            $0.trailing.equalTo(textView.snp.trailing)
         }
     }
 }

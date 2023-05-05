@@ -10,6 +10,8 @@ import Foundation
 import RealmSwift
 
 protocol StorageViewModelInput {
+    
+    // MARK: - fix me
     func deletePostButtonDidTap(url: String)
     func viewWillAppear()
 }
@@ -27,15 +29,12 @@ final class StorageViewModel: StorageViewModelInputOutput {
     // MARK: - Input
     
     func deletePostButtonDidTap(url: String) {
-        realm.deletePost(url: url)
+        deletePostInRealm(url: url)
+        getPostInRealm()
     }
     
     func viewWillAppear() {
-        let realmPostData = realm.getPosts()
-        let posts: [StoragePost] = convertToStoragePost(input: realmPostData)
-        if let storagePosts = storagePosts {
-            storagePosts(posts)
-        }
+        getPostInRealm()
     }
     
     // MARK: - Output
@@ -43,6 +42,14 @@ final class StorageViewModel: StorageViewModelInputOutput {
     var storagePosts: (([StoragePost]) -> Void)?
     
     // MARK: - func
+    
+    private func getPostInRealm() {
+        let realmPostData = realm.getPosts()
+        let posts: [StoragePost] = convertToStoragePost(input: realmPostData)
+        if let storagePosts = storagePosts {
+            storagePosts(posts)
+        }
+    }
     
     private func convertToStoragePost(input: Results<RealmStoragePost>) -> [StoragePost] {
         var storagePosts = [StoragePost]()
@@ -58,5 +65,9 @@ final class StorageViewModel: StorageViewModelInputOutput {
             storagePosts.append(post)
         }
         return storagePosts
+    }
+    
+    private func deletePostInRealm(url: String) {
+        realm.deletePost(url: url)
     }
 }
