@@ -23,7 +23,7 @@ final class StorageTableView: UITableView {
     private func setupTableView() {
         register(StorageTableViewCell.self, forCellReuseIdentifier:
                     StorageTableViewCell.identifier)
-        separatorStyle = .singleLine
+        separatorStyle = .none
         showsVerticalScrollIndicator = true
     }
 }
