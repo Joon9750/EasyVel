@@ -81,6 +81,7 @@ extension KeywordsPostsViewController: UITableViewDelegate {
             title: keywordsPosts?.tagPostDtoList?[index].title,
             url: keywordsPosts?.tagPostDtoList?[index].url
         )
+        
         // MARK: - fix me
         viewModel?.cellDidTap(input: post)
         let url = selectedCell.url

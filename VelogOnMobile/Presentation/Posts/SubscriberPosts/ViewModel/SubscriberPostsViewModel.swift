@@ -7,8 +7,12 @@
 
 import UIKit
 
+import RealmSwift
+
 protocol SubscriberPostsViewModelInput {
     func viewWillAppear()
+    // MARK: - fix me
+    func cellDidTap(input: StoragePost)
 }
 
 protocol SubscriberPostsViewModelOutput {
@@ -19,6 +23,8 @@ protocol SubscriberPostsViewModelInputOutput: SubscriberPostsViewModelInput, Sub
 
 final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     
+    let realm = RealmService()
+    
     var subscribePosts: GetSubscriberPostResponse? {
         didSet {
             if let subscribePosts = subscribePosts,
@@ -28,14 +34,22 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
         }
     }
     
-    // MARK: - Output
-    
-    var subscriberPostsListOutput: ((GetSubscriberPostResponse) -> Void)?
-    
     // MARK: - Input
     
     func viewWillAppear() {
         getSubscriberPostsForserver()
+    }
+    
+    func cellDidTap(input: StoragePost) {
+        addPostRealm(post: input)
+    }
+    
+    // MARK: - Output
+    
+    var subscriberPostsListOutput: ((GetSubscriberPostResponse) -> Void)?
+    
+    private func addPostRealm(post: StoragePost) {
+        realm.addPost(item: post)
     }
 }
 
