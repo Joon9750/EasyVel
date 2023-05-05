@@ -94,6 +94,8 @@
 		917BA3412A03E8FE000409B7 /* StorageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3402A03E8FE000409B7 /* StorageTableViewCell.swift */; };
 		917BA3432A0503D5000409B7 /* StoragePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3422A0503D5000409B7 /* StoragePost.swift */; };
 		917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3442A050631000409B7 /* StorageViewModel.swift */; };
+		917BA34C2A050861000409B7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 917BA34B2A050861000409B7 /* Realm */; };
+		917BA34E2A050861000409B7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 917BA34D2A050861000409B7 /* RealmSwift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -206,7 +208,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				917BA34C2A050861000409B7 /* Realm in Frameworks */,
 				91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */,
+				917BA34E2A050861000409B7 /* RealmSwift in Frameworks */,
 				914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */,
 				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
@@ -718,8 +722,8 @@
 		917BA3362A03E325000409B7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				917BA3342A03E14A000409B7 /* StorageHeadView.swift */,
 				917BA3322A03D8F7000409B7 /* StorageView.swift */,
+				917BA3342A03E14A000409B7 /* StorageHeadView.swift */,
 				917BA33E2A03E8A1000409B7 /* StorageTableView.swift */,
 				917BA3402A03E8FE000409B7 /* StorageTableViewCell.swift */,
 			);
@@ -818,6 +822,8 @@
 				91487F0D29FC4656009CFECF /* Kingfisher */,
 				91487F2729FD0641009CFECF /* Tabman */,
 				914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */,
+				917BA34B2A050861000409B7 /* Realm */,
+				917BA34D2A050861000409B7 /* RealmSwift */,
 			);
 			productName = VelogOnMobile;
 			productReference = 91487EBE29FC380A009CFECF /* VelogOnMobile.app */;
@@ -853,6 +859,7 @@
 				91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */,
 				914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 91487EBF29FC380A009CFECF /* Products */;
 			projectDirPath = "";
@@ -1218,6 +1225,14 @@
 				kind = branch;
 			};
 		};
+		917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1245,6 +1260,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorView;
+		};
+		917BA34B2A050861000409B7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		917BA34D2A050861000409B7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
