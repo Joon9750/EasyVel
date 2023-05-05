@@ -47,14 +47,18 @@ final class StorageViewController: BaseViewController {
 }
 
 extension StorageViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return storagePosts?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StorageTableViewCell.identifier, for: indexPath) as? StorageTableViewCell ?? StorageTableViewCell()
         cell.selectionStyle = .none
-        let index = indexPath.row
+        let index = indexPath.section
         if let data = storagePosts?[index] {
             cell.binding(model: data)
             return cell

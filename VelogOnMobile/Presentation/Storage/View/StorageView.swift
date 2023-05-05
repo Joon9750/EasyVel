@@ -11,7 +11,7 @@ import SnapKit
 
 final class StorageView: BaseUIView {
     
-    let listTableView = StorageTableView()
+    let listTableView = StorageTableView(frame: .null, style: .insetGrouped)
     let storageHeadView = StorageHeadView()
     
     override func render() {

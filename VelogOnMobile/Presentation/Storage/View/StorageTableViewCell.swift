@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Kingfisher
 
 final class StorageTableViewCell: BaseTableViewCell {
     
@@ -54,29 +55,30 @@ final class StorageTableViewCell: BaseTableViewCell {
         )
         
         listTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(5)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().inset(120)
+            $0.top.equalToSuperview().offset(20)
+            $0.height.equalTo(20)
+            $0.leading.trailing.equalToSuperview().inset(10)
         }
         
         listWriter.snp.makeConstraints {
             $0.top.equalTo(listTitle.snp.bottom).offset(5)
+            $0.height.equalTo(15)
             $0.leading.equalToSuperview().inset(10)
-            $0.trailing.equalToSuperview().inset(120)
+            $0.trailing.equalToSuperview().inset(140)
         }
         
         listText.snp.makeConstraints {
-            $0.top.equalTo(listWriter.snp.bottom).offset(5)
+            $0.top.equalTo(listWriter.snp.bottom).offset(10)
+            $0.height.equalTo(60)
             $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().inset(120)
-            $0.bottom.equalToSuperview().inset(5)
+            $0.trailing.equalToSuperview().inset(140)
         }
         
         imgView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(5)
-            $0.leading.equalTo(listTitle.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(5)
-            $0.bottom.equalTo(listText.snp.bottom)
+            $0.top.equalTo(listTitle.snp.bottom).offset(5)
+            $0.leading.equalTo(listText.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }

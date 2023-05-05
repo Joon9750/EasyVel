@@ -11,6 +11,8 @@ import SnapKit
 
 final class TabBarController: UITabBarController {
     
+//    let realm = RealmService()
+    
     fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
     
     let listViewModel = ListViewModel()
@@ -23,6 +25,8 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         setUpTabBar()
+        
+//        realm.resetDB()
     }
     
     func setUpTabBar(){

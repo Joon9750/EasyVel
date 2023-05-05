@@ -66,13 +66,24 @@ extension SubscribePostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 280
+        return 180
     }
 }
 
 extension SubscribePostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! SubscribersPostsTableViewCell
+        let index = indexPath.section
+        let post = StoragePost(
+            img: subscriberPosts?.subscribePostDtoList?[index].img,
+            name: subscriberPosts?.subscribePostDtoList?[index].name,
+            summary: subscriberPosts?.subscribePostDtoList?[index].summary,
+            title: subscriberPosts?.subscribePostDtoList?[index].title,
+            url: subscriberPosts?.subscribePostDtoList?[index].url
+        )
+        
+        // MARK: - fix me
+        viewModel?.cellDidTap(input: post)
         let url = selectedCell.url
         let webViewController = WebViewController(url: url)
         navigationController?.pushViewController(webViewController, animated: true)
