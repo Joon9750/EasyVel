@@ -11,7 +11,7 @@ import SnapKit
 
 final class KeywordsPostsView: BaseUIView {
     
-    let keywordsTableView = KeywordsTableView()
+    let keywordsTableView = KeywordsTableView(frame: .null, style: .insetGrouped)
     
     override func render() {
         self.addSubview(keywordsTableView)

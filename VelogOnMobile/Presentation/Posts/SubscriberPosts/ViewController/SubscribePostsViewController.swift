@@ -46,14 +46,19 @@ final class SubscribePostsViewController: BaseViewController {
 }
 
 extension SubscribePostsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return subscriberPosts?.subscribePostDtoList?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SubscribersPostsTableViewCell.identifier, for: indexPath) as? SubscribersPostsTableViewCell ?? SubscribersPostsTableViewCell()
         cell.selectionStyle = .none
-        if let data = subscriberPosts?.subscribePostDtoList?[indexPath.row] {
+        let index = indexPath.section
+        if let data = subscriberPosts?.subscribePostDtoList?[index] {
             cell.binding(model: data)
             return cell
         }

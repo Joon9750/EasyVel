@@ -11,7 +11,7 @@ import SnapKit
 
 final class SubscribersPostsView: BaseUIView {
     
-    let postTableView = PostsTableView()
+    let postTableView = PostsTableView(frame: .null, style: .insetGrouped)
     
     override func render() {
         self.addSubview(postTableView)

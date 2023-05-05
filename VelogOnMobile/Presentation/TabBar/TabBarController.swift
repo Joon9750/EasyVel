@@ -16,7 +16,7 @@ final class TabBarController: UITabBarController {
     let listViewModel = ListViewModel()
     let PostsVC = PostsTabManViewController()
     lazy var ListVC = ListViewController(viewModel: listViewModel)
-    let notifiVC = NotificationViewController()
+    let storageVC = StorageViewController(viewModel: StorageViewModel())
     let settingVC = SettingViewController()
     
     override func viewDidLoad() {
@@ -33,15 +33,15 @@ final class TabBarController: UITabBarController {
 
         PostsVC.title = "Posts"
         ListVC.title = "Lists"
-        notifiVC.title = "Alerm"
+        storageVC.title = "Storage"
         settingVC.title = "Setting"
 
-        let ViewControllers:[UIViewController] = [PostsVC,ListVC,notifiVC,settingVC]
+        let ViewControllers:[UIViewController] = [PostsVC,ListVC,storageVC,settingVC]
         self.setViewControllers(ViewControllers, animated: true)
 
         PostsVC.tabBarItem.image = UIImage(systemName: "books.vertical")
-        ListVC.tabBarItem.image = UIImage(systemName: "folder")
-        notifiVC.tabBarItem.image = UIImage(systemName: "bell")
+        ListVC.tabBarItem.image = UIImage(systemName: "list.bullet.rectangle.portrait")
+        storageVC.tabBarItem.image = UIImage(systemName: "archivebox")
         settingVC.tabBarItem.image = UIImage(systemName: "gearshape")
         
         self.hidesBottomBarWhenPushed = false

@@ -21,6 +21,14 @@ final class PostsTabManViewController: TabmanViewController {
         label.font = UIFont(name: "Avenir-Black", size: 30)
         return label
     }()
+    private let notifiButton: UIButton = {
+        let button = UIButton()
+        button.setImage(
+            UIImage(systemName: "bell")?.withTintColor(.brandColor, renderingMode: .alwaysOriginal),
+            for: .normal
+        )
+        return button
+    }()
     private let bar = TMBar.ButtonBar()
     private var viewControllers: Array<UIViewController> = [KeywordsPostsViewController(viewModel: KeywordsPostsViewModel()), SubscribePostsViewController(viewModel: SubscriberPostsViewModel())]
 
@@ -37,6 +45,7 @@ final class PostsTabManViewController: TabmanViewController {
         
         finalView.addSubviews(
             titleLabel,
+            notifiButton,
             tabManBarView
         )
         
@@ -47,6 +56,12 @@ final class PostsTabManViewController: TabmanViewController {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().inset(20)
+        }
+        
+        notifiButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().inset(30)
+            $0.height.width.equalTo(25)
         }
         
         tabManBarView.snp.makeConstraints {

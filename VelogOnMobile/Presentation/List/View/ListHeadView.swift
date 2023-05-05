@@ -22,7 +22,10 @@ final class ListHeadView: BaseUIView {
     
     let addButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.addButtonIcon, for: .normal)
+        button.setImage(
+            UIImage(systemName:"plus")?.withTintColor(.brandColor, renderingMode: .alwaysOriginal),
+            for: .normal
+        )
         return button
     }()
     
@@ -33,12 +36,12 @@ final class ListHeadView: BaseUIView {
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide)
+            $0.top.equalToSuperview().offset(60)
             $0.leading.equalToSuperview().offset(20)
         }
         
         addButton.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).offset(10)
+            $0.top.equalTo(titleLabel).offset(10)
             $0.trailing.equalToSuperview().inset(30)
             $0.height.width.equalTo(25)
         }
