@@ -45,26 +45,10 @@ final class StorageViewModel: StorageViewModelInputOutput {
     
     private func getPostInRealm() {
         let realmPostData = realm.getPosts()
-        let posts: [StoragePost] = convertToStoragePost(input: realmPostData)
+        let posts: [StoragePost] = realm.convertToStoragePost(input: realmPostData)
         if let storagePosts = storagePosts {
             storagePosts(posts)
         }
-    }
-    
-    private func convertToStoragePost(input: Results<RealmStoragePost>) -> [StoragePost] {
-        var storagePosts = [StoragePost]()
-        let inputSize = input.count
-        for index in 0..<inputSize {
-            let post = StoragePost(
-                img: input[index].img,
-                name: input[index].name,
-                summary: input[index].summary,
-                title: input[index].title,
-                url: input[index].url
-            )
-            storagePosts.append(post)
-        }
-        return storagePosts
     }
     
     private func deletePostInRealm(url: String) {

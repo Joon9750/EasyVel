@@ -39,6 +39,32 @@ final class RealmService {
         let subScriber = localRealm.objects(RealmStoragePost.self)
         print(subScriber)
     }
+    
+    func checkUniquePost(input: StoragePost) -> Bool {
+        let posts = convertToStoragePost(input: self.getPosts())
+        for item in posts {
+            if input == item {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func convertToStoragePost(input: Results<RealmStoragePost>) -> [StoragePost] {
+        var storagePosts = [StoragePost]()
+        let inputSize = input.count
+        for index in 0..<inputSize {
+            let post = StoragePost(
+                img: input[index].img,
+                name: input[index].name,
+                summary: input[index].summary,
+                title: input[index].title,
+                url: input[index].url
+            )
+            storagePosts.append(post)
+        }
+        return storagePosts
+    }
 
         
     // 스키마 수정시 한번 돌려야 한다.
