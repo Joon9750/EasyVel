@@ -65,7 +65,6 @@ final class RealmService {
         }
         return storagePosts
     }
-
         
     // 스키마 수정시 한번 돌려야 한다.
     func resetDB(){
@@ -89,5 +88,4 @@ final class RealmService {
     init() {
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location.")
     }
-
 }

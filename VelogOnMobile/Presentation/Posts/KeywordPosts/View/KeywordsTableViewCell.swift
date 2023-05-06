@@ -106,7 +106,10 @@ extension KeywordsTableViewCell {
         textView.text = model.summary
         if let image = model.img {
             if image == "" {
-                imgView.image = UIImage(systemName: "photo.on.rectangle.angled")?.withTintColor(.gray)
+                textView.snp.updateConstraints {
+                    $0.trailing.equalToSuperview().inset(10)
+                }
+                imgView.isHidden = true
             } else {
                 let url = URL(string: image)
                 imgView.kf.setImage(with: url)
