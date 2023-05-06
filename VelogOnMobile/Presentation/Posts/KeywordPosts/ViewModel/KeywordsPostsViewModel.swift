@@ -17,6 +17,7 @@ protocol KeywordsPostsViewModelInput {
 
 protocol KeywordsPostsViewModelOutput {
     var tagPostsListOutput: ((GetTagPostResponse) -> Void)? { get set }
+    var toastPresent: ((Bool) -> Void)? { get set }
 }
 
 protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, KeywordsPostsViewModelOutput {}
@@ -43,12 +44,15 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     func cellDidTap(input: StoragePost) {
         if checkIsUniquePost(post: input) {
             addPostRealm(post: input)
+        } else {
+            toastPresentOutPut()
         }
     }
     
     // MARK: - Output
     
     var tagPostsListOutput: ((GetTagPostResponse) -> Void)?
+    var toastPresent: ((Bool) -> Void)?
     
     private func addPostRealm(post: StoragePost) {
         realm.addPost(item: post)
@@ -56,6 +60,12 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     private func checkIsUniquePost(post: StoragePost) -> Bool {
         return realm.checkUniquePost(input: post)
+    }
+    
+    private func toastPresentOutPut() {
+        if let toastPresent = toastPresent {
+            toastPresent(true)
+        }
     }
 }
 

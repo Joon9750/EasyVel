@@ -17,6 +17,7 @@ protocol SubscriberPostsViewModelInput {
 
 protocol SubscriberPostsViewModelOutput {
     var subscriberPostsListOutput: ((GetSubscriberPostResponse) -> Void)? { get set }
+    var toastPresent: ((Bool) -> Void)? { get set }
 }
 
 protocol SubscriberPostsViewModelInputOutput: SubscriberPostsViewModelInput, SubscriberPostsViewModelOutput {}
@@ -43,12 +44,15 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     func cellDidTap(input: StoragePost) {
         if checkIsUniquePost(post: input) {
             addPostRealm(post: input)
+        } else {
+            toastPresentOutPut()
         }
     }
     
     // MARK: - Output
     
     var subscriberPostsListOutput: ((GetSubscriberPostResponse) -> Void)?
+    var toastPresent: ((Bool) -> Void)?
     
     private func addPostRealm(post: StoragePost) {
         realm.addPost(item: post)
@@ -56,6 +60,12 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     
     private func checkIsUniquePost(post: StoragePost) -> Bool {
         return realm.checkUniquePost(input: post)
+    }
+    
+    private func toastPresentOutPut() {
+        if let toastPresent = toastPresent {
+            toastPresent(true)
+        }
     }
 }
 
