@@ -41,7 +41,9 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     }
     
     func cellDidTap(input: StoragePost) {
-        addPostRealm(post: input)
+        if checkIsUniquePost(post: input) {
+            addPostRealm(post: input)
+        }
     }
     
     // MARK: - Output
@@ -50,6 +52,10 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     private func addPostRealm(post: StoragePost) {
         realm.addPost(item: post)
+    }
+    
+    private func checkIsUniquePost(post: StoragePost) -> Bool {
+        return realm.checkUniquePost(input: post)
     }
 }
 
