@@ -22,8 +22,7 @@ final class ListHeadView: BaseUIView {
     
     let addButton: UIButton = {
         let button = UIButton()
-        button.setTitle(TextLiterals.addButtonText, for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setImage(UIImage(systemName: "doc.badge.plus")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
@@ -39,10 +38,9 @@ final class ListHeadView: BaseUIView {
         }
         
         addButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel).offset(10)
+            $0.top.equalTo(titleLabel).offset(5)
             $0.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(25)
-            $0.width.equalTo(50)
+            $0.height.width.equalTo(35)
         }
     }
     

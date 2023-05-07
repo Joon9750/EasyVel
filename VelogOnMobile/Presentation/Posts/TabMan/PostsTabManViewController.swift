@@ -23,8 +23,7 @@ final class PostsTabManViewController: TabmanViewController {
     }()
     private let notifiButton: UIButton = {
         let button = UIButton()
-        button.setTitle(TextLiterals.notifiButtonText, for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setImage(UIImage(systemName: "bell")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     private let bar = TMBar.ButtonBar()
@@ -57,10 +56,9 @@ final class PostsTabManViewController: TabmanViewController {
         }
         
         notifiButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
+            $0.top.equalToSuperview().offset(5)
             $0.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(25)
-            $0.width.equalTo(50)
+            $0.height.width.equalTo(35)
         }
         
         tabManBarView.snp.makeConstraints {
