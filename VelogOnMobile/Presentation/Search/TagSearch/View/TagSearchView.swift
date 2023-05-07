@@ -13,14 +13,14 @@ final class TagSearchView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add Keyword"
+        label.text = TextLiterals.tagTitleLabelText
         label.font = UIFont(name: "Avenir-Black", size: 20)
         return label
     }()
     
     let addTagBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("Add", for: .normal)
+        button.setTitle(TextLiterals.addButtonText, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.backgroundColor = .brandColor
@@ -36,7 +36,7 @@ final class TagSearchView: BaseUIView {
     
     let dismissBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("dismiss", for: .normal)
+        button.setTitle(TextLiterals.dismissButtonText, for: .normal)
         button.setTitleColor(.red, for: .normal)
         button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         return button
@@ -44,7 +44,7 @@ final class TagSearchView: BaseUIView {
     
     let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "키워드를 입력해주세요."
+        textField.placeholder = TextLiterals.textFieldPlaceholderText
         textField.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         return textField
     }()

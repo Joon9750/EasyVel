@@ -9,10 +9,6 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    // MARK: property
-    
-    // MARK: life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
@@ -26,9 +22,7 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func render() {
-        
-    }
+    func render() {}
     
     func configUI() {
         view.backgroundColor = .white
@@ -36,7 +30,7 @@ class BaseViewController: UIViewController {
     
     func setupNavigationBar() {
         navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
     }
     
     func setupNavigationPopGesture() {

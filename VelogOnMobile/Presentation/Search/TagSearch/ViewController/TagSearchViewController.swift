@@ -38,13 +38,13 @@ final class TagSearchViewController: BaseViewController {
                 self?.searchView.addStatusLabel.textColor = .brandColor
                 self?.searchView.addStatusLabel.text = statusText
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.addStatusLabel.text = ""
+                    self?.searchView.addStatusLabel.text = TextLiterals.noneText
                 }
             case false:
                 self?.searchView.addStatusLabel.textColor = .red
                 self?.searchView.addStatusLabel.text = statusText
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.addStatusLabel.text = ""
+                    self?.searchView.addStatusLabel.text = TextLiterals.noneText
                 }
             }
         }
@@ -65,7 +65,7 @@ private extension TagSearchViewController {
     @objc
     func addTagButtonAction() {
         if let tag = searchView.textField.text {
-            if tag != "" {
+            if tag != TextLiterals.noneText {
                 viewModel?.tagAddButtonDidTap(tag: tag)
             }
         }

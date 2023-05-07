@@ -104,7 +104,7 @@ extension SubscribersPostsTableViewCell {
         url = model.url ?? String()
         textView.text = model.summary
         if let image = model.img {
-            if image == "" {
+            if image == TextLiterals.noneText {
                 textView.snp.updateConstraints {
                     $0.trailing.equalToSuperview().inset(10)
                 }

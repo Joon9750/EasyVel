@@ -38,13 +38,13 @@ final class SubscriberSearchViewController: BaseViewController {
                 self?.searchView.searchStatusLabel.textColor = .brandColor
                 self?.searchView.searchStatusLabel.text = statusText
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.searchStatusLabel.text = ""
+                    self?.searchView.searchStatusLabel.text = TextLiterals.noneText
                 }
             case false:
                 self?.searchView.searchStatusLabel.textColor = .red
                 self?.searchView.searchStatusLabel.text = statusText
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.searchStatusLabel.text = ""
+                    self?.searchView.searchStatusLabel.text = TextLiterals.noneText
                 }
             }
         }
@@ -65,7 +65,7 @@ private extension SubscriberSearchViewController {
     @objc
     func addSubscribeButtonAction() {
         if let tag = searchView.textField.text {
-            if tag != "" {
+            if tag != TextLiterals.noneText {
                 viewModel?.subscriberAddButtonDidTap(name: tag)
             }
         }

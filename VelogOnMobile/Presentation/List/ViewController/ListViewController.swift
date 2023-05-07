@@ -92,7 +92,7 @@ extension ListViewController: UITableViewDelegate {
         let section = indexPath.section
         switch section {
         case 0:
-            let swipeAction = UIContextualAction(style: .destructive, title: "삭제", handler: { action, view, completionHaldler in
+            let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
                 if let tag = selectedCell.listText.text {
                     self.viewModel?.tagDeleteButtonDidTap(tag: tag)
                 }
@@ -101,7 +101,7 @@ extension ListViewController: UITableViewDelegate {
             let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
             return configuration
         case 1:
-            let swipeAction = UIContextualAction(style: .destructive, title: "삭제", handler: { action, view, completionHaldler in
+            let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
                 if let target = selectedCell.listText.text {
                     self.viewModel?.subscriberDeleteButtonDidTap(target: target)
                 }
@@ -121,8 +121,8 @@ extension ListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Keywords"
-        case 1: return "Subscribers"
+        case 0: return TextLiterals.listKeywordText
+        case 1: return TextLiterals.listSubscriberText
         default: return String()
         }
     }
@@ -137,14 +137,14 @@ extension ListViewController: UITableViewDelegate {
 private extension ListViewController {
     @objc
     func presentActionSheet() {
-        let searchKeywordButtonAction = UIAlertAction(title: "Keyword", style: .default) { [weak self] action in
+        let searchKeywordButtonAction = UIAlertAction(title: TextLiterals.listKeywordActionSheetTitleText, style: .default) { [weak self] action in
             self?.addKeywordButtonTap()
         }
-        let searchSubscriberButtonAction = UIAlertAction(title: "Subscriber", style: .default) { [weak self] action in
+        let searchSubscriberButtonAction = UIAlertAction(title: TextLiterals.listSubscriberActionSheetTitleText, style: .default) { [weak self] action in
             self?.addSubscriberButtonTap()
         }
-        let cancelAction = UIAlertAction(title: "Canel", style: .cancel)
-        let actionSheet = UIAlertController(title: "추가", message: "추가할 기준을 선택해주세요.", preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: TextLiterals.listActionSheetCancelText, style: .cancel)
+        let actionSheet = UIAlertController(title: TextLiterals.listAlertControllerTitleText, message: TextLiterals.listAlertControllerMessageText, preferredStyle: .actionSheet)
         actionSheet.addAction(searchKeywordButtonAction)
         actionSheet.addAction(searchSubscriberButtonAction)
         actionSheet.addAction(cancelAction)

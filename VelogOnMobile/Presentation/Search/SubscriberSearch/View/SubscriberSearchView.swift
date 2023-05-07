@@ -13,14 +13,14 @@ final class SubscriberSearchView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Search Subscribers"
+        label.text = TextLiterals.subscriberSearchTitleLabelText
         label.font = UIFont(name: "Avenir-Black", size: 20)
         return label
     }()
     
     let addSubscriberBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("Add", for: .normal)
+        button.setTitle(TextLiterals.addButtonText, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4
         button.backgroundColor = .brandColor
@@ -30,7 +30,7 @@ final class SubscriberSearchView: BaseUIView {
     
     let dismissBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("dismiss", for: .normal)
+        button.setTitle(TextLiterals.dismissButtonText, for: .normal)
         button.setTitleColor(.red, for: .normal)
         button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         return button
@@ -38,14 +38,14 @@ final class SubscriberSearchView: BaseUIView {
     
     let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "velog 아이디를 입력해주세요."
+        textField.placeholder = TextLiterals.subscriberSearchTextFieldPlaceholderText
         textField.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         return textField
     }()
     
     let searchStatusLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
+        label.text = TextLiterals.noneText
         label.textColor = UIColor.red
         label.font = UIFont(name: "Apple SD Gothic Neo", size: 13)
         return label

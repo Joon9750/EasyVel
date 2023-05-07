@@ -67,7 +67,7 @@ final class WebViewController: UIViewController {
         setActivityIndicator()
 
         navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
         
         self.Queue()
         loadPostWebView()
@@ -79,7 +79,7 @@ final class WebViewController: UIViewController {
     }
     
     private func loadPostWebView() {
-        if url != "" {
+        if url != TextLiterals.noneText {
             DispatchQueue.global(qos: .userInitiated).async {
                 let urlString = "https://velog.io\(self.url)"
                 guard let encodedStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}

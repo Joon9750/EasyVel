@@ -15,14 +15,14 @@ final class StorageHeadView: BaseUIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Storage"
+        label.text = TextLiterals.headViewTitle
         label.font = UIFont(name: "Avenir-Black", size: 30)
         return label
     }()
     
     let deleteButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Edit", for: .normal)
+        button.setTitle(TextLiterals.deleteButtonTitle, for: .normal)
         button.setTitleColor(.red, for: .normal)
         return button
     }()

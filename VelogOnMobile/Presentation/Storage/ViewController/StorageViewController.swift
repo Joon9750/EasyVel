@@ -52,11 +52,11 @@ final class StorageViewController: BaseViewController {
     @objc
     private func emptySelectedList() {
         if storageView.listTableView.isEditing {
-            storageView.storageHeadView.deleteButton.setTitle("Edit", for: .normal)
+            storageView.storageHeadView.deleteButton.setTitle(TextLiterals.deleteButtonTitle, for: .normal)
             storageView.storageHeadView.deleteButton.setTitleColor(.red, for: .normal)
             storageView.listTableView.setEditing(false, animated: true)
         } else {
-            storageView.storageHeadView.deleteButton.setTitle("Done", for: .normal)
+            storageView.storageHeadView.deleteButton.setTitle(TextLiterals.doneButtonTitle, for: .normal)
             storageView.storageHeadView.deleteButton.setTitleColor(.blue, for: .normal)
             storageView.listTableView.setEditing(true, animated: true)
         }
@@ -87,7 +87,7 @@ extension StorageViewController: UITableViewDataSource {
 extension StorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let textNum = storagePosts?[indexPath.section].summary?.count ?? 0
-        if storagePosts?[indexPath.section].img ?? String() == "" {
+        if storagePosts?[indexPath.section].img ?? String() == TextLiterals.noneText {
             switch textNum {
             case 0...50: return SizeLiterals.postCellSmall
             case 51...80: return SizeLiterals.postCellMedium
@@ -108,7 +108,7 @@ extension StorageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
-        let swipeAction = UIContextualAction(style: .destructive, title: "삭제", handler: { action, view, completionHaldler in
+        let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
             self.viewModel?.deletePostButtonDidTap(url: selectedCell.url)
             completionHaldler(true)
         })
