@@ -69,7 +69,17 @@ extension StorageViewController: UITableViewDataSource {
 
 extension StorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+        let textNum = storagePosts?[indexPath.section].summary?.count ?? 0
+        if storagePosts?[indexPath.section].img ?? String() == "" {
+            switch textNum {
+            case 0...50: return SizeLiterals.postCellSmall
+            case 51...80: return SizeLiterals.postCellMedium
+            case 81...100: return SizeLiterals.postCellLarge
+            default: return SizeLiterals.postCellLarge
+            }
+        } else {
+            return SizeLiterals.postCellLarge
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

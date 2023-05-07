@@ -69,7 +69,7 @@ final class StorageTableViewCell: BaseTableViewCell {
         
         listText.snp.makeConstraints {
             $0.top.equalTo(listWriter.snp.bottom).offset(10)
-            $0.height.equalTo(60)
+            $0.bottom.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(140)
         }
@@ -91,7 +91,12 @@ extension StorageTableViewCell {
         listText.text = model.summary
         if let image = model.img {
             if image == "" {
-                imgView.image = UIImage(systemName: "photo.on.rectangle.angled")?.withTintColor(.gray)
+                listText.snp.updateConstraints {
+                    $0.trailing.equalToSuperview().inset(10)
+                }
+                imgView.snp.remakeConstraints {
+                    $0.width.height.equalTo(0)
+                }
             } else {
                 let url = URL(string: image)
                 imgView.kf.setImage(with: url)
