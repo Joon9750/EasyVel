@@ -37,6 +37,7 @@ final class SubscribePostsViewController: BaseViewController {
     }
     
     private func bind() {
+        setButtonAction()
         subscribersPostsView.postTableView.dataSource = self
         subscribersPostsView.postTableView.delegate = self
         viewModel?.subscriberPostsListOutput = { [weak self] postsResult in
@@ -65,6 +66,26 @@ final class SubscribePostsViewController: BaseViewController {
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    private func setButtonAction() {
+        subscribersPostsView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
+    }
+    
+    @objc
+    func moveToTop() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        subscribersPostsView.postTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+}
+
+extension SubscribePostsViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 200 {
+            subscribersPostsView.moveToTopButton.isHidden = false
+        } else {
+            subscribersPostsView.moveToTopButton.isHidden = true
+        }
     }
 }
 

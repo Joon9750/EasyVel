@@ -672,9 +672,9 @@
 		91487F6129FDA33A009CFECF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */,
 				91487F1329FC489C009CFECF /* PostsTableView.swift */,
 				91487F0A29FC45E9009CFECF /* SubscribersPostsTableViewCell.swift */,
-				9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
