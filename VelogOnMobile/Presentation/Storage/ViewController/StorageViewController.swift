@@ -26,7 +26,7 @@ final class StorageViewController: BaseViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.viewWillAppear()
@@ -36,13 +36,22 @@ final class StorageViewController: BaseViewController {
         self.view = storageView
     }
     
+    override func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     private func bind() {
+        storageView.storageHeadView.deleteButton.addTarget(self, action: #selector(emptySelectedList), for: .touchUpInside)
         storageView.listTableView.dataSource = self
         storageView.listTableView.delegate = self
         viewModel?.storagePosts = { [weak self] posts in
             self?.storagePosts = posts
-            print(posts.count)
         }
+    }
+                                        
+    @objc
+    private func emptySelectedList() {
+        storageView.listTableView.setEditing(true, animated: true)
     }
 }
 
@@ -97,5 +106,14 @@ extension StorageViewController: UITableViewDelegate {
         })
         let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
         return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // MARK: - delete
+            print("삭제")
+            let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
+            viewModel?.deletePostButtonDidTap(url: selectedCell.url)
+        }
     }
 }

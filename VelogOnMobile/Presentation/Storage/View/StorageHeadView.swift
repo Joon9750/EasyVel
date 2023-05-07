@@ -20,12 +20,30 @@ final class StorageHeadView: BaseUIView {
         return label
     }()
     
+    let deleteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(
+            UIImage(systemName:"plus")?.withTintColor(.brandColor, renderingMode: .alwaysOriginal),
+            for: .normal
+        )
+        return button
+    }()
+    
     override func render() {
-        self.addSubview(titleLabel)
+        self.addSubviews(
+            titleLabel,
+            deleteButton
+        )
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(60)
             $0.leading.equalToSuperview().offset(20)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.top.equalTo(titleLabel).offset(10)
+            $0.trailing.equalToSuperview().inset(30)
+            $0.height.width.equalTo(25)
         }
     }
     
