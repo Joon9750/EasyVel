@@ -109,7 +109,9 @@ extension KeywordsTableViewCell {
                 textView.snp.updateConstraints {
                     $0.trailing.equalToSuperview().inset(10)
                 }
-                imgView.isHidden = true
+                imgView.snp.remakeConstraints {
+                    $0.width.height.equalTo(0)
+                }
             } else {
                 let url = URL(string: image)
                 imgView.kf.setImage(with: url)

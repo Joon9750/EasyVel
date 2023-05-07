@@ -89,7 +89,17 @@ extension SubscribePostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        let textNum = subscriberPosts?.subscribePostDtoList?[indexPath.section].summary?.count ?? 0
+        if subscriberPosts?.subscribePostDtoList?[indexPath.section].img ?? String() == "" {
+            switch textNum {
+            case 0...50: return SizeLiterals.postCellSmall
+            case 51...80: return SizeLiterals.postCellMedium
+            case 81...100: return SizeLiterals.postCellLarge
+            default: return SizeLiterals.postCellLarge
+            }
+        } else {
+            return SizeLiterals.postCellLarge
+        }
     }
 }
 
