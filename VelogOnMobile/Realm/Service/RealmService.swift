@@ -12,27 +12,25 @@ import Realm
 
 final class RealmService {
     
-    let localRealm = try! Realm()
+    private let localRealm = try! Realm()
     
     func addPost(item: StoragePost) {
         let post = RealmStoragePost(input: item)
         try! localRealm.write {
             localRealm.add(post)
         }
-        print("add")
     }
     
     func getPosts() -> Results<RealmStoragePost> {
-        print("get")
         let savedPosts = localRealm.objects(RealmStoragePost.self)
         return savedPosts
     }
     
     func deletePost(url: String) {
-        try! localRealm.write{
-            localRealm.delete(localRealm.objects(RealmStoragePost.self).filter("url == \(url)"))
+        guard let postToDelete = localRealm.objects(RealmStoragePost.self).filter("url == %@", url).first else { return }
+        try! localRealm.write {
+            localRealm.delete(postToDelete)
         }
-        print("deleted")
     }
     
     func readDB(){
