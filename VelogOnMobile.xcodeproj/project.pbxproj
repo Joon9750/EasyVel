@@ -98,6 +98,8 @@
 		917BA34E2A050861000409B7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 917BA34D2A050861000409B7 /* RealmSwift */; };
 		917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3512A050903000409B7 /* RealmStoragePost.swift */; };
 		917BA3552A0509D8000409B7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3542A0509D8000409B7 /* RealmService.swift */; };
+		917BA3862A07C2D5000409B7 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */; };
+		917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -196,6 +198,8 @@
 		917BA3442A050631000409B7 /* StorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewModel.swift; sourceTree = "<group>"; };
 		917BA3512A050903000409B7 /* RealmStoragePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStoragePost.swift; sourceTree = "<group>"; };
 		917BA3542A0509D8000409B7 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
+		917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchProtocol.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 		91487EC029FC380A009CFECF /* VelogOnMobile */ = {
 			isa = PBXGroup;
 			children = (
+				917BA3842A07C2B7000409B7 /* Protocol */,
 				917BA34F2A0508DF000409B7 /* Realm */,
 				913441E229FFD5BE000E1ED1 /* Network */,
 				91487EDE29FC3946009CFECF /* Presentation */,
@@ -776,6 +781,15 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		917BA3842A07C2B7000409B7 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */,
+				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,6 +950,7 @@
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
 				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
 				91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */,
+				917BA3862A07C2D5000409B7 /* TagSearchProtocol.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487F4D29FD9858009CFECF /* TagSearchViewController.swift in Sources */,
 				914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */,
@@ -992,6 +1007,7 @@
 				9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */,
 				91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */,
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
+				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,

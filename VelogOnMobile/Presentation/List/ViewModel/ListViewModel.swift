@@ -21,7 +21,7 @@ protocol ListViewModelOutput {
 protocol ListViewModelInputOutput: ListViewModelInput, ListViewModelOutput {}
 
 final class ListViewModel: ListViewModelInputOutput {
-    
+        
     var tagList: [String]? {
         didSet {
             if let tagListOutput = tagListOutput,

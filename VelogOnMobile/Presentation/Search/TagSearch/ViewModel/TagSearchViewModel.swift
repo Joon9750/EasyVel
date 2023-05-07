@@ -9,6 +9,7 @@ import UIKit
 
 protocol TagSearchViewModelInput {
     func tagAddButtonDidTap(tag: String)
+    func viewWillDisappear()
 }
 
 protocol TagSearchViewModelOutput {
@@ -19,6 +20,15 @@ protocol TagSearchViewModelInputOutput: TagSearchViewModelInput, TagSearchViewMo
 
 final class TagSearchViewModel: TagSearchViewModelInputOutput {
 
+    var tagSearchDelegate: TagSearchProtocol?
+    var tagList: [String]? {
+        didSet {
+            if let tagList = tagList {
+                tagSearchDelegate?.searchTagViewWillDisappear(input: tagList)
+            }
+        }
+    }
+    
     // MARK: - Output
     
     var tagAddStatus: ((Bool, String) -> Void)?
@@ -31,6 +41,10 @@ final class TagSearchViewModel: TagSearchViewModelInputOutput {
                 return
             }
         }
+    }
+    
+    func viewWillDisappear() {
+        getTagListForServer()
     }
 }
 
@@ -49,6 +63,29 @@ private extension TagSearchViewModel {
                 if let tagAddStatus = self?.tagAddStatus {
                     tagAddStatus(false, text)
                 }
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func getTagListForServer() {
+        self.getTagList() { [weak self] response in
+            guard let self = self else {
+                return
+            }
+            self.tagList = response
+        }
+    }
+    
+    func getTagList(completion: @escaping ([String]) -> Void) {
+        NetworkService.shared.tagRepository.getTag() { result in
+            switch result {
+            case .success(let response):
+                guard let list = response as? [String] else { return }
+                completion(list)
+            case .requestErr(let errResponse):
                 dump(errResponse)
             default:
                 print("error")

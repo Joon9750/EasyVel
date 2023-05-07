@@ -7,8 +7,10 @@
 
 import UIKit
 
-final class ListViewController: BaseViewController {
-    
+protocol ListViewModelSendData: TagSearchProtocol, SubscriberSearchProtocol {}
+
+final class ListViewController: BaseViewController, ListViewModelSendData {
+
     private let listView = ListView()
     private var viewModel: ListViewModelInputOutput?
     private var tagList: [String]? {
@@ -55,6 +57,14 @@ final class ListViewController: BaseViewController {
         viewModel?.subscriberListOutput = { [weak self] list in
             self?.subscriberList = list
         }
+    }
+    
+    func searchTagViewWillDisappear(input: [String]) {
+        self.tagList = input
+    }
+    
+    func searchSubscriberViewWillDisappear(input: [String]) {
+        self.subscriberList = input
     }
 }
 
@@ -152,8 +162,9 @@ private extension ListViewController {
     }
     
     func addKeywordButtonTap() {
-        let tagSerchViewModel = TagSearchViewModel()
-        let tagSearchVC = TagSearchViewController(viewModel: tagSerchViewModel)
+        let tagSearchViewModel = TagSearchViewModel()
+        tagSearchViewModel.tagSearchDelegate = self
+        let tagSearchVC = TagSearchViewController(viewModel: tagSearchViewModel)
         tagSearchVC.modalPresentationStyle = .pageSheet
         if let sheet = tagSearchVC.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
@@ -164,6 +175,7 @@ private extension ListViewController {
     
     func addSubscriberButtonTap() {
         let viewModel = SubscriberSearchViewModel()
+        viewModel.subscriberSearchDelegate = self
         let subscriberSearchVC = SubscriberSearchViewController(viewModel: viewModel)
         subscriberSearchVC.modalPresentationStyle = .pageSheet
         if let sheet = subscriberSearchVC.sheetPresentationController {
