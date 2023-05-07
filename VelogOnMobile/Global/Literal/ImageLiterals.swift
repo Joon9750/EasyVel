@@ -8,13 +8,12 @@
 import UIKit
 
 enum ImageLiterals {
+
+    // MARK: - 예외처리 이미지
     
-    // MARK: - subscribe post dummy image
-    static var dummyImage: UIImage { .load(name: "dummyImage") }
-    
-    // MARK: - navigation button icon
-    
-    static var addButtonIcon: UIImage { .load(name: "AddButtonIcon") }
+    static var emptyAlarm: UIImage { .load(name: "emptyAlarm") }
+    static var emptyPostsList: UIImage { .load(name: "emptyPostsList") }
+    static var networkFail: UIImage { .load(name: "networkFail") }
 }
 
 extension UIImage {
