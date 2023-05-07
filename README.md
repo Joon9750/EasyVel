@@ -5,7 +5,7 @@ https://github.com/SSUDevelog/VelogInMobile
 
 위 프로젝트를 리팩토링 진행하려합니다.
 
-## 1.1 프로젝트 기획배경
+### 프로젝트 기획배경
 
 Velog는 Medium이나 Tistory와 비슷하게 IT 업계 사람들이 주로 사용하며, 개발 관련 글들을 읽고 쓸 수 있는 웹 서비스입니다.
 
