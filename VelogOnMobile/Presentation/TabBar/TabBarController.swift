@@ -29,16 +29,16 @@ final class TabBarController: UITabBarController {
 //        realm.resetDB()
     }
     
-    func setUpTabBar(){
+    private func setUpTabBar(){
         self.tabBar.tintColor = .brandColor
         self.tabBar.unselectedItemTintColor = .black
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = .white
 
-        PostsVC.title = "Posts"
-        ListVC.title = "Lists"
-        storageVC.title = "Storage"
-        settingVC.title = "Setting"
+        PostsVC.title = TextLiterals.postsViewControllerTitle
+        ListVC.title = TextLiterals.listViewControllerTitle
+        storageVC.title = TextLiterals.storageViewControllerTitle
+        settingVC.title = TextLiterals.settingViewControllerTitle
 
         let ViewControllers:[UIViewController] = [PostsVC,ListVC,storageVC,settingVC]
         self.setViewControllers(ViewControllers, animated: true)

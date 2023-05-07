@@ -17,13 +17,13 @@ final class PostsTabManViewController: TabmanViewController {
     private let tabManBarView = UIView()
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Posts"
+        label.text = TextLiterals.postTabManTitleLabelText
         label.font = UIFont(name: "Avenir-Black", size: 30)
         return label
     }()
     private let notifiButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Alarm", for: .normal)
+        button.setTitle(TextLiterals.notifiButtonText, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         return button
     }()
@@ -96,13 +96,9 @@ final class PostsTabManViewController: TabmanViewController {
 extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
   func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
       switch index {
-      case 0:
-          return TMBarItem(title: "Keyword Posts")
-      case 1:
-          return TMBarItem(title: "Subscriber Posts")
-      default:
-          let title = "Page \(index)"
-          return TMBarItem(title: title)
+      case 0: return TMBarItem(title: TextLiterals.postTabManKeywordPostsTitleText)
+      case 1: return TMBarItem(title: TextLiterals.postTabManSubscriberPostsTitleText)
+      default: return TMBarItem(title: TextLiterals.noneText)
       }
   }
   

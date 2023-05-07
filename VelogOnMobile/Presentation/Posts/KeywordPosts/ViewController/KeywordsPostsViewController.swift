@@ -44,7 +44,7 @@ final class KeywordsPostsViewController: BaseViewController {
         }
         viewModel?.toastPresent = { [weak self] result in
             if result {
-                self?.showToast(message: "이미 스크랩한 글입니다.", font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
+                self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
             }
         }
     }
@@ -90,7 +90,7 @@ extension KeywordsPostsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let textNum = keywordsPosts?.tagPostDtoList?[indexPath.section].summary?.count ?? 0
-        if keywordsPosts?.tagPostDtoList?[indexPath.section].img ?? String() == "" {
+        if keywordsPosts?.tagPostDtoList?[indexPath.section].img ?? String() == TextLiterals.noneText {
             switch textNum {
             case 0...50: return SizeLiterals.postCellSmall
             case 51...80: return SizeLiterals.postCellMedium

@@ -12,14 +12,14 @@ import SnapKit
 final class SettingView: BaseUIView {
     private let title: UILabel = {
         let label = UILabel()
-        label.text = "Setting"
+        label.text = TextLiterals.settingTitleLabelText
         label.font = UIFont(name: "Avenir-Black", size: 30)
         return label
     }()
 
     private let alertText: UILabel = {
         let label = UILabel()
-        label.text = "구독 알림"
+        label.text = TextLiterals.settingAlertText
         return label
     }()
     

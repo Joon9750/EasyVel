@@ -15,14 +15,14 @@ final class ListHeadView: BaseUIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Lists"
+        label.text = TextLiterals.listTitleLabelText
         label.font = UIFont(name: "Avenir-Black", size: 30)
         return label
     }()
     
     let addButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Add", for: .normal)
+        button.setTitle(TextLiterals.addButtonText, for: .normal)
         button.setTitleColor(.blue, for: .normal)
         return button
     }()

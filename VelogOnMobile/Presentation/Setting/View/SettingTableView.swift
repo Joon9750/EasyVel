@@ -50,10 +50,10 @@ extension SettingTableView: UITableViewDataSource {
         cell.selectionStyle = .none
         let row = indexPath.row
         switch row {
-        case 0: cell.buttonLabel.text = "로그아웃"
-        case 1: cell.buttonLabel.text = "회원탈퇴"
-        case 2: cell.buttonLabel.text = "이메일 변경"
-        case 3: cell.buttonLabel.text = "비밀번호 변경"
+        case 0: cell.buttonLabel.text = TextLiterals.settingSignOutText
+        case 1: cell.buttonLabel.text = TextLiterals.settingWithdrawalText
+        case 2: cell.buttonLabel.text = TextLiterals.settingChangeEmailText
+        case 3: cell.buttonLabel.text = TextLiterals.settingChangePasswordText
         default: return cell
         }
         return cell

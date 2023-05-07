@@ -36,7 +36,7 @@ final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
                     self?.addSubscriber(name: name)
                 } else {
                     guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
-                    let text = "없는 사용자입니다."
+                    let text = TextLiterals.searchSubscriberIsNotValidText
                     subscriberAddStatus(false, text)
                 }
             }
@@ -48,7 +48,6 @@ final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
             guard self != nil else {
                 return
             }
-            print("this is my response : ", response)
         }
     }
 }
@@ -73,12 +72,12 @@ private extension SubscriberSearchViewModel {
             switch result {
             case .success(_):
                 guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
-                let text = "구독자 추가되었습니다."
+                let text = TextLiterals.addSubsriberSuccessText
                 subscriberAddStatus(true, text)
                 completion("success")
             case .requestErr(let errResponse):
                 guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
-                let text = "이미 추가한 구독자입니다."
+                let text = TextLiterals.addSubscriberRequestErrText
                 subscriberAddStatus(false, text)
                 dump(errResponse)
             default:

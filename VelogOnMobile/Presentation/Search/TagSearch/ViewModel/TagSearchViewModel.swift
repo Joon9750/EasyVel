@@ -39,13 +39,13 @@ private extension TagSearchViewModel {
         NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
             switch result {
             case .success(_):
-                let text: String = "키워드가 추가되었습니다."
+                let text: String = TextLiterals.addTagSuccessText
                 if let tagAddStatus = self?.tagAddStatus {
                     tagAddStatus(true, text)
                 }
                 completion("success")
             case .requestErr(let errResponse):
-                let text: String = "이미 추가된 관심 키워드입니다."
+                let text: String = TextLiterals.addTagRequestErrText
                 if let tagAddStatus = self?.tagAddStatus {
                     tagAddStatus(false, text)
                 }
