@@ -117,4 +117,17 @@ extension SubscribersPostsTableViewCell {
             }
         }
     }
+    
+    override func prepareForReuse() {
+        textView.snp.updateConstraints {
+            $0.trailing.equalToSuperview().inset(140)
+        }
+        
+        imgView.snp.remakeConstraints {
+            $0.top.equalTo(name.snp.bottom).offset(10)
+            $0.leading.equalTo(textView.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(20)
+        }
+    }
 }

@@ -103,4 +103,17 @@ extension StorageTableViewCell {
             }
         }
     }
+    
+    override func prepareForReuse() {
+        listText.snp.updateConstraints {
+            $0.trailing.equalToSuperview().inset(140)
+        }
+        
+        imgView.snp.remakeConstraints {
+            $0.top.equalTo(listTitle.snp.bottom).offset(10)
+            $0.leading.equalTo(listText.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(20)
+        }
+    }
 }
