@@ -105,7 +105,7 @@ private extension SubscriberSearchViewModel {
             guard let self = self else {
                 return
             }
-            self.subscriberList = response
+            self.subscriberList = Array(response.reversed())
         }
     }
     

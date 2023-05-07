@@ -81,7 +81,7 @@ private extension ListViewModel {
             guard let self = self else {
                 return
             }
-            self.tagList = response
+            self.tagList = Array(response.reversed())
         }
     }
     
@@ -90,7 +90,7 @@ private extension ListViewModel {
             guard let self = self else {
                 return
             }
-            self.subscriberList = response
+            self.subscriberList = Array(response.reversed())
         }
     }
     

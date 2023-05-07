@@ -75,7 +75,7 @@ private extension TagSearchViewModel {
             guard let self = self else {
                 return
             }
-            self.tagList = response
+            self.tagList = Array(response.reversed())
         }
     }
     
