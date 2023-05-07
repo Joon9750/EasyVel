@@ -22,10 +22,8 @@ final class StorageHeadView: BaseUIView {
     
     let deleteButton: UIButton = {
         let button = UIButton()
-        button.setImage(
-            UIImage(systemName:"plus")?.withTintColor(.brandColor, renderingMode: .alwaysOriginal),
-            for: .normal
-        )
+        button.setTitle("Edit", for: .normal)
+        button.setTitleColor(.red, for: .normal)
         return button
     }()
     
@@ -43,7 +41,8 @@ final class StorageHeadView: BaseUIView {
         deleteButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel).offset(10)
             $0.trailing.equalToSuperview().inset(30)
-            $0.height.width.equalTo(25)
+            $0.height.equalTo(25)
+            $0.width.equalTo(50)
         }
     }
     

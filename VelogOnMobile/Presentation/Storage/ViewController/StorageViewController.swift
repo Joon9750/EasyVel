@@ -48,10 +48,18 @@ final class StorageViewController: BaseViewController {
             self?.storagePosts = posts
         }
     }
-                                        
+    
     @objc
     private func emptySelectedList() {
-        storageView.listTableView.setEditing(true, animated: true)
+        if storageView.listTableView.isEditing {
+            storageView.storageHeadView.deleteButton.setTitle("Edit", for: .normal)
+            storageView.storageHeadView.deleteButton.setTitleColor(.red, for: .normal)
+            storageView.listTableView.setEditing(false, animated: true)
+        } else {
+            storageView.storageHeadView.deleteButton.setTitle("Done", for: .normal)
+            storageView.storageHeadView.deleteButton.setTitleColor(.blue, for: .normal)
+            storageView.listTableView.setEditing(true, animated: true)
+        }
     }
 }
 
@@ -110,8 +118,6 @@ extension StorageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // MARK: - delete
-            print("삭제")
             let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
             viewModel?.deletePostButtonDidTap(url: selectedCell.url)
         }
