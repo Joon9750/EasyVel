@@ -16,8 +16,14 @@ final class RealmService {
     
     func addPost(item: StoragePost) {
         let post = RealmStoragePost(input: item)
-        try! localRealm.write {
-            localRealm.add(post)
+        if localRealm.isEmpty {
+            try! localRealm.write {
+                localRealm.add(post)
+            }
+        } else {
+            try! localRealm.write {
+                localRealm.add(post, update: .modified)
+            }
         }
     }
     
@@ -62,6 +68,11 @@ final class RealmService {
             storagePosts.append(post)
         }
         return storagePosts
+    }
+    
+    func reversePosts(input: [StoragePost]) -> [StoragePost] {
+        let posts = Array(input.reversed())
+        return posts
     }
         
     // 스키마 수정시 한번 돌려야 한다.

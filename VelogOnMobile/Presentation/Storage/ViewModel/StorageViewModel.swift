@@ -46,8 +46,9 @@ final class StorageViewModel: StorageViewModelInputOutput {
     private func getPostInRealm() {
         let realmPostData = realm.getPosts()
         let posts: [StoragePost] = realm.convertToStoragePost(input: realmPostData)
+        let reversePosts = realm.reversePosts(input: posts)
         if let storagePosts = storagePosts {
-            storagePosts(posts)
+            storagePosts(reversePosts)
         }
     }
     
