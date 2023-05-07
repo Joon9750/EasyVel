@@ -41,6 +41,7 @@ final class StorageViewController: BaseViewController {
     }
     
     private func bind() {
+        setButtonAction()
         storageView.storageHeadView.deleteButton.addTarget(self, action: #selector(emptySelectedList), for: .touchUpInside)
         storageView.listTableView.dataSource = self
         storageView.listTableView.delegate = self
@@ -59,6 +60,26 @@ final class StorageViewController: BaseViewController {
             storageView.storageHeadView.deleteButton.setTitle(TextLiterals.doneButtonTitle, for: .normal)
             storageView.storageHeadView.deleteButton.setTitleColor(.blue, for: .normal)
             storageView.listTableView.setEditing(true, animated: true)
+        }
+    }
+    
+    private func setButtonAction() {
+        storageView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
+    }
+    
+    @objc
+    func moveToTop() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        storageView.listTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+}
+
+extension StorageViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 200 {
+            storageView.moveToTopButton.isHidden = false
+        } else {
+            storageView.moveToTopButton.isHidden = true
         }
     }
 }
