@@ -37,6 +37,7 @@ final class KeywordsPostsViewController: BaseViewController {
     }
     
     private func bind() {
+        setButtonAction()
         keywordsPostsView.keywordsTableView.dataSource = self
         keywordsPostsView.keywordsTableView.delegate = self
         viewModel?.tagPostsListOutput = { [weak self] postsResult in
@@ -65,6 +66,26 @@ final class KeywordsPostsViewController: BaseViewController {
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
         })
+    }
+    
+    private func setButtonAction() {
+        keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
+    }
+    
+    @objc
+    func moveToTop() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        keywordsPostsView.keywordsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+}
+
+extension KeywordsPostsViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > 200 {
+            keywordsPostsView.moveToTopButton.isHidden = false
+        } else {
+            keywordsPostsView.moveToTopButton.isHidden = true
+        }
     }
 }
 
