@@ -9,6 +9,7 @@ import UIKit
 
 protocol SubscriberSearchViewModelInput {
     func subscriberAddButtonDidTap(name: String)
+    func viewWillDisappear()
 }
 
 protocol SubscriberSearchViewModelOutput {
@@ -19,6 +20,15 @@ protocol SubscriberSearchViewModelInputOutput: SubscriberSearchViewModelInput, S
 
 final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
     
+    var subscriberSearchDelegate: SubscriberSearchProtocol?
+    var subscriberList: [String]? {
+        didSet {
+            if let subscriberList = subscriberList {
+                subscriberSearchDelegate?.searchSubscriberViewWillDisappear(input: subscriberList)
+            }
+        }
+    }
+    
     // MARK: - Output
     
     var subscriberAddStatus: ((Bool, String) -> Void)?
@@ -27,6 +37,10 @@ final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
     
     func subscriberAddButtonDidTap(name: String) {
         searchSubsciber(name: name)
+    }
+    
+    func viewWillDisappear() {
+        getSubscribeListForServer()
     }
     
     private func searchSubsciber(name: String) {
@@ -79,6 +93,29 @@ private extension SubscriberSearchViewModel {
                 guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
                 let text = TextLiterals.addSubscriberRequestErrText
                 subscriberAddStatus(false, text)
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func getSubscribeListForServer() {
+        self.getSubscriberList() { [weak self] response in
+            guard let self = self else {
+                return
+            }
+            self.subscriberList = Array(response.reversed())
+        }
+    }
+    
+    func getSubscriberList(completion: @escaping ([String]) -> Void) {
+        NetworkService.shared.subscriberRepository.getSubscriber() { result in
+            switch result {
+            case .success(let response):
+                guard let list = response as? [String] else { return }
+                completion(list)
+            case .requestErr(let errResponse):
                 dump(errResponse)
             default:
                 print("error")

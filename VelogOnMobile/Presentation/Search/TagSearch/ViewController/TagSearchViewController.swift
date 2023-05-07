@@ -31,6 +31,10 @@ final class TagSearchViewController: BaseViewController {
         self.view = searchView
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        viewModel?.viewWillDisappear()
+    }
+    
     private func bind() {
         viewModel?.tagAddStatus = { [weak self] isSuccess, statusText in
             switch isSuccess {
