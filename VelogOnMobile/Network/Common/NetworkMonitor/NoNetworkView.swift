@@ -13,7 +13,7 @@ final class NoNetworkView: BaseUIView {
     
     private let networkfailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "wifi.slash")
+        imageView.image = ImageLiterals.networkFail
         return imageView
     }()
     
