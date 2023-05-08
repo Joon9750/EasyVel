@@ -18,6 +18,7 @@ protocol KeywordsPostsViewModelInput {
 protocol KeywordsPostsViewModelOutput {
     var tagPostsListOutput: ((GetTagPostResponse) -> Void)? { get set }
     var toastPresent: ((Bool) -> Void)? { get set }
+    var isPostsEmpty: ((Bool) -> Void)? { get set }
 }
 
 protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, KeywordsPostsViewModelOutput {}
@@ -53,7 +54,10 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     var tagPostsListOutput: ((GetTagPostResponse) -> Void)?
     var toastPresent: ((Bool) -> Void)?
+    var isPostsEmpty: ((Bool) -> Void)?
     
+    // MARK: - func
+
     private func addPostRealm(post: StoragePost) {
         realm.addPost(item: post)
     }
@@ -67,6 +71,11 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
             toastPresent(true)
         }
     }
+    
+    private func checkStorageEmpty(input: GetTagPostResponse) -> Bool {
+        if input.tagPostDtoList == nil { return true }
+        else { return false }
+    }
 }
 
 // MARK: - API
@@ -75,6 +84,9 @@ private extension KeywordsPostsViewModel {
     func getTagPostsForserver() {
         getTagPosts() { [weak self] result in
             self?.tagPosts = result
+            if let isPostsEmpty = self?.isPostsEmpty {
+                isPostsEmpty((self?.checkStorageEmpty(input: result))!)
+            }
         }
     }
     

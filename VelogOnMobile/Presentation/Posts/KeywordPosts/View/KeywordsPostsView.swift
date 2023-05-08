@@ -22,11 +22,18 @@ final class KeywordsPostsView: BaseUIView {
         button.setImage(UIImage(systemName: "arrow.uturn.up")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
+    let keywordsPostsViewExceptionView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.emptyPostsList
+        imageView.isHidden = true
+        return imageView
+    }()
     
     override func render() {
         self.addSubviews(
             keywordsTableView,
-            moveToTopButton
+            moveToTopButton,
+            keywordsPostsViewExceptionView
         )
         
         keywordsTableView.snp.makeConstraints {
@@ -37,6 +44,12 @@ final class KeywordsPostsView: BaseUIView {
         moveToTopButton.snp.makeConstraints {
             $0.height.width.equalTo(45)
             $0.bottom.trailing.equalToSuperview().inset(30)
+        }
+        
+        keywordsPostsViewExceptionView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.height.equalTo(166)
+            $0.width.equalTo(150)
         }
     }
 }

@@ -48,6 +48,13 @@ final class KeywordsPostsViewController: BaseViewController {
                 self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
             }
         }
+        viewModel?.isPostsEmpty = { [weak self] isEmpty in
+            if isEmpty {
+                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = false
+            } else {
+                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
+            }
+        }
     }
     
     private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
