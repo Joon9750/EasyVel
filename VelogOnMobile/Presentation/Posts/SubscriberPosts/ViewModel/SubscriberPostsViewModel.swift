@@ -18,6 +18,7 @@ protocol SubscriberPostsViewModelInput {
 protocol SubscriberPostsViewModelOutput {
     var subscriberPostsListOutput: ((GetSubscriberPostResponse) -> Void)? { get set }
     var toastPresent: ((Bool) -> Void)? { get set }
+    var isPostsEmpty: ((Bool) -> Void)? { get set }
 }
 
 protocol SubscriberPostsViewModelInputOutput: SubscriberPostsViewModelInput, SubscriberPostsViewModelOutput {}
@@ -53,6 +54,9 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     
     var subscriberPostsListOutput: ((GetSubscriberPostResponse) -> Void)?
     var toastPresent: ((Bool) -> Void)?
+    var isPostsEmpty: ((Bool) -> Void)?
+    
+    // MARK: - func
     
     private func addPostRealm(post: StoragePost) {
         realm.addPost(item: post)
@@ -67,6 +71,11 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
             toastPresent(true)
         }
     }
+    
+    private func checkPostsEmpty(input: GetSubscriberPostResponse) -> Bool {
+        if input.subscribePostDtoList == nil { return true }
+        else { return false }
+    }
 }
 
 // MARK: - API
@@ -75,6 +84,9 @@ private extension SubscriberPostsViewModel {
     func getSubscriberPostsForserver() {
         getSubscriberPosts() { [weak self] result in
             self?.subscribePosts = result
+            if let isPostsEmpty = self?.isPostsEmpty {
+                isPostsEmpty((self?.checkPostsEmpty(input: result))!)
+            }
         }
     }
     

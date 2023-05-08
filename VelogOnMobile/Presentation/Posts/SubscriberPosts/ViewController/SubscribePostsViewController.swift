@@ -48,6 +48,13 @@ final class SubscribePostsViewController: BaseViewController {
                 self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
             }
         }
+        viewModel?.isPostsEmpty = { [weak self] isEmpty in
+            if isEmpty {
+                self?.subscribersPostsView.keywordsPostsViewExceptionView.isHidden = false
+            } else {
+                self?.subscribersPostsView.keywordsPostsViewExceptionView.isHidden = true
+            }
+        }
     }
     
     private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
@@ -55,7 +62,7 @@ final class SubscribePostsViewController: BaseViewController {
         toastLabel.backgroundColor = UIColor.brandColor
         toastLabel.textColor = UIColor.white
         toastLabel.font = font
-        toastLabel.textAlignment = .center;
+        toastLabel.textAlignment = .center
         toastLabel.text = message
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = 10;
