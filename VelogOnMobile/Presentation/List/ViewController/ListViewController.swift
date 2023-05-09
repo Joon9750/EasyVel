@@ -43,9 +43,9 @@ final class ListViewController: BaseViewController, ListViewModelSendData {
         viewModel?.viewWillAppear()
     }
     
-    override func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = true
-    }
+//    override func setupNavigationBar() {
+//        navigationController?.navigationBar.isHidden = true
+//    }
     
     private func bind() {
         listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)

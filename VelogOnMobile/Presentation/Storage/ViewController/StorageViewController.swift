@@ -36,9 +36,9 @@ final class StorageViewController: BaseViewController {
         self.view = storageView
     }
     
-    override func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = true
-    }
+//    override func setupNavigationBar() {
+//        navigationController?.navigationBar.isHidden = true
+//    }
     
     private func bind() {
         setButtonAction()
