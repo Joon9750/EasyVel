@@ -11,7 +11,6 @@ import RealmSwift
 
 protocol KeywordsPostsViewModelInput {
     func viewWillAppear()
-    // MARK: - fix me
     func cellDidTap(input: StoragePost)
 }
 
@@ -45,8 +44,9 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     func cellDidTap(input: StoragePost) {
         if checkIsUniquePost(post: input) {
             addPostRealm(post: input)
+            toastSuccessPresentOutPut()
         } else {
-            toastPresentOutPut()
+            toastFailPresentOutPut()
         }
     }
     
@@ -66,7 +66,13 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
         return realm.checkUniquePost(input: post)
     }
     
-    private func toastPresentOutPut() {
+    private func toastFailPresentOutPut() {
+        if let toastPresent = toastPresent {
+            toastPresent(false)
+        }
+    }
+    
+    private func toastSuccessPresentOutPut() {
         if let toastPresent = toastPresent {
             toastPresent(true)
         }
