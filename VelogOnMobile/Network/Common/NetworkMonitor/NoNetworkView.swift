@@ -13,7 +13,7 @@ final class NoNetworkView: BaseUIView {
     
     private let networkfailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "wifi.slash")
+        imageView.image = ImageLiterals.networkFail
         return imageView
     }()
     
@@ -26,6 +26,8 @@ final class NoNetworkView: BaseUIView {
     
         networkfailImageView.snp.makeConstraints {
             $0.center.equalToSuperview()
+            $0.height.equalTo(134)
+            $0.width.equalTo(212)
         }
     }
 }

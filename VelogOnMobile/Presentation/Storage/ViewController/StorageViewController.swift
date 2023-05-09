@@ -48,6 +48,13 @@ final class StorageViewController: BaseViewController {
         viewModel?.storagePosts = { [weak self] posts in
             self?.storagePosts = posts
         }
+        viewModel?.isPostsEmpty = { [weak self] isEmpty in
+            if isEmpty {
+                self?.storageView.storageViewExceptionView.isHidden = false
+            } else {
+                self?.storageView.storageViewExceptionView.isHidden = true
+            }
+        }
     }
     
     @objc
