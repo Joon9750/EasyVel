@@ -100,6 +100,7 @@
 		917BA3552A0509D8000409B7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3542A0509D8000409B7 /* RealmService.swift */; };
 		917BA3862A07C2D5000409B7 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */; };
 		917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */; };
+		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -200,6 +201,7 @@
 		917BA3542A0509D8000409B7 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
 		917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchProtocol.swift; sourceTree = "<group>"; };
+		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		913441E329FFD5D1000E1ED1 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				91ED179C2A00F2FE00158787 /* ResponseData */,
 				91ED179B2A00F2DB00158787 /* BaseRepository */,
 				91ED17852A00E55600158787 /* Protocol */,
 				913442372A004B91000E1ED1 /* DefaultTagRepository.swift */,
@@ -290,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				917BA3422A0503D5000409B7 /* StoragePost.swift */,
-				91ED179C2A00F2FE00158787 /* ResponseData */,
 				91ED17942A00EAE200158787 /* ErrorDTO */,
 				9134421B29FFEAA4000E1ED1 /* NotificationDTO */,
 				9134421629FFDCCF000E1ED1 /* TagDTO */,
@@ -336,6 +338,7 @@
 			children = (
 				9134421C29FFEAC9000E1ED1 /* BroadcastResponse.swift */,
 				9134421E29FFEAF7000E1ED1 /* BroadcastRequest.swift */,
+				91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */,
 			);
 			path = NotificationDTO;
 			sourceTree = "<group>";
@@ -1006,6 +1009,7 @@
 				91487F2529FC5F7C009CFECF /* NotificationViewController.swift in Sources */,
 				9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */,
 				91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */,
+				91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */,
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
