@@ -36,6 +36,7 @@ final class PostsTabManViewController: TabmanViewController {
     
         setUI()
         settingTabBar(ctBar: bar)
+        settingScrollable()
     }
     
     func setUI(){
@@ -88,6 +89,10 @@ final class PostsTabManViewController: TabmanViewController {
         }
         ctBar.indicator.weight = .custom(value: 2)
         ctBar.indicator.tintColor = .brandColor
+    }
+    
+    func settingScrollable() {
+        self.isScrollEnabled = false
     }
 }
 
