@@ -45,6 +45,8 @@ final class SubscribePostsViewController: BaseViewController {
         }
         viewModel?.toastPresent = { [weak self] result in
             if result {
+                self?.showToast(message: "추가되었습니다", font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
+            } else {
                 self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
             }
         }
@@ -134,20 +136,26 @@ extension SubscribePostsViewController: UITableViewDataSource {
 extension SubscribePostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! SubscribersPostsTableViewCell
-        let index = indexPath.section
-        let post = StoragePost(
-            img: subscriberPosts?.subscribePostDtoList?[index].img,
-            name: subscriberPosts?.subscribePostDtoList?[index].name,
-            summary: subscriberPosts?.subscribePostDtoList?[index].summary,
-            title: subscriberPosts?.subscribePostDtoList?[index].title,
-            url: subscriberPosts?.subscribePostDtoList?[index].url
-        )
-        
-        // MARK: - fix me
-        viewModel?.cellDidTap(input: post)
         let url = selectedCell.url
         let webViewController = WebViewController(url: url)
-        // MARK: - fix me
-//        navigationController?.pushViewController(webViewController, animated: true)
+        navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let index = indexPath.section
+        let swipeAction = UIContextualAction(style: .normal, title: "스크랩", handler: { [weak self] action, view, completionHaldler in
+            let post = StoragePost(
+                img: self?.subscriberPosts?.subscribePostDtoList?[index].img,
+                name: self?.subscriberPosts?.subscribePostDtoList?[index].name,
+                summary: self?.subscriberPosts?.subscribePostDtoList?[index].summary,
+                title: self?.subscriberPosts?.subscribePostDtoList?[index].title,
+                url: self?.subscriberPosts?.subscribePostDtoList?[index].url
+            )
+            self?.viewModel?.cellDidTap(input: post)
+            completionHaldler(true)
+        })
+        swipeAction.backgroundColor = .brandColor
+        let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
+        return configuration
     }
 }
