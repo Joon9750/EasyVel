@@ -136,14 +136,12 @@ extension SubscribePostsViewController: UITableViewDataSource {
 extension SubscribePostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! SubscribersPostsTableViewCell
-        let index = indexPath.section
         let url = selectedCell.url
         let webViewController = WebViewController(url: url)
         navigationController?.pushViewController(webViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let selectedCell = tableView.cellForRow(at: indexPath) as! SubscribersPostsTableViewCell
         let index = indexPath.section
         let swipeAction = UIContextualAction(style: .normal, title: "스크랩", handler: { [weak self] action, view, completionHaldler in
             let post = StoragePost(
@@ -156,6 +154,7 @@ extension SubscribePostsViewController: UITableViewDelegate {
             self?.viewModel?.cellDidTap(input: post)
             completionHaldler(true)
         })
+        swipeAction.backgroundColor = .brandColor
         let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
         return configuration
     }
