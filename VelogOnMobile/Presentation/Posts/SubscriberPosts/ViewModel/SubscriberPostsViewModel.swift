@@ -12,6 +12,7 @@ import RealmSwift
 protocol SubscriberPostsViewModelInput {
     func viewWillAppear()
     func cellDidTap(input: StoragePost)
+    func tableViewReload()
 }
 
 protocol SubscriberPostsViewModelOutput {
@@ -48,6 +49,11 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
         } else {
             toastFailPresentOutPut()
         }
+    }
+    
+    func tableViewReload() {
+        LoadingView.showLoading()
+        getSubscriberPostsForserver()
     }
     
     // MARK: - Output
@@ -93,6 +99,7 @@ private extension SubscriberPostsViewModel {
             if let isPostsEmpty = self?.isPostsEmpty {
                 isPostsEmpty((self?.checkPostsEmpty(input: result))!)
             }
+            LoadingView.hideLoading()
         }
     }
     

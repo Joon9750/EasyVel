@@ -101,6 +101,7 @@
 		917BA3862A07C2D5000409B7 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */; };
 		917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */; };
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
+		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -202,6 +203,7 @@
 		917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
 		917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchProtocol.swift; sourceTree = "<group>"; };
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
+		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		91487EDE29FC3946009CFECF /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				91CC1D4A2A0AD7B7006BF786 /* Loading */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 				91487F4E29FD9902009CFECF /* TabBar */,
 				91487F4829FD9663009CFECF /* Search */,
@@ -793,6 +796,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		91CC1D4A2A0AD7B7006BF786 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1038,7 @@
 				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
 				91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,
+				91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* SubscribersPostsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

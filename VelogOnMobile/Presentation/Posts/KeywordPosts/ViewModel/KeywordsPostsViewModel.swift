@@ -12,6 +12,7 @@ import RealmSwift
 protocol KeywordsPostsViewModelInput {
     func viewWillAppear()
     func cellDidTap(input: StoragePost)
+    func tableViewReload()
 }
 
 protocol KeywordsPostsViewModelOutput {
@@ -48,6 +49,11 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
         } else {
             toastFailPresentOutPut()
         }
+    }
+    
+    func tableViewReload() {
+        LoadingView.showLoading()
+        getTagPostsForserver()
     }
     
     // MARK: - Output
@@ -93,6 +99,7 @@ private extension KeywordsPostsViewModel {
             if let isPostsEmpty = self?.isPostsEmpty {
                 isPostsEmpty((self?.checkStorageEmpty(input: result))!)
             }
+            LoadingView.hideLoading()
         }
     }
     
