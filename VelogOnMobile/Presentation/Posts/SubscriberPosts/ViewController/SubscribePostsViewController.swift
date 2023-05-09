@@ -95,7 +95,7 @@ extension SubscribePostsViewController: UIScrollViewDelegate {
         } else {
             subscribersPostsView.moveToTopButton.isHidden = true
         }
-        if scrollView.contentOffset.y < -100 {
+        if scrollView.contentOffset.y < -80 {
             print(scrollView.contentOffset.y)
             viewModel?.tableViewReload()
         }

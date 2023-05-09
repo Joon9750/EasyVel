@@ -20,7 +20,7 @@ final class StorageView: BaseUIView {
         button.backgroundColor = .brandColor
         button.alpha = 0.8
         button.isHidden = true
-        button.setImage(UIImage(systemName: "arrow.uturn.up")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(UIImage(systemName: "arrow.up")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     let storageViewExceptionView: UIImageView = {
