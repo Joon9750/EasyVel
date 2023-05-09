@@ -3,7 +3,7 @@ Refactoring to MVVM
 
 https://github.com/SSUDevelog/VelogInMobile
 
-위 프로젝트를 리팩토링 진행하려합니다.
+MVC로 진행되었던 위 링크 프로젝트를 MVVM으로 리팩토링합니다.
 
 ## 프로젝트 기획배경
 
