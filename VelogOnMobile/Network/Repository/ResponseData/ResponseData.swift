@@ -22,4 +22,5 @@ enum ResponseData {
     case signOut
     case signUp
     case broadCast
+    case joinGroup
 }

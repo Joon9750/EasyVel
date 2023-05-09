@@ -84,6 +84,7 @@ class BaseRepository {
                 return .pathErr
             }
             return .success(decodedData)
+        case .joinGroup: return .success((Any).self)
         }
     }
 }

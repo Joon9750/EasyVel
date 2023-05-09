@@ -11,6 +11,7 @@ import Moya
 
 enum NotificationAPI {
     case broadCast(body: BroadcastRequest)
+    case joingroup(body: JoinGroupRequest)
 }
 
 extension NotificationAPI: BaseTargetType {
@@ -18,12 +19,14 @@ extension NotificationAPI: BaseTargetType {
         switch self {
         case .broadCast:
             return URLConstants.notifi + "/broadcast"
+        case .joingroup:
+            return URLConstants.notifi + "/joingroup"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .broadCast:
+        case .broadCast, .joingroup:
             return .post
         }
     }
@@ -31,6 +34,8 @@ extension NotificationAPI: BaseTargetType {
     var task: Moya.Task {
         switch self {
         case .broadCast(let body):
+            return .requestJSONEncodable(body)
+        case .joingroup(let body):
             return .requestJSONEncodable(body)
         }
     }

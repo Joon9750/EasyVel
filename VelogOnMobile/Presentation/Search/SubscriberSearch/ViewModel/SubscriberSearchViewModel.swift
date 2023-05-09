@@ -48,6 +48,7 @@ final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
             if let isValid = result.validate {
                 if isValid {
                     self?.addSubscriber(name: name)
+                    self?.joinSubscriberAlarmGroup(name: name)
                 } else {
                     guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
                     let text = TextLiterals.searchSubscriberIsNotValidText
@@ -59,6 +60,15 @@ final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
     
     private func addSubscriber(name: String) {
         addSubscriber(name: name) { [weak self] response in
+            guard self != nil else {
+                return
+            }
+        }
+    }
+    
+    private func joinSubscriberAlarmGroup(name: String) {
+        let joinGroupRequestData = JoinGroupRequest(groupName: name)
+        joinAlarmGroup(subscriber: joinGroupRequestData) { [weak self] response in
             guard self != nil else {
                 return
             }
@@ -93,6 +103,21 @@ private extension SubscriberSearchViewModel {
                 guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
                 let text = TextLiterals.addSubscriberRequestErrText
                 subscriberAddStatus(false, text)
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func joinAlarmGroup(
+        subscriber: JoinGroupRequest,
+        completion: @escaping (String) -> Void) {
+        NetworkService.shared.notificationRepository.joinGroup(body: subscriber) { result in
+            switch result {
+            case .success(_):
+                completion("success")
+            case .requestErr(let errResponse):
                 dump(errResponse)
             default:
                 print("error")

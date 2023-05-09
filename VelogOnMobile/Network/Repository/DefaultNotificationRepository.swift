@@ -13,13 +13,33 @@ final class DefaultNotificationRepository: BaseRepository, NotificationRepositor
 
     let provider = MoyaProvider<NotificationAPI>(plugins: [MoyaLoggerPlugin()])
     
-    func broadCast(body: BroadcastRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func broadCast(
+        body: BroadcastRequest,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.broadCast(body: body)) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .broadCast)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+
+    func joinGroup(
+        body: JoinGroupRequest,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.joingroup(body: body)) { result in
+            switch result {
+            case .success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .addTag)
                 completion(networkResult)
             case .failure(let err):
                 print(err)
