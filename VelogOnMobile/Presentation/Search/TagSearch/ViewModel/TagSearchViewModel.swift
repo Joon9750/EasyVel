@@ -19,8 +19,9 @@ protocol TagSearchViewModelOutput {
 protocol TagSearchViewModelInputOutput: TagSearchViewModelInput, TagSearchViewModelOutput {}
 
 final class TagSearchViewModel: TagSearchViewModelInputOutput {
-
+    
     var tagSearchDelegate: TagSearchProtocol?
+
     var tagList: [String]? {
         didSet {
             if let tagList = tagList {

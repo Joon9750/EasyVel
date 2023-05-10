@@ -11,6 +11,7 @@ final class SubscribePostsViewController: BaseViewController {
 
     private let subscribersPostsView = SubscribersPostsView()
     private var viewModel: SubscriberPostsViewModelInputOutput?
+    private var isScrolled: Bool = false
     private var subscriberPosts: GetSubscriberPostResponse? {
         didSet {
             subscribersPostsView.postTableView.reloadData()
@@ -78,27 +79,54 @@ final class SubscribePostsViewController: BaseViewController {
     }
     
     private func setButtonAction() {
-        subscribersPostsView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
+        subscribersPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
     
-    @objc
-    func moveToTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        subscribersPostsView.postTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    private func scrollDidStart(){
+        viewModel?.viewControllerDidScroll()
+        subscribersPostsView.subscriberPostViewDidScroll()
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func scrollDidEnd() {
+        viewModel?.viewControllerScrollDidEnd()
+        subscribersPostsView.subscriberPostViewScrollDidEnd()
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 }
 
 extension SubscribePostsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 200 {
-            subscribersPostsView.moveToTopButton.isHidden = false
-        } else {
-            subscribersPostsView.moveToTopButton.isHidden = true
+        if scrollView.contentOffset.y > 2 {
+            if isScrolled == false {
+                scrollDidStart()
+                isScrolled = true
+            }
+        } else if scrollView.contentOffset.y < 0 {
+            scrollDidEnd()
+            isScrolled = false
         }
-        if scrollView.contentOffset.y < -80 {
-            print(scrollView.contentOffset.y)
-            viewModel?.tableViewReload()
-        }
+        
+        // MARK: - fix me
+        
+//        if scrollView.contentOffset.y > 200 {
+//            subscribersPostsView.moveToTopButton.isHidden = false
+//        } else {
+//            subscribersPostsView.moveToTopButton.isHidden = true
+//        }
+//        if scrollView.contentOffset.y < -80 {
+//            print(scrollView.contentOffset.y)
+//            viewModel?.tableViewReload()
+//        }
+    }
+    
+    @objc
+    func scrollToTop() {
+        subscribersPostsView.postTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 

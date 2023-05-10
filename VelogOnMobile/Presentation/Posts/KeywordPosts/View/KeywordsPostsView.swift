@@ -52,4 +52,16 @@ final class KeywordsPostsView: BaseUIView {
             $0.width.equalTo(150)
         }
     }
+    
+    func keywordsPostViewDidScroll() {
+        keywordsTableView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(50)
+        }
+    }
+    
+    func keywordsPostViewScrollDidEnd() {
+        keywordsTableView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(180)
+        }
+    }
 }

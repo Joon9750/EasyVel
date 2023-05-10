@@ -11,6 +11,7 @@ final class StorageViewController: BaseViewController {
     
     private let storageView = StorageView()
     private var viewModel: StorageViewModelInputOutput?
+    private var isScrolled: Bool = false
     private var storagePosts: [StoragePost]? {
         didSet {
             storageView.listTableView.reloadData()
@@ -79,11 +80,23 @@ final class StorageViewController: BaseViewController {
 
 extension StorageViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 200 {
-            storageView.moveToTopButton.isHidden = false
-        } else {
-            storageView.moveToTopButton.isHidden = true
+        if scrollView.contentOffset.y > 2 {
+            if isScrolled == false {
+                storageView.scrollDidStart()
+                isScrolled = true
+            }
+        } else if scrollView.contentOffset.y < 0 {
+            storageView.scrollDidEnd()
+            isScrolled = false
         }
+        
+        // MARK: - fix me
+        
+//        if scrollView.contentOffset.y > 200 {
+//            storageView.moveToTopButton.isHidden = false
+//        } else {
+//            storageView.moveToTopButton.isHidden = true
+//        }
     }
 }
 

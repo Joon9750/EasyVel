@@ -10,7 +10,8 @@ import UIKit
 final class KeywordsPostsViewController: BaseViewController {
     
     private let keywordsPostsView = KeywordsPostsView()
-    private var viewModel: KeywordsPostsViewModelInputOutput?
+    var viewModel: KeywordsPostsViewModelInputOutput?
+    private var isScrolled: Bool = false
     private var keywordsPosts: GetTagPostResponse? {
         didSet {
             keywordsPostsView.keywordsTableView.reloadData()
@@ -57,6 +58,11 @@ final class KeywordsPostsViewController: BaseViewController {
                 self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
             }
         }
+        viewModel?.scrollToTop = { [weak self] resultTrue in
+            if resultTrue {
+                self?.scrollToTop()
+            }
+        }
     }
     
     private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
@@ -78,26 +84,53 @@ final class KeywordsPostsViewController: BaseViewController {
     }
     
     private func setButtonAction() {
-        keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
+        keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
     
-    @objc
-    func moveToTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        keywordsPostsView.keywordsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    private func scrollDidStart(){
+        viewModel?.viewControllerDidScroll()
+        keywordsPostsView.keywordsPostViewDidScroll()
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func scrollDidEnd() {
+        viewModel?.viewControllerScrollDidEnd()
+        keywordsPostsView.keywordsPostViewScrollDidEnd()
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 }
 
 extension KeywordsPostsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 200 {
-            keywordsPostsView.moveToTopButton.isHidden = false
-        } else {
-            keywordsPostsView.moveToTopButton.isHidden = true
+        if scrollView.contentOffset.y > 2 {
+            if isScrolled == false {
+                scrollDidStart()
+                isScrolled = true
+            }
+        } else if scrollView.contentOffset.y < 0 {
+            scrollDidEnd()
+            isScrolled = false
         }
-        if scrollView.contentOffset.y < -80 {
-            viewModel?.tableViewReload()
-        }
+        
+        // MARK: - fix me
+        
+//        if scrollView.contentOffset.y > 200 {
+//            keywordsPostsView.moveToTopButton.isHidden = false
+//        } else {
+//            keywordsPostsView.moveToTopButton.isHidden = true
+//        }
+//        if scrollView.contentOffset.y < -80 {
+//            viewModel?.tableViewReload()
+//        }
+    }
+    
+    @objc
+    func scrollToTop() {
+        keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 

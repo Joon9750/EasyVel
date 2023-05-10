@@ -13,12 +13,15 @@ protocol KeywordsPostsViewModelInput {
     func viewWillAppear()
     func cellDidTap(input: StoragePost)
     func tableViewReload()
+    func viewControllerDidScroll()
+    func viewControllerScrollDidEnd()
 }
 
 protocol KeywordsPostsViewModelOutput {
     var tagPostsListOutput: ((GetTagPostResponse) -> Void)? { get set }
     var toastPresent: ((Bool) -> Void)? { get set }
     var isPostsEmpty: ((Bool) -> Void)? { get set }
+    var scrollToTop: ((Bool) -> Void)? { get set }
 }
 
 protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, KeywordsPostsViewModelOutput {}
@@ -26,6 +29,7 @@ protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, Keyword
 final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     let realm = RealmService()
+    var postViewDelegate: PostsViewControllerProtocol?
     
     var tagPosts: GetTagPostResponse? {
         didSet {
@@ -40,6 +44,9 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     func viewWillAppear() {
         getTagPostsForserver()
+        if let scrollToTop = scrollToTop {
+            scrollToTop(true)
+        }
     }
     
     func cellDidTap(input: StoragePost) {
@@ -56,11 +63,20 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
         getTagPostsForserver()
     }
     
+    func viewControllerDidScroll() {
+        postViewDelegate?.postsViewScrollDidStart()
+    }
+    
+    func viewControllerScrollDidEnd() {
+        postViewDelegate?.postsViewScrollDidEnd()
+    }
+    
     // MARK: - Output
     
     var tagPostsListOutput: ((GetTagPostResponse) -> Void)?
     var toastPresent: ((Bool) -> Void)?
     var isPostsEmpty: ((Bool) -> Void)?
+    var scrollToTop: ((Bool) -> Void)?
     
     // MARK: - func
 

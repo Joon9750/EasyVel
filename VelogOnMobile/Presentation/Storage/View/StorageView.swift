@@ -60,4 +60,22 @@ final class StorageView: BaseUIView {
             $0.width.equalTo(150)
         }
     }
+    
+    func scrollDidStart() {
+        storageHeadView.snp.updateConstraints {
+            $0.height.equalTo(0)
+        }
+        UIView.animate(withDuration: 0.7, delay: 0, options: .transitionCurlUp, animations: {
+            self.layoutIfNeeded()
+        })
+    }
+    
+    func scrollDidEnd() {
+        storageHeadView.snp.updateConstraints {
+            $0.height.equalTo(120)
+        }
+        UIView.animate(withDuration: 0.7, delay: 0, options: .transitionCurlUp, animations: {
+            self.layoutIfNeeded()
+        })
+    }
 }

@@ -41,6 +41,11 @@ final class ListViewController: BaseViewController, ListViewModelSendData {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.viewWillAppear()
+        setNavigationBar()
+    }
+    
+    func setNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func bind() {

@@ -98,10 +98,11 @@
 		917BA34E2A050861000409B7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 917BA34D2A050861000409B7 /* RealmSwift */; };
 		917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3512A050903000409B7 /* RealmStoragePost.swift */; };
 		917BA3552A0509D8000409B7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3542A0509D8000409B7 /* RealmService.swift */; };
-		917BA3862A07C2D5000409B7 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */; };
 		917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */; };
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
+		91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */; };
+		91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -200,10 +201,11 @@
 		917BA3442A050631000409B7 /* StorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewModel.swift; sourceTree = "<group>"; };
 		917BA3512A050903000409B7 /* RealmStoragePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStoragePost.swift; sourceTree = "<group>"; };
 		917BA3542A0509D8000409B7 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
-		917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
 		917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchProtocol.swift; sourceTree = "<group>"; };
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
+		91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewControllerProtocol.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -790,8 +792,9 @@
 		917BA3842A07C2B7000409B7 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				917BA3852A07C2D5000409B7 /* TagSearchProtocol.swift */,
 				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
+				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
+				91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -964,7 +967,6 @@
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
 				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
 				91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */,
-				917BA3862A07C2D5000409B7 /* TagSearchProtocol.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487F4D29FD9858009CFECF /* TagSearchViewController.swift in Sources */,
 				914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */,
@@ -981,6 +983,7 @@
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
+				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
@@ -995,6 +998,7 @@
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
+				91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
