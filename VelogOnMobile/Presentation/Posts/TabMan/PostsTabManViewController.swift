@@ -36,10 +36,9 @@ final class PostsTabManViewController: TabmanViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = self
-        bounces = false
     
         setUI()
+        configUI()
         settingTabBar(ctBar: bar)
         settingScrollable()
         setDelegate()
@@ -75,13 +74,15 @@ final class PostsTabManViewController: TabmanViewController {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(50)
         }
-//        tabManBarView.backgroundColor = .blue
         
         finalView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(60)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(120)
         }
+    }
+    
+    func configUI() {
         finalView.backgroundColor = .white
     }
     
@@ -105,7 +106,10 @@ final class PostsTabManViewController: TabmanViewController {
     }
     
     func setDelegate() {
+        dataSource = self
+        bounces = false
         keywordsPostsViewModel.postViewDelegate = self
+        subscriberPostViewModel.postViewDelegate = self
     }
     
     func setNavigationBar() {
@@ -138,6 +142,26 @@ extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataS
 
 extension PostsTabManViewController: KeywordPostsViewControllerProtocol {
     func keywordPostsViewScrollDidStart() {
+        scrollDidStart()
+    }
+    
+    func keywordPostsViewScrollDidEnd() {
+        scrollDidEnd()
+    }
+}
+
+extension PostsTabManViewController: SubscriberPostsViewControllerProtocol {
+    func subscriberPostsViewScrollDidStart() {
+        scrollDidStart()
+    }
+    
+    func subscriberPostsViewScrollDidEnd() {
+        scrollDidEnd()
+    }
+}
+
+extension PostsTabManViewController {
+    private func scrollDidStart() {
         titleLabel.isHidden = true
         notifiButton.isHidden = true
         tabManBarView.snp.remakeConstraints {
@@ -156,7 +180,7 @@ extension PostsTabManViewController: KeywordPostsViewControllerProtocol {
         })
     }
     
-    func keywordPostsViewScrollDidEnd() {
+    private func scrollDidEnd() {
         titleLabel.isHidden = false
         notifiButton.isHidden = false
         tabManBarView.snp.remakeConstraints {

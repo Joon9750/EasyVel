@@ -52,4 +52,16 @@ final class SubscribersPostsView: BaseUIView {
             $0.width.equalTo(150)
         }
     }
+    
+    func subscriberPostViewDidScroll() {
+        postTableView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(50)
+        }
+    }
+    
+    func subscriberPostViewScrollDidEnd() {
+        postTableView.snp.updateConstraints {
+            $0.top.equalToSuperview().offset(180)
+        }
+    }
 }

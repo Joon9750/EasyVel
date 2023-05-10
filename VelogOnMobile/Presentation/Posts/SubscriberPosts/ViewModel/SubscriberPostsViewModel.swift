@@ -13,6 +13,8 @@ protocol SubscriberPostsViewModelInput {
     func viewWillAppear()
     func cellDidTap(input: StoragePost)
     func tableViewReload()
+    func viewControllerDidScroll()
+    func viewControllerScrollDidEnd()
 }
 
 protocol SubscriberPostsViewModelOutput {
@@ -26,6 +28,7 @@ protocol SubscriberPostsViewModelInputOutput: SubscriberPostsViewModelInput, Sub
 final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     
     let realm = RealmService()
+    var postViewDelegate: SubscriberPostsViewControllerProtocol?
     
     var subscribePosts: GetSubscriberPostResponse? {
         didSet {
@@ -54,6 +57,14 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     func tableViewReload() {
         LoadingView.showLoading()
         getSubscriberPostsForserver()
+    }
+    
+    func viewControllerDidScroll() {
+        postViewDelegate?.subscriberPostsViewScrollDidStart()
+    }
+    
+    func viewControllerScrollDidEnd() {
+        postViewDelegate?.subscriberPostsViewScrollDidEnd()
     }
     
     // MARK: - Output

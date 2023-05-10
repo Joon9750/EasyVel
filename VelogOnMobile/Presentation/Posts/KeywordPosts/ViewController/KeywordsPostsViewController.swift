@@ -87,7 +87,7 @@ final class KeywordsPostsViewController: BaseViewController {
         keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
     
-    func scrollDidStart(){
+    private func scrollDidStart(){
         viewModel?.viewControllerDidScroll()
         keywordsPostsView.keywordsPostViewDidScroll()
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
@@ -95,7 +95,7 @@ final class KeywordsPostsViewController: BaseViewController {
         })
     }
     
-    func scrollDidEnd() {
+    private func scrollDidEnd() {
         viewModel?.viewControllerScrollDidEnd()
         keywordsPostsView.keywordsPostViewScrollDidEnd()
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
