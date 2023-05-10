@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol TabBarProtocol {
+    func tabBarItemDidTouched(itemTitle: String)
+}

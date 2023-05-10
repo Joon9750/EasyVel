@@ -27,7 +27,12 @@ final class PostsTabManViewController: TabmanViewController {
         return button
     }()
     private let bar = TMBar.ButtonBar()
-    private var viewControllers: Array<UIViewController> = [KeywordsPostsViewController(viewModel: KeywordsPostsViewModel()), SubscribePostsViewController(viewModel: SubscriberPostsViewModel())]
+    private var keywordsPostsViewModel = KeywordsPostsViewModel()
+    private var subscriberPostViewModel = SubscriberPostsViewModel()
+    private lazy var keywordsPostsViewController = KeywordsPostsViewController(viewModel: keywordsPostsViewModel)
+    private lazy var subscribePostsViewController = SubscribePostsViewController(viewModel: subscriberPostViewModel)
+                                                                        
+    lazy var viewControllers: Array<UIViewController> = [keywordsPostsViewController, subscribePostsViewController]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +42,8 @@ final class PostsTabManViewController: TabmanViewController {
         setUI()
         settingTabBar(ctBar: bar)
         settingScrollable()
+        setDelegate()
+        setNavigationBar()
     }
     
     func setUI(){
@@ -68,12 +75,14 @@ final class PostsTabManViewController: TabmanViewController {
             $0.centerX.equalToSuperview()
             $0.height.equalTo(50)
         }
+//        tabManBarView.backgroundColor = .blue
         
         finalView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(60)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(120)
         }
+        finalView.backgroundColor = .white
     }
     
     func settingTabBar(ctBar: TMBar.ButtonBar) {
@@ -93,6 +102,14 @@ final class PostsTabManViewController: TabmanViewController {
     
     func settingScrollable() {
         self.isScrollEnabled = false
+    }
+    
+    func setDelegate() {
+        keywordsPostsViewModel.postViewDelegate = self
+    }
+    
+    func setNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
     }
 }
 
@@ -117,4 +134,45 @@ extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataS
   func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
       return nil
   }
+}
+
+extension PostsTabManViewController: KeywordPostsViewControllerProtocol {
+    func keywordPostsViewScrollDidStart() {
+        titleLabel.isHidden = true
+        notifiButton.isHidden = true
+        tabManBarView.snp.remakeConstraints {
+            $0.width.equalTo(UIScreen.main.bounds.width - 50)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(50)
+            $0.bottom.equalTo(finalView.snp.bottom)
+        }
+        finalView.snp.remakeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(100)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func keywordPostsViewScrollDidEnd() {
+        titleLabel.isHidden = false
+        notifiButton.isHidden = false
+        tabManBarView.snp.remakeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+            $0.width.equalTo(UIScreen.main.bounds.width - 50)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(50)
+        }
+        
+        finalView.snp.remakeConstraints {
+            $0.top.equalToSuperview().offset(60)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(120)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
 }
