@@ -110,6 +110,9 @@ extension SubscribePostsViewController: UIScrollViewDelegate {
             scrollDidEnd()
             isScrolled = false
         }
+        
+        // MARK: - fix me
+        
 //        if scrollView.contentOffset.y > 200 {
 //            subscribersPostsView.moveToTopButton.isHidden = false
 //        } else {
