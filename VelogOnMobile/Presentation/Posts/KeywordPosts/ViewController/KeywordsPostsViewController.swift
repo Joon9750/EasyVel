@@ -78,13 +78,7 @@ final class KeywordsPostsViewController: BaseViewController {
     }
     
     private func setButtonAction() {
-        keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
-    }
-    
-    @objc
-    func moveToTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        keywordsPostsView.keywordsTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
 }
 
@@ -98,6 +92,11 @@ extension KeywordsPostsViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y < -80 {
             viewModel?.tableViewReload()
         }
+    }
+    
+    @objc
+    func scrollToTop() {
+        keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 

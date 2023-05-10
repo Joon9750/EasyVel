@@ -78,13 +78,7 @@ final class SubscribePostsViewController: BaseViewController {
     }
     
     private func setButtonAction() {
-        subscribersPostsView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
-    }
-    
-    @objc
-    func moveToTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        subscribersPostsView.postTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        subscribersPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
 }
 
@@ -99,6 +93,11 @@ extension SubscribePostsViewController: UIScrollViewDelegate {
             print(scrollView.contentOffset.y)
             viewModel?.tableViewReload()
         }
+    }
+    
+    @objc
+    func scrollToTop() {
+        subscribersPostsView.postTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
 
