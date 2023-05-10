@@ -39,10 +39,10 @@ final class StorageHeadView: BaseUIView {
         }
         
         deleteButton.snp.makeConstraints {
-            $0.top.equalTo(titleLabel).offset(10)
-            $0.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(25)
-            $0.width.equalTo(50)
+            $0.top.equalTo(titleLabel).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
+            $0.height.equalTo(40)
+            $0.width.equalTo(70)
         }
     }
     
