@@ -28,7 +28,7 @@ protocol SubscriberPostsViewModelInputOutput: SubscriberPostsViewModelInput, Sub
 final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     
     let realm = RealmService()
-    var postViewDelegate: SubscriberPostsViewControllerProtocol?
+    var postViewDelegate: PostsViewControllerProtocol?
     
     var subscribePosts: GetSubscriberPostResponse? {
         didSet {
@@ -60,11 +60,11 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     }
     
     func viewControllerDidScroll() {
-        postViewDelegate?.subscriberPostsViewScrollDidStart()
+        postViewDelegate?.postsViewScrollDidStart()
     }
     
     func viewControllerScrollDidEnd() {
-        postViewDelegate?.subscriberPostsViewScrollDidEnd()
+        postViewDelegate?.postsViewScrollDidEnd()
     }
     
     // MARK: - Output

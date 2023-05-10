@@ -29,7 +29,7 @@ protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, Keyword
 final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     let realm = RealmService()
-    var postViewDelegate: KeywordPostsViewControllerProtocol?
+    var postViewDelegate: PostsViewControllerProtocol?
     
     var tagPosts: GetTagPostResponse? {
         didSet {
@@ -64,11 +64,11 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     }
     
     func viewControllerDidScroll() {
-        postViewDelegate?.keywordPostsViewScrollDidStart()
+        postViewDelegate?.postsViewScrollDidStart()
     }
     
     func viewControllerScrollDidEnd() {
-        postViewDelegate?.keywordPostsViewScrollDidEnd()
+        postViewDelegate?.postsViewScrollDidEnd()
     }
     
     // MARK: - Output

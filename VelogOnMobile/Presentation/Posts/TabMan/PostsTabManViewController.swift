@@ -140,22 +140,12 @@ extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataS
   }
 }
 
-extension PostsTabManViewController: KeywordPostsViewControllerProtocol {
-    func keywordPostsViewScrollDidStart() {
+extension PostsTabManViewController: PostsViewControllerProtocol {
+    func postsViewScrollDidStart() {
         scrollDidStart()
     }
     
-    func keywordPostsViewScrollDidEnd() {
-        scrollDidEnd()
-    }
-}
-
-extension PostsTabManViewController: SubscriberPostsViewControllerProtocol {
-    func subscriberPostsViewScrollDidStart() {
-        scrollDidStart()
-    }
-    
-    func subscriberPostsViewScrollDidEnd() {
+    func postsViewScrollDidEnd() {
         scrollDidEnd()
     }
 }

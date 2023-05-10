@@ -102,8 +102,7 @@
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
 		91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */; };
-		91CC1D552A0C0EB7006BF786 /* KeywordPostsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D542A0C0EB7006BF786 /* KeywordPostsViewControllerProtocol.swift */; };
-		91CC1D572A0C1918006BF786 /* SubscriberPostsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D562A0C1918006BF786 /* SubscriberPostsViewControllerProtocol.swift */; };
+		91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -206,8 +205,7 @@
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
-		91CC1D542A0C0EB7006BF786 /* KeywordPostsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPostsViewControllerProtocol.swift; sourceTree = "<group>"; };
-		91CC1D562A0C1918006BF786 /* SubscriberPostsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberPostsViewControllerProtocol.swift; sourceTree = "<group>"; };
+		91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewControllerProtocol.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -796,8 +794,7 @@
 			children = (
 				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
 				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
-				91CC1D542A0C0EB7006BF786 /* KeywordPostsViewControllerProtocol.swift */,
-				91CC1D562A0C1918006BF786 /* SubscriberPostsViewControllerProtocol.swift */,
+				91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1001,7 +998,7 @@
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
-				91CC1D552A0C0EB7006BF786 /* KeywordPostsViewControllerProtocol.swift in Sources */,
+				91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
@@ -1030,7 +1027,6 @@
 				91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */,
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
-				91CC1D572A0C1918006BF786 /* SubscriberPostsViewControllerProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
