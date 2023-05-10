@@ -95,6 +95,9 @@ extension KeywordsPostsViewController: UIScrollViewDelegate {
         } else {
             keywordsPostsView.moveToTopButton.isHidden = true
         }
+        if scrollView.contentOffset.y < -80 {
+            viewModel?.tableViewReload()
+        }
     }
 }
 
