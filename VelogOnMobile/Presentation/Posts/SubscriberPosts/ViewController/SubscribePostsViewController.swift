@@ -110,23 +110,20 @@ extension SubscribePostsViewController: UIScrollViewDelegate {
             scrollDidEnd()
             isScrolled = false
         }
-        
-        // MARK: - fix me
-        
-//        if scrollView.contentOffset.y > 200 {
-//            subscribersPostsView.moveToTopButton.isHidden = false
-//        } else {
-//            subscribersPostsView.moveToTopButton.isHidden = true
-//        }
-//        if scrollView.contentOffset.y < -80 {
-//            print(scrollView.contentOffset.y)
-//            viewModel?.tableViewReload()
-//        }
+        if scrollView.contentOffset.y > 200 {
+            subscribersPostsView.moveToTopButton.isHidden = false
+        } else {
+            subscribersPostsView.moveToTopButton.isHidden = true
+        }
+        if scrollView.contentOffset.y < -80 {
+            print(scrollView.contentOffset.y)
+            viewModel?.tableViewReload()
+        }
     }
     
     @objc
     func scrollToTop() {
-        subscribersPostsView.postTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        subscribersPostsView.postTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
     }
 }
 

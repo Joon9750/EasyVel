@@ -68,13 +68,7 @@ final class StorageViewController: BaseViewController {
     }
     
     private func setButtonAction() {
-        storageView.moveToTopButton.addTarget(self, action: #selector(moveToTop), for: .touchUpInside)
-    }
-    
-    @objc
-    func moveToTop() {
-        let indexPath = IndexPath(row: 0, section: 0)
-        storageView.listTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        storageView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
 }
 
@@ -89,14 +83,16 @@ extension StorageViewController: UIScrollViewDelegate {
             storageView.scrollDidEnd()
             isScrolled = false
         }
-        
-        // MARK: - fix me
-        
-//        if scrollView.contentOffset.y > 200 {
-//            storageView.moveToTopButton.isHidden = false
-//        } else {
-//            storageView.moveToTopButton.isHidden = true
-//        }
+        if scrollView.contentOffset.y > 200 {
+            storageView.moveToTopButton.isHidden = false
+        } else {
+            storageView.moveToTopButton.isHidden = true
+        }
+    }
+    
+    @objc
+    func scrollToTop() {
+        storageView.listTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
     }
 }
 
