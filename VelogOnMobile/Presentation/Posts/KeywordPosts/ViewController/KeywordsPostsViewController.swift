@@ -115,22 +115,19 @@ extension KeywordsPostsViewController: UIScrollViewDelegate {
             scrollDidEnd()
             isScrolled = false
         }
-        
-        // MARK: - fix me
-        
-//        if scrollView.contentOffset.y > 200 {
-//            keywordsPostsView.moveToTopButton.isHidden = false
-//        } else {
-//            keywordsPostsView.moveToTopButton.isHidden = true
-//        }
-//        if scrollView.contentOffset.y < -80 {
-//            viewModel?.tableViewReload()
-//        }
+        if scrollView.contentOffset.y > 200 {
+            keywordsPostsView.moveToTopButton.isHidden = false
+        } else {
+            keywordsPostsView.moveToTopButton.isHidden = true
+        }
+        if scrollView.contentOffset.y < -80 {
+            viewModel?.tableViewReload()
+        }
     }
     
     @objc
     func scrollToTop() {
-        keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
     }
 }
 
