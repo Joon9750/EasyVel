@@ -31,7 +31,9 @@ final class DefaultSubscriberRepository: BaseRepository, SubscriberRepository {
         }
     }
     
-    func getSubscriber(completion: @escaping (NetworkResult<Any>) -> Void) {
+    func getSubscriber(
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.getSubscriber) { result in
             switch result {
             case.success(let response):
@@ -45,7 +47,10 @@ final class DefaultSubscriberRepository: BaseRepository, SubscriberRepository {
         }
     }
     
-    func searchSubscriber(name: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func searchSubscriber(
+        name: String,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.searchSubscriber(name: name)) { result in
             switch result {
             case.success(let response):
@@ -59,7 +64,10 @@ final class DefaultSubscriberRepository: BaseRepository, SubscriberRepository {
         }
     }
     
-    func deleteSubscriber(targetName: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func deleteSubscriber(
+        targetName: String,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.deleteSubscriber(targetName: targetName)) { result in
             switch result {
             case.success(let response):

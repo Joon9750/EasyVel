@@ -114,7 +114,9 @@ private extension SubscriberPostsViewModel {
         }
     }
     
-    func getSubscriberPosts(completion: @escaping (GetSubscriberPostResponse) -> Void) {
+    func getSubscriberPosts(
+        completion: @escaping (GetSubscriberPostResponse) -> Void
+    ) {
         NetworkService.shared.postsRepository.getSubscriberPosts() { result in
             switch result {
             case .success(let response):

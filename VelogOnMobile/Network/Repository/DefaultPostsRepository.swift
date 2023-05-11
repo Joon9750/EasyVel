@@ -13,7 +13,9 @@ final class DefaultPostsRepository: BaseRepository, PostsRepository {
     
     let provider = MoyaProvider<PostsAPI>(plugins: [MoyaLoggerPlugin()])
     
-    func getSubscriberPosts(completion: @escaping (NetworkResult<Any>) -> Void) {
+    func getSubscriberPosts(
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.getSubscriberPosts) { result in
             switch result {
             case.success(let response):
@@ -27,7 +29,9 @@ final class DefaultPostsRepository: BaseRepository, PostsRepository {
         }
     }
     
-    func getTagPosts(completion: @escaping (NetworkResult<Any>) -> Void) {
+    func getTagPosts(
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.getTagPosts) { result in
             switch result {
             case.success(let response):

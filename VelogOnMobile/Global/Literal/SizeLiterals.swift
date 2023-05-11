@@ -8,9 +8,6 @@
 import UIKit
 
 enum SizeLiterals {
-    
-    // MARK: - Post cell
-    
     static let postCellSmall: CGFloat = 150
     static let postCellMedium: CGFloat = 160
     static let postCellLarge: CGFloat = 180

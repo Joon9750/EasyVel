@@ -10,6 +10,7 @@ import Foundation
 import Moya
 
 class BaseRepository {
+    
     func judgeStatus(by statusCode: Int, _ data: Data, responseData: ResponseData) -> NetworkResult<Any> {
         let decoder = JSONDecoder()
         print("statusCode: ", statusCode)
