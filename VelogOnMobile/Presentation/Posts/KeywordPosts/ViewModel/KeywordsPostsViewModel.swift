@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol KeywordsPostsViewModelInput {
+    func viewDidLoad()
     func viewWillAppear()
     func cellDidTap(input: StoragePost)
     func tableViewReload()
@@ -42,13 +43,17 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
     
     // MARK: - Input
     
+    func viewDidLoad() {
+        LoadingView.showLoading()
+    }
+    
     func viewWillAppear() {
         getTagPostsForserver()
         if let scrollToTop = scrollToTop {
             scrollToTop(true)
         }
     }
-    
+
     func cellDidTap(input: StoragePost) {
         if checkIsUniquePost(post: input) {
             addPostRealm(post: input)

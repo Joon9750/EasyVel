@@ -39,10 +39,6 @@ final class RealmService {
         }
     }
     
-    func readDB() {
-        let subScriber = localRealm.objects(RealmStoragePost.self)
-    }
-    
     func checkUniquePost(input: StoragePost) -> Bool {
         let posts = convertToStoragePost(input: getPosts())
         for item in posts {
