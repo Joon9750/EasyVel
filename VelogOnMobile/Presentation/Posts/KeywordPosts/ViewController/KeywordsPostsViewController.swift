@@ -32,6 +32,11 @@ final class KeywordsPostsViewController: BaseViewController {
         self.view = keywordsPostsView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel?.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.viewWillAppear()

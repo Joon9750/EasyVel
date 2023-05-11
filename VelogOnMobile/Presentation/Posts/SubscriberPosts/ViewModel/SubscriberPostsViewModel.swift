@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol SubscriberPostsViewModelInput {
+    func viewDidLoad()
     func viewWillAppear()
     func cellDidTap(input: StoragePost)
     func tableViewReload()
@@ -40,6 +41,10 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     }
     
     // MARK: - Input
+    
+    func viewDidLoad() {
+        LoadingView.showLoading()
+    }
     
     func viewWillAppear() {
         getSubscriberPostsForserver()

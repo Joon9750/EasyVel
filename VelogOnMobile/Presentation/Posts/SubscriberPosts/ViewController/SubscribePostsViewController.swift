@@ -32,6 +32,11 @@ final class SubscribePostsViewController: BaseViewController {
         self.view = subscribersPostsView
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel?.viewDidLoad()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.viewWillAppear()
