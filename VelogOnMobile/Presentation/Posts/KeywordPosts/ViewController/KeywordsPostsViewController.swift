@@ -35,11 +35,16 @@ final class KeywordsPostsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.viewDidLoad()
+        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.viewWillAppear()
+    }
+    
+    func setNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func bind() {

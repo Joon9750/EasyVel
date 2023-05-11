@@ -69,16 +69,18 @@ final class PostsTabManViewController: TabmanViewController {
         }
         
         tabManBarView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(15)
             $0.width.equalTo(UIScreen.main.bounds.width - 50)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(50)
         }
         
+        view.bringSubviewToFront(tabManBarView)
+        
         finalView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(60)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(120)
+            $0.height.equalTo(105)
         }
     }
     
@@ -181,7 +183,7 @@ extension PostsTabManViewController {
         }
         
         finalView.snp.remakeConstraints {
-            $0.top.equalToSuperview().offset(60)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(120)
         }
