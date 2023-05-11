@@ -49,8 +49,6 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     let tagFristButton: PostTagUIButton = PostTagUIButton()
     let tagSecondButton: PostTagUIButton = PostTagUIButton()
     let tagThirdButton: PostTagUIButton = PostTagUIButton()
-    let tagFourthButton: PostTagUIButton = PostTagUIButton()
-    let tagFifthButton: PostTagUIButton = PostTagUIButton()
     let buttonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 6
@@ -73,9 +71,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         buttonStackView.addArrangedSubviews(
             tagFristButton,
             tagSecondButton,
-            tagThirdButton,
-            tagFourthButton,
-            tagFifthButton
+            tagThirdButton
         )
         
         buttonStackView.snp.makeConstraints {
@@ -130,16 +126,6 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         tagThirdButton.isHidden = false
         tagThirdButton.setTitle(buttonTitle, for: .normal)
     }
-    
-    private func tagFourthButtonIsNotHidden(buttonTitle: String) {
-        tagFourthButton.isHidden = false
-        tagFourthButton.setTitle(buttonTitle, for: .normal)
-    }
-    
-    private func tagFifthButtonIsNotHidden(buttonTitle: String) {
-        tagFifthButton.isHidden = false
-        tagFifthButton.setTitle(buttonTitle, for: .normal)
-    }
 }
 
 extension KeywordsTableViewCell {
@@ -149,6 +135,10 @@ extension KeywordsTableViewCell {
         date.text = model.date
         url = model.url ?? String()
         textView.text = model.summary
+        
+        if textView.text == TextLiterals.noneText {
+            textView.isHidden = true
+        }
         
         if let image = model.img {
             if image == TextLiterals.noneText {
@@ -166,7 +156,17 @@ extension KeywordsTableViewCell {
         
         guard let tagList = model.tag else { return }
         switch model.tag?.count {
-        case 0: break
+        case 0:
+            if let image = model.img {
+                if image == TextLiterals.noneText {
+                    buttonStackView.isHidden = true
+                    title.snp.remakeConstraints {
+                        $0.top.equalToSuperview()
+                        $0.height.equalTo(45)
+                        $0.leading.trailing.equalToSuperview().inset(15)
+                    }
+                }
+            }
         case 1:
             tagFristButtonIsNotHidden(buttonTitle: tagList[0])
         case 2:
@@ -176,28 +176,17 @@ extension KeywordsTableViewCell {
             tagFristButtonIsNotHidden(buttonTitle: tagList[0])
             tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
             tagThirdButtonIsNotHidden(buttonTitle: tagList[2])
-        case 4:
-            tagFristButtonIsNotHidden(buttonTitle: tagList[0])
-            tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
-            tagThirdButtonIsNotHidden(buttonTitle: tagList[2])
-            tagFourthButtonIsNotHidden(buttonTitle: tagList[3])
-        case 5:
-            tagFristButtonIsNotHidden(buttonTitle: tagList[0])
-            tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
-            tagThirdButtonIsNotHidden(buttonTitle: tagList[2])
-            tagFourthButtonIsNotHidden(buttonTitle: tagList[3])
-            tagFifthButtonIsNotHidden(buttonTitle: tagList[4])
         default:
             tagFristButtonIsNotHidden(buttonTitle: tagList[0])
             tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
             tagThirdButtonIsNotHidden(buttonTitle: tagList[2])
-            tagFourthButtonIsNotHidden(buttonTitle: tagList[3])
-            tagFifthButtonIsNotHidden(buttonTitle: tagList[4])
         }
     }
     
     override func prepareForReuse() {
         imgView.isHidden = false
+        textView.isHidden = false
+        buttonStackView.isHidden = false
         title.snp.remakeConstraints {
             $0.top.equalTo(imgView.snp.bottom).offset(15)
             $0.height.equalTo(45)

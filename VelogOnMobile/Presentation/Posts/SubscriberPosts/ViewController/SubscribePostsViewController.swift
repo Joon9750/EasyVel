@@ -157,7 +157,7 @@ extension SubscribePostsViewController: UITableViewDataSource {
             default: return SizeLiterals.postCellLarge
             }
         } else {
-            return SizeLiterals.postCellLarge
+            return SizeLiterals.postCellXLarge
         }
     }
 }

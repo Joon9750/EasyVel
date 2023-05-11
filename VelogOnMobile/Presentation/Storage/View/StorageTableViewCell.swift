@@ -15,29 +15,6 @@ final class StorageTableViewCell: BaseTableViewCell {
     static let identifier = "StorageTableViewCell"
     
     var url = String()
-    let listTitle: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        label.tintColor = .black
-        label.font = UIFont(name: "Avenir-Black", size: 15)
-        return label
-    }()
-    
-    let listText: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 5
-        label.textColor = UIColor.darkGray
-        label.font = UIFont(name: "Avenir-Black", size: 12)
-        return label
-    }()
-    
-    let listWriter: UILabel = {
-        let label = UILabel()
-        label.tintColor = .black
-        label.font = UIFont(name: "Avenir-Black", size: 12)
-        return label
-    }()
-    
     let imgView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -45,40 +22,70 @@ final class StorageTableViewCell: BaseTableViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
+    let listText: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 5
+        label.textColor = UIColor.darkGray
+        label.font = UIFont(name: "Avenir-Black", size: 12)
+        return label
+    }()
+    let listTitle: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 2
+        label.tintColor = .black
+        label.font = UIFont(name: "Avenir-Black", size: 15)
+        return label
+    }()
+    let date: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Avenir-Black", size: 10)
+        return label
+    }()
+    let listWriter: UILabel = {
+        let label = UILabel()
+        label.tintColor = .black
+        label.font = UIFont(name: "Avenir-Black", size: 12)
+        return label
+    }()
     
     override func render() {
         self.addSubviews(
-            listTitle,
-            listText,
+            imgView,
+            date,
             listWriter,
-            imgView
+            listTitle,
+            listText
         )
-        
-        listTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
-            $0.height.equalTo(20)
-            $0.leading.trailing.equalToSuperview().inset(10)
+
+        imgView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(100)
         }
         
-        listWriter.snp.makeConstraints {
-            $0.top.equalTo(listTitle.snp.bottom).offset(5)
-            $0.height.equalTo(15)
-            $0.leading.equalToSuperview().inset(10)
-            $0.trailing.equalToSuperview().inset(140)
+        listTitle.snp.makeConstraints {
+            $0.top.equalTo(imgView.snp.bottom).offset(15)
+            $0.height.equalTo(45)
+            $0.leading.trailing.equalToSuperview().inset(15)
         }
         
         listText.snp.makeConstraints {
-            $0.top.equalTo(listWriter.snp.bottom).offset(10)
-            $0.bottom.equalToSuperview().inset(20)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().inset(140)
+            $0.top.equalTo(listTitle.snp.bottom).offset(5)
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.height.equalTo(60)
         }
         
-        imgView.snp.makeConstraints {
-            $0.top.equalTo(listTitle.snp.bottom).offset(5)
-            $0.leading.equalTo(listText.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().inset(20)
+        listWriter.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(10)
+            $0.height.equalTo(15)
+            $0.width.equalTo(120)
+            $0.leading.equalToSuperview().inset(15)
+        }
+        
+        date.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(10)
+            $0.height.equalTo(15)
+            $0.trailing.equalToSuperview().inset(15)
         }
     }
 }
@@ -89,13 +96,18 @@ extension StorageTableViewCell {
         listWriter.text = model.name
         url = model.url ?? String()
         listText.text = model.summary
+        
+        if listText.text == TextLiterals.noneText {
+            listText.isHidden = true
+        }
+        
         if let image = model.img {
             if image == TextLiterals.noneText {
-                listText.snp.updateConstraints {
-                    $0.trailing.equalToSuperview().inset(10)
-                }
-                imgView.snp.remakeConstraints {
-                    $0.width.height.equalTo(0)
+                imgView.isHidden = true
+                listTitle.snp.remakeConstraints {
+                    $0.top.equalToSuperview()
+                    $0.height.equalTo(45)
+                    $0.leading.trailing.equalToSuperview().inset(15)
                 }
             } else {
                 let url = URL(string: image)
@@ -105,15 +117,12 @@ extension StorageTableViewCell {
     }
     
     override func prepareForReuse() {
-        listText.snp.updateConstraints {
-            $0.trailing.equalToSuperview().inset(140)
-        }
-        
-        imgView.snp.remakeConstraints {
-            $0.top.equalTo(listTitle.snp.bottom).offset(10)
-            $0.leading.equalTo(listText.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().inset(20)
+        imgView.isHidden = false
+        listText.isHidden = false
+        listTitle.snp.remakeConstraints {
+            $0.top.equalTo(imgView.snp.bottom).offset(15)
+            $0.height.equalTo(45)
+            $0.leading.trailing.equalToSuperview().inset(15)
         }
     }
 }
