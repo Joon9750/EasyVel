@@ -62,37 +62,35 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             textView
         )
         
+        imgView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(100)
+        }
+        
         title.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
-            $0.height.equalTo(20)
-            $0.leading.trailing.equalToSuperview().inset(10)
+            $0.top.equalTo(imgView.snp.bottom).offset(15)
+            $0.height.equalTo(45)
+            $0.leading.trailing.equalToSuperview().inset(15)
+        }
+        
+        textView.snp.makeConstraints {
+            $0.top.equalTo(title.snp.bottom).offset(5)
+            $0.leading.trailing.equalToSuperview().inset(15)
+            $0.height.equalTo(60)
         }
         
         name.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(5)
+            $0.bottom.equalToSuperview().inset(10)
             $0.height.equalTo(15)
             $0.width.equalTo(120)
-            $0.leading.equalToSuperview().inset(10)
-        }
-
-        textView.snp.makeConstraints {
-            $0.top.equalTo(name.snp.bottom).offset(10)
-            $0.bottom.equalToSuperview().inset(20)
-            $0.leading.equalToSuperview().offset(10)
-            $0.trailing.equalToSuperview().inset(140)
+            $0.leading.equalToSuperview().inset(15)
         }
         
         date.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(5)
+            $0.bottom.equalToSuperview().inset(10)
             $0.height.equalTo(15)
-            $0.trailing.equalToSuperview().inset(10)
-        }
-
-        imgView.snp.makeConstraints {
-            $0.top.equalTo(name.snp.bottom).offset(10)
-            $0.leading.equalTo(textView.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(15)
         }
     }
 }
@@ -106,11 +104,11 @@ extension KeywordsTableViewCell {
         textView.text = model.summary
         if let image = model.img {
             if image == TextLiterals.noneText {
-                textView.snp.updateConstraints {
-                    $0.trailing.equalToSuperview().inset(10)
-                }
-                imgView.snp.remakeConstraints {
-                    $0.width.height.equalTo(0)
+                imgView.isHidden = true
+                title.snp.remakeConstraints {
+                    $0.top.equalToSuperview()
+                    $0.height.equalTo(45)
+                    $0.leading.trailing.equalToSuperview().inset(15)
                 }
             } else {
                 let url = URL(string: image)
@@ -120,15 +118,11 @@ extension KeywordsTableViewCell {
     }
     
     override func prepareForReuse() {
-        textView.snp.updateConstraints {
-            $0.trailing.equalToSuperview().inset(140)
-        }
-        
-        imgView.snp.remakeConstraints {
-            $0.top.equalTo(name.snp.bottom).offset(10)
-            $0.leading.equalTo(textView.snp.trailing).offset(5)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().inset(20)
+        imgView.isHidden = false
+        title.snp.remakeConstraints {
+            $0.top.equalTo(imgView.snp.bottom).offset(15)
+            $0.height.equalTo(45)
+            $0.leading.trailing.equalToSuperview().inset(15)
         }
     }
 }
