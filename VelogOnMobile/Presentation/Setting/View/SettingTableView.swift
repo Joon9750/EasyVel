@@ -33,8 +33,6 @@ extension SettingTableView: UITableViewDelegate {
         switch indexPath.row {
         case 0: print("로그아웃")
         case 1: print("회원탈퇴")
-        case 2: print("이메일 변경")
-        case 3: print("비밀번호 변경")
         default: return
         }
     }
@@ -42,7 +40,7 @@ extension SettingTableView: UITableViewDelegate {
 
 extension SettingTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,8 +50,6 @@ extension SettingTableView: UITableViewDataSource {
         switch row {
         case 0: cell.buttonLabel.text = TextLiterals.settingSignOutText
         case 1: cell.buttonLabel.text = TextLiterals.settingWithdrawalText
-        case 2: cell.buttonLabel.text = TextLiterals.settingChangeEmailText
-        case 3: cell.buttonLabel.text = TextLiterals.settingChangePasswordText
         default: return cell
         }
         return cell
