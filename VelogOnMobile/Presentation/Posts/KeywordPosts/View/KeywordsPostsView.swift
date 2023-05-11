@@ -16,7 +16,8 @@ final class KeywordsPostsView: BaseUIView {
         let button = UIButton()
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 10
-        button.backgroundColor = .brandColor
+        button.layer.borderColor = UIColor.lightGrayColor.cgColor
+        button.backgroundColor = .lightGrayColor
         button.alpha = 0.8
         button.isHidden = true
         button.setImage(UIImage(systemName: "arrow.up")?.withRenderingMode(.alwaysOriginal), for: .normal)
