@@ -13,7 +13,10 @@ final class DefaultSignRepository: BaseRepository, SignRepository {
     
     let provider = MoyaProvider<SignAPI>(plugins: [MoyaLoggerPlugin()])
     
-    func signIn(body: SignInRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func signIn(
+        body: SignInRequest,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.signIn(body: body)) { result in
             switch result {
             case.success(let response):
@@ -27,7 +30,10 @@ final class DefaultSignRepository: BaseRepository, SignRepository {
         }
     }
     
-    func signOut(body: SignOutRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func signOut(
+        body: SignOutRequest,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.signOut(body: body)) { result in
             switch result {
             case.success(let response):
@@ -41,7 +47,10 @@ final class DefaultSignRepository: BaseRepository, SignRepository {
         }
     }
     
-    func signUp(body: SignUpRequest, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func signUp(
+        body: SignUpRequest,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
         provider.request(.signUp(body: body)) { result in
             switch result {
             case.success(let response):

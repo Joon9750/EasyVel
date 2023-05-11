@@ -8,8 +8,6 @@
 import UIKit
 
 extension UIColor {
-    
-    // MARK: - Brand Color
     static var brandColor: UIColor {
         return UIColor(hex: "#1EC897")
     }

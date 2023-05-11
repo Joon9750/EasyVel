@@ -32,13 +32,13 @@ final class WebViewController: UIViewController {
     }()
     
     private func setActivityIndicator() {
-            view.addSubview(loadingBgView)
-            loadingBgView.addSubview(activityIndicator)
-            NSLayoutConstraint.activate([
-                activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
-            activityIndicator.startAnimating()
+        view.addSubview(loadingBgView)
+        loadingBgView.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        activityIndicator.startAnimating()
     }
     
     let webView : WKWebView = {

@@ -10,6 +10,7 @@ import Foundation
 import Network
 
 final class NetworkMonitor {
+    
     private let queue = DispatchQueue.global(qos: .background)
     private let monitor: NWPathMonitor
     

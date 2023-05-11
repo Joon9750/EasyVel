@@ -119,7 +119,9 @@ private extension KeywordsPostsViewModel {
         }
     }
     
-    func getTagPosts(completion: @escaping (GetTagPostResponse) -> Void) {
+    func getTagPosts(
+        completion: @escaping (GetTagPostResponse) -> Void
+    ) {
         NetworkService.shared.postsRepository.getTagPosts() { result in
             switch result {
             case .success(let response):

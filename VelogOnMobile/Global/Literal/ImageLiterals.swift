@@ -8,9 +8,6 @@
 import UIKit
 
 enum ImageLiterals {
-
-    // MARK: - 예외처리 이미지
-    
     static var emptyAlarm: UIImage { .load(name: "emptyAlarm") }
     static var emptyPostsList: UIImage { .load(name: "emptyPostsList") }
     static var networkFail: UIImage { .load(name: "networkFail") }

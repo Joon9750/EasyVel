@@ -39,13 +39,12 @@ final class RealmService {
         }
     }
     
-    func readDB(){
+    func readDB() {
         let subScriber = localRealm.objects(RealmStoragePost.self)
-        print(subScriber)
     }
     
     func checkUniquePost(input: StoragePost) -> Bool {
-        let posts = convertToStoragePost(input: self.getPosts())
+        let posts = convertToStoragePost(input: getPosts())
         for item in posts {
             if input == item {
                 return false
@@ -57,7 +56,7 @@ final class RealmService {
     func convertToStoragePost(input: Results<RealmStoragePost>) -> [StoragePost] {
         var storagePosts = [StoragePost]()
         let inputSize = input.count
-        for index in 0..<inputSize {
+        for index in 0 ..< inputSize {
             let post = StoragePost(
                 img: input[index].img,
                 name: input[index].name,

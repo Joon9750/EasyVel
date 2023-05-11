@@ -94,7 +94,9 @@ private extension ListViewModel {
         }
     }
     
-    func getTagList(completion: @escaping ([String]) -> Void) {
+    func getTagList(
+        completion: @escaping ([String]) -> Void
+    ) {
         NetworkService.shared.tagRepository.getTag() { result in
             switch result {
             case .success(let response):
@@ -108,7 +110,9 @@ private extension ListViewModel {
         }
     }
     
-    func getSubscriberList(completion: @escaping ([String]) -> Void) {
+    func getSubscriberList(
+        completion: @escaping ([String]) -> Void
+    ) {
         NetworkService.shared.subscriberRepository.getSubscriber() { result in
             switch result {
             case .success(let response):
@@ -122,7 +126,10 @@ private extension ListViewModel {
         }
     }
     
-    func deleteTag(tag: String, completion: @escaping (String) -> Void) {
+    func deleteTag(
+        tag: String,
+        completion: @escaping (String) -> Void
+    ) {
         NetworkService.shared.tagRepository.deleteTag(tag: tag) { result in
             switch result {
             case .success(_):
@@ -135,7 +142,10 @@ private extension ListViewModel {
         }
     }
     
-    func deleteSubscriber(targetName: String, completion: @escaping (String) -> Void) {
+    func deleteSubscriber(
+        targetName: String,
+        completion: @escaping (String) -> Void
+    ) {
         NetworkService.shared.subscriberRepository.deleteSubscriber(targetName: targetName){ result in
             switch result {
             case .success(_):
