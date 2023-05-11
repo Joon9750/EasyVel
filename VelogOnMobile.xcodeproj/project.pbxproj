@@ -105,6 +105,7 @@
 		91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */; };
 		91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */; };
 		91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */; };
+		91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -210,6 +211,7 @@
 		91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewControllerProtocol.swift; sourceTree = "<group>"; };
 		91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagUIButton.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				91487EF329FC3AD8009CFECF /* BaseUIView.swift */,
 				91487EF529FC3AEF009CFECF /* BaseTableViewCell.swift */,
 				91487EF729FC3B01009CFECF /* BaseCollectionViewCell.swift */,
+				91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
+				91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
 				917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
