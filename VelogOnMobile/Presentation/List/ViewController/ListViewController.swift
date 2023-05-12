@@ -58,6 +58,15 @@ final class ListViewController: BaseViewController, ListViewModelSendData {
         viewModel?.subscriberListOutput = { [weak self] list in
             self?.subscriberList = list
         }
+        viewModel?.isListEmptyOutput = { [weak self] result in
+            if result {
+                self?.listView.ListViewExceptionView.isHidden = false
+                self?.listView.listTableView.isHidden = true
+            } else {
+                self?.listView.ListViewExceptionView.isHidden = true
+                self?.listView.listTableView.isHidden = false
+            }
+        }
     }
     
     func searchTagViewWillDisappear(input: [String]) {
