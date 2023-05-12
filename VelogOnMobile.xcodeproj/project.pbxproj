@@ -106,6 +106,7 @@
 		91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */; };
 		91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */; };
 		91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */; };
+		91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA5F2A0E9CC9001362AD /* HapticService.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
@@ -212,6 +213,7 @@
 		91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagUIButton.swift; sourceTree = "<group>"; };
+		91CCEA5F2A0E9CC9001362AD /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 		91487EDF29FC3950009CFECF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				91CCEA5E2A0E9CBC001362AD /* Haptic */,
 				91487EF929FC3B28009CFECF /* Extension */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF029FC3AA3009CFECF /* Base */,
@@ -840,6 +843,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		91CCEA5E2A0E9CBC001362AD /* Haptic */ = {
+			isa = PBXGroup;
+			children = (
+				91CCEA5F2A0E9CC9001362AD /* HapticService.swift */,
+			);
+			path = Haptic;
+			sourceTree = "<group>";
+		};
 		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -993,6 +1004,7 @@
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
+				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,

@@ -25,7 +25,9 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         setUpTabBar()
-        
+//        setImpactFeedBack()
+        setDelegate()
+        setNavigation()
 //        realm.resetDB()
     }
     
@@ -50,5 +52,20 @@ final class TabBarController: UITabBarController {
         
         self.hidesBottomBarWhenPushed = false
         viewWillLayoutSubviews()
+    }
+
+    private func setDelegate() {
+        delegate = self
+    }
+    
+    private func setNavigation() {
+        self.navigationItem.hidesBackButton = true
+    }
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let impactService = HapticService.impact(.light)
+        impactService.run()
     }
 }
