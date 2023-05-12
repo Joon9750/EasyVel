@@ -12,11 +12,18 @@ import SnapKit
 final class ListView: BaseUIView {
     let listTableView = ListTableView(frame: CGRect.zero, style: .insetGrouped)
     let postsHeadView = ListHeadView()
+    let ListViewExceptionView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.emptyKeywordList
+        imageView.isHidden = true
+        return imageView
+    }()
     
     override func render() {
         self.addSubviews(
             listTableView,
-            postsHeadView
+            postsHeadView,
+            ListViewExceptionView
         )
         
         postsHeadView.snp.makeConstraints {
@@ -28,6 +35,12 @@ final class ListView: BaseUIView {
         listTableView.snp.makeConstraints {
             $0.top.equalTo(postsHeadView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        ListViewExceptionView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.height.equalTo(168)
+            $0.width.equalToSuperview()
         }
     }
 }
