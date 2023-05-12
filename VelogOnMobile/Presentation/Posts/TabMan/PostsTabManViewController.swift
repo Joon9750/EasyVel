@@ -73,6 +73,7 @@ final class PostsTabManViewController: TabmanViewController {
             $0.width.equalTo(UIScreen.main.bounds.width - 50)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(50)
+            $0.bottom.equalTo(finalView.snp.bottom)
         }
         
         view.bringSubviewToFront(tabManBarView)
@@ -80,7 +81,7 @@ final class PostsTabManViewController: TabmanViewController {
         finalView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(105)
+            $0.height.equalTo(106)
         }
     }
     
@@ -180,12 +181,13 @@ extension PostsTabManViewController {
             $0.width.equalTo(UIScreen.main.bounds.width - 50)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(50)
+            $0.bottom.equalTo(finalView.snp.bottom)
         }
         
         finalView.snp.remakeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(120)
+            $0.height.equalTo(106)
         }
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
             self.view.layoutIfNeeded()
