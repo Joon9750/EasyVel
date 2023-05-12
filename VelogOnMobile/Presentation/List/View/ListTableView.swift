@@ -24,5 +24,6 @@ final class ListTableView: UITableView {
         register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
         separatorStyle = .singleLine
         showsVerticalScrollIndicator = true
+        isHidden = true
     }
 }
