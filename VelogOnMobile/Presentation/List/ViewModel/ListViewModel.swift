@@ -16,12 +16,13 @@ protocol ListViewModelInput {
 protocol ListViewModelOutput {
     var tagListOutput: (([String]) -> Void)? { get set }
     var subscriberListOutput: (([String]) -> Void)? { get set }
+    var isListEmptyOutput: ((Bool) -> Void)? { get set }
 }
 
 protocol ListViewModelInputOutput: ListViewModelInput, ListViewModelOutput {}
 
 final class ListViewModel: ListViewModelInputOutput {
-        
+    
     var tagList: [String]? {
         didSet {
             if let tagListOutput = tagListOutput,
@@ -40,10 +41,20 @@ final class ListViewModel: ListViewModelInputOutput {
         }
     }
     
+    var isListEmpty: Bool? {
+        didSet {
+            if let isListEmptyOutput = isListEmptyOutput,
+               let isListEmpty = isListEmpty {
+                isListEmptyOutput(isListEmpty)
+            }
+        }
+    }
+    
     // MARK: - Output
     
     var tagListOutput: (([String]) -> Void)?
     var subscriberListOutput: (([String]) -> Void)?
+    var isListEmptyOutput: ((Bool) -> Void)?
     
     // MARK: - Input
     
@@ -71,17 +82,22 @@ final class ListViewModel: ListViewModelInputOutput {
             self.getSubscribeListForServer()
         }
     }
-}
-
-// MARK: - API
-
-private extension ListViewModel {
+    
+    func checkListIsEmpty(tagList: [String], subsciberList: [String]) -> Bool {
+        if tagList.isEmpty && subsciberList.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func getTagListForServer() {
         self.getTagList() { [weak self] response in
             guard let self = self else {
                 return
             }
             self.tagList = Array(response.reversed())
+            self.isListEmpty = self.checkListIsEmpty(tagList: response, subsciberList: self.subscriberList ?? [String]())
         }
     }
     
@@ -91,9 +107,14 @@ private extension ListViewModel {
                 return
             }
             self.subscriberList = Array(response.reversed())
+            self.isListEmpty = self.checkListIsEmpty(tagList: self.tagList ?? [String](), subsciberList: response)
         }
     }
-    
+}
+
+// MARK: - API
+
+private extension ListViewModel {
     func getTagList(
         completion: @escaping ([String]) -> Void
     ) {

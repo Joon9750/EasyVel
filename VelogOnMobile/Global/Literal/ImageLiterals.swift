@@ -10,6 +10,7 @@ import UIKit
 enum ImageLiterals {
     static var emptyAlarm: UIImage { .load(name: "emptyAlarm") }
     static var emptyPostsList: UIImage { .load(name: "emptyPostsList") }
+    static var emptyKeywordList: UIImage { .load(name: "emptyKeywordList") }
     static var networkFail: UIImage { .load(name: "networkFail") }
 }
 
