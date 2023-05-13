@@ -108,6 +108,10 @@
 		91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */; };
 		91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA5F2A0E9CC9001362AD /* HapticService.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
+		91E442792A0F4543008CB516 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 91E442782A0F4543008CB516 /* RxBlocking */; };
+		91E4427B2A0F4543008CB516 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 91E4427A2A0F4543008CB516 /* RxCocoa */; };
+		91E4427D2A0F4543008CB516 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 91E4427C2A0F4543008CB516 /* RxRelay */; };
+		91E4427F2A0F4543008CB516 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 91E4427E2A0F4543008CB516 /* RxSwift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
 		91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178A2A00E59900158787 /* PostsRepository.swift */; };
@@ -230,13 +234,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E4427D2A0F4543008CB516 /* RxRelay in Frameworks */,
+				91E4427B2A0F4543008CB516 /* RxCocoa in Frameworks */,
 				917BA34C2A050861000409B7 /* Realm in Frameworks */,
 				91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */,
 				917BA34E2A050861000409B7 /* RealmSwift in Frameworks */,
 				914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */,
 				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
+				91E442792A0F4543008CB516 /* RxBlocking in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
 				91487ED729FC38CC009CFECF /* SnapKit in Frameworks */,
+				91E4427F2A0F4543008CB516 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,6 +937,10 @@
 				914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */,
 				917BA34B2A050861000409B7 /* Realm */,
 				917BA34D2A050861000409B7 /* RealmSwift */,
+				91E442782A0F4543008CB516 /* RxBlocking */,
+				91E4427A2A0F4543008CB516 /* RxCocoa */,
+				91E4427C2A0F4543008CB516 /* RxRelay */,
+				91E4427E2A0F4543008CB516 /* RxSwift */,
 			);
 			productName = VelogOnMobile;
 			productReference = 91487EBE29FC380A009CFECF /* VelogOnMobile.app */;
@@ -965,6 +977,7 @@
 				91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */,
 				914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				91E442772A0F4543008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 91487EBF29FC380A009CFECF /* Products */;
 			projectDirPath = "";
@@ -1349,6 +1362,14 @@
 				kind = branch;
 			};
 		};
+		91E442772A0F4543008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1386,6 +1407,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		91E442782A0F4543008CB516 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442772A0F4543008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		91E4427A2A0F4543008CB516 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442772A0F4543008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		91E4427C2A0F4543008CB516 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442772A0F4543008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		91E4427E2A0F4543008CB516 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442772A0F4543008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
