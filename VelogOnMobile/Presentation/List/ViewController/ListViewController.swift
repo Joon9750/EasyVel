@@ -7,12 +7,14 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 protocol ListViewModelSendData: TagSearchProtocol, SubscriberSearchProtocol {}
 
-final class ListViewController: BaseViewController, ListViewModelSendData {
+final class ListViewController: RxBaseViewController<ListViewModel>, ListViewModelSendData {
 
     private let listView = ListView()
-    private var viewModel: ListViewModelInputOutput?
     private var tagList: [String]? {
         didSet {
             listView.listTableView.reloadData()
@@ -24,51 +26,58 @@ final class ListViewController: BaseViewController, ListViewModelSendData {
         }
     }
     
-    init(viewModel: ListViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        bind()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func render() {
         self.view = listView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDelegate()
+        addButtonTarget()
 //        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
+//        viewModel?.viewWillAppear()
     }
     
     func setNavigationBar() {
         navigationController?.navigationBar.isHidden = true
     }
     
-    private func bind() {
-        listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
+    func setDelegate() {
         listView.listTableView.dataSource = self
         listView.listTableView.delegate = self
-        viewModel?.tagListOutput = { [weak self] list in
-            self?.tagList = list
-        }
-        viewModel?.subscriberListOutput = { [weak self] list in
-            self?.subscriberList = list
-        }
-        viewModel?.isListEmptyOutput = { [weak self] result in
-            if result {
-                self?.hiddenListTableView()
-            } else {
-                self?.hiddenListExceptionView()
-            }
-        }
+    }
+    
+    func addButtonTarget() {
+        listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
+    }
+    
+//    private func bind() {
+//        listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
+//        listView.listTableView.dataSource = self
+//        listView.listTableView.delegate = self
+//        viewModel?.tagListOutput = { [weak self] list in
+//            self?.tagList = list
+//        }
+//        viewModel?.subscriberListOutput = { [weak self] list in
+//            self?.subscriberList = list
+//        }
+//        viewModel?.isListEmptyOutput = { [weak self] result in
+//            if result {
+//                self?.hiddenListTableView()
+//            } else {
+//                self?.hiddenListExceptionView()
+//            }
+//        }
+//    }
+
+    override func bind(viewModel: ListViewModel) {
+        super.bind(viewModel: viewModel)
+
+        
     }
     
     func searchTagViewWillDisappear(input: [String]) {
@@ -135,18 +144,17 @@ extension ListViewController: UITableViewDelegate {
         switch section {
         case 0:
             let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
-                if let tag = selectedCell.listText.text {
-                    self.viewModel?.tagDeleteButtonDidTap(tag: tag)
-                }
+//                if let tag = selectedCell.listText.text {
+//                    self.viewModel?.tagDeleteButtonDidTap(tag: tag)
+//                }
                 completionHaldler(true)
             })
-            let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
-            return configuration
+            return UISwipeActionsConfiguration(actions: [swipeAction])
         case 1:
             let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
-                if let target = selectedCell.listText.text {
-                    self.viewModel?.subscriberDeleteButtonDidTap(target: target)
-                }
+//                if let target = selectedCell.listText.text {
+//                    self.viewModel?.subscriberDeleteButtonDidTap(target: target)
+//                }
                 completionHaldler(true)
             })
             let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
