@@ -15,8 +15,16 @@ protocol ListViewModelSendData: TagSearchProtocol, SubscriberSearchProtocol {}
 final class ListViewController: RxBaseViewController<ListViewModel>, ListViewModelSendData {
 
     private let listView = ListView()
-    private var tagList: [String]?
-    private var subscriberList: [String]?
+    private var tagList: [String]? {
+        didSet {
+            self.listView.listTableView.reloadData()
+        }
+    }
+    private var subscriberList: [String]? {
+        didSet {
+            self.listView.listTableView.reloadData()
+        }
+    }
     
     override func render() {
         self.view = listView
@@ -83,14 +91,12 @@ final class ListViewController: RxBaseViewController<ListViewModel>, ListViewMod
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] data in
                 self?.tagList = data
-                self?.listView.listTableView.reloadData()
             })
             .disposed(by: disposeBag)
         output.subscriberListOutput
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] data in
                 self?.subscriberList = data
-                self?.listView.listTableView.reloadData()
             })
             .disposed(by: disposeBag)
         output.isListEmptyOutput
