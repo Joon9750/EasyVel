@@ -15,16 +15,8 @@ protocol ListViewModelSendData: TagSearchProtocol, SubscriberSearchProtocol {}
 final class ListViewController: RxBaseViewController<ListViewModel>, ListViewModelSendData {
 
     private let listView = ListView()
-    private var tagList: [String]? {
-        didSet {
-            listView.listTableView.reloadData()
-        }
-    }
-    private var subscriberList: [String]? {
-        didSet {
-            listView.listTableView.reloadData()
-        }
-    }
+    private var tagList: [String]?
+    private var subscriberList: [String]?
     
     override func render() {
         self.view = listView
@@ -34,12 +26,10 @@ final class ListViewController: RxBaseViewController<ListViewModel>, ListViewMod
         super.viewDidLoad()
         setDelegate()
         addButtonTarget()
-//        setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        viewModel?.viewWillAppear()
     }
     
     func setNavigationBar() {
@@ -54,30 +44,65 @@ final class ListViewController: RxBaseViewController<ListViewModel>, ListViewMod
     func addButtonTarget() {
         listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
     }
-    
-//    private func bind() {
-//        listView.postsHeadView.addButton.addTarget(self, action: #selector(presentActionSheet), for: .touchUpInside)
-//        listView.listTableView.dataSource = self
-//        listView.listTableView.delegate = self
-//        viewModel?.tagListOutput = { [weak self] list in
-//            self?.tagList = list
-//        }
-//        viewModel?.subscriberListOutput = { [weak self] list in
-//            self?.subscriberList = list
-//        }
-//        viewModel?.isListEmptyOutput = { [weak self] result in
-//            if result {
-//                self?.hiddenListTableView()
-//            } else {
-//                self?.hiddenListExceptionView()
-//            }
-//        }
-//    }
 
     override func bind(viewModel: ListViewModel) {
         super.bind(viewModel: viewModel)
-
         
+        // MARK: - fix me
+        
+        let input = ListViewModel.Input(
+            tagDeleteButtonDidTap: self.listView.listTableView.rx.itemSelected
+                .filter { indexPath in
+                    indexPath.section == 0
+                }
+                .map { indexPath in
+                    if let selectedCell = self.listView.listTableView.cellForRow(at: indexPath) as? ListTableViewCell {
+                        return selectedCell.listText.text ?? String()
+                    }
+                    return String()
+                }
+                .filter { $0 != nil }
+                .map { $0! },
+            subscriberDeleteButtonDidTap: self.listView.listTableView.rx.itemSelected
+                .filter { indexPath in
+                    indexPath.section == 1
+                }
+                .map { indexPath in
+                    if let selectedCell = self.listView.listTableView.cellForRow(at: indexPath) as? ListTableViewCell {
+                        return selectedCell.listText.text ?? String()
+                    }
+                    return String()
+                }
+                .filter { $0 != nil }
+                .map { $0! }
+        )
+        
+        let output = viewModel.transfrom(from: input, disposeBag: self.disposeBag)
+        
+        output.tagListOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] data in
+                self?.tagList = data
+                self?.listView.listTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        output.subscriberListOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] data in
+                self?.subscriberList = data
+                self?.listView.listTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        output.isListEmptyOutput
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isListEmpty in
+                if isListEmpty {
+                    self?.hiddenListTableView()
+                } else {
+                    self?.hiddenListExceptionView()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func searchTagViewWillDisappear(input: [String]) {
@@ -147,6 +172,7 @@ extension ListViewController: UITableViewDelegate {
 //                if let tag = selectedCell.listText.text {
 //                    self.viewModel?.tagDeleteButtonDidTap(tag: tag)
 //                }
+                
                 completionHaldler(true)
             })
             return UISwipeActionsConfiguration(actions: [swipeAction])

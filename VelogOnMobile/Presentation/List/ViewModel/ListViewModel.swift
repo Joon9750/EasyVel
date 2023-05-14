@@ -10,23 +10,7 @@ import UIKit
 import RxRelay
 import RxSwift
 
-//protocol ListViewModelInput {
-//    func viewWillAppear()
-//    func tagDeleteButtonDidTap(tag: String)
-//    func subscriberDeleteButtonDidTap(target: String)
-//}
-//
-//protocol ListViewModelOutput {
-//    var tagListOutput: (([String]) -> Void)? { get set }
-//    var subscriberListOutput: (([String]) -> Void)? { get set }
-//    var isListEmptyOutput: ((Bool) -> Void)? { get set }
-//}
-//
-//protocol ListViewModelInputOutput: ListViewModelInput, ListViewModelOutput {}
-
 final class ListViewModel: BaseViewModel {
-    
-//    private let disposeBag = DisposeBag()
     
     var tagList: [String] = [String]()
     var subscriberList: [String] = [String]()
@@ -40,42 +24,12 @@ final class ListViewModel: BaseViewModel {
         var isListEmptyOutput = PublishRelay<Bool>()
     }
     
-//    var tagListOutput: (([String]) -> Void)?
-//    var subscriberListOutput: (([String]) -> Void)?
-//    var isListEmptyOutput: ((Bool) -> Void)?
-    
     // MARK: - Input
     
     struct Input {
-//        let viewWillAppear: Observable<Void>
         let tagDeleteButtonDidTap: Observable<String>
         let subscriberDeleteButtonDidTap: Observable<String>
     }
-    
-//    func viewWillAppear() {
-//        getTagListForServer()
-//        getSubscribeListForServer()
-//    }
-//
-//    func tagDeleteButtonDidTap(tag: String) {
-//        deleteTag(tag: tag) { [weak self] response in
-//            guard let self = self else {
-//                return
-//            }
-//            self.getTagListForServer()
-//            self.getSubscribeListForServer()
-//        }
-//    }
-//
-//    func subscriberDeleteButtonDidTap(target: String) {
-//        deleteSubscriber(targetName: target) { [weak self] response in
-//            guard let self = self else {
-//                return
-//            }
-//            self.getTagListForServer()
-//            self.getSubscribeListForServer()
-//        }
-//    }
     
     // MARK: - func
     
@@ -147,30 +101,6 @@ final class ListViewModel: BaseViewModel {
             return false
         }
     }
-    
-//    func getTagListForServer() -> [String] {
-//        var tagList: [String] = [String]()
-//        self.getTagList() { [weak self] response in
-//            guard let self = self else {
-//                return
-//            }
-//            tagList = Array(response.reversed())
-//            self.isListEmpty = self.checkListIsEmpty(tagList: response, subsciberList: self.subscriberList ?? [String]())
-//        }
-//        return tagList
-//    }
-//
-//    func getSubscribeListForServer() -> [String] {
-//        var subscribeList: [String] = [String]()
-//        self.getSubscriberList() { [weak self] response in
-//            guard let self = self else {
-//                return
-//            }
-//            subscribeList = Array(response.reversed())
-////            self.isListEmpty = self.checkListIsEmpty(tagList: self.tagList ?? [String](), subsciberList: response)
-//        }
-//        return subscribeList
-//    }
 }
 
 // MARK: - API
