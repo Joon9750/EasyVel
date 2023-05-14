@@ -19,6 +19,10 @@ final class ListView: BaseUIView {
         return imageView
     }()
     
+    override func configUI() {
+        self.backgroundColor = .white
+    }
+    
     override func render() {
         self.addSubviews(
             listTableView,

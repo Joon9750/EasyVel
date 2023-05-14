@@ -17,88 +17,97 @@ final class ListViewModel: BaseViewModel {
     var isListEmpty: Bool = Bool()
     
     // MARK: - Output
-    
-    struct Output {
-        var tagListOutput = PublishRelay<[String]>()
-        var subscriberListOutput = PublishRelay<[String]>()
-        var isListEmptyOutput = PublishRelay<Bool>()
-    }
+
+    var tagListOutput = PublishRelay<[String]>()
+    var subscriberListOutput = PublishRelay<[String]>()
+    var isListEmptyOutput = PublishRelay<Bool>()
     
     // MARK: - Input
     
-    struct Input {
-        let tagDeleteButtonDidTap: Observable<String>
-        let subscriberDeleteButtonDidTap: Observable<String>
+    let tagDeleteButtonDidTap = PublishRelay<String>()
+    let subscriberDeleteButtonDidTap = PublishRelay<String>()
+    
+    override init() {
+        super.init()
+        makeOutput()
     }
     
     // MARK: - func
     
-    func transfrom(from input: Input, disposeBag: DisposeBag) -> Output {
-        let output = Output()
-        
-        self.viewWillAppear
+    private func makeOutput() {
+        viewWillAppear
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 let dispatchGroup = DispatchGroup()
-                
                 dispatchGroup.enter()
                 self.getTagList() { [weak self] result in
                     self?.tagList = Array(result.reversed())
-                    output.tagListOutput.accept(Array(result.reversed()))
+                    self?.tagListOutput.accept(Array(result.reversed()))
                     dispatchGroup.leave()
                 }
-                
                 dispatchGroup.enter()
                 self.getSubscriberList() { [weak self] result in
                     self?.subscriberList = Array(result.reversed())
-                    output.subscriberListOutput.accept(Array(result.reversed()))
+                    self?.subscriberListOutput.accept(Array(result.reversed()))
                     dispatchGroup.leave()
                 }
-                
                 dispatchGroup.notify(queue: .main) { [weak self] in
-                    let isListEmpty = self?.checkListIsEmpty(
+                    self?.checkListIsEmpty(
                         tagList: self?.tagList ?? [String](),
                         subsciberList: self?.subscriberList ?? [String]()
                     )
-                    output.isListEmptyOutput.accept(isListEmpty ?? Bool())
                 }
             })
             .disposed(by: disposeBag)
         
-        input.tagDeleteButtonDidTap
+        tagDeleteButtonDidTap
             .subscribe(onNext: { [weak self] tag in
                 guard let self = self else { return }
                 self.deleteTag(tag: tag) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.getTagList() { [weak self] result in
-                        self?.tagList = Array(result.reversed())
-                    }
-                    output.tagListOutput.accept(self.tagList)
+                    self?.getListData()
                 }
             })
             .disposed(by: disposeBag)
         
-        input.subscriberDeleteButtonDidTap
+        subscriberDeleteButtonDidTap
             .subscribe(onNext: { [weak self] subscriber in
                 guard let self = self else { return }
                 self.deleteSubscriber(targetName: subscriber) { [weak self] _ in
-                    guard let self = self else { return }
-                    self.getSubscriberList() { [weak self] result in
-                        self?.subscriberList = Array(result.reversed())
-                    }
-                    output.subscriberListOutput.accept(self.subscriberList)
+                    self?.getListData()
                 }
             })
             .disposed(by: disposeBag)
-        
-        return output
     }
     
-    func checkListIsEmpty(tagList: [String], subsciberList: [String]) -> Bool {
-        if tagList.isEmpty && subsciberList.isEmpty {
-            return true
+    private func getListData() {
+        var tagList = [String]()
+        var subscriberList = [String]()
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        self.getTagList() { [weak self] result in
+            tagList = result
+            self?.tagListOutput.accept(Array(result.reversed()))
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        self.getSubscriberList() { [weak self] result in
+            subscriberList = result
+            self?.subscriberListOutput.accept(Array(result.reversed()))
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.checkListIsEmpty(
+                tagList: tagList,
+                subsciberList: subscriberList
+            )
+        }
+    }
+    
+    private func checkListIsEmpty(tagList: [String], subsciberList: [String]) {
+        if tagList.isEmpty == true && subsciberList.isEmpty == true {
+            isListEmptyOutput.accept(true)
         } else {
-            return false
+            isListEmptyOutput.accept(false)
         }
     }
 }
