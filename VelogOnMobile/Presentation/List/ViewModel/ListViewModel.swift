@@ -64,7 +64,6 @@ final class ListViewModel: BaseViewModel {
     }
     
     private func getListData() {
-        
         let tagListObservable = getTagList().map { Array($0.reversed()) }
         let subscriberListObservable = getSubscriberList().map { Array($0.reversed()) }
         
