@@ -7,107 +7,81 @@
 
 import UIKit
 
-protocol ListViewModelInput {
-    func viewWillAppear()
-    func tagDeleteButtonDidTap(tag: String)
-    func subscriberDeleteButtonDidTap(target: String)
-}
+import RxRelay
+import RxSwift
 
-protocol ListViewModelOutput {
-    var tagListOutput: (([String]) -> Void)? { get set }
-    var subscriberListOutput: (([String]) -> Void)? { get set }
-    var isListEmptyOutput: ((Bool) -> Void)? { get set }
-}
-
-protocol ListViewModelInputOutput: ListViewModelInput, ListViewModelOutput {}
-
-final class ListViewModel: ListViewModelInputOutput {
+final class ListViewModel: BaseViewModel {
     
-    var tagList: [String]? {
-        didSet {
-            if let tagListOutput = tagListOutput,
-               let tagList = tagList {
-                tagListOutput(tagList)
-            }
-        }
-    }
-    
-    var subscriberList: [String]? {
-        didSet {
-            if let subscriberListOutput = subscriberListOutput,
-               let subscriberList = subscriberList {
-                subscriberListOutput(subscriberList)
-            }
-        }
-    }
-    
-    var isListEmpty: Bool? {
-        didSet {
-            if let isListEmptyOutput = isListEmptyOutput,
-               let isListEmpty = isListEmpty {
-                isListEmptyOutput(isListEmpty)
-            }
-        }
-    }
+    var tagList: [String] = [String]()
+    var subscriberList: [String] = [String]()
+    var isListEmpty: Bool = Bool()
     
     // MARK: - Output
-    
-    var tagListOutput: (([String]) -> Void)?
-    var subscriberListOutput: (([String]) -> Void)?
-    var isListEmptyOutput: ((Bool) -> Void)?
+
+    var tagListOutput = PublishRelay<[String]>()
+    var subscriberListOutput = PublishRelay<[String]>()
+    var isListEmptyOutput = PublishRelay<Bool>()
     
     // MARK: - Input
     
-    func viewWillAppear() {
-        getTagListForServer()
-        getSubscribeListForServer()
+    let tagDeleteButtonDidTap = PublishRelay<String>()
+    let subscriberDeleteButtonDidTap = PublishRelay<String>()
+    
+    // MARK: - init
+    
+    override init() {
+        super.init()
+        makeOutput()
     }
     
-    func tagDeleteButtonDidTap(tag: String) {
-        deleteTag(tag: tag) { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            self.getTagListForServer()
-            self.getSubscribeListForServer()
-        }
+    // MARK: - func
+    
+    private func makeOutput() {
+        viewWillAppear
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.getListData()
+            })
+            .disposed(by: disposeBag)
+        
+        tagDeleteButtonDidTap
+            .subscribe(onNext: { [weak self] tag in
+                guard let self = self else { return }
+                self.deleteTag(tag: tag) { [weak self] _ in
+                    self?.getListData()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        subscriberDeleteButtonDidTap
+            .subscribe(onNext: { [weak self] subscriber in
+                guard let self = self else { return }
+                self.deleteSubscriber(targetName: subscriber) { [weak self] _ in
+                    self?.getListData()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
-    func subscriberDeleteButtonDidTap(target: String) {
-        deleteSubscriber(targetName: target) { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            self.getTagListForServer()
-            self.getSubscribeListForServer()
-        }
+    private func getListData() {
+        let tagListObservable = getTagList().map { Array($0.reversed()) }
+        let subscriberListObservable = getSubscriberList().map { Array($0.reversed()) }
+        
+        Observable.combineLatest(tagListObservable, subscriberListObservable)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (tagList, subscriberList) in
+                self?.tagListOutput.accept(tagList)
+                self?.subscriberListOutput.accept(subscriberList)
+                self?.checkListIsEmpty(tagList: tagList, subsciberList: subscriberList)
+            })
+            .disposed(by: disposeBag)
     }
     
-    func checkListIsEmpty(tagList: [String], subsciberList: [String]) -> Bool {
-        if tagList.isEmpty && subsciberList.isEmpty {
-            return true
+    private func checkListIsEmpty(tagList: [String], subsciberList: [String]) {
+        if tagList.isEmpty == true && subsciberList.isEmpty == true {
+            isListEmptyOutput.accept(true)
         } else {
-            return false
-        }
-    }
-    
-    func getTagListForServer() {
-        self.getTagList() { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            self.tagList = Array(response.reversed())
-            self.isListEmpty = self.checkListIsEmpty(tagList: response, subsciberList: self.subscriberList ?? [String]())
-        }
-    }
-    
-    func getSubscribeListForServer() {
-        self.getSubscriberList() { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            self.subscriberList = Array(response.reversed())
-            self.isListEmpty = self.checkListIsEmpty(tagList: self.tagList ?? [String](), subsciberList: response)
+            isListEmptyOutput.accept(false)
         }
     }
 }
@@ -115,35 +89,39 @@ final class ListViewModel: ListViewModelInputOutput {
 // MARK: - API
 
 private extension ListViewModel {
-    func getTagList(
-        completion: @escaping ([String]) -> Void
-    ) {
-        NetworkService.shared.tagRepository.getTag() { result in
-            switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
+    func getTagList() -> Observable<[String]> {
+        return Observable.create { observer -> Disposable in
+            NetworkService.shared.tagRepository.getTag() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else { return }
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    dump(errResponse)
+                default:
+                    print("error")
+                }
             }
+            return Disposables.create()
         }
     }
     
-    func getSubscriberList(
-        completion: @escaping ([String]) -> Void
-    ) {
-        NetworkService.shared.subscriberRepository.getSubscriber() { result in
-            switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
+    func getSubscriberList() -> Observable<[String]> {
+        return Observable.create { observer -> Disposable in
+            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else { return }
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    dump(errResponse)
+                default:
+                    print("error")
+                }
             }
+            return Disposables.create()
         }
     }
     

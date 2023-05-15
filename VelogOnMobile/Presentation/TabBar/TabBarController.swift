@@ -25,7 +25,6 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         setUpTabBar()
-//        setImpactFeedBack()
         setDelegate()
         setNavigation()
 //        realm.resetDB()

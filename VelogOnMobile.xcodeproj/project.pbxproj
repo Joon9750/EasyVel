@@ -108,6 +108,12 @@
 		91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */; };
 		91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA5F2A0E9CC9001362AD /* HapticService.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
+		91E442872A10F385008CB516 /* RxBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E442862A10F385008CB516 /* RxBaseViewController.swift */; };
+		91E4428B2A10F3C7008CB516 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E4428A2A10F3C7008CB516 /* BaseViewModel.swift */; };
+		91E442A82A11031D008CB516 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 91E442A72A11031D008CB516 /* RxBlocking */; };
+		91E442AA2A11031D008CB516 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 91E442A92A11031D008CB516 /* RxCocoa */; };
+		91E442AC2A11031D008CB516 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 91E442AB2A11031D008CB516 /* RxRelay */; };
+		91E442AE2A11031D008CB516 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 91E442AD2A11031D008CB516 /* RxSwift */; };
 		91ED17872A00E57700158787 /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17862A00E57700158787 /* TagRepository.swift */; };
 		91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED17882A00E58D00158787 /* SubscriberRepository.swift */; };
 		91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ED178A2A00E59900158787 /* PostsRepository.swift */; };
@@ -215,6 +221,9 @@
 		91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagUIButton.swift; sourceTree = "<group>"; };
 		91CCEA5F2A0E9CC9001362AD /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
+		91E442862A10F385008CB516 /* RxBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxBaseViewController.swift; sourceTree = "<group>"; };
+		91E4428A2A10F3C7008CB516 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		91E442A32A110191008CB516 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		91ED17862A00E57700158787 /* TagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
 		91ED17882A00E58D00158787 /* SubscriberRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberRepository.swift; sourceTree = "<group>"; };
 		91ED178A2A00E59900158787 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
@@ -230,13 +239,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91E442A82A11031D008CB516 /* RxBlocking in Frameworks */,
+				91E442AA2A11031D008CB516 /* RxCocoa in Frameworks */,
 				917BA34C2A050861000409B7 /* Realm in Frameworks */,
 				91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */,
 				917BA34E2A050861000409B7 /* RealmSwift in Frameworks */,
+				91E442AE2A11031D008CB516 /* RxSwift in Frameworks */,
 				914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */,
 				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
 				91487ED729FC38CC009CFECF /* SnapKit in Frameworks */,
+				91E442AC2A11031D008CB516 /* RxRelay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +391,7 @@
 			children = (
 				91487EC029FC380A009CFECF /* VelogOnMobile */,
 				91487EBF29FC380A009CFECF /* Products */,
+				91E442A22A110190008CB516 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -505,6 +519,8 @@
 				91487EF529FC3AEF009CFECF /* BaseTableViewCell.swift */,
 				91487EF729FC3B01009CFECF /* BaseCollectionViewCell.swift */,
 				91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */,
+				91E442862A10F385008CB516 /* RxBaseViewController.swift */,
+				91E4428A2A10F3C7008CB516 /* BaseViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -859,6 +875,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		91E442A22A110190008CB516 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91E442A32A110191008CB516 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		91ED17852A00E55600158787 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,6 +953,10 @@
 				914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */,
 				917BA34B2A050861000409B7 /* Realm */,
 				917BA34D2A050861000409B7 /* RealmSwift */,
+				91E442A72A11031D008CB516 /* RxBlocking */,
+				91E442A92A11031D008CB516 /* RxCocoa */,
+				91E442AB2A11031D008CB516 /* RxRelay */,
+				91E442AD2A11031D008CB516 /* RxSwift */,
 			);
 			productName = VelogOnMobile;
 			productReference = 91487EBE29FC380A009CFECF /* VelogOnMobile.app */;
@@ -965,6 +993,7 @@
 				91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */,
 				914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 91487EBF29FC380A009CFECF /* Products */;
 			projectDirPath = "";
@@ -1045,6 +1074,7 @@
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
 				91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */,
 				91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */,
+				91E4428B2A10F3C7008CB516 /* BaseViewModel.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
@@ -1077,6 +1107,7 @@
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
+				91E442872A10F385008CB516 /* RxBaseViewController.swift in Sources */,
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
@@ -1231,6 +1262,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D96A3BCL3R;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VelogOnMobile/Global/Supports/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1349,6 +1381,14 @@
 				kind = branch;
 			};
 		};
+		91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1386,6 +1426,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		91E442A72A11031D008CB516 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		91E442A92A11031D008CB516 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		91E442AB2A11031D008CB516 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		91E442AD2A11031D008CB516 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
