@@ -27,6 +27,8 @@ final class ListViewModel: BaseViewModel {
     let tagDeleteButtonDidTap = PublishRelay<String>()
     let subscriberDeleteButtonDidTap = PublishRelay<String>()
     
+    // MARK: - init
+    
     override init() {
         super.init()
         makeOutput()
@@ -38,25 +40,7 @@ final class ListViewModel: BaseViewModel {
         viewWillAppear
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                let dispatchGroup = DispatchGroup()
-                dispatchGroup.enter()
-                self.getTagList() { [weak self] result in
-                    self?.tagList = Array(result.reversed())
-                    self?.tagListOutput.accept(Array(result.reversed()))
-                    dispatchGroup.leave()
-                }
-                dispatchGroup.enter()
-                self.getSubscriberList() { [weak self] result in
-                    self?.subscriberList = Array(result.reversed())
-                    self?.subscriberListOutput.accept(Array(result.reversed()))
-                    dispatchGroup.leave()
-                }
-                dispatchGroup.notify(queue: .main) { [weak self] in
-                    self?.checkListIsEmpty(
-                        tagList: self?.tagList ?? [String](),
-                        subsciberList: self?.subscriberList ?? [String]()
-                    )
-                }
+                self.getListData()
             })
             .disposed(by: disposeBag)
         
@@ -80,27 +64,18 @@ final class ListViewModel: BaseViewModel {
     }
     
     private func getListData() {
-        var tagList = [String]()
-        var subscriberList = [String]()
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        self.getTagList() { [weak self] result in
-            tagList = result
-            self?.tagListOutput.accept(Array(result.reversed()))
-            dispatchGroup.leave()
-        }
-        dispatchGroup.enter()
-        self.getSubscriberList() { [weak self] result in
-            subscriberList = result
-            self?.subscriberListOutput.accept(Array(result.reversed()))
-            dispatchGroup.leave()
-        }
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            self?.checkListIsEmpty(
-                tagList: tagList,
-                subsciberList: subscriberList
-            )
-        }
+        
+        let tagListObservable = getTagList().map { Array($0.reversed()) }
+        let subscriberListObservable = getSubscriberList().map { Array($0.reversed()) }
+        
+        Observable.combineLatest(tagListObservable, subscriberListObservable)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (tagList, subscriberList) in
+                self?.tagListOutput.accept(tagList)
+                self?.subscriberListOutput.accept(subscriberList)
+                self?.checkListIsEmpty(tagList: tagList, subsciberList: subscriberList)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func checkListIsEmpty(tagList: [String], subsciberList: [String]) {
@@ -115,35 +90,39 @@ final class ListViewModel: BaseViewModel {
 // MARK: - API
 
 private extension ListViewModel {
-    func getTagList(
-        completion: @escaping ([String]) -> Void
-    ) {
-        NetworkService.shared.tagRepository.getTag() { result in
-            switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
+    func getTagList() -> Observable<[String]> {
+        return Observable.create { observer -> Disposable in
+            NetworkService.shared.tagRepository.getTag() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else { return }
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    dump(errResponse)
+                default:
+                    print("error")
+                }
             }
+            return Disposables.create()
         }
     }
     
-    func getSubscriberList(
-        completion: @escaping ([String]) -> Void
-    ) {
-        NetworkService.shared.subscriberRepository.getSubscriber() { result in
-            switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
+    func getSubscriberList() -> Observable<[String]> {
+        return Observable.create { observer -> Disposable in
+            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else { return }
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    dump(errResponse)
+                default:
+                    print("error")
+                }
             }
+            return Disposables.create()
         }
     }
     
