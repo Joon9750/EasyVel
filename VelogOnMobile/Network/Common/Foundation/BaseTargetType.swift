@@ -20,7 +20,7 @@ extension BaseTargetType {
     var headers: [String: String]? {
         let header = [
             "Content-Type": "application/json",
-            "X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjgzOTUwNzE5LCJleHAiOjE3NjE3MTA3MTl9.maqGEhZ-AQKaCmOtuy6aNUlC476aARCen4Vp0VREaI4"
+            "X-AUTH-TOKEN": UserDefaults.standard.string(forKey: "OauthIdToken") ?? String()
         ]
         return header
     }
