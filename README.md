@@ -5,6 +5,9 @@ https://github.com/SSUDevelog/VelogInMobile
 
 MVC로 진행되었던 위 링크 프로젝트를 MVVM으로 리팩토링합니다.
 
+## Behance
+https://www.behance.net/gallery/161537145/Velog-In-Mobile
+
 ## 프로젝트 기획배경
 
 Velog는 Medium이나 Tistory와 비슷하게 IT 업계 사람들이 주로 사용하며, 개발 관련 글들을 읽고 쓸 수 있는 웹 서비스입니다.
