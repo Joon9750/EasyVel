@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxRelay
+import RxSwift
+
 protocol TagSearchViewModelInput {
     func tagAddButtonDidTap(tag: String)
     func viewWillDisappear()
@@ -18,23 +21,27 @@ protocol TagSearchViewModelOutput {
 
 protocol TagSearchViewModelInputOutput: TagSearchViewModelInput, TagSearchViewModelOutput {}
 
-final class TagSearchViewModel: TagSearchViewModelInputOutput {
+final class TagSearchViewModel: BaseViewModel {
     
     var tagSearchDelegate: TagSearchProtocol?
 
-    var tagList: [String]? {
-        didSet {
-            if let tagList = tagList {
-                tagSearchDelegate?.searchTagViewWillDisappear(input: tagList)
-            }
-        }
-    }
+//    var tagList: [String]? {
+//        didSet {
+//            if let tagList = tagList {
+//                tagSearchDelegate?.searchTagViewWillDisappear(input: tagList)
+//            }
+//        }
+//    }
     
     // MARK: - Output
+    
+    var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     
     var tagAddStatus: ((Bool, String) -> Void)?
     
     // MARK: - Input
+    
+    let tagAddButtonDidTap = PublishRelay<String>()
     
     func tagAddButtonDidTap(tag: String) {
         addTag(tag: tag) { [weak self] response in
@@ -44,8 +51,17 @@ final class TagSearchViewModel: TagSearchViewModelInputOutput {
         }
     }
     
-    func viewWillDisappear() {
-        getTagListForServer()
+    override init() {
+        super.init()
+        makeOutput()
+    }
+    
+    private func makeOutput() {
+        viewWillDisappear
+            .subscribe(onNext: { [weak self] _ in
+                self?.getTagList()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -70,27 +86,23 @@ private extension TagSearchViewModel {
             }
         }
     }
-    
-    func getTagListForServer() {
-        self.getTagList() { [weak self] response in
-            guard let self = self else {
-                return
+
+    func getTagList() -> Observable<[String]> {
+        return Observable.create { observer -> Disposable in
+            NetworkService.shared.tagRepository.getTag() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else { return }
+                    self.tagSearchDelegate?.searchTagViewWillDisappear(input: list)
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    dump(errResponse)
+                default:
+                    print("error")
+                }
             }
-            self.tagList = Array(response.reversed())
-        }
-    }
-    
-    func getTagList(completion: @escaping ([String]) -> Void) {
-        NetworkService.shared.tagRepository.getTag() { result in
-            switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
-            }
+            return Disposables.create()
         }
     }
 }
