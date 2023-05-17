@@ -10,7 +10,7 @@ import UIKit
 final class TagSearchViewController: BaseViewController {
     
     private let searchView = TagSearchView()
-    private var viewModel: TagSearchViewModelInputOutput?
+    private var viewModel: TagSearchViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
