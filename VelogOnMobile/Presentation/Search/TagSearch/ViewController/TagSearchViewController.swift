@@ -7,71 +7,68 @@
 
 import UIKit
 
-final class TagSearchViewController: BaseViewController {
+import RxSwift
+import RxCocoa
+
+final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
     private let searchView = TagSearchView()
-    private var viewModel: TagSearchViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonAction()
     }
-    
-    init(viewModel: TagSearchViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        bind()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func render() {
         self.view = searchView
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        viewModel?.viewWillDisappear()
-    }
-    
-    private func bind() {
-        viewModel?.tagAddStatus = { [weak self] isSuccess, statusText in
-            switch isSuccess {
-            case true:
-                self?.searchView.addStatusLabel.textColor = .brandColor
-                self?.searchView.addStatusLabel.text = statusText
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.addStatusLabel.text = TextLiterals.noneText
-                }
-            case false:
-                self?.searchView.addStatusLabel.textColor = .red
-                self?.searchView.addStatusLabel.text = statusText
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.addStatusLabel.text = TextLiterals.noneText
+    override func bind(viewModel: TagSearchViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
+         
+        searchView.addTagBtn.rx.tap
+            .flatMap { [weak self] _ -> Observable<String> in
+                if let text = self?.searchView.textField.text {
+                    return .just(text)
+                } else {
+                    return .empty()
                 }
             }
-        }
+            .bind(to: viewModel.tagAddButtonDidTap)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindOutput(_ viewModel: TagSearchViewModel) {
+        viewModel.tagAddStatusOutput
+            .asDriver(onErrorJustReturn: (false, ""))
+            .drive(onNext: { [weak self] isSuccess, statusText in
+                switch isSuccess {
+                case true:
+                    self?.searchView.addStatusLabel.textColor = .brandColor
+                    self?.searchView.addStatusLabel.text = statusText
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self?.searchView.addStatusLabel.text = TextLiterals.noneText
+                    }
+                case false:
+                    self?.searchView.addStatusLabel.textColor = .red
+                    self?.searchView.addStatusLabel.text = statusText
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self?.searchView.addStatusLabel.text = TextLiterals.noneText
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 private extension TagSearchViewController {
     func setButtonAction() {
         searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
-        searchView.addTagBtn.addTarget(self, action: #selector(addTagButtonAction), for: .touchUpInside)
     }
     
     @objc
     func dismissButtonAction() {
         self.dismiss(animated: true)
-    }
-    
-    @objc
-    func addTagButtonAction() {
-        if let tag = searchView.textField.text {
-            if tag != TextLiterals.noneText {
-                viewModel?.tagAddButtonDidTap(tag: tag)
-            }
-        }
     }
 }
