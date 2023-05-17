@@ -47,18 +47,29 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
                 case true:
                     self?.searchView.addStatusLabel.textColor = .brandColor
                     self?.searchView.addStatusLabel.text = statusText
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self?.searchView.addStatusLabel.text = TextLiterals.noneText
-                    }
+                    self?.updateStatusLabel(text: statusText)
                 case false:
                     self?.searchView.addStatusLabel.textColor = .red
                     self?.searchView.addStatusLabel.text = statusText
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        self?.searchView.addStatusLabel.text = TextLiterals.noneText
-                    }
+                    self?.updateStatusLabel(text: statusText)
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func updateStatusLabel(text: String) {
+        searchView.addStatusLabel.text = text
+        delayCompletable(1.5)
+            .asDriver(onErrorJustReturn: ())
+            .drive(onCompleted: { [weak self] in
+                self?.searchView.addStatusLabel.text = TextLiterals.noneText
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func delayCompletable(_ seconds: TimeInterval) -> Observable<Void> {
+        return Observable<Void>.just(())
+                .delay(.seconds(Int(seconds)), scheduler: MainScheduler.instance)
     }
 }
 
