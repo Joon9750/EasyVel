@@ -8,103 +8,96 @@
 import Foundation
 
 import RealmSwift
+import RxRelay
+import RxSwift
 
-protocol KeywordsPostsViewModelInput {
-    func viewDidLoad()
-    func viewWillAppear()
-    func cellDidTap(input: StoragePost)
-    func tableViewReload()
-    func viewControllerDidScroll()
-    func viewControllerScrollDidEnd()
-}
-
-protocol KeywordsPostsViewModelOutput {
-    var tagPostsListOutput: ((GetTagPostResponse) -> Void)? { get set }
-    var toastPresent: ((Bool) -> Void)? { get set }
-    var isPostsEmpty: ((Bool) -> Void)? { get set }
-    var scrollToTop: ((Bool) -> Void)? { get set }
-}
-
-protocol KeywordsPostsViewModelInputOutput: KeywordsPostsViewModelInput, KeywordsPostsViewModelOutput {}
-
-final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
+final class KeywordsPostsViewModel: BaseViewModel {
     
     let realm = RealmService()
     var postViewDelegate: PostsViewControllerProtocol?
-    
-    var tagPosts: GetTagPostResponse? {
-        didSet {
-            if let tagPosts = tagPosts,
-               let tagPostsListOutput = tagPostsListOutput {
-                tagPostsListOutput(tagPosts)
-            }
-        }
-    }
-    
+
     // MARK: - Input
     
-    func viewDidLoad() {
-        LoadingView.showLoading()
-    }
-    
-    func viewWillAppear() {
-        getTagPostsForserver()
-        if let scrollToTop = scrollToTop {
-            scrollToTop(true)
-        }
-    }
+    var cellDidTap = PublishRelay<StoragePost>()
+    var tableViewReload = PublishRelay<Void>()
+    var viewControllerDidScroll = PublishRelay<Void>()
+    var viewControllerScrollDidEnd = PublishRelay<Void>()
 
-    func cellDidTap(input: StoragePost) {
-        if checkIsUniquePost(post: input) {
-            addPostRealm(post: input)
-            toastSuccessPresentOutPut()
-        } else {
-            toastFailPresentOutPut()
-        }
-    }
-    
-    func tableViewReload() {
-        LoadingView.showLoading()
-        getTagPostsForserver()
-    }
-    
-    func viewControllerDidScroll() {
-        postViewDelegate?.postsViewScrollDidStart()
-    }
-    
-    func viewControllerScrollDidEnd() {
-        postViewDelegate?.postsViewScrollDidEnd()
-    }
-    
     // MARK: - Output
     
-    var tagPostsListOutput: ((GetTagPostResponse) -> Void)?
-    var toastPresent: ((Bool) -> Void)?
-    var isPostsEmpty: ((Bool) -> Void)?
-    var scrollToTop: ((Bool) -> Void)?
+    var tagPostsListOutput = PublishRelay<GetTagPostResponse>()
+    var toastPresentOutput = PublishRelay<Bool>()
+    var isPostsEmptyOutput = PublishRelay<Bool>()
+//    var scrollToTopOutput = PublishRelay<Bool>()
+    
+    override init() {
+        super.init()
+        makeOutput()
+    }
+    
+    private func makeOutput() {
+        viewWillAppear
+            .startWith(LoadingView.showLoading())
+            .flatMapLatest( { [weak self] _ -> Observable<GetTagPostResponse> in
+                guard let self = self else { return Observable.empty() }
+                LoadingView.hideLoading()
+                return self.getTagPosts()
+            })
+            .subscribe(onNext: { [weak self] postList in
+                self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
+                self?.tagPostsListOutput.accept(postList)
+            })
+            .disposed(by: disposeBag)
+        
+        cellDidTap
+            .filter { [weak self] response in
+                if self?.checkIsUniquePost(post: response) == false {
+                    self?.toastPresentOutput.accept(false)
+                }
+                return self?.checkIsUniquePost(post: response) ?? false
+            }
+            .subscribe(onNext: { [weak self] response in
+                self?.addPostRealm(post: response)
+                self?.toastPresentOutput.accept(true)
+            })
+            .disposed(by: disposeBag)
+        
+        tableViewReload
+            .startWith(LoadingView.showLoading())
+            .flatMapLatest( { [weak self] _ -> Observable<GetTagPostResponse> in
+                guard let self = self else { return Observable.empty() }
+                LoadingView.hideLoading()
+                return self.getTagPosts()
+            })
+            .subscribe(onNext: { [weak self] postList in
+                self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
+                self?.tagPostsListOutput.accept(postList)
+            })
+            .disposed(by: disposeBag)
+ 
+        viewControllerDidScroll
+            .subscribe(onNext: { [weak self] _ in
+                self?.postViewDelegate?.postsViewScrollDidStart()
+            })
+            .disposed(by: disposeBag)
+        
+        viewControllerScrollDidEnd
+            .subscribe(onNext: { [weak self] _ in
+                self?.postViewDelegate?.postsViewScrollDidEnd()
+            })
+            .disposed(by: disposeBag)
+    }
     
     // MARK: - func
 
     private func addPostRealm(post: StoragePost) {
         realm.addPost(item: post)
     }
-    
+
     private func checkIsUniquePost(post: StoragePost) -> Bool {
         return realm.checkUniquePost(input: post)
     }
-    
-    private func toastFailPresentOutPut() {
-        if let toastPresent = toastPresent {
-            toastPresent(false)
-        }
-    }
-    
-    private func toastSuccessPresentOutPut() {
-        if let toastPresent = toastPresent {
-            toastPresent(true)
-        }
-    }
-    
+
     private func checkStorageEmpty(input: GetTagPostResponse) -> Bool {
         if input.tagPostDtoList == nil { return true }
         else { return false }
@@ -114,29 +107,24 @@ final class KeywordsPostsViewModel: KeywordsPostsViewModelInputOutput {
 // MARK: - API
 
 private extension KeywordsPostsViewModel {
-    func getTagPostsForserver() {
-        getTagPosts() { [weak self] result in
-            self?.tagPosts = result
-            if let isPostsEmpty = self?.isPostsEmpty {
-                isPostsEmpty((self?.checkStorageEmpty(input: result))!)
+    func getTagPosts() -> Observable<GetTagPostResponse> {
+        return Observable.create { observer in
+            NetworkService.shared.postsRepository.getTagPosts() { result in
+                switch result {
+                case .success(let response):
+                    guard let posts = response as? GetTagPostResponse else {
+                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
+                        return
+                    }
+                    observer.onNext(posts)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    observer.onError(errResponse as! Error)
+                default:
+                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+                }
             }
-            LoadingView.hideLoading()
-        }
-    }
-    
-    func getTagPosts(
-        completion: @escaping (GetTagPostResponse) -> Void
-    ) {
-        NetworkService.shared.postsRepository.getTagPosts() { result in
-            switch result {
-            case .success(let response):
-                guard let posts = response as? GetTagPostResponse else { return }
-                completion(posts)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
-            }
+            return Disposables.create()
         }
     }
 }
