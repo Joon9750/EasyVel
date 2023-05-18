@@ -7,72 +7,54 @@
 
 import UIKit
 
-final class KeywordsPostsViewController: BaseViewController {
+import RxRelay
+import RxSwift
+
+final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
     
     private let keywordsPostsView = KeywordsPostsView()
-    var viewModel: KeywordsPostsViewModelInputOutput?
     private var isScrolled: Bool = false
     private var keywordsPosts: GetTagPostResponse? {
         didSet {
             keywordsPostsView.keywordsTableView.reloadData()
         }
     }
-    
-    init(viewModel: KeywordsPostsViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        bind()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func render() {
         self.view = keywordsPostsView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel?.viewDidLoad()
         setNavigationBar()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
-    }
-    
+
     func setNavigationBar() {
         navigationController?.navigationBar.isHidden = true
     }
     
-    private func bind() {
+    override func bind(viewModel: KeywordsPostsViewModel) {
         setButtonAction()
         keywordsPostsView.keywordsTableView.dataSource = self
         keywordsPostsView.keywordsTableView.delegate = self
-        viewModel?.tagPostsListOutput = { [weak self] postsResult in
-            self?.keywordsPosts = postsResult
-        }
-        viewModel?.toastPresent = { [weak self] result in
-            if result {
-                self?.showToast(message: "추가되었습니다.", font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
-            } else {
-                self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
-            }
-        }
-        viewModel?.isPostsEmpty = { [weak self] isEmpty in
-            if isEmpty {
-                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = false
-            } else {
-                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
-            }
-        }
-        viewModel?.scrollToTop = { [weak self] resultTrue in
-            if resultTrue {
-                self?.scrollToTop()
-            }
-        }
+//        viewModel?.tagPostsListOutput = { [weak self] postsResult in
+//            self?.keywordsPosts = postsResult
+//        }
+//        viewModel?.toastPresent = { [weak self] result in
+//            if result {
+//                self?.showToast(message: "추가되었습니다.", font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
+//            } else {
+//                self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
+//            }
+//        }
+//        viewModel?.isPostsEmpty = { [weak self] isEmpty in
+//            if isEmpty {
+//                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = false
+//            } else {
+//                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
+//            }
+//        }
+//        viewModel?.scrollToTop = { [weak self] resultTrue in
+//            if resultTrue {
+//                self?.scrollToTop()
+//            }
+//        }
     }
     
     private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
@@ -98,7 +80,7 @@ final class KeywordsPostsViewController: BaseViewController {
     }
     
     private func scrollDidStart(){
-        viewModel?.viewControllerDidScroll()
+//        viewModel?.viewControllerDidScroll()
         keywordsPostsView.keywordsPostViewDidScroll()
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
             self.view.layoutIfNeeded()
@@ -106,7 +88,7 @@ final class KeywordsPostsViewController: BaseViewController {
     }
     
     private func scrollDidEnd() {
-        viewModel?.viewControllerScrollDidEnd()
+//        viewModel?.viewControllerScrollDidEnd()
         keywordsPostsView.keywordsPostViewScrollDidEnd()
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
             self.view.layoutIfNeeded()
@@ -131,7 +113,7 @@ extension KeywordsPostsViewController: UIScrollViewDelegate {
             keywordsPostsView.moveToTopButton.isHidden = true
         }
         if scrollView.contentOffset.y < -80 {
-            viewModel?.tableViewReload()
+//            viewModel?.tableViewReload()
         }
     }
     
@@ -194,7 +176,7 @@ extension KeywordsPostsViewController: UITableViewDelegate {
                 title: self?.keywordsPosts?.tagPostDtoList?[index].title,
                 url: self?.keywordsPosts?.tagPostDtoList?[index].url
             )
-            self?.viewModel?.cellDidTap(input: post)
+//            self?.viewModel?.cellDidTap(input: post)
             completionHaldler(true)
         })
         swipeAction.backgroundColor = .brandColor
