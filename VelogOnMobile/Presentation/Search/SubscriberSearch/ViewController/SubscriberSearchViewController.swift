@@ -7,71 +7,79 @@
 
 import UIKit
 
-final class SubscriberSearchViewController: BaseViewController {
+import RxSwift
+import RxCocoa
+
+final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearchViewModel> {
     
     private let searchView = SubscriberSearchView()
-    private var viewModel: SubscriberSearchViewModelInputOutput?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonAction()
     }
     
-    init(viewModel: SubscriberSearchViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-        bind()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func render() {
         self.view = searchView
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        viewModel?.viewWillDisappear()
-    }
-    
-    private func bind() {
-        viewModel?.subscriberAddStatus = { [weak self] isSuccess, statusText in
-            switch isSuccess {
-            case true:
-                self?.searchView.searchStatusLabel.textColor = .brandColor
-                self?.searchView.searchStatusLabel.text = statusText
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.searchStatusLabel.text = TextLiterals.noneText
-                }
-            case false:
-                self?.searchView.searchStatusLabel.textColor = .red
-                self?.searchView.searchStatusLabel.text = statusText
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self?.searchView.searchStatusLabel.text = TextLiterals.noneText
+
+    override func bind(viewModel: SubscriberSearchViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
+        
+        searchView.addSubscriberBtn.rx.tap
+            .flatMap { [weak self] _ -> Observable<String> in
+                if let text = self?.searchView.textField.text {
+                    return .just(text)
+                } else {
+                    return .empty()
                 }
             }
-        }
+            .bind(to: viewModel.subscriberAddButtonDidTap)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindOutput(_ viewModel: SubscriberSearchViewModel) {
+        viewModel.subscriberAddStatusOutput
+            .asDriver(onErrorJustReturn: (false, ""))
+            .drive(onNext: { [weak self] isSuccess, statusText in
+                switch isSuccess {
+                case true:
+                    self?.searchView.searchStatusLabel.textColor = .brandColor
+                    self?.searchView.searchStatusLabel.text = statusText
+                    self?.updateStatusLabel(text: statusText)
+                case false:
+                    self?.searchView.searchStatusLabel.textColor = .red
+                    self?.searchView.searchStatusLabel.text = statusText
+                    self?.updateStatusLabel(text: statusText)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func updateStatusLabel(text: String) {
+        searchView.searchStatusLabel.text = text
+        delayCompletable(1.5)
+            .asDriver(onErrorJustReturn: ())
+            .drive(onCompleted: { [weak self] in
+                self?.searchView.searchStatusLabel.text = TextLiterals.noneText
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func delayCompletable(_ seconds: TimeInterval) -> Observable<Void> {
+        return Observable<Void>.just(())
+                .delay(.seconds(Int(seconds)), scheduler: MainScheduler.instance)
     }
 }
 
 private extension SubscriberSearchViewController {
     func setButtonAction() {
         searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
-        searchView.addSubscriberBtn.addTarget(self, action: #selector(addSubscribeButtonAction), for: .touchUpInside)
     }
     
     @objc
     func dismissButtonAction() {
         self.dismiss(animated: true)
-    }
-    
-    @objc
-    func addSubscribeButtonAction() {
-        if let tag = searchView.textField.text {
-            if tag != TextLiterals.noneText {
-                viewModel?.subscriberAddButtonDidTap(name: tag)
-            }
-        }
     }
 }
