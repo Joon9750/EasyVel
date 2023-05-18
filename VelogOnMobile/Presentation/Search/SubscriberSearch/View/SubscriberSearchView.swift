@@ -91,6 +91,10 @@ final class SubscriberSearchView: BaseUIView {
             $0.trailing.equalTo(textField.snp.trailing)
         }
     }
+    
+    override func configUI() {
+        self.backgroundColor = .white
+    }
         
     func setTextField(){
         textField.autocapitalizationType = .none
