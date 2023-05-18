@@ -38,7 +38,7 @@ final class ListViewController: RxBaseViewController<ListViewModel>, ListViewMod
         addButtonTarget()
     }
 
-    func setNavigationBar() {
+    override func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = true
     }
     
