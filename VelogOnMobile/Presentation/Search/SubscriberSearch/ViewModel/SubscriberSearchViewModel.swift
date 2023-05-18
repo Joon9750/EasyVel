@@ -7,144 +7,124 @@
 
 import UIKit
 
-protocol SubscriberSearchViewModelInput {
-    func subscriberAddButtonDidTap(name: String)
-    func viewWillDisappear()
-}
+import RxRelay
+import RxSwift
 
-protocol SubscriberSearchViewModelOutput {
-    var subscriberAddStatus: ((Bool, String) -> Void)? { get set }
-}
-
-protocol SubscriberSearchViewModelInputOutput: SubscriberSearchViewModelInput, SubscriberSearchViewModelOutput {}
-
-final class SubscriberSearchViewModel: SubscriberSearchViewModelInputOutput {
+final class SubscriberSearchViewModel: BaseViewModel {
     
     var subscriberSearchDelegate: SubscriberSearchProtocol?
-    var subscriberList: [String]? {
-        didSet {
-            if let subscriberList = subscriberList {
-                subscriberSearchDelegate?.searchSubscriberViewWillDisappear(input: subscriberList)
-            }
-        }
-    }
-    
+
     // MARK: - Output
     
-    var subscriberAddStatus: ((Bool, String) -> Void)?
+    var subscriberAddStatusOutput = PublishRelay<(Bool, String)>()
     
     // MARK: - Input
     
-    func subscriberAddButtonDidTap(name: String) {
-        searchSubsciber(name: name)
+    let subscriberAddButtonDidTap = PublishRelay<String>()
+
+    override init() {
+        super.init()
+        makeOutput()
     }
     
-    func viewWillDisappear() {
-        getSubscribeListForServer()
-    }
-    
-    private func searchSubsciber(name: String) {
-        searchSubscriber(name: name) { [weak self] result in
-            if let isValid = result.validate {
-                if isValid {
-                    self?.addSubscriber(name: name)
-                    self?.joinSubscriberAlarmGroup(name: name)
-                } else {
-                    guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
+    private func makeOutput() {
+        viewWillDisappear
+            .flatMapLatest( { [weak self] _ -> Observable<[String]> in
+                guard let self = self else { return Observable.empty() }
+                return self.getSubscriberList()
+            })
+            .subscribe(onNext: { [weak self] list in
+                self?.subscriberSearchDelegate?.searchSubscriberViewWillDisappear(input: list.reversed())
+            })
+            .disposed(by: disposeBag)
+        
+        subscriberAddButtonDidTap
+            .flatMapLatest( { [weak self] name -> Observable<SearchSubscriberResponse> in
+                guard let self = self else { return Observable.empty() }
+                return self.searchSubscriber(name: name)
+            })
+            .filter { [weak self] response in
+                if response.validate == false {
                     let text = TextLiterals.searchSubscriberIsNotValidText
-                    subscriberAddStatus(false, text)
+                    self?.subscriberAddStatusOutput.accept((false, text))
                 }
+                return response.validate ?? false
             }
-        }
-    }
-    
-    private func addSubscriber(name: String) {
-        addSubscriber(name: name) { [weak self] response in
-            guard self != nil else {
-                return
-            }
-        }
-    }
-    
-    private func joinSubscriberAlarmGroup(name: String) {
-        let joinGroupRequestData = JoinGroupRequest(groupName: name)
-        joinAlarmGroup(subscriber: joinGroupRequestData) { [weak self] response in
-            guard self != nil else {
-                return
-            }
-        }
+            .flatMapLatest( { [weak self] response -> Observable<Bool> in
+                guard let self = self else { return Observable.empty() }
+                return self.addSubscriber(name: response.userName ?? String())
+            })
+            .subscribe(onNext: { [weak self] response in
+                if response {
+                    let text = TextLiterals.addSubsriberSuccessText
+                    self?.subscriberAddStatusOutput.accept((response, text))
+                } else {
+                    let text = TextLiterals.addSubscriberRequestErrText
+                    self?.subscriberAddStatusOutput.accept((response, text))
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 private extension SubscriberSearchViewModel {
-    func searchSubscriber(name: String, completion: @escaping (SearchSubscriberResponse) -> Void) {
-        NetworkService.shared.subscriberRepository.searchSubscriber(name: name) { result in
-            switch result {
-            case .success(let response):
-                guard let result = response as? SearchSubscriberResponse else { return }
-                completion(result)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
+    func searchSubscriber(name: String) -> Observable<SearchSubscriberResponse> {
+        return Observable.create { observer in
+            NetworkService.shared.subscriberRepository.searchSubscriber(name: name) { result in
+                switch result {
+                case .success(let response):
+                    guard let result = response as? SearchSubscriberResponse else {
+                        observer.onCompleted()
+                        return
+                    }
+                    observer.onNext(result)
+                    observer.onCompleted()
+                case .requestErr(_):
+                    observer.onCompleted()
+                default:
+                    observer.onCompleted()
+                }
             }
+            return Disposables.create()
         }
     }
     
-    func addSubscriber(name: String, completion: @escaping (String) -> Void) {
-        NetworkService.shared.subscriberRepository.addSubscriber(fcmToken: "FCMToken", name: name) { [weak self] result in
-            switch result {
-            case .success(_):
-                guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
-                let text = TextLiterals.addSubsriberSuccessText
-                subscriberAddStatus(true, text)
-                completion("success")
-            case .requestErr(let errResponse):
-                guard let subscriberAddStatus = self?.subscriberAddStatus else { return }
-                let text = TextLiterals.addSubscriberRequestErrText
-                subscriberAddStatus(false, text)
-                dump(errResponse)
-            default:
-                print("error")
+    func addSubscriber(name: String) -> Observable<Bool> {
+        return Observable.create { observer in
+            NetworkService.shared.subscriberRepository.addSubscriber(fcmToken: "FCMToken", name: name) { result in
+                switch result {
+                case .success(_):
+                    observer.onNext(true)
+                    observer.onCompleted()
+                case .requestErr(_):
+                    observer.onNext(false)
+                    observer.onCompleted()
+                default:
+                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+                }
             }
+            return Disposables.create()
         }
     }
     
-    func joinAlarmGroup(
-        subscriber: JoinGroupRequest,
-        completion: @escaping (String) -> Void) {
-        NetworkService.shared.notificationRepository.joinGroup(body: subscriber) { result in
-            switch result {
-            case .success(_):
-                completion("success")
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
+    func getSubscriberList() -> Observable<[String]> {
+        return Observable.create { observer in
+            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else {
+                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
+                        return
+                    }
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    observer.onError(errResponse as! Error)
+                default:
+                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+                }
             }
-        }
-    }
-    
-    func getSubscribeListForServer() {
-        self.getSubscriberList() { [weak self] response in
-            guard let self = self else {
-                return
-            }
-            self.subscriberList = Array(response.reversed())
-        }
-    }
-    
-    func getSubscriberList(completion: @escaping ([String]) -> Void) {
-        NetworkService.shared.subscriberRepository.getSubscriber() { result in
-            switch result {
-            case .success(let response):
-                guard let list = response as? [String] else { return }
-                completion(list)
-            case .requestErr(let errResponse):
-                dump(errResponse)
-            default:
-                print("error")
-            }
+            return Disposables.create()
         }
     }
 }
