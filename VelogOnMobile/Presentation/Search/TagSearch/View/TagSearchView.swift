@@ -90,6 +90,9 @@ final class TagSearchView: BaseUIView {
         }
     }
         
+    override func configUI() {
+        self.backgroundColor = .white
+    }
     func setTextField(){
         textField.autocapitalizationType = .none
         textField.borderStyle = UITextField.BorderStyle.roundedRect

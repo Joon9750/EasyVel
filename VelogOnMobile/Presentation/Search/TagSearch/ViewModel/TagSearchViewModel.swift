@@ -33,7 +33,7 @@ final class TagSearchViewModel: BaseViewModel {
                 return self?.getTagList() ?? .empty()
             }
             .subscribe(onNext: { [weak self] list in
-                self?.tagSearchDelegate?.searchTagViewWillDisappear(input: list)
+                self?.tagSearchDelegate?.searchTagViewWillDisappear(input: list.reversed())
             }, onError: { error in
                 print(error)
             })
