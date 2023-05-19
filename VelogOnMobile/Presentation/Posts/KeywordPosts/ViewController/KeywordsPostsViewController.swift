@@ -25,7 +25,6 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     }
     
     override func bind(viewModel: KeywordsPostsViewModel) {
-        setButtonAction()
         keywordsPostsView.keywordsTableView.dataSource = self
         keywordsPostsView.keywordsTableView.delegate = self
         bindOutput(viewModel)
@@ -94,10 +93,6 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
             toastLabel.removeFromSuperview()
         })
     }
-    
-    private func setButtonAction() {
-        keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
-    }
 
     @objc
     func scrollToTop() {
@@ -146,6 +141,7 @@ extension KeywordsPostsViewController: UITableViewDelegate {
         let url = selectedCell.url
         let webViewController = WebViewController(url: url)
         navigationController?.pushViewController(webViewController, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

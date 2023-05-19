@@ -36,12 +36,12 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .startWith(LoadingView.showLoading())
             .flatMapLatest( { [weak self] _ -> Observable<GetTagPostResponse> in
                 guard let self = self else { return Observable.empty() }
-                LoadingView.hideLoading()
                 return self.getTagPosts()
             })
             .subscribe(onNext: { [weak self] postList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.tagPostsListOutput.accept(postList)
+                LoadingView.hideLoading()
             })
             .disposed(by: disposeBag)
         
@@ -62,12 +62,12 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .startWith(LoadingView.showLoading())
             .flatMapLatest( { [weak self] _ -> Observable<GetTagPostResponse> in
                 guard let self = self else { return Observable.empty() }
-                LoadingView.hideLoading()
                 return self.getTagPosts()
             })
             .subscribe(onNext: { [weak self] postList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.tagPostsListOutput.accept(postList)
+                LoadingView.hideLoading()
             })
             .disposed(by: disposeBag)
     }
