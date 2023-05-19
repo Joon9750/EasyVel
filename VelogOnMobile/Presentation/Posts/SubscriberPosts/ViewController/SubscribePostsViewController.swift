@@ -88,7 +88,6 @@ final class SubscribePostsViewController: BaseViewController {
     }
     
     private func scrollDidStart(){
-        viewModel?.viewControllerDidScroll()
         subscribersPostsView.subscriberPostViewDidScroll()
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
             self.view.layoutIfNeeded()
@@ -96,7 +95,6 @@ final class SubscribePostsViewController: BaseViewController {
     }
     
     private func scrollDidEnd() {
-        viewModel?.viewControllerScrollDidEnd()
         subscribersPostsView.subscriberPostViewScrollDidEnd()
         UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
             self.view.layoutIfNeeded()

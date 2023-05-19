@@ -53,6 +53,7 @@ enum TextLiterals {
     
     // MARK: - keyword posts
     
+    static let addToastText: String = "추가되었습니다."
     static let alreadyAddToastText: String = "이미 스크랩한 글입니다."
     
     // MARK: - list
