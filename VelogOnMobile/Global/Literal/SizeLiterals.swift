@@ -8,8 +8,8 @@
 import UIKit
 
 enum SizeLiterals {
-    static let postCellSmall: CGFloat = 150
-    static let postCellMedium: CGFloat = 160
+    static let postCellSmall: CGFloat = 160
+    static let postCellMedium: CGFloat = 170
     static let postCellLarge: CGFloat = 180
     static let postCellXLarge: CGFloat = 280
 }
