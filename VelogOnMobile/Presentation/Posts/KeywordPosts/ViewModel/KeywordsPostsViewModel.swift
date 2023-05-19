@@ -14,21 +14,17 @@ import RxSwift
 final class KeywordsPostsViewModel: BaseViewModel {
     
     let realm = RealmService()
-    var postViewDelegate: PostsViewControllerProtocol?
 
     // MARK: - Input
     
     var cellDidTap = PublishRelay<StoragePost>()
     var tableViewReload = PublishRelay<Void>()
-    var viewControllerDidScroll = PublishRelay<Void>()
-    var viewControllerScrollDidEnd = PublishRelay<Void>()
 
     // MARK: - Output
     
     var tagPostsListOutput = PublishRelay<GetTagPostResponse>()
     var toastPresentOutput = PublishRelay<Bool>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
-//    var scrollToTopOutput = PublishRelay<Bool>()
     
     override init() {
         super.init()
@@ -72,18 +68,6 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] postList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.tagPostsListOutput.accept(postList)
-            })
-            .disposed(by: disposeBag)
- 
-        viewControllerDidScroll
-            .subscribe(onNext: { [weak self] _ in
-                self?.postViewDelegate?.postsViewScrollDidStart()
-            })
-            .disposed(by: disposeBag)
-        
-        viewControllerScrollDidEnd
-            .subscribe(onNext: { [weak self] _ in
-                self?.postViewDelegate?.postsViewScrollDidEnd()
             })
             .disposed(by: disposeBag)
     }

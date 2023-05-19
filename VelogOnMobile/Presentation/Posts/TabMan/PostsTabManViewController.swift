@@ -111,8 +111,6 @@ final class PostsTabManViewController: TabmanViewController {
     func setDelegate() {
         dataSource = self
         bounces = false
-        keywordsPostsViewModel.postViewDelegate = self
-        subscriberPostViewModel.postViewDelegate = self
     }
     
     func setNavigationBar() {
@@ -141,56 +139,4 @@ extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataS
   func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
       return nil
   }
-}
-
-extension PostsTabManViewController: PostsViewControllerProtocol {
-    func postsViewScrollDidStart() {
-        scrollDidStart()
-    }
-    
-    func postsViewScrollDidEnd() {
-        scrollDidEnd()
-    }
-}
-
-extension PostsTabManViewController {
-    private func scrollDidStart() {
-        titleLabel.isHidden = true
-        notifiButton.isHidden = true
-        tabManBarView.snp.remakeConstraints {
-            $0.width.equalTo(UIScreen.main.bounds.width - 50)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(50)
-            $0.bottom.equalTo(finalView.snp.bottom)
-        }
-        finalView.snp.remakeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(100)
-        }
-        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    private func scrollDidEnd() {
-        titleLabel.isHidden = false
-        notifiButton.isHidden = false
-        tabManBarView.snp.remakeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
-            $0.width.equalTo(UIScreen.main.bounds.width - 50)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(50)
-            $0.bottom.equalTo(finalView.snp.bottom)
-        }
-        
-        finalView.snp.remakeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(106)
-        }
-        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
-            self.view.layoutIfNeeded()
-        })
-    }
 }

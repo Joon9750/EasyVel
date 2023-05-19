@@ -102,7 +102,6 @@
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
 		91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */; };
-		91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */; };
 		91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */; };
 		91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */; };
 		91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */; };
@@ -215,7 +214,6 @@
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
-		91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewControllerProtocol.swift; sourceTree = "<group>"; };
 		91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagUIButton.swift; sourceTree = "<group>"; };
@@ -821,7 +819,6 @@
 			children = (
 				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
 				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
-				91CC1D542A0C0EB7006BF786 /* PostsViewControllerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1072,7 +1069,6 @@
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
-				91CC1D552A0C0EB7006BF786 /* PostsViewControllerProtocol.swift in Sources */,
 				91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */,
 				91E4428B2A10F3C7008CB516 /* BaseViewModel.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,

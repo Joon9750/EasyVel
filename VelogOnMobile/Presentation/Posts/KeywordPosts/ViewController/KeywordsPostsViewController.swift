@@ -7,25 +7,20 @@
 
 import UIKit
 
-import RxRelay
 import RxSwift
+import RxCocoa
 
 final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
     
     private let keywordsPostsView = KeywordsPostsView()
     private var isScrolled: Bool = false
-    private var keywordsPosts: GetTagPostResponse? {
-        didSet {
-            keywordsPostsView.keywordsTableView.reloadData()
-        }
-    }
+    private var keywordsPosts: GetTagPostResponse?
 
     override func render() {
         self.view = keywordsPostsView
-        setNavigationBar()
     }
 
-    func setNavigationBar() {
+    override func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -33,28 +28,53 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
         setButtonAction()
         keywordsPostsView.keywordsTableView.dataSource = self
         keywordsPostsView.keywordsTableView.delegate = self
-//        viewModel?.tagPostsListOutput = { [weak self] postsResult in
-//            self?.keywordsPosts = postsResult
-//        }
-//        viewModel?.toastPresent = { [weak self] result in
-//            if result {
-//                self?.showToast(message: "추가되었습니다.", font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
-//            } else {
-//                self?.showToast(message: TextLiterals.alreadyAddToastText, font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont())
-//            }
-//        }
-//        viewModel?.isPostsEmpty = { [weak self] isEmpty in
-//            if isEmpty {
-//                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = false
-//            } else {
-//                self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
-//            }
-//        }
-//        viewModel?.scrollToTop = { [weak self] resultTrue in
-//            if resultTrue {
-//                self?.scrollToTop()
-//            }
-//        }
+        bindOutput(viewModel)
+        
+        keywordsPostsView.keywordsTableView.rx.contentOffset
+            .filter { contentOffset in
+                return contentOffset.y < -45
+            }
+            .map { _ in () }
+            .bind(to: viewModel.tableViewReload)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindOutput(_ viewModel: KeywordsPostsViewModel) {
+        viewModel.tagPostsListOutput
+            .asDriver(onErrorJustReturn: GetTagPostResponse(tagPostDtoList: [TagPostDtoList]()))
+            .drive(onNext: { [weak self] post in
+                self?.keywordsPosts = post
+                self?.keywordsPostsView.keywordsTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.toastPresentOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] addSuccess in
+                if addSuccess {
+                    self?.showToast(
+                        message: TextLiterals.addToastText,
+                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
+                    )
+                } else {
+                    self?.showToast(
+                        message: TextLiterals.alreadyAddToastText,
+                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
+                    )
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.isPostsEmptyOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] isEmpty in
+                if isEmpty {
+                    self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = false
+                } else {
+                    self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
@@ -78,45 +98,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     private func setButtonAction() {
         keywordsPostsView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
     }
-    
-    private func scrollDidStart(){
-//        viewModel?.viewControllerDidScroll()
-        keywordsPostsView.keywordsPostViewDidScroll()
-        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
-            self.view.layoutIfNeeded()
-        })
-    }
-    
-    private func scrollDidEnd() {
-//        viewModel?.viewControllerScrollDidEnd()
-        keywordsPostsView.keywordsPostViewScrollDidEnd()
-        UIView.animate(withDuration: 0.5, delay: 0, options: .transitionCurlUp, animations: {
-            self.view.layoutIfNeeded()
-        })
-    }
-}
 
-extension KeywordsPostsViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 2 {
-            if isScrolled == false {
-                scrollDidStart()
-                isScrolled = true
-            }
-        } else if scrollView.contentOffset.y < 0 {
-            scrollDidEnd()
-            isScrolled = false
-        }
-        if scrollView.contentOffset.y > 200 {
-            keywordsPostsView.moveToTopButton.isHidden = false
-        } else {
-            keywordsPostsView.moveToTopButton.isHidden = true
-        }
-        if scrollView.contentOffset.y < -80 {
-//            viewModel?.tableViewReload()
-        }
-    }
-    
     @objc
     func scrollToTop() {
         keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
@@ -176,6 +158,9 @@ extension KeywordsPostsViewController: UITableViewDelegate {
                 title: self?.keywordsPosts?.tagPostDtoList?[index].title,
                 url: self?.keywordsPosts?.tagPostDtoList?[index].url
             )
+            
+            // MARK: - fix me, 스크랩 추가 Input 연결 필요
+            
 //            self?.viewModel?.cellDidTap(input: post)
             completionHaldler(true)
         })

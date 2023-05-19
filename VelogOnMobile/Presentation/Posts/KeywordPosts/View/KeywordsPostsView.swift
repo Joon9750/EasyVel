@@ -54,15 +54,7 @@ final class KeywordsPostsView: BaseUIView {
         }
     }
     
-    func keywordsPostViewDidScroll() {
-        keywordsTableView.snp.updateConstraints {
-            $0.top.equalToSuperview().offset(50)
-        }
-    }
-    
-    func keywordsPostViewScrollDidEnd() {
-        keywordsTableView.snp.updateConstraints {
-            $0.top.equalToSuperview().offset(180)
-        }
+    override func configUI() {
+        self.backgroundColor = .white
     }
 }
