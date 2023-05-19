@@ -257,10 +257,9 @@
 		913441E229FFD5BE000E1ED1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				91ED179D2A00F73200158787 /* Common */,
+				91ED179D2A00F73200158787 /* NetworkCommon */,
 				913441E429FFD5FA000E1ED1 /* API */,
 				913441E329FFD5D1000E1ED1 /* Repository */,
-				913441F729FFD760000E1ED1 /* DTO */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -404,20 +403,18 @@
 		91487EC029FC380A009CFECF /* VelogOnMobile */ = {
 			isa = PBXGroup;
 			children = (
-				917BA3842A07C2B7000409B7 /* Protocol */,
-				917BA34F2A0508DF000409B7 /* Realm */,
+				916FDCFA2A17E9E700BB1E16 /* Common */,
 				913441E229FFD5BE000E1ED1 /* Network */,
-				91487EDE29FC3946009CFECF /* Presentation */,
+				91487EDE29FC3946009CFECF /* Feature */,
 				91487EDF29FC3950009CFECF /* Global */,
 			);
 			path = VelogOnMobile;
 			sourceTree = "<group>";
 		};
-		91487EDE29FC3946009CFECF /* Presentation */ = {
+		91487EDE29FC3946009CFECF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
-				91CC1D4A2A0AD7B7006BF786 /* Loading */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 				91487F4E29FD9902009CFECF /* TabBar */,
 				91487F4829FD9663009CFECF /* Search */,
@@ -428,37 +425,25 @@
 				91487F2329FC5F65009CFECF /* Notification */,
 				91487EE629FC39E8009CFECF /* Setting */,
 			);
-			path = Presentation;
+			path = Feature;
 			sourceTree = "<group>";
 		};
 		91487EDF29FC3950009CFECF /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				91CCEA5E2A0E9CBC001362AD /* Haptic */,
-				91487EF929FC3B28009CFECF /* Extension */,
-				91487EFC29FC3BBC009CFECF /* Literal */,
-				91487EF029FC3AA3009CFECF /* Base */,
+				916FDCFB2A17EA0700BB1E16 /* App */,
+				916FDCFC2A17EA2A00BB1E16 /* Config */,
 				91487EE129FC399E009CFECF /* Resource */,
-				91487EE029FC395D009CFECF /* Supports */,
+				916FDCFD2A17EA7500BB1E16 /* Util */,
 			);
 			path = Global;
-			sourceTree = "<group>";
-		};
-		91487EE029FC395D009CFECF /* Supports */ = {
-			isa = PBXGroup;
-			children = (
-				91487ECC29FC380C009CFECF /* LaunchScreen.storyboard */,
-				91487EC329FC380A009CFECF /* SceneDelegate.swift */,
-				91487EC129FC380A009CFECF /* AppDelegate.swift */,
-				91487ECF29FC380C009CFECF /* Info.plist */,
-			);
-			path = Supports;
 			sourceTree = "<group>";
 		};
 		91487EE129FC399E009CFECF /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				91487ECA29FC380C009CFECF /* Assets.xcassets */,
+				91487ECC29FC380C009CFECF /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -752,6 +737,45 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		916FDCFA2A17E9E700BB1E16 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				917BA3842A07C2B7000409B7 /* Protocol */,
+				913441F729FFD760000E1ED1 /* DTO */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		916FDCFB2A17EA0700BB1E16 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				91487EC129FC380A009CFECF /* AppDelegate.swift */,
+				91487EC329FC380A009CFECF /* SceneDelegate.swift */,
+				91487EF029FC3AA3009CFECF /* Base */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		916FDCFC2A17EA2A00BB1E16 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				91487ECF29FC380C009CFECF /* Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		916FDCFD2A17EA7500BB1E16 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				917BA34F2A0508DF000409B7 /* Realm */,
+				91CC1D4A2A0AD7B7006BF786 /* Loading */,
+				91487EFC29FC3BBC009CFECF /* Literal */,
+				91487EF929FC3B28009CFECF /* Extension */,
+				91CCEA5E2A0E9CBC001362AD /* Haptic */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		917BA32F2A03D8C2000409B7 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -916,14 +940,14 @@
 			path = ResponseData;
 			sourceTree = "<group>";
 		};
-		91ED179D2A00F73200158787 /* Common */ = {
+		91ED179D2A00F73200158787 /* NetworkCommon */ = {
 			isa = PBXGroup;
 			children = (
 				913441E529FFD611000E1ED1 /* MoyaPluggin */,
 				91487F1529FC5463009CFECF /* NetworkMonitor */,
 				913441E829FFD63A000E1ED1 /* Foundation */,
 			);
-			path = Common;
+			path = NetworkCommon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1260,7 +1284,7 @@
 				DEVELOPMENT_TEAM = D96A3BCL3R;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = VelogOnMobile/Global/Supports/Info.plist;
+				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1287,7 +1311,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D96A3BCL3R;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = VelogOnMobile/Global/Supports/Info.plist;
+				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
