@@ -1,5 +1,5 @@
 # VelogOniOS
-Refactoring to MVVM
+Refactoring to MVVM + RxSwift
 
 https://github.com/SSUDevelog/VelogInMobile
 
