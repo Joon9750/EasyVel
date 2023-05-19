@@ -311,7 +311,7 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		913441F729FFD760000E1ED1 /* DTO */ = {
+		913441F729FFD760000E1ED1 /* ServerDTO */ = {
 			isa = PBXGroup;
 			children = (
 				917BA3422A0503D5000409B7 /* StoragePost.swift */,
@@ -321,7 +321,7 @@
 				9134420D29FFDADB000E1ED1 /* SubscribeDTO */,
 				9134420C29FFDAA6000E1ED1 /* SignDTO */,
 			);
-			path = DTO;
+			path = ServerDTO;
 			sourceTree = "<group>";
 		};
 		9134420C29FFDAA6000E1ED1 /* SignDTO */ = {
@@ -740,8 +740,9 @@
 		916FDCFA2A17E9E700BB1E16 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				917BA34F2A0508DF000409B7 /* Realm */,
 				917BA3842A07C2B7000409B7 /* Protocol */,
-				913441F729FFD760000E1ED1 /* DTO */,
+				913441F729FFD760000E1ED1 /* ServerDTO */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -767,13 +768,20 @@
 		916FDCFD2A17EA7500BB1E16 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				917BA34F2A0508DF000409B7 /* Realm */,
 				91CC1D4A2A0AD7B7006BF786 /* Loading */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF929FC3B28009CFECF /* Extension */,
 				91CCEA5E2A0E9CBC001362AD /* Haptic */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		916FDCFE2A17EBC700BB1E16 /* RealmDTO */ = {
+			isa = PBXGroup;
+			children = (
+				917BA3512A050903000409B7 /* RealmStoragePost.swift */,
+			);
+			path = RealmDTO;
 			sourceTree = "<group>";
 		};
 		917BA32F2A03D8C2000409B7 /* Storage */ = {
@@ -817,17 +825,9 @@
 			isa = PBXGroup;
 			children = (
 				917BA3532A0509C9000409B7 /* Service */,
-				917BA3502A0508EA000409B7 /* DTO */,
+				916FDCFE2A17EBC700BB1E16 /* RealmDTO */,
 			);
 			path = Realm;
-			sourceTree = "<group>";
-		};
-		917BA3502A0508EA000409B7 /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-				917BA3512A050903000409B7 /* RealmStoragePost.swift */,
-			);
-			path = DTO;
 			sourceTree = "<group>";
 		};
 		917BA3532A0509C9000409B7 /* Service */ = {
