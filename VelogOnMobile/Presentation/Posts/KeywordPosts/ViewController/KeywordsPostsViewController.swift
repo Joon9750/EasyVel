@@ -31,7 +31,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
         
         keywordsPostsView.keywordsTableView.rx.contentOffset
             .filter { contentOffset in
-                return contentOffset.y < -45
+                return contentOffset.y < -30
             }
             .map { _ in () }
             .bind(to: viewModel.tableViewReload)
