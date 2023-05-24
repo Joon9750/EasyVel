@@ -44,10 +44,10 @@ final class TabBarController: UITabBarController {
         let ViewControllers:[UIViewController] = [PostsVC,ListVC,storageVC,settingVC]
         self.setViewControllers(ViewControllers, animated: true)
 
-        PostsVC.tabBarItem.image = UIImage(systemName: "books.vertical")
-        ListVC.tabBarItem.image = UIImage(systemName: "list.bullet.rectangle.portrait")
-        storageVC.tabBarItem.image = UIImage(systemName: "archivebox")
-        settingVC.tabBarItem.image = UIImage(systemName: "gearshape")
+        PostsVC.tabBarItem.image = ImageLiterals.homeTabIcon
+        ListVC.tabBarItem.image = ImageLiterals.listTabIcon
+        storageVC.tabBarItem.image = ImageLiterals.unSaveBookMarkIcon
+        settingVC.tabBarItem.image = ImageLiterals.settingTabIcon
         
         self.hidesBottomBarWhenPushed = false
         viewWillLayoutSubviews()

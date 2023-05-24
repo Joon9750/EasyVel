@@ -9,14 +9,20 @@ import UIKit
 
 enum ImageLiterals {
     
-    static var settingTabIcon: UIImage { .load(name: "settingIcon") }
-    static var saveBookMarkIcon: UIImage { .load(name: "bookmarkSave") }
-    static var unSaveBookMarkIcon: UIImage { .load(name: "bookmarkUnsave") }
+    // MARK: - tabBar
+    
     static var homeTabIcon: UIImage { .load(name: "homeIcon") }
     static var listTabIcon: UIImage { .load(name: "listIcon") }
+    static var unSaveBookMarkIcon: UIImage { .load(name: "bookmarkUnsave") }
+    static var settingTabIcon: UIImage { .load(name: "settingIcon") }
+    
+    // MARK: - icon
+    
+    static var saveBookMarkIcon: UIImage { .load(name: "bookmarkSave") }
     static var searchIcon: UIImage { .load(name: "search") }
     static var plusFolder: UIImage { .load(name: "plusFolder") }
     
+    // MARK: - Exception
     
     static var emptyAlarm: UIImage { .load(name: "emptyAlarm") }
     static var emptyPostsList: UIImage { .load(name: "emptyPostsList") }
