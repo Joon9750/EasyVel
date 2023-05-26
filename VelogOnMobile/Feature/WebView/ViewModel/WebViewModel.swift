@@ -12,7 +12,7 @@ import RxSwift
 
 final class WebViewModel: BaseViewModel {
     
-    var urlString: String = ""
+    private var urlString: String = ""
     
     // MARK: - Output
     
@@ -20,6 +20,7 @@ final class WebViewModel: BaseViewModel {
     
     init(url: String) {
         super.init()
+        
         self.urlString = url
         makeOutput()
     }
