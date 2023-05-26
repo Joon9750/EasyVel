@@ -39,6 +39,6 @@ Velog에 유익한 글이 많지만, 현재 웹서비스로만 운영되는 Velo
 ## iOS Developers
 
 
-| 홍준혁 | 주현아 |
-| :---------:|:----------:|
-| [lms7802](https://github.com/hongjunehuke) | [JuHyeonAh](https://github.com/JuHyeonAh) |
+| 홍준혁 | 주현아 | 장석우 |
+| :---------:|:----------:|:----------:|
+| [lms7802](https://github.com/hongjunehuke) | [JuHyeonAh](https://github.com/JuHyeonAh) | [meltsplit](https://github.com/meltsplit)
