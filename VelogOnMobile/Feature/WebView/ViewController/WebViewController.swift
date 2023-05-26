@@ -6,13 +6,17 @@
 //
 
 import UIKit
-
 import WebKit
+
+import RxCocoa
+import RxSwift
 import NVActivityIndicatorView
 
-final class WebViewController: UIViewController {
+final class WebViewController: RxBaseViewController<WebViewModel> {
     
     private var url: String = String()
+    
+    // MARK: - property
     
     lazy var loadingBgView: UIView = {
         let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -26,8 +30,6 @@ final class WebViewController: UIViewController {
                                                         type: .ballBeat,
                                                         color: .gray,
                                                         padding: .zero)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-
         return activityIndicator
     }()
     
@@ -47,11 +49,10 @@ final class WebViewController: UIViewController {
         let configuration = WKWebViewConfiguration()
         configuration.defaultWebpagePreferences = prefs
         let webView = WKWebView(frame: .zero, configuration: configuration)
-        
         return webView
     }()
     
-    init(url:String) {
+    init(url: String) {
         self.url = url
         super.init(nibName: nil, bundle: nil)
     }
