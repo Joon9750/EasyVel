@@ -12,39 +12,26 @@ import RxSwift
 
 final class WebViewModel: BaseViewModel {
     
+    var urlString: String = ""
+    
     // MARK: - Output
     
     var urlRequest = PublishRelay<URLRequest>()
     
-    // MARK: - Input
-    
-    var urlString = PublishRelay<String>()
-    
-    override init() {
+    init(url: String) {
         super.init()
+        self.urlString = url
         makeOutput()
     }
     
     private func makeOutput() {
-        urlString
-            .filter { [weak self] response in
-                return response.isValidURL
-            }
-            .subscribe(onNext: { [weak self] response in
-                self?.urlRequest.accept(URLRequest(url: response))
+        viewDidLoad
+            .subscribe(onNext: { [weak self] in
+                let urlString = "https://velog.io" + (self?.urlString ?? "")
+                guard let encodedStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+                let PostURL = URL(string: encodedStr)!
+                self?.urlRequest.accept(URLRequest(url: PostURL))
             })
-    }
-}
-
-fileprivate extension String {
-    var isValidURL: Bool {
-        guard let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) else {
-            return false
-        }
-        if let match = detector.firstMatch(in: self, options: [], range: NSRange(location: 0, length: self.utf16.count)) {
-            return match.range.length == self.utf16.count
-        } else {
-            return false
-        }
+            .disposed(by: disposeBag)
     }
 }

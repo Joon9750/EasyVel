@@ -10,38 +10,8 @@ import WebKit
 
 import RxCocoa
 import RxSwift
-import NVActivityIndicatorView
 
 final class WebViewController: RxBaseViewController<WebViewModel> {
-    
-    private var url: String = String()
-    
-    // MARK: - property
-    
-    lazy var loadingBgView: UIView = {
-        let bgView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        bgView.backgroundColor = .systemBackground
-
-        return bgView
-    }()
-    
-    var activityIndicator: NVActivityIndicatorView = {
-        let activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40),
-                                                        type: .ballBeat,
-                                                        color: .gray,
-                                                        padding: .zero)
-        return activityIndicator
-    }()
-    
-    private func setActivityIndicator() {
-        view.addSubview(loadingBgView)
-        loadingBgView.addSubview(activityIndicator)
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        activityIndicator.startAnimating()
-    }
     
     let webView : WKWebView = {
         let prefs = WKWebpagePreferences()
@@ -52,55 +22,26 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         return webView
     }()
     
-    init(url: String) {
-        self.url = url
-        super.init(nibName: nil, bundle: nil)
+    override func render() {
+        self.view = webView
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func bind(viewModel: WebViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
     }
 
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(webView)
-        setActivityIndicator()
-
+    private func bindOutput(_ viewModel: WebViewModel) {
+        viewModel.urlRequest
+            .asDriver(onErrorJustReturn: URLRequest(url: URL(fileURLWithPath: "")))
+            .drive(onNext: { [weak self] url in
+                self?.webView.load(url)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    override func setupNavigationBar() {
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
-        
-        self.Queue()
-        loadPostWebView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        webView.frame = view.bounds
-    }
-    
-    private func loadPostWebView() {
-        if url != TextLiterals.noneText {
-            DispatchQueue.global(qos: .userInitiated).async {
-                let urlString = "https://velog.io\(self.url)"
-                guard let encodedStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
-                let PostURL = URL(string: encodedStr)!
-                DispatchQueue.main.async {
-                    self.webView.load(URLRequest(url: PostURL))
-                }
-            }
-        } else {
-            print("해당하는 URL이 존재하지 않습니다.")
-        }
-    }
-    
-    private func Queue(){
-        DispatchQueue.main.async {
-            self.setActivityIndicator()
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.activityIndicator.stopAnimating()
-                self.loadingBgView.removeFromSuperview()
-        }
     }
 }
