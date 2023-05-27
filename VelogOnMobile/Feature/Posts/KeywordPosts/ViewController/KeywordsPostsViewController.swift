@@ -138,10 +138,9 @@ extension KeywordsPostsViewController: UITableViewDataSource {
 extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
-        let url = selectedCell.url
-        let webViewController = WebViewController(url: url)
+        let webViewModel = WebViewModel(url: selectedCell.url)
+        let webViewController = WebViewController(viewModel: webViewModel)
         navigationController?.pushViewController(webViewController, animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

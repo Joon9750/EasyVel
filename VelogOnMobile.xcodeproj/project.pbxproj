@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -124,6 +125,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -254,6 +256,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9128AFE22A21178600FB1252 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9128AFE42A2117A200FB1252 /* WebViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9128AFE32A21179000FB1252 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +432,7 @@
 		91487EDE29FC3946009CFECF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				914D8DD72A02B17000516B4C /* WebView */,
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 				91487F4E29FD9902009CFECF /* TabBar */,
@@ -477,7 +496,6 @@
 		91487EE529FC39D8009CFECF /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				914D8DD72A02B17000516B4C /* WebView */,
 				91487F6229FDA348009CFECF /* TabMan */,
 				91487F5729FDA256009CFECF /* KeywordPosts */,
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
@@ -732,7 +750,8 @@
 		914D8DD72A02B17000516B4C /* WebView */ = {
 			isa = PBXGroup;
 			children = (
-				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
+				9128AFE32A21179000FB1252 /* ViewController */,
+				9128AFE22A21178600FB1252 /* ViewModel */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -1079,6 +1098,7 @@
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
+				9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */,
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
