@@ -17,6 +17,7 @@
 		9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */; };
 		9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */; };
 		9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0422A23B50500FB1252 /* ReusableView.swift */; };
+		9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -144,6 +145,7 @@
 		9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetDataSource.swift; sourceTree = "<group>"; };
 		9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		9128B0422A23B50500FB1252 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpDelegate.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -945,6 +947,7 @@
 			children = (
 				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
 				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
+				9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1155,6 +1158,7 @@
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
+				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,

@@ -92,6 +92,7 @@ final class TabBarController: UITabBarController {
 
     private func setDelegate() {
         delegate = self
+        scrapPopUpView.delegate = self
     }
     
     private func setNavigation() {
@@ -103,5 +104,19 @@ extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let impactService = HapticService.impact(.light)
         impactService.run()
+    }
+}
+
+extension TabBarController: ScrapPopUpDelegate {
+    func scrapBookButtonTapped() {
+        selectedIndex = 2
+    }
+    
+    func folderButtonTapped() {
+        let viewModel = ScrapFolderBottomSheetViewModel()
+        let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
+        folderViewController.modalTransitionStyle = .coverVertical
+        folderViewController.modalPresentationStyle = .overFullScreen
+        self.present(folderViewController, animated: true)
     }
 }

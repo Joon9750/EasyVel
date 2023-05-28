@@ -11,6 +11,10 @@ import SnapKit
 
 final class ScrapPopUpView: BaseUIView {
     
+    // MARK: - Properties
+    
+    var delegate: ScrapPopUpDelegate?
+    
     // MARK: - UI Components
     
     private let ScrapLabel: UILabel = {
@@ -28,6 +32,11 @@ final class ScrapPopUpView: BaseUIView {
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
         button.backgroundColor = .white
         button.makeRoundBorder(cornerRadius: 5, borderWidth: 1, borderColor: .brandColor)
+        button.addTarget(
+            self,
+            action: #selector(scrapBookButtonTapped),
+            for: .touchUpInside
+        )
         return button
     }()
     
@@ -38,6 +47,11 @@ final class ScrapPopUpView: BaseUIView {
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
         button.backgroundColor = .brandColor
         button.makeRoundBorder(cornerRadius: 5, borderWidth: 1, borderColor: .brandColor)
+        button.addTarget(
+            self,
+            action: #selector(folderButtonTapped),
+            for: .touchUpInside
+        )
         return button
     }()
 
@@ -68,5 +82,17 @@ final class ScrapPopUpView: BaseUIView {
             $0.width.equalTo(72)
             $0.trailing.equalTo(addToFolderButton.snp.leading).offset(-10)
         }
+    }
+}
+
+private extension ScrapPopUpView {
+    @objc
+    func scrapBookButtonTapped() {
+        delegate?.scrapBookButtonTapped()
+    }
+    
+    @objc
+    func folderButtonTapped() {
+        delegate?.folderButtonTapped()
     }
 }
