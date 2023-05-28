@@ -18,6 +18,9 @@
 		9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */; };
 		9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0422A23B50500FB1252 /* ReusableView.swift */; };
 		9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */; };
+		9128B04A2A23C59700FB1252 /* ScrapStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0492A23C59700FB1252 /* ScrapStorageView.swift */; };
+		9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */; };
+		9128B04E2A23C96500FB1252 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -146,6 +149,9 @@
 		9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		9128B0422A23B50500FB1252 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpDelegate.swift; sourceTree = "<group>"; };
+		9128B0492A23C59700FB1252 /* ScrapStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageView.swift; sourceTree = "<group>"; };
+		9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -352,6 +358,15 @@
 			path = ReusableView;
 			sourceTree = "<group>";
 		};
+		9128B0482A23C58400FB1252 /* ScrapStorage */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0492A23C59700FB1252 /* ScrapStorageView.swift */,
+				9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */,
+			);
+			path = ScrapStorage;
+			sourceTree = "<group>";
+		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +527,7 @@
 		91487EDE29FC3946009CFECF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				9128B0482A23C58400FB1252 /* ScrapStorage */,
 				914D8DD72A02B17000516B4C /* WebView */,
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
@@ -616,6 +632,7 @@
 				91487F1129FC47CE009CFECF /* UIView+Extension.swift */,
 				9128B0272A236E7600FB1252 /* UIButton+Extension.swift */,
 				9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */,
+				9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1155,6 +1172,7 @@
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
+				9128B04A2A23C59700FB1252 /* ScrapStorageView.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
@@ -1220,6 +1238,7 @@
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
+				9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */,
 				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
 				9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */,
@@ -1246,6 +1265,7 @@
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */,
 				914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */,
+				9128B04E2A23C96500FB1252 /* UICollectionView+Extension.swift in Sources */,
 				9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */,
