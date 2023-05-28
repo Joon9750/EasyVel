@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
+		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
+		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -126,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
+		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -270,6 +274,14 @@
 				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9128B0242A236D1600FB1252 /* Scrap */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */,
+			);
+			path = Scrap;
 			sourceTree = "<group>";
 		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
@@ -436,6 +448,7 @@
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 				91487F4E29FD9902009CFECF /* TabBar */,
+				9128B0242A236D1600FB1252 /* Scrap */,
 				91487F4829FD9663009CFECF /* Search */,
 				91487EE229FC39AF009CFECF /* SignIn */,
 				91487EE329FC39BB009CFECF /* SignUp */,
@@ -532,6 +545,7 @@
 				91487EFA29FC3B6A009CFECF /* UIColor+Extension.swift */,
 				91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */,
 				91487F1129FC47CE009CFECF /* UIView+Extension.swift */,
+				9128B0272A236E7600FB1252 /* UIButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1154,9 +1168,11 @@
 				917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */,
 				914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
+				9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
+				9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */,
 				914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */,
 				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
 				91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */,

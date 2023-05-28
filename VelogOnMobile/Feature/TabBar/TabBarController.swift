@@ -12,22 +12,59 @@ import SnapKit
 final class TabBarController: UITabBarController {
     
 //    let realm = RealmService()
-    
-    fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
+
+    // MARK: - viewModel properties
     
     let listViewModel = ListViewModel()
+    let storageViewModel = StorageViewModel()
+    
+    // MARK: - viewController properties
+    
     let PostsVC = PostsTabManViewController()
     lazy var ListVC = ListViewController(viewModel: listViewModel)
-    let storageVC = StorageViewController(viewModel: StorageViewModel())
+    lazy var storageVC = StorageViewController(viewModel: storageViewModel)
     let settingVC = SettingViewController()
+    
+    
+    // MARK: - view properties
+    
+    let scrapPopUpView = ScrapPopUpView()
+    
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
+
         setUpTabBar()
         setDelegate()
         setNavigation()
+        setLayout()
+        scrapButtonTapped()
 //        realm.resetDB()
+    }
+
+    private func setLayout() {
+        view.addSubview(scrapPopUpView)
+        
+        scrapPopUpView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(82)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(83)
+        }
+    }
+    
+    private func scrapButtonTapped() {
+        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83) }
+                UIView.animate(withDuration: 0.3) {
+                    self.view.layoutIfNeeded()
+                }
+            })
+        }
     }
     
     private func setUpTabBar(){
