@@ -16,13 +16,13 @@ final class TabBarController: UITabBarController {
     // MARK: - viewModel properties
     
     let listViewModel = ListViewModel()
-    let storageViewModel = StorageViewModel()
+    let scrapStorageViewModel = ScrapStorageViewModel()
     
     // MARK: - viewController properties
     
     let PostsVC = PostsTabManViewController()
     lazy var ListVC = ListViewController(viewModel: listViewModel)
-    lazy var storageVC = StorageViewController(viewModel: storageViewModel)
+    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
     let settingVC = SettingViewController()
     
     

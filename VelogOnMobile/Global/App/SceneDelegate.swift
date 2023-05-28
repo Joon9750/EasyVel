@@ -18,8 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         startMonitoringNetwork(on: scene)
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewModel = ScrapStorageViewModel()
-        let rootViewController = UINavigationController(rootViewController: ScrapStorageViewController(viewModel: viewModel))
+        let rootViewController = UINavigationController(rootViewController: TabBarController())
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
