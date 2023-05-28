@@ -10,13 +10,6 @@ import Foundation
 import Realm
 import RealmSwift
 
-struct StorageDTO {
-    var articleID: Int
-//    var imgs: [String]?
-    var folderName: String?
-    var count: Int?
-}
-
 final class ScrapStorageDTO: Object {
     
     @Persisted(primaryKey: true) var _id: ObjectId

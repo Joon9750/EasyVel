@@ -25,6 +25,7 @@
 		9128B0542A23CADD00FB1252 /* ScrapStorageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */; };
 		9128B0562A23CC7400FB1252 /* ScrapStorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */; };
 		9128B05A2A23CC9000FB1252 /* ScrapStorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */; };
+		9128B05C2A23DCEF00FB1252 /* StorageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -160,6 +161,7 @@
 		9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageDTO.swift; sourceTree = "<group>"; };
 		9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageViewController.swift; sourceTree = "<group>"; };
 		9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageViewModel.swift; sourceTree = "<group>"; };
+		9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDTO.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -945,6 +947,7 @@
 			children = (
 				917BA3512A050903000409B7 /* RealmStoragePost.swift */,
 				9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */,
+				9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */,
 			);
 			path = RealmDTO;
 			sourceTree = "<group>";
@@ -1303,6 +1306,7 @@
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
+				9128B05C2A23DCEF00FB1252 /* StorageDTO.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
 				9128B02E2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift in Sources */,
 				91E442872A10F385008CB516 /* RxBaseViewController.swift in Sources */,
