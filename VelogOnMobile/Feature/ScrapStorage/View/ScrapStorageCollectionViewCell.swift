@@ -103,36 +103,39 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
             folderNameLabel,
             postCount
         )
+        
         horizontalStackView1.addSubviews(
             imageView1,
             imageView2
         )
+        
         horizontalStackView2.addSubviews(
             imageView3,
             imageView4
         )
+        
         allStackView.addSubviews(
             horizontalStackView1,
             horizontalStackView2
         )
         
         imageView1.snp.makeConstraints {
-            $0.size.equalTo(SizeLiterals.screenWidth * 89 / 390)
+            $0.size.equalTo(SizeLiterals.screenWidth * 92 / 390)
             $0.leading.equalToSuperview()
         }
 
         imageView2.snp.makeConstraints {
-            $0.size.equalTo(SizeLiterals.screenWidth * 89 / 390)
+            $0.size.equalTo(SizeLiterals.screenWidth * 92 / 390)
             $0.trailing.equalToSuperview()
         }
 
         imageView3.snp.makeConstraints {
-            $0.size.equalTo(SizeLiterals.screenWidth * 89 / 390)
+            $0.size.equalTo(SizeLiterals.screenWidth * 92 / 390)
             $0.leading.equalToSuperview()
         }
 
         imageView4.snp.makeConstraints {
-            $0.size.equalTo(SizeLiterals.screenWidth * 89 / 390)
+            $0.size.equalTo(SizeLiterals.screenWidth * 92 / 390)
             $0.trailing.equalToSuperview()
         }
 
