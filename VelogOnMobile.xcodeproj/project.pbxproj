@@ -21,6 +21,8 @@
 		9128B04A2A23C59700FB1252 /* ScrapStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0492A23C59700FB1252 /* ScrapStorageView.swift */; };
 		9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */; };
 		9128B04E2A23C96500FB1252 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */; };
+		9128B0522A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */; };
+		9128B0542A23CADD00FB1252 /* ScrapFolderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0532A23CADD00FB1252 /* ScrapFolderDTO.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -152,6 +154,8 @@
 		9128B0492A23C59700FB1252 /* ScrapStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageView.swift; sourceTree = "<group>"; };
 		9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		9128B0532A23CADD00FB1252 /* ScrapFolderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderDTO.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -361,10 +365,27 @@
 		9128B0482A23C58400FB1252 /* ScrapStorage */ = {
 			isa = PBXGroup;
 			children = (
+				9128B0502A23CA4800FB1252 /* DataSource */,
+				9128B04F2A23CA4000FB1252 /* View */,
+			);
+			path = ScrapStorage;
+			sourceTree = "<group>";
+		};
+		9128B04F2A23CA4000FB1252 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				9128B0492A23C59700FB1252 /* ScrapStorageView.swift */,
 				9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */,
 			);
-			path = ScrapStorage;
+			path = View;
+			sourceTree = "<group>";
+		};
+		9128B0502A23CA4800FB1252 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
@@ -901,6 +922,7 @@
 			isa = PBXGroup;
 			children = (
 				917BA3512A050903000409B7 /* RealmStoragePost.swift */,
+				9128B0532A23CADD00FB1252 /* ScrapFolderDTO.swift */,
 			);
 			path = RealmDTO;
 			sourceTree = "<group>";
@@ -1211,6 +1233,7 @@
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
 				91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */,
 				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,
+				9128B0542A23CADD00FB1252 /* ScrapFolderDTO.swift in Sources */,
 				9128B0362A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift in Sources */,
 				9128B02A2A23757200FB1252 /* ScrapFolderBottomSheetView.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
@@ -1265,6 +1288,7 @@
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */,
 				914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */,
+				9128B0522A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift in Sources */,
 				9128B04E2A23C96500FB1252 /* UICollectionView+Extension.swift in Sources */,
 				9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,

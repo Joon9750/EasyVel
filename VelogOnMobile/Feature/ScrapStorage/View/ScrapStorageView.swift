@@ -60,10 +60,7 @@ final class ScrapStorageView: BaseUIView {
         layout.minimumInteritemSpacing = 8
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(
-            ScrapStorageCollectionViewCell.self,
-            forCellWithReuseIdentifier: ScrapStorageCollectionViewCell.identifier
-        )
+        collectionView.register(cell: ScrapStorageCollectionViewCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
