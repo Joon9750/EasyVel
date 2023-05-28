@@ -11,7 +11,8 @@ import Realm
 import RealmSwift
 
 struct FolderDTO {
-    var imgs: [String]?
+    var articleID: Int
+//    var imgs: [String]?
     var folderName: String?
     var count: Int?
 }
@@ -20,7 +21,8 @@ final class ScrapFolderDTO: Object {
     
     @Persisted(primaryKey: true) var _id: ObjectId
     
-    @Persisted var imgs: [String]?
+    @Persisted var articleID: Int = 0
+//    @Persisted var imgs: [String]?
     @Persisted var folderName: String?
     @Persisted var count: Int?
     
@@ -31,9 +33,9 @@ final class ScrapFolderDTO: Object {
     convenience init(input: FolderDTO){
         self.init()
         
-        self.imgs = input.imgs
+//        self.imgs = input.imgs
+        self.articleID = input.articleID
         self.folderName = input.folderName
         self.count = input.count
     }
 }
-

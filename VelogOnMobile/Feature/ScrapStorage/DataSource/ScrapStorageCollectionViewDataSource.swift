@@ -17,46 +17,46 @@ final class ScrapStorageCollectionViewDataSource {
     private let collectionView: UICollectionView
 
     private lazy var dataSource: DiffableDataSource = createDataSource()
-    private var folderNameList: [String]
+    private var folderData: [FolderDTO]
 
     enum Section {
         case main
     }
     
     init(
-        tableView: UITableView
+        collectionView: UICollectionView
     ) {
-        self.tableView = tableView
-        self.folderNameList = .init()
+        self.collectionView = collectionView
+        self.folderData = .init()
     }
 
     private func createDataSource() -> DiffableDataSource {
-        return UITableViewDiffableDataSource<Section, Int>(
-            tableView: tableView
+        return UICollectionViewDiffableDataSource<Section, Int>(
+            collectionView: collectionView
         ) { [weak self] _, indexPath, _ in
             guard let self = self else {
-                return UITableViewCell()
+                return UICollectionViewCell()
             }
-            let folderTitle = self.folderNameList[indexPath.row]
-            let cell:tableViewCell = self.tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(folderList: folderTitle)
+            let folderData = self.folderData[indexPath.row]
+            let cell:collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.configure(folderData: folderData)
             return cell
         }
     }
 
     func update(
-        list: [String]?,
+        folderData: [FolderDTO]?,
         completion: CompletedUpdate? = nil
     ) {
-        guard let list = list else {
+        guard let folderData = folderData else {
             completion?()
             return
         }
-        self.folderNameList = list
+        self.folderData = folderData
         
-        let itemIdentifiers = list.map { $0.hashValue }
-        list.forEach { folderName in
-            self.folderNameList.append(folderName)
+        let itemIdentifiers = folderData.map { $0.articleID }
+        folderData.forEach { folder in
+            self.folderData.append(folder)
         }
         
         var snapshot = dataSource.snapshot()

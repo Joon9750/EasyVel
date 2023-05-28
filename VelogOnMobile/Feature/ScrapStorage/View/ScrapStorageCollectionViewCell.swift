@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class ScrapStorageCollectionViewCell: UICollectionViewCell {
+final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
     
     // MARK: - Properties
     
@@ -19,6 +19,7 @@ final class ScrapStorageCollectionViewCell: UICollectionViewCell {
     
     private let imageView1: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "xmark.rectangle.fill")
         imageView.layer.cornerRadius = 6
         imageView.layer.maskedCorners = [.layerMinXMinYCorner]
         imageView.layer.masksToBounds = true
@@ -27,6 +28,7 @@ final class ScrapStorageCollectionViewCell: UICollectionViewCell {
     
     private let imageView2: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "xmark.rectangle.fill")
         imageView.layer.cornerRadius = 6
         imageView.layer.maskedCorners = [.layerMaxXMinYCorner]
         imageView.layer.masksToBounds = true
@@ -35,6 +37,7 @@ final class ScrapStorageCollectionViewCell: UICollectionViewCell {
     
     private let imageView3: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "xmark.rectangle.fill")
         imageView.layer.cornerRadius = 6
         imageView.layer.maskedCorners = [.layerMinXMaxYCorner]
         imageView.layer.masksToBounds = true
@@ -43,6 +46,7 @@ final class ScrapStorageCollectionViewCell: UICollectionViewCell {
     
     private let imageView4: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "xmark.rectangle.fill")
         imageView.layer.cornerRadius = 6
         imageView.layer.maskedCorners = [.layerMaxXMaxYCorner]
         imageView.layer.masksToBounds = true
@@ -76,28 +80,18 @@ final class ScrapStorageCollectionViewCell: UICollectionViewCell {
     private let folderNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont(name: "Avenir-Black", size: 14)
+        label.font = UIFont(name: "Avenir-Black", size: 15)
         return label
     }()
     
-    // MARK: - Life Cycles
+    private let postCount: UILabel = {
+        let label = UILabel()
+        label.textColor = .darkGrayColor
+        label.font = UIFont(name: "Avenir-Black", size: 13)
+        return label
+    }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-// MARK: - Extensions
-
-extension ScrapCollectionViewCell {
-    
-    private func setLayout() {
+    override func render() {
         contentView.addSubviews(
             imageView1,
             imageView2,
@@ -106,7 +100,8 @@ extension ScrapCollectionViewCell {
             horizontalStackView1,
             horizontalStackView2,
             allStackView,
-            folderNameLabel
+            folderNameLabel,
+            postCount
         )
         horizontalStackView1.addSubviews(
             imageView1,
@@ -159,8 +154,25 @@ extension ScrapCollectionViewCell {
         }
         
         folderNameLabel.snp.makeConstraints {
-            $0.top.equalTo(allStackView.snp.bottom).offset(8)
-            $0.leading.equalToSuperview()
+            $0.top.equalTo(allStackView.snp.bottom).offset(3)
+            $0.leading.equalToSuperview().offset(20)
         }
+        
+        postCount.snp.makeConstraints {
+            $0.top.equalTo(folderNameLabel.snp.bottom)
+            $0.leading.equalTo(folderNameLabel.snp.leading)
+        }
+    }
+    
+    public func configure(folderData: FolderDTO) {
+        updateTable(with: folderData)
+    }
+    
+    private func updateTable(with folderData: FolderDTO) {
+        folderNameLabel.text = "iOS"
+        postCount.text = "3개"
+//        if let count = folderData.count {
+//            postCount.text = String(count) + "개"
+//        }
     }
 }

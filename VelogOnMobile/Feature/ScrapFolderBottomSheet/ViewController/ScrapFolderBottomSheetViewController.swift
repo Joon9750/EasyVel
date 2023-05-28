@@ -15,11 +15,7 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
     
     let scrapFolderBottomSheetView = ScrapFolderBottomSheetView()
     private lazy var dataSource = ScrapFolderBottomSheetDataSource(tableView: scrapFolderBottomSheetView.folderTableView)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

@@ -20,6 +20,12 @@ extension UIColor {
     static var darkGrayColor: UIColor {
         return UIColor(hex: "#585858")
     }
+    static var lineColor: UIColor {
+        return UIColor(hex: "#E2E2E2")
+    }
+    static var textGrayColor: UIColor {
+        return UIColor(hex: "#6F6F6F")
+    }
 }
 
 extension UIColor {

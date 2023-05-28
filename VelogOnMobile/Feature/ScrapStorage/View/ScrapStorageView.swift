@@ -15,99 +15,104 @@ final class ScrapStorageView: BaseUIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "스크랩북"
+        label.text = "스크랩"
         label.textColor = .black
-        label.font = UIFont(name: "Avenir-Black", size: 18)
+        label.font = UIFont(name: "Avenir-Black", size: 24)
         return label
     }()
     
-    private lazy var userImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 7
-        imageView.layer.masksToBounds = true
-        return imageView
+    private let vertiLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lineColor
+        return view
     }()
     
-    private let userNicknameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Nickname"
-        label.textColor = .darkGray
-        label.font = UIFont(name: "Avenir-Black", size: 12)
-        return label
+    let addFolderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("폴더 추가", for: .normal)
+        button.setTitleColor(UIColor.textGrayColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.backgroundColor = .white
+        return button
     }()
     
-    private let userStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 5
-        stackView.alignment = .center
-        return stackView
+    private let horiLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lineColor
+        return view
     }()
     
     let editButton: UIButton = {
         let button = UIButton()
         button.setTitle("편집", for: .normal)
-        button.setTitleColor(UIColor.darkGrayColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 14)
+        button.setTitleColor(UIColor.textGrayColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
         button.backgroundColor = .white
         return button
     }()
     
-    private let scarpCollectionView: UICollectionView = {
+    let scarpCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (SizeLiterals.screenWidth - 30) / 2, height: (SizeLiterals.screenWidth - 30) / 2 + 35)
-        layout.minimumLineSpacing = 20
-        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: (SizeLiterals.screenWidth - 40) / 2, height: (SizeLiterals.screenWidth - 30) / 2 + 35)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: ScrapStorageCollectionViewCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = true
         return collectionView
     }()
+    
+    override func configUI() {
+        self.backgroundColor = .white
+    }
 
-    override func setLayout() {
+    override func render() {
         self.addSubviews(
             titleLabel,
-            userImageView,
-            userNicknameLabel,
-            userStackView,
+            vertiLineView,
+            addFolderButton,
+            horiLineView,
             editButton,
             scarpCollectionView
         )
-        
-        userStackView.addArrangedSubviews(
-            userImageView,
-            userNicknameLabel
-        )
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.centerX.equalToSuperview()
-        }
-        
-        userImageView.snp.makeConstraints {
-            $0.size.equalTo(14)
-        }
-        
-        userNicknameLabel.snp.makeConstraints {
-            $0.height.equalTo(14)
-        }
 
-        userStackView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(13)
-            $0.centerX.equalToSuperview()
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(94)
+            $0.leading.equalToSuperview().offset(20)
+        }
+        
+        vertiLineView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        
+        addFolderButton.snp.makeConstraints {
+            $0.top.equalTo(vertiLineView.snp.bottom).offset(16)
+            $0.trailing.equalToSuperview().inset(74)
+            $0.height.equalTo(20)
+            $0.width.equalTo(60)
+        }
+        
+        horiLineView.snp.makeConstraints {
+            $0.height.equalTo(15)
+            $0.width.equalTo(1)
+            $0.leading.equalTo(addFolderButton.snp.trailing).offset(14)
+            $0.centerY.equalTo(addFolderButton)
         }
         
         editButton.snp.makeConstraints {
-            $0.top.equalTo(userStackView.snp.bottom)
-            $0.trailing.equalToSuperview().inset(14)
+            $0.top.equalTo(vertiLineView.snp.bottom).offset(16)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
             $0.width.equalTo(26)
-            $0.height.equalTo(15)
         }
         
         scarpCollectionView.snp.makeConstraints {
-            $0.top.equalTo(editButton.snp.bottom).offset(12)
+            $0.top.equalTo(addFolderButton.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
