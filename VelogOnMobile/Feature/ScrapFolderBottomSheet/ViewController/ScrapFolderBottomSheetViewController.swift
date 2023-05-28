@@ -17,8 +17,6 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        setupTableView()
     }
     
     override func render() {
@@ -38,12 +36,5 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             })
             .disposed(by: disposeBag)
     }
-    
-//    private func setupBindTableView() {
-//        scrapFolderBottomSheetView.folderTableView.register(
-//            ScrapFolderHeaderView.self,
-//            forHeaderFooterViewReuseIdentifier: ScrapFolderHeaderView.identifier
-//        )
-//    }
 }
 

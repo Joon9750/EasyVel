@@ -16,6 +16,8 @@
 		9128B0342A2378C700FB1252 /* ScrapFolderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0332A2378C700FB1252 /* ScrapFolderHeaderView.swift */; };
 		9128B0362A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */; };
 		9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */; };
+		9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */; };
+		9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0422A23B50500FB1252 /* ReusableView.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -142,6 +144,8 @@
 		9128B0332A2378C700FB1252 /* ScrapFolderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderHeaderView.swift; sourceTree = "<group>"; };
 		9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetTableViewCell.swift; sourceTree = "<group>"; };
 		9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetDataSource.swift; sourceTree = "<group>"; };
+		9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		9128B0422A23B50500FB1252 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -604,6 +608,7 @@
 				91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */,
 				91487F1129FC47CE009CFECF /* UIView+Extension.swift */,
 				9128B0272A236E7600FB1252 /* UIButton+Extension.swift */,
+				9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -859,6 +864,7 @@
 		916FDCFD2A17EA7500BB1E16 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				9128B0422A23B50500FB1252 /* ReusableView.swift */,
 				91CC1D4A2A0AD7B7006BF786 /* Loading */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF929FC3B28009CFECF /* Extension */,
@@ -1208,8 +1214,10 @@
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
+				9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */,
 				91ED179A2A00F00800158787 /* BaseRepository.swift in Sources */,
 				917BA3412A03E8FE000409B7 /* StorageTableViewCell.swift in Sources */,
+				9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */,
 				913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
 				917BA33F2A03E8A1000409B7 /* StorageTableView.swift in Sources */,

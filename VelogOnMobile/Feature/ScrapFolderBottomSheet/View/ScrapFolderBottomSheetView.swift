@@ -38,6 +38,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
     
     let folderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(cell: ScrapFolderBottomSheetTableViewCell.self)
         tableView.backgroundColor = .white
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = 46

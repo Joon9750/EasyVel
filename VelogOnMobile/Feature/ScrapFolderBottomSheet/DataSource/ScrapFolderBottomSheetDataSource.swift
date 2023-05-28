@@ -8,6 +8,7 @@
 import UIKit
 
 final class ScrapFolderBottomSheetDataSource {
+    
     typealias tableViewCell = ScrapFolderBottomSheetTableViewCell
     typealias DiffableDataSource = UITableViewDiffableDataSource<Section, Int>
     typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<ScrapFolderBottomSheetDataSource.Section, Int>
@@ -18,14 +19,10 @@ final class ScrapFolderBottomSheetDataSource {
     private lazy var dataSource: DiffableDataSource = createDataSource()
     private var folderNameList: [String]
 
-    var numberOfItems: Int {
-        return folderNameList.count
-    }
-
     enum Section {
         case main
     }
-
+    
     init(
         tableView: UITableView
     ) {
@@ -41,7 +38,7 @@ final class ScrapFolderBottomSheetDataSource {
                 return UITableViewCell()
             }
             let folderTitle = self.folderNameList[indexPath.row]
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "ScrapFolderBottomSheetTableViewCell", for: indexPath) as! ScrapFolderBottomSheetTableViewCell
+            let cell:tableViewCell = self.tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(folderList: folderTitle)
             return cell
         }
@@ -55,6 +52,8 @@ final class ScrapFolderBottomSheetDataSource {
             completion?()
             return
         }
+        self.folderNameList = list
+        
         let itemIdentifiers = list.map { $0.hashValue }
         list.forEach { folderName in
             self.folderNameList.append(folderName)
