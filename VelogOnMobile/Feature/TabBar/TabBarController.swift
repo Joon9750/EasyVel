@@ -55,12 +55,12 @@ final class TabBarController: UITabBarController {
     
     private func scrapButtonTapped() {
         scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         } completion: { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83) }
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.5) {
                     self.view.layoutIfNeeded()
                 }
             })
