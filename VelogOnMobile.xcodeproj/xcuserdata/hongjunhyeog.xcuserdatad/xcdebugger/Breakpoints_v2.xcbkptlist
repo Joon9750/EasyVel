@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "83502347-1DB4-4C76-90DA-81E6989F2413"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VelogOnMobile/Presentation/Posts/KeywordPosts/ViewModel/KeywordsPostsViewModel.swift"

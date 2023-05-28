@@ -14,9 +14,14 @@ final class WebViewModel: BaseViewModel {
     
     private var urlString: String = ""
     
+    // MARK: - Input
+    
+    let webViewProgressRelay = PublishRelay<Double>()
+    
     // MARK: - Output
     
-    var urlRequest = PublishRelay<URLRequest>()
+    var urlRequestOutput = PublishRelay<URLRequest>()
+    var webViewProgressOutput = PublishRelay<Bool>()
     
     init(url: String) {
         super.init()
@@ -31,7 +36,17 @@ final class WebViewModel: BaseViewModel {
                 let urlString = "https://velog.io" + (self?.urlString ?? "")
                 guard let encodedStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
                 let PostURL = URL(string: encodedStr)!
-                self?.urlRequest.accept(URLRequest(url: PostURL))
+                self?.urlRequestOutput.accept(URLRequest(url: PostURL))
+            })
+            .disposed(by: disposeBag)
+        
+        webViewProgressRelay
+            .subscribe(onNext: { [weak self] progress in
+                if progress < 0.8 {
+                    self?.webViewProgressOutput.accept(false)
+                } else {
+                    self?.webViewProgressOutput.accept(true)
+                }
             })
             .disposed(by: disposeBag)
     }

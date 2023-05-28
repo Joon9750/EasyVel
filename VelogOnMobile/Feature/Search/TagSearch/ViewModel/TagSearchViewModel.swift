@@ -13,14 +13,14 @@ import RxSwift
 final class TagSearchViewModel: BaseViewModel {
     
     var tagSearchDelegate: TagSearchProtocol?
-
-    // MARK: - Output
-    
-    var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     
     // MARK: - Input
     
     let tagAddButtonDidTap = PublishRelay<String>()
+
+    // MARK: - Output
+    
+    var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     
     override init() {
         super.init()

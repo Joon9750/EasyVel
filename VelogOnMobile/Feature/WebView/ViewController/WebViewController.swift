@@ -22,8 +22,6 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         return webView
     }()
     
-    private let webViewProgressRelay = PublishRelay<Double>()
-    
     override func render() {
         view = webView
     }
@@ -35,21 +33,26 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         webView.rx.observe(Double.self, "estimatedProgress")
             .compactMap { $0 }
             .distinctUntilChanged()
-            .bind(to: webViewProgressRelay)
-            .disposed(by: disposeBag)
-        
-        webViewProgressRelay
-            .subscribe(onNext: { [weak self] progress in
-                self?.updateLoadingIndicator(progress: progress)
-            })
+            .bind(to: viewModel.webViewProgressRelay)
             .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: WebViewModel) {
-        viewModel.urlRequest
+        viewModel.urlRequestOutput
             .asDriver(onErrorJustReturn: URLRequest(url: URL(fileURLWithPath: "")))
             .drive(onNext: { [weak self] url in
                 self?.webView.load(url)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.webViewProgressOutput
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { isProgressComplete in
+                if isProgressComplete {
+                    LoadingView.hideLoading()
+                } else {
+                    LoadingView.showLoading()
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -57,13 +60,5 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     override func setupNavigationBar() {
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
-    }
-    
-    func updateLoadingIndicator(progress: Double) {
-        if progress < 0.8 {
-            LoadingView.showLoading()
-        } else {
-            LoadingView.hideLoading()
-        }
     }
 }

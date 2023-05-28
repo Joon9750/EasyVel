@@ -7,53 +7,49 @@
 
 import UIKit
 
-final class StorageViewController: BaseViewController {
+import RxSwift
+import RxCocoa
+
+final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private let storageView = StorageView()
-    private var viewModel: StorageViewModelInputOutput?
     private var isScrolled: Bool = false
-    private var storagePosts: [StoragePost]? {
-        didSet {
-            storageView.listTableView.reloadData()
-        }
-    }
-    
-    init(viewModel: StorageViewModel) {
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel = viewModel
-        bind()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private var storagePosts: [StoragePost]?
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel?.viewWillAppear()
-    }
-    
     override func render() {
         self.view = storageView
     }
     
-    private func bind() {
+    override func bind(viewModel: StorageViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
+        
         setButtonAction()
-        storageView.storageHeadView.deleteButton.addTarget(self, action: #selector(emptySelectedList), for: .touchUpInside)
         storageView.listTableView.dataSource = self
         storageView.listTableView.delegate = self
-        viewModel?.storagePosts = { [weak self] posts in
-            self?.storagePosts = posts
-        }
-        viewModel?.isPostsEmpty = { [weak self] isEmpty in
-            if isEmpty {
-                self?.storageView.storageViewExceptionView.isHidden = false
-            } else {
-                self?.storageView.storageViewExceptionView.isHidden = true
-            }
-        }
     }
     
+    private func bindOutput(_ viewModel: StorageViewModel) {
+        viewModel.storagePostsOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] post in
+                self?.storagePosts = post
+                self?.storageView.listTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.isPostsEmptyOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] isPostsEmpty in
+                if isPostsEmpty {
+                    self?.storageView.storageViewExceptionView.isHidden = false
+                } else {
+                    self?.storageView.storageViewExceptionView.isHidden = true
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+
     @objc
     private func emptySelectedList() {
         if storageView.listTableView.isEditing {
@@ -143,7 +139,9 @@ extension StorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
         let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
-            self.viewModel?.deletePostButtonDidTap(url: selectedCell.url)
+            
+            // MARK: - fix me, 스크랩 삭제 Input 연결 필요
+//            self.viewModel?.deletePostButtonDidTap(url: selectedCell.url)
             completionHaldler(true)
         })
         let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
@@ -153,7 +151,9 @@ extension StorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
-            viewModel?.deletePostButtonDidTap(url: selectedCell.url)
+            
+            // MARK: - fix me, 스크랩 삭제 Input 연결 필요
+//            viewModel?.deletePostButtonDidTap(url: selectedCell.url)
         }
     }
 }
