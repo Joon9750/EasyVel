@@ -17,7 +17,7 @@ final class ScrapStorageCollectionViewDataSource {
     private let collectionView: UICollectionView
 
     private lazy var dataSource: DiffableDataSource = createDataSource()
-    private var folderData: [FolderDTO]
+    private var folderData: [StorageDTO]
 
     enum Section {
         case main
@@ -45,7 +45,7 @@ final class ScrapStorageCollectionViewDataSource {
     }
 
     func update(
-        folderData: [FolderDTO]?,
+        folderData: [StorageDTO]?,
         completion: CompletedUpdate? = nil
     ) {
         guard let folderData = folderData else {

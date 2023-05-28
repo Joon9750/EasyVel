@@ -164,11 +164,11 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    public func configure(folderData: FolderDTO) {
+    public func configure(folderData: StorageDTO) {
         updateTable(with: folderData)
     }
     
-    private func updateTable(with folderData: FolderDTO) {
+    private func updateTable(with folderData: StorageDTO) {
         folderNameLabel.text = "iOS"
         postCount.text = "3개"
 //        if let count = folderData.count {

@@ -10,14 +10,14 @@ import Foundation
 import Realm
 import RealmSwift
 
-struct FolderDTO {
+struct StorageDTO {
     var articleID: Int
 //    var imgs: [String]?
     var folderName: String?
     var count: Int?
 }
 
-final class ScrapFolderDTO: Object {
+final class ScrapStorageDTO: Object {
     
     @Persisted(primaryKey: true) var _id: ObjectId
     
@@ -30,7 +30,7 @@ final class ScrapFolderDTO: Object {
       return "RealmStoragePost"
     }
     
-    convenience init(input: FolderDTO){
+    convenience init(input: StorageDTO){
         self.init()
         
 //        self.imgs = input.imgs
