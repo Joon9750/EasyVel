@@ -51,7 +51,7 @@ final class ScrapFolderBottomSheetTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.folderTitleLabel.text = ""
+        self.folderTitleLabel.text = TextLiterals.noneText
     }
     
     public func configure(folderList: String) {

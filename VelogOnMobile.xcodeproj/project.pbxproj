@@ -13,7 +13,6 @@
 		9128B02A2A23757200FB1252 /* ScrapFolderBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0292A23757200FB1252 /* ScrapFolderBottomSheetView.swift */; };
 		9128B02E2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */; };
 		9128B0322A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */; };
-		9128B0342A2378C700FB1252 /* ScrapFolderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0332A2378C700FB1252 /* ScrapFolderHeaderView.swift */; };
 		9128B0362A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */; };
 		9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */; };
 		9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */; };
@@ -141,7 +140,6 @@
 		9128B0292A23757200FB1252 /* ScrapFolderBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetView.swift; sourceTree = "<group>"; };
 		9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetViewController.swift; sourceTree = "<group>"; };
 		9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetViewModel.swift; sourceTree = "<group>"; };
-		9128B0332A2378C700FB1252 /* ScrapFolderHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderHeaderView.swift; sourceTree = "<group>"; };
 		9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetTableViewCell.swift; sourceTree = "<group>"; };
 		9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetDataSource.swift; sourceTree = "<group>"; };
 		9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 			isa = PBXGroup;
 			children = (
 				9128B0292A23757200FB1252 /* ScrapFolderBottomSheetView.swift */,
-				9128B0332A2378C700FB1252 /* ScrapFolderHeaderView.swift */,
 				9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */,
 			);
 			path = View;
@@ -343,6 +340,14 @@
 				9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		9128B0442A23BBED00FB1252 /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0422A23B50500FB1252 /* ReusableView.swift */,
+			);
+			path = ReusableView;
 			sourceTree = "<group>";
 		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
@@ -864,7 +869,7 @@
 		916FDCFD2A17EA7500BB1E16 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				9128B0422A23B50500FB1252 /* ReusableView.swift */,
+				9128B0442A23BBED00FB1252 /* ReusableView */,
 				91CC1D4A2A0AD7B7006BF786 /* Loading */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF929FC3B28009CFECF /* Extension */,
@@ -1209,7 +1214,6 @@
 				913441F429FFD742000E1ED1 /* TagAPI.swift in Sources */,
 				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
-				9128B0342A2378C700FB1252 /* ScrapFolderHeaderView.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,

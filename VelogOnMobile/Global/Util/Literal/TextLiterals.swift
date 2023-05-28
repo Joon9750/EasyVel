@@ -79,4 +79,10 @@ enum TextLiterals {
     // MARK: - table view
     
     static let tableViewDeleteSwipeTitle: String = "delete"
+    
+    // MARK: - scrapFolderBottomSheet
+    
+    static let bottomSheetText: String = "폴더 선택"
+    static let makeNewFolderButtonText: String = "새 폴더 만들기"
+    
 }
