@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         startMonitoringNetwork(on: scene)
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let rootViewController = UINavigationController(rootViewController: TabBarController())
+        let viewModel = ScrapFolderBottomSheetViewModel()
+        let rootViewController = UINavigationController(rootViewController: ScrapFolderBottomSheetViewController(viewModel: viewModel))
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
     }
