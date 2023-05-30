@@ -46,6 +46,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
+    let scrapButton = ScrapButton()
     let tagFristButton: PostTagUIButton = PostTagUIButton()
     let tagSecondButton: PostTagUIButton = PostTagUIButton()
     let tagThirdButton: PostTagUIButton = PostTagUIButton()
@@ -65,7 +66,8 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             date,
             name,
             title,
-            textView
+            textView,
+            scrapButton
         )
         
         buttonStackView.addArrangedSubviews(
@@ -78,6 +80,12 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         buttonStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
             $0.leading.equalToSuperview().inset(12)
+        }
+        
+        scrapButton.snp.makeConstraints {
+            $0.height.width.equalTo(32)
+            $0.top.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().inset(8)
         }
         
         imgView.snp.makeConstraints {
