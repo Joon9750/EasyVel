@@ -17,7 +17,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
 
     // MARK: - Input
     
-    var cellDidTap = PublishRelay<StoragePost>()
+    var cellScrapButtonDidTap = PublishRelay<StoragePost>()
     var tableViewReload = PublishRelay<Void>()
 
     // MARK: - Output
@@ -25,6 +25,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
     var tagPostsListOutput = PublishRelay<GetTagPostResponse>()
     var toastPresentOutput = PublishRelay<Bool>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
+    var tagPostsListDidScrapOutput = PublishRelay<[Bool]>()
     
     override init() {
         super.init()
@@ -45,7 +46,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
             })
             .disposed(by: disposeBag)
         
-        cellDidTap
+        cellScrapButtonDidTap
             .filter { [weak self] response in
                 if self?.checkIsUniquePost(post: response) == false {
                     self?.toastPresentOutput.accept(false)
@@ -53,7 +54,10 @@ final class KeywordsPostsViewModel: BaseViewModel {
                 return self?.checkIsUniquePost(post: response) ?? false
             }
             .subscribe(onNext: { [weak self] response in
-                self?.addPostRealm(post: response)
+                
+                // MARK: - fix me : articleID 일단 기본 0
+                
+                self?.addPostRealm(post: response, articleID: 0)
                 self?.toastPresentOutput.accept(true)
             })
             .disposed(by: disposeBag)
@@ -64,25 +68,59 @@ final class KeywordsPostsViewModel: BaseViewModel {
                 guard let self = self else { return Observable.empty() }
                 return self.getTagPosts()
             })
-            .subscribe(onNext: { [weak self] postList in
+            .map { [weak self] response -> (GetTagPostResponse, [Bool]) in
+                let postArray = Array(arrayLiteral: response)
+                var isScrapList: [Bool] = []
+                var index = 0
+                for post in postArray {
+                    var convertPost = self?.convertGetTagPostResponseToStoragePost(input: post, index: index)
+                    if let convertPost = convertPost {
+                        isScrapList.append(self?.checkIsUniquePost(post: convertPost) ?? Bool())
+                    }
+                    index = index + 1
+                }
+                return (response, isScrapList)
+            }
+            .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.tagPostsListOutput.accept(postList)
+                self?.tagPostsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
             })
             .disposed(by: disposeBag)
     }
     
     // MARK: - func
-
-    private func addPostRealm(post: StoragePost) {
-        realm.addPost(item: post)
+    
+    private func convertGetTagPostResponseToStoragePost(
+        input: GetTagPostResponse,
+        index: Int
+    ) -> StoragePost {
+        return StoragePost(
+            img: input.tagPostDtoList?[index].img,
+            name: input.tagPostDtoList?[index].name,
+            summary: input.tagPostDtoList?[index].summary,
+            title: input.tagPostDtoList?[index].title,
+            url: input.tagPostDtoList?[index].url
+        )
     }
 
-    private func checkIsUniquePost(post: StoragePost) -> Bool {
+    private func addPostRealm(
+        post: StoragePost,
+        articleID: Int
+    ) {
+        realm.addPost(item: post, articleID: articleID)
+    }
+
+    private func checkIsUniquePost(
+        post: StoragePost
+    ) -> Bool {
         return realm.checkUniquePost(input: post)
     }
 
-    private func checkStorageEmpty(input: GetTagPostResponse) -> Bool {
+    private func checkStorageEmpty(
+        input: GetTagPostResponse
+    ) -> Bool {
         if input.tagPostDtoList == nil { return true }
         else { return false }
     }
