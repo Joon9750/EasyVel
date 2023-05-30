@@ -39,9 +39,16 @@ final class KeywordsPostsViewModel: BaseViewModel {
                 guard let self = self else { return Observable.empty() }
                 return self.getTagPosts()
             })
-            .subscribe(onNext: { [weak self] postList in
+            .map { [weak self] response -> (GetTagPostResponse, [Bool]) in
+                let posts = response.tagPostDtoList ?? []
+                let storagePosts = posts.map { self?.convertTagPostDtoListToStoragePost(input: $0) }
+                let isScrapList = storagePosts.map { self?.checkIsUniquePost(post: $0!) ?? false }
+                return (response, isScrapList)
+            }
+            .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.tagPostsListOutput.accept(postList)
+                self?.tagPostsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
             })
             .disposed(by: disposeBag)
@@ -69,16 +76,9 @@ final class KeywordsPostsViewModel: BaseViewModel {
                 return self.getTagPosts()
             })
             .map { [weak self] response -> (GetTagPostResponse, [Bool]) in
-                let postArray = Array(arrayLiteral: response)
-                var isScrapList: [Bool] = []
-                var index = 0
-                for post in postArray {
-                    var convertPost = self?.convertGetTagPostResponseToStoragePost(input: post, index: index)
-                    if let convertPost = convertPost {
-                        isScrapList.append(self?.checkIsUniquePost(post: convertPost) ?? Bool())
-                    }
-                    index = index + 1
-                }
+                let posts = response.tagPostDtoList ?? []
+                let storagePosts = posts.map { self?.convertTagPostDtoListToStoragePost(input: $0) }
+                let isScrapList = storagePosts.map { self?.checkIsUniquePost(post: $0!) ?? false }
                 return (response, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
@@ -91,17 +91,16 @@ final class KeywordsPostsViewModel: BaseViewModel {
     }
     
     // MARK: - func
-    
-    private func convertGetTagPostResponseToStoragePost(
-        input: GetTagPostResponse,
-        index: Int
+
+    private func convertTagPostDtoListToStoragePost(
+        input: TagPostDtoList
     ) -> StoragePost {
         return StoragePost(
-            img: input.tagPostDtoList?[index].img,
-            name: input.tagPostDtoList?[index].name,
-            summary: input.tagPostDtoList?[index].summary,
-            title: input.tagPostDtoList?[index].title,
-            url: input.tagPostDtoList?[index].url
+            img: input.img ?? "",
+            name: input.name ?? "",
+            summary: input.summary ?? "",
+            title: input.title ?? "",
+            url: input.url ?? ""
         )
     }
 
