@@ -14,8 +14,8 @@ final class RealmService {
     
     private let localRealm = try! Realm()
     
-    func addPost(item: StoragePost) {
-        let post = RealmStoragePost(input: item)
+    func addPost(item: StoragePost, articleID: Int) {
+        let post = RealmStoragePost(input: item, articleID: articleID)
         if localRealm.isEmpty {
             try! localRealm.write {
                 localRealm.add(post)
@@ -23,6 +23,19 @@ final class RealmService {
         } else {
             try! localRealm.write {
                 localRealm.add(post, update: .modified)
+            }
+        }
+    }
+    
+    func addFolder(item: StorageDTO) {
+        let folder = ScrapStorageDTO(input: item)
+        if localRealm.isEmpty {
+            try! localRealm.write {
+                localRealm.add(folder)
+            }
+        } else {
+            try! localRealm.write {
+                localRealm.add(folder, update: .modified)
             }
         }
     }
