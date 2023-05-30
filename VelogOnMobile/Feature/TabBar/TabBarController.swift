@@ -12,22 +12,59 @@ import SnapKit
 final class TabBarController: UITabBarController {
     
 //    let realm = RealmService()
-    
-    fileprivate lazy var defaultTabBarHeight = { tabBar.frame.size.height }()
+
+    // MARK: - viewModel properties
     
     let listViewModel = ListViewModel()
+    let scrapStorageViewModel = ScrapStorageViewModel()
+    
+    // MARK: - viewController properties
+    
     let PostsVC = PostsTabManViewController()
     lazy var ListVC = ListViewController(viewModel: listViewModel)
-    let storageVC = StorageViewController(viewModel: StorageViewModel())
+    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
     let settingVC = SettingViewController()
+    
+    
+    // MARK: - view properties
+    
+    let scrapPopUpView = ScrapPopUpView()
+    
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
+
         setUpTabBar()
         setDelegate()
         setNavigation()
+        setLayout()
+        scrapButtonTapped()
 //        realm.resetDB()
+    }
+
+    private func setLayout() {
+        view.addSubview(scrapPopUpView)
+        
+        scrapPopUpView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(82)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(83)
+        }
+    }
+    
+    private func scrapButtonTapped() {
+        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83) }
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
+            })
+        }
     }
     
     private func setUpTabBar(){
@@ -55,6 +92,7 @@ final class TabBarController: UITabBarController {
 
     private func setDelegate() {
         delegate = self
+        scrapPopUpView.delegate = self
     }
     
     private func setNavigation() {
@@ -66,5 +104,19 @@ extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let impactService = HapticService.impact(.light)
         impactService.run()
+    }
+}
+
+extension TabBarController: ScrapPopUpDelegate {
+    func scrapBookButtonTapped() {
+        selectedIndex = 2
+    }
+    
+    func folderButtonTapped() {
+        let viewModel = ScrapFolderBottomSheetViewModel()
+        let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
+        folderViewController.modalTransitionStyle = .coverVertical
+        folderViewController.modalPresentationStyle = .overFullScreen
+        self.present(folderViewController, animated: true)
     }
 }

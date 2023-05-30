@@ -8,6 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
+		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
+		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
+		9128B02A2A23757200FB1252 /* ScrapFolderBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0292A23757200FB1252 /* ScrapFolderBottomSheetView.swift */; };
+		9128B02E2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */; };
+		9128B0322A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */; };
+		9128B0362A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */; };
+		9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */; };
+		9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */; };
+		9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0422A23B50500FB1252 /* ReusableView.swift */; };
+		9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */; };
+		9128B04A2A23C59700FB1252 /* ScrapStorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0492A23C59700FB1252 /* ScrapStorageView.swift */; };
+		9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */; };
+		9128B04E2A23C96500FB1252 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */; };
+		9128B0522A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */; };
+		9128B0542A23CADD00FB1252 /* ScrapStorageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */; };
+		9128B0562A23CC7400FB1252 /* ScrapStorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */; };
+		9128B05A2A23CC9000FB1252 /* ScrapStorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */; };
+		9128B05C2A23DCEF00FB1252 /* StorageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
 		913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */; };
@@ -126,6 +144,24 @@
 
 /* Begin PBXFileReference section */
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
+		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		9128B0292A23757200FB1252 /* ScrapFolderBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetView.swift; sourceTree = "<group>"; };
+		9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetViewController.swift; sourceTree = "<group>"; };
+		9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetViewModel.swift; sourceTree = "<group>"; };
+		9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetTableViewCell.swift; sourceTree = "<group>"; };
+		9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapFolderBottomSheetDataSource.swift; sourceTree = "<group>"; };
+		9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		9128B0422A23B50500FB1252 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpDelegate.swift; sourceTree = "<group>"; };
+		9128B0492A23C59700FB1252 /* ScrapStorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageView.swift; sourceTree = "<group>"; };
+		9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageDTO.swift; sourceTree = "<group>"; };
+		9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageViewController.swift; sourceTree = "<group>"; };
+		9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapStorageViewModel.swift; sourceTree = "<group>"; };
+		9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageDTO.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
 		913441EB29FFD673000E1ED1 /* BaseURLConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURLConstant.swift; sourceTree = "<group>"; };
@@ -270,6 +306,110 @@
 				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				9128B03D2A237DFB00FB1252 /* DataSource */,
+				9128B02F2A23772A00FB1252 /* ViewModel */,
+				9128B02C2A2376E700FB1252 /* ViewController */,
+				9128B02B2A2376BB00FB1252 /* View */,
+			);
+			path = ScrapFolderBottomSheet;
+			sourceTree = "<group>";
+		};
+		9128B02B2A2376BB00FB1252 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0292A23757200FB1252 /* ScrapFolderBottomSheetView.swift */,
+				9128B0352A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9128B02C2A2376E700FB1252 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9128B02F2A23772A00FB1252 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9128B0302A23774700FB1252 /* ScrapPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */,
+			);
+			path = ScrapPopUp;
+			sourceTree = "<group>";
+		};
+		9128B03D2A237DFB00FB1252 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		9128B0442A23BBED00FB1252 /* ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0422A23B50500FB1252 /* ReusableView.swift */,
+			);
+			path = ReusableView;
+			sourceTree = "<group>";
+		};
+		9128B0482A23C58400FB1252 /* ScrapStorage */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0502A23CA4800FB1252 /* DataSource */,
+				9128B0582A23CC8300FB1252 /* ViewModel */,
+				9128B0572A23CC7900FB1252 /* ViewController */,
+				9128B04F2A23CA4000FB1252 /* View */,
+			);
+			path = ScrapStorage;
+			sourceTree = "<group>";
+		};
+		9128B04F2A23CA4000FB1252 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0492A23C59700FB1252 /* ScrapStorageView.swift */,
+				9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9128B0502A23CA4800FB1252 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		9128B0572A23CC7900FB1252 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9128B0582A23CC8300FB1252 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
@@ -432,10 +572,13 @@
 		91487EDE29FC3946009CFECF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				9128B0482A23C58400FB1252 /* ScrapStorage */,
 				914D8DD72A02B17000516B4C /* WebView */,
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 				91487F4E29FD9902009CFECF /* TabBar */,
+				9128B0302A23774700FB1252 /* ScrapPopUp */,
+				9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */,
 				91487F4829FD9663009CFECF /* Search */,
 				91487EE229FC39AF009CFECF /* SignIn */,
 				91487EE329FC39BB009CFECF /* SignUp */,
@@ -532,6 +675,9 @@
 				91487EFA29FC3B6A009CFECF /* UIColor+Extension.swift */,
 				91487F0F29FC4736009CFECF /* UIStackView+Extension.swift */,
 				91487F1129FC47CE009CFECF /* UIView+Extension.swift */,
+				9128B0272A236E7600FB1252 /* UIButton+Extension.swift */,
+				9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */,
+				9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -787,6 +933,7 @@
 		916FDCFD2A17EA7500BB1E16 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				9128B0442A23BBED00FB1252 /* ReusableView */,
 				91CC1D4A2A0AD7B7006BF786 /* Loading */,
 				91487EFC29FC3BBC009CFECF /* Literal */,
 				91487EF929FC3B28009CFECF /* Extension */,
@@ -799,6 +946,8 @@
 			isa = PBXGroup;
 			children = (
 				917BA3512A050903000409B7 /* RealmStoragePost.swift */,
+				9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */,
+				9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */,
 			);
 			path = RealmDTO;
 			sourceTree = "<group>";
@@ -862,6 +1011,7 @@
 			children = (
 				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
 				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
+				9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1069,9 +1219,11 @@
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
+				9128B04A2A23C59700FB1252 /* ScrapStorageView.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
+				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
@@ -1094,17 +1246,22 @@
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
 				91487EED29FC3A3E009CFECF /* SubscribePostsViewController.swift in Sources */,
 				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
+				9128B05A2A23CC9000FB1252 /* ScrapStorageViewModel.swift in Sources */,
 				91487F2A29FD0693009CFECF /* PostsTabManViewController.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
 				9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */,
+				9128B0322A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift in Sources */,
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
 				91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */,
 				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,
+				9128B0542A23CADD00FB1252 /* ScrapStorageDTO.swift in Sources */,
+				9128B0362A237AFE00FB1252 /* ScrapFolderBottomSheetTableViewCell.swift in Sources */,
+				9128B02A2A23757200FB1252 /* ScrapFolderBottomSheetView.swift in Sources */,
 				91487F1429FC489C009CFECF /* PostsTableView.swift in Sources */,
 				917BA3432A0503D5000409B7 /* StoragePost.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
@@ -1130,10 +1287,13 @@
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
+				9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */,
 				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
+				9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */,
 				91ED179A2A00F00800158787 /* BaseRepository.swift in Sources */,
 				917BA3412A03E8FE000409B7 /* StorageTableViewCell.swift in Sources */,
+				9128B0412A23B4E200FB1252 /* UITableView+Extension.swift in Sources */,
 				913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
 				917BA33F2A03E8A1000409B7 /* StorageTableView.swift in Sources */,
@@ -1146,20 +1306,28 @@
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
+				9128B05C2A23DCEF00FB1252 /* StorageDTO.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
+				9128B02E2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift in Sources */,
 				91E442872A10F385008CB516 /* RxBaseViewController.swift in Sources */,
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */,
 				914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */,
+				9128B0522A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift in Sources */,
+				9128B04E2A23C96500FB1252 /* UICollectionView+Extension.swift in Sources */,
+				9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
+				9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
+				9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */,
 				914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */,
 				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
 				91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */,
+				9128B0562A23CC7400FB1252 /* ScrapStorageViewController.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,
 				91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */,
 				91487F0B29FC45E9009CFECF /* SubscribersPostsTableViewCell.swift in Sources */,
