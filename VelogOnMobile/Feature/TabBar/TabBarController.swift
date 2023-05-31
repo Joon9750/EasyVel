@@ -16,8 +16,6 @@ import Realm
 
 final class TabBarController: UITabBarController {
 
-    private let localRealm = try! Realm()
-
     // MARK: - viewModel properties
     
     let listViewModel = ListViewModel()
