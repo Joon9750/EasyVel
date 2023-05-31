@@ -19,17 +19,20 @@ final class RealmStoragePost: Object {
     @Persisted var summary: String?
     @Persisted var title: String?
     @Persisted var url: String?
+    @Persisted var articleID: Int?
     
     override static func primaryKey() -> String? {
       return "RealmStoragePost"
     }
     
-    convenience init(input: StoragePost){
+    convenience init(input: StoragePost, articleID: Int){
         self.init()
+        
         self.img = input.img
         self.name = input.name
         self.summary = input.summary
         self.title = input.title
         self.url = input.url
+        self.articleID = articleID
     }
 }

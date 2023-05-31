@@ -8,10 +8,15 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxRelay
+
+import RealmSwift
+import Realm
 
 final class TabBarController: UITabBarController {
-    
-//    let realm = RealmService()
+
+    private let localRealm = try! Realm()
 
     // MARK: - viewModel properties
     
@@ -39,10 +44,11 @@ final class TabBarController: UITabBarController {
         setDelegate()
         setNavigation()
         setLayout()
-        scrapButtonTapped()
-//        realm.resetDB()
+//        scrapButtonTapped()
+        setNotificationCenter()
+//        self.resetDB()
     }
-
+    
     private func setLayout() {
         view.addSubview(scrapPopUpView)
         
@@ -53,6 +59,11 @@ final class TabBarController: UITabBarController {
         }
     }
     
+    private func setNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(scrapButtonTapped), name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
+    }
+    
+    @objc
     private func scrapButtonTapped() {
         scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
         UIView.animate(withDuration: 0.5) {
@@ -118,5 +129,26 @@ extension TabBarController: ScrapPopUpDelegate {
         folderViewController.modalTransitionStyle = .coverVertical
         folderViewController.modalPresentationStyle = .overFullScreen
         self.present(folderViewController, animated: true)
+    }
+}
+
+extension TabBarController {
+    // 스키마 수정시 한번 돌려야 한다.
+    func resetDB(){
+        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+        let realmURLs = [
+          realmURL,
+          realmURL.appendingPathExtension("lock"),
+          realmURL.appendingPathExtension("note"),
+          realmURL.appendingPathExtension("management")
+        ]
+
+        for URL in realmURLs {
+          do {
+            try FileManager.default.removeItem(at: URL)
+          } catch {
+            // handle error
+          }
+        }
     }
 }
