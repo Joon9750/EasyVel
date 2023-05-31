@@ -119,6 +119,7 @@
 		917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */; };
 		91BFF2ED2A25D47100F5D13E /* ScrapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2EC2A25D47100F5D13E /* ScrapButton.swift */; };
 		91BFF2F52A2776F000F5D13E /* PopularPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2F42A2776F000F5D13E /* PopularPostsDTO.swift */; };
+		91BFF2F82A27833C00F5D13E /* PostScrapButtonDidTapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */; };
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
 		91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */; };
@@ -251,6 +252,7 @@
 		917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchProtocol.swift; sourceTree = "<group>"; };
 		91BFF2EC2A25D47100F5D13E /* ScrapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapButton.swift; sourceTree = "<group>"; };
 		91BFF2F42A2776F000F5D13E /* PopularPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostsDTO.swift; sourceTree = "<group>"; };
+		91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScrapButtonDidTapped.swift; sourceTree = "<group>"; };
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
@@ -1002,6 +1004,7 @@
 				917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */,
 				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
 				9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */,
+				91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1273,6 +1276,7 @@
 				914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */,
 				917BA3312A03D8EF000409B7 /* StorageViewController.swift in Sources */,
 				913442362A00491C000E1ED1 /* NotificationAPI.swift in Sources */,
+				91BFF2F82A27833C00F5D13E /* PostScrapButtonDidTapped.swift in Sources */,
 				9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */,
 				913442382A004B91000E1ED1 /* DefaultTagRepository.swift in Sources */,
 				9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */,

@@ -14,6 +14,13 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     
     static let identifier = "KeywordsTableViewCell"
     
+    weak var cellDelegate: PostScrapButtonDidTapped?
+    var isTapped: Bool = false {
+        didSet {
+            updateButton()
+        }
+    }
+    
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
@@ -46,7 +53,11 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
-    let scrapButton = ScrapButton()
+    let scrapButton : UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+        return button
+    }()
     let tagFristButton: PostTagUIButton = PostTagUIButton()
     let tagSecondButton: PostTagUIButton = PostTagUIButton()
     let tagThirdButton: PostTagUIButton = PostTagUIButton()
@@ -60,7 +71,9 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     // MARK: - life cycle
     
     override func render() {
-        self.addSubviews(
+        self.scrapButton.addTarget(self, action: #selector(scrapButtonTapped), for: .touchUpInside)
+        
+        self.contentView.addSubviews(
             buttonStackView,
             imgView,
             date,
@@ -83,10 +96,11 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         }
         
         scrapButton.snp.makeConstraints {
-            $0.height.width.equalTo(32)
+            $0.height.width.equalTo(60)
             $0.top.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(8)
         }
+        scrapButton.backgroundColor = .red
         self.bringSubviewToFront(scrapButton)
         
         imgView.snp.makeConstraints {
@@ -134,6 +148,19 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     private func tagThirdButtonIsNotHidden(buttonTitle: String) {
         tagThirdButton.isHidden = false
         tagThirdButton.setTitle(buttonTitle, for: .normal)
+    }
+    
+    func updateButton() {
+        let image = isTapped ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
+        scrapButton.setImage(image, for: .normal)
+    }
+    
+    @objc func scrapButtonTapped(_ sender: UIButton) {
+        if !(isTapped) {
+            NotificationCenter.default.post(name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
+        }
+        self.isTapped.toggle()
+        cellDelegate?.scrapButtonDidTapped()
     }
 }
 

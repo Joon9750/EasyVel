@@ -7,8 +7,6 @@
 
 import UIKit
 
-// MARK: - Protocols
-
 final class ScrapButton: UIButton {
     
     // MARK: - Properties
@@ -40,7 +38,7 @@ final class ScrapButton: UIButton {
 extension ScrapButton {
     private func setUI() {
         self.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
-        self.addTarget(self, action: #selector(scrapButtonTapped), for: .touchUpInside)
+//        self.addTarget(self, action: #selector(scrapButtonTapped), for: .touchUpInside)
     }
     
     func updateButton() {

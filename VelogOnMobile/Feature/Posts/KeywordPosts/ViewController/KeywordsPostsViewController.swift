@@ -108,7 +108,11 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     }
 }
 
-extension KeywordsPostsViewController: UITableViewDataSource {
+extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDidTapped {
+    func scrapButtonDidTapped() {
+        print("aa")
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return keywordsPosts?.tagPostDtoList?.count ?? 0
     }
@@ -118,16 +122,17 @@ extension KeywordsPostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell ?? KeywordsTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         let index = indexPath.section
+        cell.cellDelegate = self
         if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
             if let isUnique = isScrapPostsList?[indexPath.row] {
                 if isUnique {
-                    cell.scrapButton.isTapped = false
+                    cell.isTapped = false
                 } else {
-                    cell.scrapButton.isTapped = true
+                    cell.isTapped = true
                 }
             }
             return cell
