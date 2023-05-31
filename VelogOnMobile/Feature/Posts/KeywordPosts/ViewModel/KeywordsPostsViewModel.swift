@@ -103,14 +103,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
             url: input.url ?? ""
         )
     }
-//
-//    private func addPostRealm(
-//        post: StoragePost,
-//        articleID: Int
-//    ) {
-//        realm.addPost(item: post, articleID: articleID)
-//    }
-
+    
     private func checkIsUniquePost(
         post: StoragePost
     ) -> Bool {
