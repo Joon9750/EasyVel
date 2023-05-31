@@ -60,7 +60,9 @@ final class KeywordsPostsViewModel: BaseViewModel {
                 LoadingView.hideLoading()
                 if isScrapped == false {
                     // MARK: - fix me : articleID 일단 기본 0
-                    self?.addPostRealm(post: storagePost, articleID: 0)
+                    self?.realm.addPost(item: storagePost, articleID: 0)
+                } else {
+                    self?.realm.deletePost(url: storagePost.url ?? String())
                 }
             })
             .disposed(by: disposeBag)
@@ -101,13 +103,13 @@ final class KeywordsPostsViewModel: BaseViewModel {
             url: input.url ?? ""
         )
     }
-
-    private func addPostRealm(
-        post: StoragePost,
-        articleID: Int
-    ) {
-        realm.addPost(item: post, articleID: articleID)
-    }
+//
+//    private func addPostRealm(
+//        post: StoragePost,
+//        articleID: Int
+//    ) {
+//        realm.addPost(item: post, articleID: articleID)
+//    }
 
     private func checkIsUniquePost(
         post: StoragePost
