@@ -110,7 +110,6 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
 
 extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDidTapped {
     func scrapButtonDidTapped() {
-        print("aa")
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
