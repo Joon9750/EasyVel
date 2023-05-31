@@ -88,7 +88,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             tagSecondButton,
             tagThirdButton
         )
-        self.bringSubviewToFront(buttonStackView)
+        contentView.bringSubviewToFront(buttonStackView)
         
         buttonStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
@@ -100,7 +100,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             $0.top.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(8)
         }
-        self.bringSubviewToFront(scrapButton)
+        contentView.bringSubviewToFront(scrapButton)
         
         imgView.snp.makeConstraints {
             $0.top.equalToSuperview()
