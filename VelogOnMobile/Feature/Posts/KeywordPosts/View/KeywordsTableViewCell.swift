@@ -83,11 +83,10 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         }
         
         scrapButton.snp.makeConstraints {
-            $0.height.width.equalTo(80)
+            $0.height.width.equalTo(32)
             $0.top.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(8)
         }
-        scrapButton.backgroundColor = .red
         self.bringSubviewToFront(scrapButton)
         
         imgView.snp.makeConstraints {

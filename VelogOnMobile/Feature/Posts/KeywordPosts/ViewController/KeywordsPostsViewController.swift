@@ -125,16 +125,13 @@ extension KeywordsPostsViewController: UITableViewDataSource {
             cell.binding(model: data)
             if let isUnique = isScrapPostsList?[indexPath.row] {
                 if isUnique {
-                    cell.scrapButton.isTapped = true
-                } else {
                     cell.scrapButton.isTapped = false
+                } else {
+                    cell.scrapButton.isTapped = true
                 }
             }
             return cell
         }
-//        cell.scrapButton.handler = { [weak self] in
-//            guard let self else { return }
-//        }
         return cell
     }
     
