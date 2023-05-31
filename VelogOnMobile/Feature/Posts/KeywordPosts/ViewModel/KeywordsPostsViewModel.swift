@@ -42,7 +42,9 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .map { [weak self] response -> (GetTagPostResponse, [Bool]) in
                 let posts = response.tagPostDtoList ?? []
                 let storagePosts = posts.map { self?.convertTagPostDtoListToStoragePost(input: $0) }
-                let isScrapList = storagePosts.map { self?.checkIsUniquePost(post: $0!) ?? false }
+                let isScrapList = storagePosts.map {
+                    self?.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
+                }
                 return (response, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
@@ -78,7 +80,9 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .map { [weak self] response -> (GetTagPostResponse, [Bool]) in
                 let posts = response.tagPostDtoList ?? []
                 let storagePosts = posts.map { self?.convertTagPostDtoListToStoragePost(input: $0) }
-                let isScrapList = storagePosts.map { self?.checkIsUniquePost(post: $0!) ?? false }
+                let isScrapList = storagePosts.map {
+                    self?.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
+                }
                 return (response, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
