@@ -12,7 +12,6 @@ import Moya
 enum PostsAPI {
     case getSubscriberPosts
     case getTagPosts
-    case getPopularPosts
 }
 
 extension PostsAPI: BaseTargetType {
@@ -22,21 +21,19 @@ extension PostsAPI: BaseTargetType {
             return URLConstants.subscriber + "/subscriberpost"
         case .getTagPosts:
             return URLConstants.tag + "/tagpost"
-        case .getPopularPosts:
-            return URLConstants.tag + "/popularpost"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getSubscriberPosts, .getTagPosts, .getPopularPosts:
+        case .getSubscriberPosts, .getTagPosts:
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .getSubscriberPosts, .getTagPosts, .getPopularPosts:
+        case .getSubscriberPosts, .getTagPosts:
             return .requestPlain
         }
     }

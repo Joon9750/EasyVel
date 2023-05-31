@@ -117,7 +117,6 @@
 		917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3512A050903000409B7 /* RealmStoragePost.swift */; };
 		917BA3552A0509D8000409B7 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3542A0509D8000409B7 /* RealmService.swift */; };
 		917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */; };
-		91BFF2F12A276D6100F5D13E /* PopularPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2F02A276D6100F5D13E /* PopularPostsDTO.swift */; };
 		91BFF2ED2A25D47100F5D13E /* ScrapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2EC2A25D47100F5D13E /* ScrapButton.swift */; };
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
@@ -249,7 +248,6 @@
 		917BA3512A050903000409B7 /* RealmStoragePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStoragePost.swift; sourceTree = "<group>"; };
 		917BA3542A0509D8000409B7 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		917BA3872A07C541000409B7 /* SubscriberSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchProtocol.swift; sourceTree = "<group>"; };
-		91BFF2F02A276D6100F5D13E /* PopularPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostsDTO.swift; sourceTree = "<group>"; };
 		91BFF2EC2A25D47100F5D13E /* ScrapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapButton.swift; sourceTree = "<group>"; };
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -417,7 +415,6 @@
 		913441E229FFD5BE000E1ED1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				913441F729FFD760000E1ED1 /* ServerDTO */,
 				91ED179D2A00F73200158787 /* NetworkCommon */,
 				913441E429FFD5FA000E1ED1 /* API */,
 				913441E329FFD5D1000E1ED1 /* Repository */,
@@ -476,7 +473,6 @@
 			isa = PBXGroup;
 			children = (
 				917BA3422A0503D5000409B7 /* StoragePost.swift */,
-				91BFF2F22A276E0D00F5D13E /* PopularDTO */,
 				91ED17942A00EAE200158787 /* ErrorDTO */,
 				9134421B29FFEAA4000E1ED1 /* NotificationDTO */,
 				9134421629FFDCCF000E1ED1 /* TagDTO */,
@@ -898,6 +894,7 @@
 			children = (
 				917BA34F2A0508DF000409B7 /* Realm */,
 				917BA3842A07C2B7000409B7 /* Protocol */,
+				913441F729FFD760000E1ED1 /* ServerDTO */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1006,12 +1003,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		91BFF2F22A276E0D00F5D13E /* PopularDTO */ = {
-			isa = PBXGroup;
-			children = (
-				91BFF2F02A276D6100F5D13E /* PopularPostsDTO.swift */,
-			);
-			path = PopularDTO;
 		91BFF2EB2A25D46400F5D13E /* ScrapButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1302,7 +1293,6 @@
 				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
 				91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
-				91BFF2F12A276D6100F5D13E /* PopularPostsDTO.swift in Sources */,
 				917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
 				9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */,

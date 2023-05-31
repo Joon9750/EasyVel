@@ -86,11 +86,6 @@ class BaseRepository {
             }
             return .success(decodedData)
         case .joinGroup: return .success((Any).self)
-        case .getPopularPosts:
-            guard let decodedData = try? decoder.decode(PopularPostsDTO.self, from: data) else {
-                return .pathErr
-            }
-            return .success(decodedData)
         }
     }
 }

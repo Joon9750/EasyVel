@@ -1,0 +1,104 @@
+{
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
+        "version" : "5.6.4"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "7f6331da4d0fcebec4996e9a64d072f467be932d"
+      }
+    },
+    {
+      "identity" : "moya",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Moya/Moya",
+      "state" : {
+        "branch" : "master",
+        "revision" : "963654cd4f82d17d7546b9d6127c29f6df091717"
+      }
+    },
+    {
+      "identity" : "nvactivityindicatorview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ninjaprox/NVActivityIndicatorView",
+      "state" : {
+        "branch" : "master",
+        "revision" : "3c6c224115a2cce7608c9698d407a149283cdbdb"
+      }
+    },
+    {
+      "identity" : "pageboy",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uias/Pageboy",
+      "state" : {
+        "revision" : "5522aa6ae88633f6c23cf504e9cd684e963822f1",
+        "version" : "4.0.2"
+      }
+    },
+    {
+      "identity" : "reactiveswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveCocoa/ReactiveSwift.git",
+      "state" : {
+        "revision" : "c43bae3dac73fdd3cb906bd5a1914686ca71ed3c",
+        "version" : "6.7.0"
+      }
+    },
+    {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "f2a209b164194190b46747c7f5e36cb30fd5db71",
+        "version" : "13.10.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "9266efac9ef0c79e4e64a2ba36162d8d922893d2"
+      }
+    },
+    {
+      "identity" : "rxswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ReactiveX/RxSwift.git",
+      "state" : {
+        "revision" : "b4307ba0b6425c0ba4178e138799946c3da594f8",
+        "version" : "6.5.0"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "58320fe80522414bf3a7e24c88123581dc586752"
+      }
+    },
+    {
+      "identity" : "tabman",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/uias/Tabman",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6a87a2825939f5da06cf52a6582d67a646488cff"
+      }
+    }
+  ],
+  "version" : 2
+}
