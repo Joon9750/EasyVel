@@ -15,6 +15,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     private let keywordsPostsView = KeywordsPostsView()
     private var isScrolled: Bool = false
     private var keywordsPosts: GetTagPostResponse?
+    private var isScrapPostsList: [Bool]?
 
     override func render() {
         self.view = keywordsPostsView
@@ -44,6 +45,13 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
             .drive(onNext: { [weak self] post in
                 self?.keywordsPosts = post
                 self?.keywordsPostsView.keywordsTableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.tagPostsListDidScrapOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] isScrapList in
+                self?.isScrapPostsList = isScrapList
             })
             .disposed(by: disposeBag)
         
@@ -115,6 +123,13 @@ extension KeywordsPostsViewController: UITableViewDataSource {
         let index = indexPath.section
         if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
+            if let isUnique = isScrapPostsList?[indexPath.row] {
+                if isUnique {
+                    cell.scrapButton.isTapped = false
+                } else {
+                    cell.scrapButton.isTapped = true
+                }
+            }
             return cell
         }
         return cell
