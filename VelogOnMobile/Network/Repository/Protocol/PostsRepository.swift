@@ -10,4 +10,5 @@ import Foundation
 protocol PostsRepository {
     func getSubscriberPosts(completion: @escaping (NetworkResult<Any>) -> Void)
     func getTagPosts(completion: @escaping (NetworkResult<Any>) -> Void)
+    func getPopularPosts(completion: @escaping (NetworkResult<Any>) -> Void)
 }

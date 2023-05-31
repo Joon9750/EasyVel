@@ -23,4 +23,5 @@ enum ResponseData {
     case signUp
     case broadCast
     case joinGroup
+    case getPopularPosts
 }
