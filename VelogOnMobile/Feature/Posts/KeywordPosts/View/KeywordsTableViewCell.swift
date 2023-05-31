@@ -21,6 +21,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         }
     }
     
+    var post: TagPostDtoList?
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
@@ -158,13 +159,25 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         if !(isTapped) {
             NotificationCenter.default.post(name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
         }
+        guard let post = post else { return }
+        let storagePost = StoragePost(
+            img: post.img,
+            name: post.name,
+            summary: post.summary,
+            title: post.title,
+            url: post.url
+        )
+        cellDelegate?.scrapButtonDidTapped(
+            storagePost: storagePost,
+            isScrapped: isTapped
+        )
         self.isTapped.toggle()
-        cellDelegate?.scrapButtonDidTapped()
     }
 }
 
 extension KeywordsTableViewCell {
     public func binding(model: TagPostDtoList){
+        post = model
         title.text = model.title
         name.text = model.name
         date.text = model.date

@@ -8,7 +8,7 @@
 import UIKit
 
 import RxSwift
-import RxCocoa
+import RxRelay
 
 final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
     
@@ -55,22 +55,22 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
             })
             .disposed(by: disposeBag)
         
-        viewModel.toastPresentOutput
-            .asDriver(onErrorJustReturn: Bool())
-            .drive(onNext: { [weak self] addSuccess in
-                if addSuccess {
-                    self?.showToast(
-                        message: TextLiterals.addToastText,
-                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
-                    )
-                } else {
-                    self?.showToast(
-                        message: TextLiterals.alreadyAddToastText,
-                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
-                    )
-                }
-            })
-            .disposed(by: disposeBag)
+//        viewModel.toastPresentOutput
+//            .asDriver(onErrorJustReturn: Bool())
+//            .drive(onNext: { [weak self] addSuccess in
+//                if addSuccess {
+//                    self?.showToast(
+//                        message: TextLiterals.addToastText,
+//                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
+//                    )
+//                } else {
+//                    self?.showToast(
+//                        message: TextLiterals.alreadyAddToastText,
+//                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
+//                    )
+//                }
+//            })
+//            .disposed(by: disposeBag)
         
         viewModel.isPostsEmptyOutput
             .asDriver(onErrorJustReturn: Bool())
@@ -84,23 +84,23 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
             .disposed(by: disposeBag)
     }
     
-    private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-50, width: 150, height: 35))
-        toastLabel.backgroundColor = UIColor.brandColor
-        toastLabel.textColor = UIColor.white
-        toastLabel.font = font
-        toastLabel.textAlignment = .center;
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
-             toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
-    }
+//    private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
+//        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-50, width: 150, height: 35))
+//        toastLabel.backgroundColor = UIColor.brandColor
+//        toastLabel.textColor = UIColor.white
+//        toastLabel.font = font
+//        toastLabel.textAlignment = .center;
+//        toastLabel.text = message
+//        toastLabel.alpha = 1.0
+//        toastLabel.layer.cornerRadius = 10;
+//        toastLabel.clipsToBounds  =  true
+//        self.view.addSubview(toastLabel)
+//        UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
+//             toastLabel.alpha = 0.0
+//        }, completion: {(isCompleted) in
+//            toastLabel.removeFromSuperview()
+//        })
+//    }
 
     @objc
     func scrollToTop() {
@@ -109,7 +109,12 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
 }
 
 extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDidTapped {
-    func scrapButtonDidTapped() {
+    func scrapButtonDidTapped(
+        storagePost: StoragePost,
+        isScrapped: Bool
+    ) {
+        let viewModel = KeywordsPostsViewModel()
+        viewModel.cellScrapButtonDidTap.accept((storagePost, isScrapped))
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -127,7 +132,7 @@ extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDid
         cell.cellDelegate = self
         if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
-            if let isUnique = isScrapPostsList?[indexPath.row] {
+            if let isUnique = isScrapPostsList?[index] {
                 if isUnique {
                     cell.isTapped = false
                 } else {
