@@ -33,6 +33,19 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         bindOutput(viewModel)
         setupSheet()
         
+        scrapFolderBottomSheetView.newFolderButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.scrapFolderBottomSheetView.isAddFolderButtonTapped.toggle()
+            })
+            .disposed(by: disposeBag)
+        
+        scrapFolderBottomSheetView.newFolderAddTextField.rx.text
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                self.scrapFolderBottomSheetView.isStartWriting = !(text?.isEmpty ?? true)
+            })
+            .disposed(by: disposeBag)
+
         scrapFolderBottomSheetView.cancelButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true)
