@@ -8,7 +8,7 @@
 import UIKit
 
 import RxSwift
-import RxCocoa
+import RxRelay
 
 final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
     
@@ -54,24 +54,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
                 self?.isScrapPostsList = isScrapList
             })
             .disposed(by: disposeBag)
-        
-        viewModel.toastPresentOutput
-            .asDriver(onErrorJustReturn: Bool())
-            .drive(onNext: { [weak self] addSuccess in
-                if addSuccess {
-                    self?.showToast(
-                        message: TextLiterals.addToastText,
-                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
-                    )
-                } else {
-                    self?.showToast(
-                        message: TextLiterals.alreadyAddToastText,
-                        font: UIFont(name: "Avenir-Black", size: 14) ?? UIFont()
-                    )
-                }
-            })
-            .disposed(by: disposeBag)
-        
+
         viewModel.isPostsEmptyOutput
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] isEmpty in
@@ -84,31 +67,22 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
             .disposed(by: disposeBag)
     }
     
-    private func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-50, width: 150, height: 35))
-        toastLabel.backgroundColor = UIColor.brandColor
-        toastLabel.textColor = UIColor.white
-        toastLabel.font = font
-        toastLabel.textAlignment = .center;
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
-             toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
-    }
-
     @objc
     func scrollToTop() {
         keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
     }
 }
 
-extension KeywordsPostsViewController: UITableViewDataSource {
+extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDidTapped {
+    func scrapButtonDidTapped(
+        storagePost: StoragePost,
+        isScrapped: Bool
+    ) {
+        // MARK: - fix me, viewModel 주입 방법 수정
+        let viewModel = KeywordsPostsViewModel()
+        viewModel.cellScrapButtonDidTap.accept((storagePost, isScrapped))
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return keywordsPosts?.tagPostDtoList?.count ?? 0
     }
@@ -118,16 +92,17 @@ extension KeywordsPostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell ?? KeywordsTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         let index = indexPath.section
+        cell.cellDelegate = self
         if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
-            if let isUnique = isScrapPostsList?[indexPath.row] {
+            if let isUnique = isScrapPostsList?[index] {
                 if isUnique {
-                    cell.scrapButton.isTapped = false
+                    cell.isTapped = false
                 } else {
-                    cell.scrapButton.isTapped = true
+                    cell.isTapped = true
                 }
             }
             return cell
@@ -170,7 +145,6 @@ extension KeywordsPostsViewController: UITableViewDelegate {
             )
             
             // MARK: - fix me, 스크랩 추가 Input 연결 필요
-            
 //            self?.viewModel?.cellDidTap(input: post)
             completionHaldler(true)
         })

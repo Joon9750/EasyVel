@@ -19,13 +19,15 @@ final class TabBarController: UITabBarController {
     // MARK: - viewModel properties
     
     let listViewModel = ListViewModel()
-    let scrapStorageViewModel = ScrapStorageViewModel()
+    let storageViewModel = StorageViewModel()
+//    let scrapStorageViewModel = ScrapStorageViewModel()
     
     // MARK: - viewController properties
     
     let PostsVC = PostsTabManViewController()
     lazy var ListVC = ListViewController(viewModel: listViewModel)
-    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
+//    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
+    lazy var storageVC = StorageViewController(viewModel: storageViewModel)
     let settingVC = SettingViewController()
     
     
@@ -124,8 +126,7 @@ extension TabBarController: ScrapPopUpDelegate {
     func folderButtonTapped() {
         let viewModel = ScrapFolderBottomSheetViewModel()
         let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
-        folderViewController.modalTransitionStyle = .coverVertical
-        folderViewController.modalPresentationStyle = .overFullScreen
+        folderViewController.modalPresentationStyle = .pageSheet
         self.present(folderViewController, animated: true)
     }
 }

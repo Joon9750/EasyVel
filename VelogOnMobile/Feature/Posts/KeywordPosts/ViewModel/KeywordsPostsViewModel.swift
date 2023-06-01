@@ -17,7 +17,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
 
     // MARK: - Input
     
-    var cellScrapButtonDidTap = PublishRelay<StoragePost>()
+    var cellScrapButtonDidTap = PublishRelay<(StoragePost, Bool)>()
     var tableViewReload = PublishRelay<Void>()
 
     // MARK: - Output
@@ -56,18 +56,14 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         cellScrapButtonDidTap
-            .filter { [weak self] response in
-                if self?.checkIsUniquePost(post: response) == false {
-                    self?.toastPresentOutput.accept(false)
+            .subscribe(onNext: { [weak self] storagePost, isScrapped in
+                LoadingView.hideLoading()
+                if isScrapped == false {
+                    // MARK: - fix me : articleID 일단 기본 0
+                    self?.realm.addPost(item: storagePost, articleID: 0)
+                } else {
+                    self?.realm.deletePost(url: storagePost.url ?? String())
                 }
-                return self?.checkIsUniquePost(post: response) ?? false
-            }
-            .subscribe(onNext: { [weak self] response in
-                
-                // MARK: - fix me : articleID 일단 기본 0
-                
-                self?.addPostRealm(post: response, articleID: 0)
-                self?.toastPresentOutput.accept(true)
             })
             .disposed(by: disposeBag)
         
@@ -107,14 +103,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
             url: input.url ?? ""
         )
     }
-
-    private func addPostRealm(
-        post: StoragePost,
-        articleID: Int
-    ) {
-        realm.addPost(item: post, articleID: articleID)
-    }
-
+    
     private func checkIsUniquePost(
         post: StoragePost
     ) -> Bool {

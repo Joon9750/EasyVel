@@ -13,6 +13,7 @@ final class KeywordsTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        
         setupTableView()
     }
     
@@ -22,6 +23,7 @@ final class KeywordsTableView: UITableView {
 
     private func setupTableView() {
         register(KeywordsTableViewCell.self, forCellReuseIdentifier: KeywordsTableViewCell.identifier)
+        
         showsVerticalScrollIndicator = true
     }
 }

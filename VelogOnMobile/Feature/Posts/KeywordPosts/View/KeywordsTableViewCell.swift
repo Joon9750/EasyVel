@@ -14,6 +14,14 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     
     static let identifier = "KeywordsTableViewCell"
     
+    weak var cellDelegate: PostScrapButtonDidTapped?
+    var isTapped: Bool = false {
+        didSet {
+            updateButton()
+        }
+    }
+    
+    var post: TagPostDtoList?
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
@@ -46,7 +54,11 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
-    let scrapButton = ScrapButton()
+    let scrapButton : UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+        return button
+    }()
     let tagFristButton: PostTagUIButton = PostTagUIButton()
     let tagSecondButton: PostTagUIButton = PostTagUIButton()
     let tagThirdButton: PostTagUIButton = PostTagUIButton()
@@ -60,7 +72,9 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     // MARK: - life cycle
     
     override func render() {
-        self.addSubviews(
+        self.scrapButton.addTarget(self, action: #selector(scrapButtonTapped), for: .touchUpInside)
+        
+        self.contentView.addSubviews(
             buttonStackView,
             imgView,
             date,
@@ -75,7 +89,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             tagSecondButton,
             tagThirdButton
         )
-        self.bringSubviewToFront(buttonStackView)
+        contentView.bringSubviewToFront(buttonStackView)
         
         buttonStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
@@ -87,7 +101,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             $0.top.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(8)
         }
-        self.bringSubviewToFront(scrapButton)
+        contentView.bringSubviewToFront(scrapButton)
         
         imgView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -135,10 +149,35 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         tagThirdButton.isHidden = false
         tagThirdButton.setTitle(buttonTitle, for: .normal)
     }
+    
+    func updateButton() {
+        let image = isTapped ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
+        scrapButton.setImage(image, for: .normal)
+    }
+    
+    @objc func scrapButtonTapped(_ sender: UIButton) {
+        if !(isTapped) {
+            NotificationCenter.default.post(name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
+        }
+        guard let post = post else { return }
+        let storagePost = StoragePost(
+            img: post.img,
+            name: post.name,
+            summary: post.summary,
+            title: post.title,
+            url: post.url
+        )
+        cellDelegate?.scrapButtonDidTapped(
+            storagePost: storagePost,
+            isScrapped: isTapped
+        )
+        self.isTapped.toggle()
+    }
 }
 
 extension KeywordsTableViewCell {
     public func binding(model: TagPostDtoList){
+        post = model
         title.text = model.title
         name.text = model.name
         date.text = model.date

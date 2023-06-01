@@ -84,5 +84,6 @@ enum TextLiterals {
     
     static let bottomSheetText: String = "폴더 선택"
     static let makeNewFolderButtonText: String = "새 폴더 만들기"
-    
+    static let newFolderAddTextFieldPlaceholder: String = "폴더명을 입력하세요."
+    static let addFolderFinishedButtonTitleText: String = "완료"
 }
