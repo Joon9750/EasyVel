@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C595CF82A234BDF00405EA5 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C595CF72A234BDF00405EA5 /* SampleViewController.swift */; };
+		7C595CFA2A234BF200405EA5 /* SearchViewControllere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C595CF92A234BF200405EA5 /* SearchViewControllere.swift */; };
+		7C595D1C2A29276600405EA5 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C595D1B2A29276600405EA5 /* SearchTableViewCell.swift */; };
+		7C595D1F2A292D2E00405EA5 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 7C595D1E2A292D2E00405EA5 /* Then */; };
+		7C595D232A293D4A00405EA5 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C595D222A293D4A00405EA5 /* SearchCollectionViewCell.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */; };
 		913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913441E929FFD649000E1ED1 /* BaseTargetType.swift */; };
@@ -125,6 +130,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C595CF72A234BDF00405EA5 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		7C595CF92A234BF200405EA5 /* SearchViewControllere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllere.swift; sourceTree = "<group>"; };
+		7C595D1B2A29276600405EA5 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		7C595D222A293D4A00405EA5 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		913441E629FFD622000E1ED1 /* MoyaLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggerPlugin.swift; sourceTree = "<group>"; };
 		913441E929FFD649000E1ED1 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
@@ -246,6 +255,7 @@
 				917BA34E2A050861000409B7 /* RealmSwift in Frameworks */,
 				91E442AE2A11031D008CB516 /* RxSwift in Frameworks */,
 				914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */,
+				7C595D1F2A292D2E00405EA5 /* Then in Frameworks */,
 				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
 				91487ED729FC38CC009CFECF /* SnapKit in Frameworks */,
@@ -256,6 +266,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C595CF62A234B3500405EA5 /* AllSearch */ = {
+			isa = PBXGroup;
+			children = (
+				7C595CF72A234BDF00405EA5 /* SampleViewController.swift */,
+				7C595CF92A234BF200405EA5 /* SearchViewControllere.swift */,
+				7C595D222A293D4A00405EA5 /* SearchCollectionViewCell.swift */,
+				7C595D1B2A29276600405EA5 /* SearchTableViewCell.swift */,
+			);
+			path = AllSearch;
+			sourceTree = "<group>";
+		};
 		9128AFE22A21178600FB1252 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +634,7 @@
 		91487F4829FD9663009CFECF /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				7C595CF62A234B3500405EA5 /* AllSearch */,
 				91487F4929FD966B009CFECF /* TagSearch */,
 				91487F2B29FD07F7009CFECF /* SubscriberSearch */,
 			);
@@ -997,6 +1019,7 @@
 				91E442A92A11031D008CB516 /* RxCocoa */,
 				91E442AB2A11031D008CB516 /* RxRelay */,
 				91E442AD2A11031D008CB516 /* RxSwift */,
+				7C595D1E2A292D2E00405EA5 /* Then */,
 			);
 			productName = VelogOnMobile;
 			productReference = 91487EBE29FC380A009CFECF /* VelogOnMobile.app */;
@@ -1034,6 +1057,7 @@
 				914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				91E442A62A11031D008CB516 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				7C595D1D2A292D2E00405EA5 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 91487EBF29FC380A009CFECF /* Products */;
 			projectDirPath = "";
@@ -1068,6 +1092,7 @@
 				91ED178D2A00E5A600158787 /* SignRepository.swift in Sources */,
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */,
+				7C595CF82A234BDF00405EA5 /* SampleViewController.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
@@ -1116,6 +1141,7 @@
 				91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */,
 				91E4428B2A10F3C7008CB516 /* BaseViewModel.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
+				7C595CFA2A234BF200405EA5 /* SearchViewControllere.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
 				91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */,
@@ -1128,10 +1154,12 @@
 				913441F429FFD742000E1ED1 /* TagAPI.swift in Sources */,
 				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
+				7C595D1C2A29276600405EA5 /* SearchTableViewCell.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
+				7C595D232A293D4A00405EA5 /* SearchCollectionViewCell.swift in Sources */,
 				91ED179A2A00F00800158787 /* BaseRepository.swift in Sources */,
 				917BA3412A03E8FE000409B7 /* StorageTableViewCell.swift in Sources */,
 				913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */,
@@ -1373,6 +1401,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7C595D1D2A292D2E00405EA5 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		91487ED529FC38CC009CFECF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1432,6 +1468,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7C595D1E2A292D2E00405EA5 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C595D1D2A292D2E00405EA5 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
 		91487ED629FC38CC009CFECF /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 91487ED529FC38CC009CFECF /* XCRemoteSwiftPackageReference "SnapKit" */;

@@ -104,6 +104,7 @@ private extension KeywordsPostsViewModel {
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     observer.onError(errResponse as! Error)
+                    
                 default:
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }

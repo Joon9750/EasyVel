@@ -98,6 +98,15 @@
         "branch" : "main",
         "revision" : "6a87a2825939f5da06cf52a6582d67a646488cff"
       }
+    },
+    {
+      "identity" : "then",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devxoul/Then.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "d41ef523faef0f911369f79c0b96815d9dbb6d7a"
+      }
     }
   ],
   "version" : 2
