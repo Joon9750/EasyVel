@@ -12,6 +12,8 @@ import RxSwift
 
 final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     
+    let realm = RealmService()
+    
     // MARK: - Output
     
     var folderNameListRelay = PublishRelay<[String]>()
@@ -24,8 +26,12 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .flatMapLatest( { [weak self] _ -> Observable<[String]> in
-//                guard let self = self else { return Observable.empty() }
-                return Observable<[String]>.just(["aa","bb","cc"])
+                var folderNameList: [String] = [String]()
+                if let folderListRealmDTO = self?.realm.getFolders() {
+                    let folderList = self?.realm.convertToStorageDTO(input: folderListRealmDTO)
+                    folderNameList = folderList?.map { $0.folderName ?? String() } ?? [String]()
+                }
+                return Observable<[String]>.just(folderNameList)
             })
             .subscribe(onNext: { [weak self] folderList in
                 self?.folderNameListRelay.accept(folderList)
