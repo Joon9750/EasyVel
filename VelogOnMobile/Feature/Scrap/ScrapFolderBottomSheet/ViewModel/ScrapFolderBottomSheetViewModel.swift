@@ -21,6 +21,7 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     // MARK: - Output
     
     var folderNameListRelay = PublishRelay<[String]>()
+    var alreadyHaveFolderNameRelay = PublishRelay<Bool>()
     
     override init() {
         super.init()
@@ -52,7 +53,11 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
                     folderName: folderName,
                     count: 0
                 )
-                self?.realm.addFolder(item: storageDTO)
+                if self?.realm.checkUniqueFolder(input: storageDTO) == true {
+                    self?.realm.addFolder(item: storageDTO)
+                } else {
+                    self?.alreadyHaveFolderNameRelay.accept(true)
+                }
             })
             .disposed(by: disposeBag)
     }

@@ -90,7 +90,7 @@ final class RealmService {
     ) -> Bool {
         let folders = convertToStorageDTO(input: getFolders())
         for item in folders {
-            if input == item {
+            if input.folderName == item.folderName {
                 return false
             }
         }
