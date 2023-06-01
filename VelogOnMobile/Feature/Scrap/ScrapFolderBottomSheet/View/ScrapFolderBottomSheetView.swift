@@ -16,8 +16,6 @@ final class ScrapFolderBottomSheetView: BaseUIView {
     private let bottomSheetView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.roundCorners(cornerRadius: 8,
-                          maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner])
         return view
     }()
     
@@ -30,14 +28,14 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         return label
     }()
     
-    private let cancelButton: UIButton = {
+    let cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .darkGrayColor
         return button
     }()
     
-    private lazy var newFolderButton: UIButton = {
+    let newFolderButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.plusFolder, for: .normal)
         button.backgroundColor = .white
@@ -82,7 +80,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         )
         
         bottomSheetView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(SizeLiterals.screenHeight / 2)
         }
         

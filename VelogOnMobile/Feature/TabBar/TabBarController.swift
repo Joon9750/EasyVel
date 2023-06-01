@@ -126,8 +126,7 @@ extension TabBarController: ScrapPopUpDelegate {
     func folderButtonTapped() {
         let viewModel = ScrapFolderBottomSheetViewModel()
         let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
-        folderViewController.modalTransitionStyle = .coverVertical
-        folderViewController.modalPresentationStyle = .overFullScreen
+        folderViewController.modalPresentationStyle = .pageSheet
         self.present(folderViewController, animated: true)
     }
 }
