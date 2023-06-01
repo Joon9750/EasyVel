@@ -16,9 +16,9 @@ final class RealmService {
     
     func addPost(
         item: StoragePost,
-        articleID: Int
+        folderName: String
     ) {
-        let post = RealmStoragePost(input: item, articleID: articleID)
+        let post = RealmStoragePost(input: item, folderName: folderName)
         if localRealm.isEmpty {
             try! localRealm.write {
                 localRealm.add(post)

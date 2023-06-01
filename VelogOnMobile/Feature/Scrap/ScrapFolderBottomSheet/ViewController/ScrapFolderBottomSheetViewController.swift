@@ -46,6 +46,17 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             })
             .disposed(by: disposeBag)
 
+        Observable.combineLatest(
+            scrapFolderBottomSheetView.newFolderAddTextField.rx.text,
+            scrapFolderBottomSheetView.addFolderFinishedButton.rx.tap
+        ) { textFieldText, _ in
+            return textFieldText ?? String()
+        }
+        .subscribe(onNext: { text in
+            self.viewModel?.addNewFolderTitle.accept(text)
+        })
+        .disposed(by: disposeBag)
+
         scrapFolderBottomSheetView.cancelButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true)
@@ -57,7 +68,10 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         viewModel.folderNameListRelay
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] folderList in
-                self?.dataSource.update(list: folderList)
+                let scrapFolderList = folderList.map {
+                    ScrapFolder(title: $0,articleId: UUID())
+                }
+                self?.dataSource.update(list: scrapFolderList)
             })
             .disposed(by: disposeBag)
     }

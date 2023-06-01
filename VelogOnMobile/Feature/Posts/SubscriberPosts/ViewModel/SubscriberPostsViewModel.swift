@@ -50,7 +50,7 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     func cellDidTap(input: StoragePost) {
         if checkIsUniquePost(post: input) {
             // MARK: - fix me : articleID 일단 기본 0
-            addPostRealm(post: input, articleID: 0)
+            addPostRealm(post: input, folderName: "모든 게시글")
             toastSuccessPresentOutPut()
         } else {
             toastFailPresentOutPut()
@@ -70,8 +70,8 @@ final class SubscriberPostsViewModel: SubscriberPostsViewModelInputOutput {
     
     // MARK: - func
     
-    private func addPostRealm(post: StoragePost, articleID: Int) {
-        realm.addPost(item: post, articleID: articleID)
+    private func addPostRealm(post: StoragePost, folderName: String) {
+        realm.addPost(item: post, folderName: folderName)
     }
     
     private func checkIsUniquePost(post: StoragePost) -> Bool {

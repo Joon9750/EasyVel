@@ -14,6 +14,10 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     
     let realm = RealmService()
     
+    // MARK: - Input
+    
+    var addNewFolderTitle = PublishRelay<String>()
+    
     // MARK: - Output
     
     var folderNameListRelay = PublishRelay<[String]>()
@@ -29,12 +33,26 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
                 var folderNameList: [String] = [String]()
                 if let folderListRealmDTO = self?.realm.getFolders() {
                     let folderList = self?.realm.convertToStorageDTO(input: folderListRealmDTO)
-                    folderNameList = folderList?.map { $0.folderName ?? String() } ?? [String]()
+                    for index in 0 ..< (folderList?.count ?? Int()) {
+                        folderNameList.append(folderList?[index].folderName ?? "")
+                    }
+                    return Observable<[String]>.just(folderNameList)
                 }
                 return Observable<[String]>.just(folderNameList)
             })
             .subscribe(onNext: { [weak self] folderList in
                 self?.folderNameListRelay.accept(folderList)
+            })
+            .disposed(by: disposeBag)
+
+        addNewFolderTitle
+            .subscribe(onNext: { [weak self] folderName in
+                let storageDTO: StorageDTO = StorageDTO(
+                    articleID: UUID(),
+                    folderName: folderName,
+                    count: 0
+                )
+                self?.realm.addFolder(item: storageDTO)
             })
             .disposed(by: disposeBag)
     }

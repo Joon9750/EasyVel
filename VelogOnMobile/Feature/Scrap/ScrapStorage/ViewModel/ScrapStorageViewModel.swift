@@ -14,15 +14,15 @@ final class ScrapStorageViewModel: BaseViewModel {
     
     // MARK: - Output
     
-    let dummyDto1 = StorageDTO(articleID: 0,folderName: "iOS", count: 2)
-    let dummyDto2 = StorageDTO(articleID: 1,folderName: "iOS", count: 2)
-    let dummyDto3 = StorageDTO(articleID: 2,folderName: "iOS", count: 2)
-    let dummyDto4 = StorageDTO(articleID: 3,folderName: "iOS", count: 2)
-    let dummyDto5 = StorageDTO(articleID: 4,folderName: "iOS", count: 2)
-    let dummyDto6 = StorageDTO(articleID: 5,folderName: "iOS", count: 2)
-    let dummyDto7 = StorageDTO(articleID: 6,folderName: "iOS", count: 2)
-    let dummyDto8 = StorageDTO(articleID: 7,folderName: "iOS", count: 2)
-    let dummyDto9 = StorageDTO(articleID: 8,folderName: "iOS", count: 2)
+    let dummyDto1 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto2 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto3 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto4 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto5 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto6 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto7 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto8 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    let dummyDto9 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
     
     var storageListOutput = PublishRelay<[StorageDTO]>()
     

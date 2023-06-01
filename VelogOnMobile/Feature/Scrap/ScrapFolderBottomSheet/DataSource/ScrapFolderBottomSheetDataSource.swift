@@ -10,14 +10,14 @@ import UIKit
 final class ScrapFolderBottomSheetDataSource {
     
     typealias tableViewCell = ScrapFolderBottomSheetTableViewCell
-    typealias DiffableDataSource = UITableViewDiffableDataSource<Section, Int>
-    typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<ScrapFolderBottomSheetDataSource.Section, Int>
+    typealias DiffableDataSource = UITableViewDiffableDataSource<Section, UUID>
+    typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<ScrapFolderBottomSheetDataSource.Section, UUID>
     typealias CompletedUpdate = (() -> Void)
 
     private let tableView: UITableView
 
     private lazy var dataSource: DiffableDataSource = createDataSource()
-    private var folderNameList: [String]
+    private var folderNameList: [ScrapFolder]
 
     enum Section {
         case main
@@ -31,21 +31,21 @@ final class ScrapFolderBottomSheetDataSource {
     }
 
     private func createDataSource() -> DiffableDataSource {
-        return UITableViewDiffableDataSource<Section, Int>(
+        return UITableViewDiffableDataSource<Section, UUID>(
             tableView: tableView
         ) { [weak self] _, indexPath, _ in
             guard let self = self else {
                 return UITableViewCell()
             }
-            let folderTitle = self.folderNameList[indexPath.row]
+            let folderTitle = self.folderNameList[indexPath.row].title
             let cell:tableViewCell = self.tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(folderList: folderTitle)
+            cell.configure(folderList: folderTitle ?? "")
             return cell
         }
     }
 
     func update(
-        list: [String]?,
+        list: [ScrapFolder]?,
         completion: CompletedUpdate? = nil
     ) {
         guard let list = list else {
@@ -54,7 +54,7 @@ final class ScrapFolderBottomSheetDataSource {
         }
         self.folderNameList = list
         
-        let itemIdentifiers = list.map { $0.hashValue }
+        let itemIdentifiers = list.compactMap { $0.articleId }
         list.forEach { folderName in
             self.folderNameList.append(folderName)
         }
