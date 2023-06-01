@@ -55,6 +55,12 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
                 )
                 if self?.realm.checkUniqueFolder(input: storageDTO) == true {
                     self?.realm.addFolder(item: storageDTO)
+//                    let folderList = self?.realm.getFolders()
+//                    var folderNameList: [String] = [String]()
+//                    for index in 0 ..< (folderList?.count ?? Int()) {
+//                        folderNameList.append(folderList?[index].folderName ?? "")
+//                    }
+//                    self?.folderNameListRelay.accept(folderNameList)
                 } else {
                     self?.alreadyHaveFolderNameRelay.accept(true)
                 }

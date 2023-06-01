@@ -114,8 +114,9 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         )
         
         bottomSheetView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(SizeLiterals.screenHeight / 2)
+//            $0.top.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(SizeLiterals.screenHeight / 2)
+            $0.edges.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
