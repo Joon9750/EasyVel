@@ -30,22 +30,19 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
-            .flatMapLatest( { [weak self] _ -> Observable<[String]> in
-                var folderNameList: [String] = [String]()
-                if let folderListRealmDTO = self?.realm.getFolders() {
-                    let folderList = self?.realm.convertToStorageDTO(input: folderListRealmDTO)
-                    for index in 0 ..< (folderList?.count ?? Int()) {
-                        folderNameList.append(folderList?[index].folderName ?? "")
-                    }
-                    return Observable<[String]>.just(folderNameList)
+            .flatMap({ [weak self] _ -> Observable<[String]> in
+                guard let folderListRealmDTO = self?.realm.getFolders() else {
+                    return Observable.just([])
                 }
-                return Observable<[String]>.just(folderNameList)
+                let folderList = self?.realm.convertToStorageDTO(input: folderListRealmDTO)
+                let folderNameList = folderList?.map { $0.folderName ?? "" }
+                return Observable.just(folderNameList ?? [String]())
             })
             .subscribe(onNext: { [weak self] folderList in
                 self?.folderNameListRelay.accept(folderList)
             })
             .disposed(by: disposeBag)
-
+        
         addNewFolderTitle
             .subscribe(onNext: { [weak self] folderName in
                 let storageDTO: StorageDTO = StorageDTO(
@@ -55,12 +52,7 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
                 )
                 if self?.realm.checkUniqueFolder(input: storageDTO) == true {
                     self?.realm.addFolder(item: storageDTO)
-//                    let folderList = self?.realm.getFolders()
-//                    var folderNameList: [String] = [String]()
-//                    for index in 0 ..< (folderList?.count ?? Int()) {
-//                        folderNameList.append(folderList?[index].folderName ?? "")
-//                    }
-//                    self?.folderNameListRelay.accept(folderNameList)
+                    // MARK: - data reload 필요
                 } else {
                     self?.alreadyHaveFolderNameRelay.accept(true)
                 }
