@@ -82,7 +82,7 @@ private extension HomeMenuBar {
     }
     
     func setCollectionView() {
-        collectionView.register(HomeMenuCollectionViewCell.self, forCellWithReuseIdentifier: HomeMenuCollectionViewCell.cellId)
+        collectionView.register(cell: HomeMenuCollectionViewCell.self)
     }
     
     func updateBar(from isSelected: Int?) {
@@ -115,7 +115,7 @@ extension HomeMenuBar: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeMenuCollectionViewCell.cellId, for: indexPath) as? HomeMenuCollectionViewCell else { return HomeMenuCollectionViewCell()}
+        let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.title = labels[indexPath.item]
         return cell
     }
