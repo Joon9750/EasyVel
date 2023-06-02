@@ -40,7 +40,8 @@ class HomeMenuCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.verticalEdges.equalToSuperview()
+            //$0.center.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(15)
         }
     }

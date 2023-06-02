@@ -12,6 +12,8 @@
 		8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */; };
 		8765EFF22A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */; };
 		8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF32A29ECDE00EF6733 /* String+Extension.swift */; };
+		8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */; };
+		8765EFFA2A29FB1000EF6733 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF92A29FB1000EF6733 /* ViewControllerFactory.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -154,6 +156,8 @@
 		8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuBar.swift; sourceTree = "<group>"; };
 		8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		8765EFF32A29ECDE00EF6733 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		8765EFF92A29FB1000EF6733 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -652,6 +656,8 @@
 				91487F5729FDA256009CFECF /* KeywordPosts */,
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
 				8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */,
+				8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */,
+				8765EFF92A29FB1000EF6733 /* ViewControllerFactory.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -1265,6 +1271,8 @@
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
+				8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */,
+				8765EFFA2A29FB1000EF6733 /* ViewControllerFactory.swift in Sources */,
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,

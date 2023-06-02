@@ -28,7 +28,7 @@ final class HomeMenuBar: UIView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        view.backgroundColor = .clear
+        view.backgroundColor = .white
         view.showsHorizontalScrollIndicator = false
         return view
     }()
@@ -85,18 +85,12 @@ private extension HomeMenuBar {
     }
     
     func updateBar(from isSelected: Int?) {
-        guard let isSelected else {
-            print("1차 가드문에 막힘")
-            return }
+        guard let isSelected else { return }
         
         collectionView.selectItem(at: IndexPath(item: isSelected, section: 0),
                                   animated: true,
                                   scrollPosition: .centeredHorizontally)
-        
-        collectionView.performBatchUpdates(nil)
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) as? HomeMenuCollectionViewCell else {
-            print("2차 가드문에 막힘")
-            return }
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) as? HomeMenuCollectionViewCell else { return }
         
         underLine.snp.remakeConstraints { make in
             make.bottom.equalTo(collectionView.snp.bottom)
