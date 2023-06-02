@@ -28,6 +28,11 @@ final class HomeViewController: BaseViewController {
     
     private var dataSourceViewController: [UIViewController] = []
     
+    private var keywordsPostsViewModel = KeywordsPostsViewModel()
+    private var subscriberPostViewModel = SubscriberPostsViewModel()
+    private lazy var keywordsPostsViewController = KeywordsPostsViewController(viewModel: keywordsPostsViewModel)
+    private lazy var subscribePostsViewController = SubscribePostsViewController(viewModel: subscriberPostViewModel)
+    
     //MARK: - UI Components
     
     private let navigationView: UIView = {
