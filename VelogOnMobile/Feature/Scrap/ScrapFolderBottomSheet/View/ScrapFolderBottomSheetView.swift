@@ -164,10 +164,12 @@ final class ScrapFolderBottomSheetView: BaseUIView {
             newFolderAddTextField.isHidden = false
             addFolderFinishedButton.isHidden = false
             folderTitleLabel.isHidden = true
+            newFolderButton.setImage(ImageLiterals.activePlusFolder, for: .normal)
         } else {
             newFolderAddTextField.isHidden = true
             addFolderFinishedButton.isHidden = true
             folderTitleLabel.isHidden = false
+            newFolderButton.setImage(ImageLiterals.plusFolder, for: .normal)
         }
     }
     
