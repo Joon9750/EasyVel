@@ -74,7 +74,8 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         viewModel.alreadyHaveFolderNameRelay
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] isAlreadyHave in
-                // MARK: - 이미 존재하는 폴더명일 경우 들어옴
+                // MARK: - fix me 이미 존재하는 폴더명일 경우 들어옴
+                print("이미 존재라는 폴더명입니다.")
             })
             .disposed(by: disposeBag)
     }

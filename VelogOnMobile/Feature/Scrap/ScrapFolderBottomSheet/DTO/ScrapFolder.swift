@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ScrapFolder: Equatable {
+struct ScrapFolder: Equatable, Hashable {
     var title: String?
     var articleId: UUID?
 }

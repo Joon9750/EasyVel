@@ -52,12 +52,9 @@ final class ScrapFolderBottomSheetDataSource {
             completion?()
             return
         }
-        self.folderNameList = list
-        
-        let itemIdentifiers = list.compactMap { $0.articleId }
-        list.forEach { folderName in
-            self.folderNameList.append(folderName)
-        }
+        let itemIdentifiers = Array(Set(list.compactMap { $0.articleId }))
+        folderNameList = list.reversed()
+        dataSource = createDataSource()
         
         var snapshot = dataSource.snapshot()
         if snapshot.sectionIdentifiers.contains(Section.main) == false {
