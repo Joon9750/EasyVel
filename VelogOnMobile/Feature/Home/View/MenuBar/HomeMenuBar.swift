@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol MenuItemDelegate: AnyObject {
-    func menuView(didSelectItemAt indexPath: IndexPath)
+protocol HomeMenuBarDelegate: AnyObject {
+    func menuBar(didSelectItemAt indexPath: IndexPath)
 }
 
 
@@ -20,7 +20,7 @@ final class HomeMenuBar: UIView {
         }
     }
     
-    weak var delegate: MenuItemDelegate?
+    weak var delegate: HomeMenuBarDelegate?
     
     private let labels = ["트렌드", "팔로우", "iOS", "홍준혁", "화이팅", "현아님", "화이팅"]
     
@@ -42,9 +42,9 @@ final class HomeMenuBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUI()
-        setHierarchy()
-        setLayout()
+        style()
+        hierarchy()
+        layout()
         setDelegate()
         setCollectionView()
     }
@@ -60,16 +60,17 @@ final class HomeMenuBar: UIView {
 }
 
 private extension HomeMenuBar {
-    func setUI() {
+    
+    func style() {
         self.backgroundColor = .clear
     }
     
-    func setHierarchy() {
+    func hierarchy() {
         addSubview(collectionView)
         addSubview(underLine)
     }
     
-    func setLayout() {
+    func layout() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -125,7 +126,7 @@ extension HomeMenuBar: UICollectionViewDataSource {
 extension HomeMenuBar: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(#function) 눌림!!!! \(indexPath.row)")
-        delegate?.menuView(didSelectItemAt: indexPath)
+        delegate?.menuBar(didSelectItemAt: indexPath)
     }
 }
 
@@ -138,10 +139,6 @@ extension HomeMenuBar: UICollectionViewDelegateFlowLayout {
         let cell = HomeMenuCollectionViewCell()
         cell.title = labels[indexPath.item]
         return cell.sizeFittingWith(cellHeight: 40)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return  0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

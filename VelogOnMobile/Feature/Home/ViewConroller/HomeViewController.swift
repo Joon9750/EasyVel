@@ -152,8 +152,8 @@ final class HomeViewController: BaseViewController {
     
 }
 
-extension HomeViewController: MenuItemDelegate {
-    func menuView(didSelectItemAt indexPath: IndexPath) {
+extension HomeViewController: HomeMenuBarDelegate {
+    func menuBar(didSelectItemAt indexPath: IndexPath) {
         currentPage = indexPath.row
         
     }

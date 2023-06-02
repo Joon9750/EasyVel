@@ -9,7 +9,9 @@ import UIKit
 
 import SnapKit
 
-class HomeMenuCollectionViewCell: UICollectionViewCell {
+final class HomeMenuCollectionViewCell: UICollectionViewCell {
+    
+    //MARK: - Properties
     
     override var isSelected: Bool {
         didSet {
@@ -25,6 +27,8 @@ class HomeMenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    //MARK: - UI Components
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
@@ -32,7 +36,8 @@ class HomeMenuCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    
+    //MARK: - Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
