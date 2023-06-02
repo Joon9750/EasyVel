@@ -16,11 +16,11 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     private var isScrolled: Bool = false
     private var keywordsPosts: GetTagPostResponse?
     private var isScrapPostsList: [Bool]?
-
+    
     override func render() {
         self.view = keywordsPostsView
     }
-
+    
     override func setupNavigationBar() {
         navigationController?.navigationBar.isHidden = true
     }

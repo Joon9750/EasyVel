@@ -8,7 +8,12 @@
 import UIKit
 
 extension UIFont {
+    
     static func appleGothicNeo(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: "Apple SD Gothic Neo", size: size)!
+    }
+    
+    static func avenir(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: "Avenir-Black", size: size)!
     }
 }

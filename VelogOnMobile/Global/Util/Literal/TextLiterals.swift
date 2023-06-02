@@ -19,7 +19,7 @@ enum TextLiterals {
     
     // MARK: - tab Bar
     
-    static let postsViewControllerTitle: String = "홈"
+    static let homeViewControllerTitle: String = "홈"
     static let listViewControllerTitle: String = "리스트"
     static let storageViewControllerTitle: String = "스크랩"
     static let settingViewControllerTitle: String = "설정"

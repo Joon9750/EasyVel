@@ -24,8 +24,8 @@ final class TabBarController: UITabBarController {
     
     // MARK: - viewController properties
     
-    let PostsVC = PostsTabManViewController()
-    lazy var ListVC = ListViewController(viewModel: listViewModel)
+    let homeVC = UINavigationController(rootViewController: HomeViewController()) 
+    lazy var listVC = ListViewController(viewModel: listViewModel)
 //    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
     lazy var storageVC = StorageViewController(viewModel: storageViewModel)
     let settingVC = SettingViewController()
@@ -84,16 +84,16 @@ final class TabBarController: UITabBarController {
         self.tabBar.isTranslucent = false
         self.tabBar.backgroundColor = .white
 
-        PostsVC.title = TextLiterals.postsViewControllerTitle
-        ListVC.title = TextLiterals.listViewControllerTitle
+        homeVC.title = TextLiterals.homeViewControllerTitle
+        listVC.title = TextLiterals.listViewControllerTitle
         storageVC.title = TextLiterals.storageViewControllerTitle
         settingVC.title = TextLiterals.settingViewControllerTitle
 
-        let ViewControllers:[UIViewController] = [PostsVC,ListVC,storageVC,settingVC]
+        let ViewControllers:[UIViewController] = [homeVC,listVC,storageVC,settingVC]
         self.setViewControllers(ViewControllers, animated: true)
 
-        PostsVC.tabBarItem.image = ImageLiterals.homeTabIcon
-        ListVC.tabBarItem.image = ImageLiterals.listTabIcon
+        homeVC.tabBarItem.image = ImageLiterals.homeTabIcon
+        listVC.tabBarItem.image = ImageLiterals.listTabIcon
         storageVC.tabBarItem.image = ImageLiterals.unSaveBookMarkIcon
         settingVC.tabBarItem.image = ImageLiterals.settingTabIcon
         

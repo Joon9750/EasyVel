@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8765EFEC2A29DC0200EF6733 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEB2A29DC0200EF6733 /* PostsViewController.swift */; };
+		8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */; };
 		8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */; };
+		8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */; };
+		8765EFF22A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */; };
+		8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF32A29ECDE00EF6733 /* String+Extension.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -146,8 +149,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8765EFEB2A29DC0200EF6733 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
+		8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuBar.swift; sourceTree = "<group>"; };
+		8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		8765EFF32A29ECDE00EF6733 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -645,7 +651,7 @@
 				91487F6229FDA348009CFECF /* TabMan */,
 				91487F5729FDA256009CFECF /* KeywordPosts */,
 				91487F0929FC45AD009CFECF /* SubscriberPosts */,
-				8765EFEB2A29DC0200EF6733 /* PostsViewController.swift */,
+				8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -683,6 +689,7 @@
 				9128B0402A23B4E200FB1252 /* UITableView+Extension.swift */,
 				9128B04D2A23C96500FB1252 /* UICollectionView+Extension.swift */,
 				8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */,
+				8765EFF32A29ECDE00EF6733 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -854,6 +861,8 @@
 				9134422A2A00027D000E1ED1 /* SubscribersPostsView.swift */,
 				91487F1329FC489C009CFECF /* PostsTableView.swift */,
 				91487F0A29FC45E9009CFECF /* SubscribersPostsTableViewCell.swift */,
+				8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */,
+				8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1275,6 +1284,7 @@
 				9134422B2A00027D000E1ED1 /* SubscribersPostsView.swift in Sources */,
 				913442382A004B91000E1ED1 /* DefaultTagRepository.swift in Sources */,
 				9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */,
+				8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */,
 				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
@@ -1286,6 +1296,7 @@
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
 				9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */,
+				8765EFF22A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift in Sources */,
 				9128B0322A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift in Sources */,
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
@@ -1306,6 +1317,7 @@
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
 				91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */,
 				91E4428B2A10F3C7008CB516 /* BaseViewModel.swift in Sources */,
+				8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
@@ -1355,7 +1367,7 @@
 				9128B03F2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift in Sources */,
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */,
-				8765EFEC2A29DC0200EF6733 /* PostsViewController.swift in Sources */,
+				8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
@@ -1505,7 +1517,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D96A3BCL3R;
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
@@ -1533,7 +1545,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D96A3BCL3R;
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
