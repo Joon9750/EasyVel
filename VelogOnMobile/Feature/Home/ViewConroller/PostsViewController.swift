@@ -50,7 +50,7 @@ final class PostsViewController: UIViewController {
         layout()
     }
     
-    //MARK: - Custom Method
+    //MARK: - Bind
     
     private func bind() {
         let input = PostsViewModel.Input(
@@ -67,8 +67,9 @@ final class PostsViewController: UIViewController {
     
     private func bindOutput(output: PostsViewModel.Output ) {
         output.post
-            .asDriver()
+            .asDriver(onErrorDriveWith: .never())
             .drive(onNext: { viewModel in
+                //TODO: 해당 역할을 Coordinator에게 맡기자. Coordinator는 VM이 소유하고 있어야 하나?
                 let webViewController = WebViewController(viewModel: viewModel)
                 self.navigationController?.pushViewController(webViewController, animated: true)
             })
@@ -83,7 +84,16 @@ final class PostsViewController: UIViewController {
                 cell.binding(model: model)
             }
             .disposed(by: disposeBag)
+        
+        
     }
+   
+    
+    //MARK: - Action Method
+    
+}
+
+extension PostsViewController {
     
     private func hierarchy() {
         view.addSubview(tableView)
@@ -94,29 +104,5 @@ final class PostsViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
-    
-    //MARK: - Action Method
-    
 }
 
-//MARK: - UITableViewDataSource
-
-//extension PostsViewController: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        viewModel.pos
-//        return
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//
-//}
-//
-////MARK: - UITableViewDelegate
-//
-//extension PostsViewController: UITableViewDelegate {
-//
-//}

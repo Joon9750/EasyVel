@@ -83,6 +83,8 @@ final class PostTableViewCell: BaseTableViewCell {
     override func render() {
         self.backgroundColor = .systemGray6
         self.contentView.backgroundColor = .white
+        self.selectionStyle = .none
+        
         self.scrapButton.addTarget(self, action: #selector(scrapButtonTapped), for: .touchUpInside)
         
         self.contentView.addSubviews(

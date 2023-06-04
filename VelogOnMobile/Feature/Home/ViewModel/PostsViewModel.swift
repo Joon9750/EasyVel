@@ -29,9 +29,7 @@ final class PostsViewModel {
 //        var isPostsEmpty = PublishRelay<Bool>()
         
         var posts = BehaviorRelay<[TagPostDtoList]>(value: [])
-        var post = BehaviorRelay<WebViewModel>(value: .init(url: ""))
-        
-        
+        var post = PublishRelay<WebViewModel>()
     }
     
     
