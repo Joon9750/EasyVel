@@ -11,7 +11,7 @@ import Tabman
 import Pageboy
 import SnapKit
 
-final class PostsTabManViewController: TabmanViewController {
+final class Deprecated_PostsTabManViewController: TabmanViewController {
 
     private let finalView = UIView()
     private let tabManBarView = UIView()
@@ -118,7 +118,7 @@ final class PostsTabManViewController: TabmanViewController {
     }
 }
 
-extension PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
+extension Deprecated_PostsTabManViewController: PageboyViewControllerDataSource, TMBarDataSource {
   func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
       switch index {
       case 0: return TMBarItem(title: TextLiterals.postTabManKeywordPostsTitleText)
