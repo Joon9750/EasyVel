@@ -59,13 +59,8 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] storagePost, isScrapped in
                 LoadingView.hideLoading()
                 if isScrapped == false {
-<<<<<<< HEAD:VelogOnMobile/Feature/Posts/Keyword/ViewModel/KeywordsPostsViewModel.swift
-                    // TODO: - fix me : articleID 일단 기본 0
-                    self?.realm.addPost(item: storagePost, articleID: 0)
-=======
                     // MARK: - fix me : articleID 일단 기본 0
                     self?.realm.addPost(item: storagePost, folderName: "모두 게시글")
->>>>>>> master:VelogOnMobile/Feature/Posts/KeywordPosts/ViewModel/KeywordsPostsViewModel.swift
                 } else {
                     self?.realm.deletePost(url: storagePost.url ?? String())
                 }
