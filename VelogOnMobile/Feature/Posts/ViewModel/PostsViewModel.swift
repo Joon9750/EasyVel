@@ -12,7 +12,6 @@ import RxCocoa
 
 final class PostsViewModel {
     
-    
     //MARK: - Input
     
     struct Input {
@@ -25,9 +24,6 @@ final class PostsViewModel {
     //MARK: - Output
     
     struct Output {
-//        var ableWifi = PublishRelay<Bool>()
-//        var isPostsEmpty = PublishRelay<Bool>()
-        
         var posts = BehaviorRelay<[TagPostDtoList]>(value: [])
         var post = PublishRelay<WebViewModel>()
     }
@@ -35,7 +31,6 @@ final class PostsViewModel {
     
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
-        self.bindOutput(output: output, disposeBag: disposeBag)
         
         input.viewWillAppearEvent
             .subscribe(onNext: { [weak self] in
@@ -56,45 +51,19 @@ final class PostsViewModel {
         
         input.scrapButtonDidTapEvent
             .subscribe(onNext: { [weak self] index in
-                print("scrapButtonDidTapEvent")
+                print("Not Yet")
             })
             .disposed(by: disposeBag)
         
         input.scrollReachedBottomEvent
             .subscribe(onNext: { [weak self] in
-                print("scrollReachedBottomEvent")
+                print("Not Yet")
             })
             .disposed(by: disposeBag)
         
         return output
     }
     
-    func bindOutput(output: Output, disposeBag: DisposeBag) {
-        
-    }
-
-    
-    //MARK: - Properties
-    
-//    var posts: [TagPostDtoList] = []
-//    var post: WebViewModel = WebViewModel(url: "")
-    
-    //MARK: - Output
-    
-//    var ableWifi = Observable<Bool>.just(true)
-//    var isPostsEmpty = Observable<Bool>.just(true)
-//
-//    var posts = BehaviorRelay<[TagPostDtoList]>(value: [])
-//    var post = BehaviorRelay<WebViewModel>(value: .init(url: ""))
-
-    //MARK: - Init
-    
-    
-}
-
-//MARK: - Input, View
-
-extension PostsViewModel {
 }
 
 private extension PostsViewModel {
