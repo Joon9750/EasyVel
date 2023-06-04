@@ -14,8 +14,11 @@
 		8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF32A29ECDE00EF6733 /* String+Extension.swift */; };
 		8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */; };
 		8765F0012A2A05B100EF6733 /* empty in Resources */ = {isa = PBXBuildFile; fileRef = 8765F0002A2A05B100EF6733 /* empty */; };
-		8765F0092A2A108800EF6733 /* KeywordViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F0082A2A108800EF6733 /* KeywordViewControllerFactory.swift */; };
+		8765F0092A2A108800EF6733 /* PostViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F0082A2A108800EF6733 /* PostViewControllerFactory.swift */; };
 		8765F00B2A2A129000EF6733 /* ViewControllerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F00A2A2A129000EF6733 /* ViewControllerCreator.swift */; };
+		8765F00D2A2A4D0D00EF6733 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */; };
+		8765F00F2A2A4DB600EF6733 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F00E2A2A4DB600EF6733 /* PostsViewModel.swift */; };
+		8765F0112A2B01DD00EF6733 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -160,8 +163,11 @@
 		8765EFF32A29ECDE00EF6733 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		8765F0002A2A05B100EF6733 /* empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = empty; sourceTree = "<group>"; };
-		8765F0082A2A108800EF6733 /* KeywordViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordViewControllerFactory.swift; sourceTree = "<group>"; };
+		8765F0082A2A108800EF6733 /* PostViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewControllerFactory.swift; sourceTree = "<group>"; };
 		8765F00A2A2A129000EF6733 /* ViewControllerCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCreator.swift; sourceTree = "<group>"; };
+		8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
+		8765F00E2A2A4DB600EF6733 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
+		8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -315,9 +321,9 @@
 		8765EFFB2A2A054D00EF6733 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				8765F0052A2A0EDA00EF6733 /* Home */,
-				91487F5729FDA256009CFECF /* Keyword */,
-				91487F0929FC45AD009CFECF /* Subscriber */,
+				8765EFFD2A2A058600EF6733 /* ViewConroller */,
+				8765EFFF2A2A059D00EF6733 /* ViewModel */,
+				8765EFFE2A2A059700EF6733 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 			children = (
 				8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */,
 				8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */,
+				8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */,
 			);
 			path = ViewConroller;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				8765F0042A2A05DA00EF6733 /* MenuBar */,
+				8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -343,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				8765F0002A2A05B100EF6733 /* empty */,
+				8765F00E2A2A4DB600EF6733 /* PostsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -356,20 +365,10 @@
 			path = MenuBar;
 			sourceTree = "<group>";
 		};
-		8765F0052A2A0EDA00EF6733 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				8765EFFD2A2A058600EF6733 /* ViewConroller */,
-				8765EFFF2A2A059D00EF6733 /* ViewModel */,
-				8765EFFE2A2A059700EF6733 /* View */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
 		8765F0072A2A107800EF6733 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
-				8765F0082A2A108800EF6733 /* KeywordViewControllerFactory.swift */,
+				8765F0082A2A108800EF6733 /* PostViewControllerFactory.swift */,
 				8765F00A2A2A129000EF6733 /* ViewControllerCreator.swift */,
 			);
 			path = Factory;
@@ -720,6 +719,8 @@
 		91487EE529FC39D8009CFECF /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				91487F5729FDA256009CFECF /* Keyword */,
+				91487F0929FC45AD009CFECF /* Subscriber */,
 				91487F6229FDA348009CFECF /* TabMan */,
 			);
 			path = Posts;
@@ -1333,6 +1334,7 @@
 				9128B04A2A23C59700FB1252 /* ScrapStorageView.swift in Sources */,
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
+				8765F0112A2B01DD00EF6733 /* PostTableViewCell.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */,
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
@@ -1391,6 +1393,7 @@
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
 				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
+				8765F00D2A2A4D0D00EF6733 /* PostsViewController.swift in Sources */,
 				8765F00B2A2A129000EF6733 /* ViewControllerCreator.swift in Sources */,
 				91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
@@ -1404,6 +1407,7 @@
 				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
+				8765F00F2A2A4DB600EF6733 /* PostsViewModel.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */,
 				9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */,
@@ -1416,7 +1420,7 @@
 				913441F929FFD776000E1ED1 /* SignUpRequest.swift in Sources */,
 				91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */,
 				917BA33F2A03E8A1000409B7 /* StorageTableView.swift in Sources */,
-				8765F0092A2A108800EF6733 /* KeywordViewControllerFactory.swift in Sources */,
+				8765F0092A2A108800EF6733 /* PostViewControllerFactory.swift in Sources */,
 				913441EC29FFD673000E1ED1 /* BaseURLConstant.swift in Sources */,
 				91ED178F2A00E5B100158787 /* NotificationRepository.swift in Sources */,
 				9134420729FFD9F9000E1ED1 /* SignUpResponse.swift in Sources */,

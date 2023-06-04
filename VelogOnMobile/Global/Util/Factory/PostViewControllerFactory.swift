@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class KeywordViewControllerFactory: ViewControllerCreator {
+final class PostViewControllerFactory: ViewControllerCreator {
     
     func createViewController() -> UIViewController {
         return KeywordsPostsViewController(viewModel: KeywordsPostsViewModel())
