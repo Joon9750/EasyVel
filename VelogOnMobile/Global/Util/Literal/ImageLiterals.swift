@@ -21,6 +21,7 @@ enum ImageLiterals {
     static var saveBookMarkIcon: UIImage { .load(name: "bookmarkSave") }
     static var searchIcon: UIImage { .load(name: "search") }
     static var plusFolder: UIImage { .load(name: "plusFolder") }
+    static var activePlusFolder: UIImage { .load(name: "activePlusFolder") }
     
     // MARK: - Exception
     

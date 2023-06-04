@@ -14,8 +14,11 @@ final class RealmService {
     
     private let localRealm = try! Realm()
     
-    func addPost(item: StoragePost, articleID: Int) {
-        let post = RealmStoragePost(input: item, articleID: articleID)
+    func addPost(
+        item: StoragePost,
+        folderName: String
+    ) {
+        let post = RealmStoragePost(input: item, folderName: folderName)
         if localRealm.isEmpty {
             try! localRealm.write {
                 localRealm.add(post)
@@ -27,7 +30,9 @@ final class RealmService {
         }
     }
     
-    func addFolder(item: StorageDTO) {
+    func addFolder(
+        item: StorageDTO
+    ) {
         let folder = ScrapStorageDTO(input: item)
         if localRealm.isEmpty {
             try! localRealm.write {
@@ -45,14 +50,32 @@ final class RealmService {
         return savedPosts
     }
     
-    func deletePost(url: String) {
+    func getFolders() -> Results<ScrapStorageDTO> {
+        let folders = localRealm.objects(ScrapStorageDTO.self)
+        return folders
+    }
+    
+    func deletePost(
+        url: String
+    ) {
         guard let postToDelete = localRealm.objects(RealmStoragePost.self).filter("url == %@", url).first else { return }
         try! localRealm.write {
             localRealm.delete(postToDelete)
         }
     }
     
-    func checkUniquePost(input: StoragePost) -> Bool {
+    func deleteFolder(
+        folderName: String
+    ) {
+        guard let folderToDelete = localRealm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName).first else { return }
+        try! localRealm.write {
+            localRealm.delete(folderToDelete)
+        }
+    }
+    
+    func checkUniquePost(
+        input: StoragePost
+    ) -> Bool {
         let posts = convertToStoragePost(input: getPosts())
         for item in posts {
             if input == item {
@@ -62,7 +85,21 @@ final class RealmService {
         return true
     }
     
-    func convertToStoragePost(input: Results<RealmStoragePost>) -> [StoragePost] {
+    func checkUniqueFolder(
+        input: StorageDTO
+    ) -> Bool {
+        let folders = convertToStorageDTO(input: getFolders())
+        for item in folders {
+            if input.folderName == item.folderName {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func convertToStoragePost(
+        input: Results<RealmStoragePost>
+    ) -> [StoragePost] {
         var storagePosts = [StoragePost]()
         let inputSize = input.count
         for index in 0 ..< inputSize {
@@ -78,30 +115,29 @@ final class RealmService {
         return storagePosts
     }
     
-    func reversePosts(input: [StoragePost]) -> [StoragePost] {
+    func convertToStorageDTO(
+        input: Results<ScrapStorageDTO>
+    ) -> [StorageDTO] {
+        var folderLists = [StorageDTO]()
+        let inputSize = input.count
+        for index in 0 ..< inputSize {
+            let folder = StorageDTO(
+                articleID: input[index].articleID,
+                folderName: input[index].folderName,
+                count: input[index].count
+            )
+            folderLists.append(folder)
+        }
+        return folderLists
+    }
+    
+    func reversePosts(
+        input: [StoragePost]
+    ) -> [StoragePost] {
         let posts = Array(input.reversed())
         return posts
     }
-        
-    // 스키마 수정시 한번 돌려야 한다.
-    func resetDB(){
-        let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
-        let realmURLs = [
-          realmURL,
-          realmURL.appendingPathExtension("lock"),
-          realmURL.appendingPathExtension("note"),
-          realmURL.appendingPathExtension("management")
-        ]
 
-        for URL in realmURLs {
-          do {
-            try FileManager.default.removeItem(at: URL)
-          } catch {
-            // handle error
-          }
-        }
-    }
-    
     init() {
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location.")
     }

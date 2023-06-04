@@ -12,9 +12,9 @@ import RealmSwift
 
 final class ScrapStorageDTO: Object {
     
-    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted(primaryKey: true) var id: ObjectId
     
-    @Persisted var articleID: Int = 0
+    @Persisted var articleID: UUID?
 //    @Persisted var imgs: [String]?
     @Persisted var folderName: String?
     @Persisted var count: Int?
