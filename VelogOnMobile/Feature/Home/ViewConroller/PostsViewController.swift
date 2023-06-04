@@ -68,7 +68,10 @@ final class PostsViewController: UIViewController {
     private func bindOutput(output: PostsViewModel.Output ) {
         output.post
             .asDriver()
-            .drive()
+            .drive(onNext: { viewModel in
+                let webViewController = WebViewController(viewModel: viewModel)
+                self.navigationController?.pushViewController(webViewController, animated: true)
+            })
             .disposed(by: disposeBag)
         
         output.posts
