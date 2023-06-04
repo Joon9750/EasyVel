@@ -131,7 +131,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setPageViewController() {
-        let redVC = ColorViewController(color: .red)
+        let redVC = PostsViewController(viewModel: PostsViewModel())
         let ornageVC = ColorViewController(color: .orange)
         let yellowVC = ColorViewController(color: .yellow)
         let greenVC = ColorViewController(color: .green)

@@ -25,7 +25,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView

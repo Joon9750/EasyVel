@@ -23,7 +23,7 @@ final class PostTableViewCell: BaseTableViewCell {
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
@@ -69,7 +69,20 @@ final class PostTableViewCell: BaseTableViewCell {
     
     // MARK: - life cycle
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10,
+                                                                     left: 0,
+                                                                     bottom: 10,
+                                                                     right: 0))
+        contentView.makeRounded(radius: 12)
+        
+        
+    }
+    
     override func render() {
+        self.backgroundColor = .systemGray6
+        self.contentView.backgroundColor = .white
         self.scrapButton.addTarget(self, action: #selector(scrapButtonTapped), for: .touchUpInside)
         
         self.contentView.addSubviews(
@@ -170,5 +183,73 @@ final class PostTableViewCell: BaseTableViewCell {
             isScrapped: isTapped
         )
         self.isTapped.toggle()
+    }
+}
+
+extension PostTableViewCell {
+    public func binding(model: TagPostDtoList){
+        post = model
+        title.text = model.title
+        name.text = model.name
+        date.text = model.date
+        url = model.url ?? String()
+        textView.text = model.summary
+        
+        if textView.text == TextLiterals.noneText {
+            textView.isHidden = true
+        }
+        
+        if let image = model.img {
+            if image == TextLiterals.noneText {
+                imgView.isHidden = true
+                title.snp.remakeConstraints {
+                    $0.top.equalTo(buttonStackView.snp.bottom).offset(15)
+                    $0.height.equalTo(45)
+                    $0.leading.trailing.equalToSuperview().inset(15)
+                }
+            } else {
+                let url = URL(string: image)
+                imgView.kf.setImage(with: url)
+            }
+        }
+        
+        guard let tagList = model.tag else { return }
+        switch model.tag?.count {
+        case 0:
+            if let image = model.img {
+                if image == TextLiterals.noneText {
+                    buttonStackView.isHidden = true
+                    title.snp.remakeConstraints {
+                        $0.top.equalToSuperview()
+                        $0.height.equalTo(45)
+                        $0.leading.trailing.equalToSuperview().inset(15)
+                    }
+                }
+            }
+        case 1:
+            tagFristButtonIsNotHidden(buttonTitle: tagList[0])
+        case 2:
+            tagFristButtonIsNotHidden(buttonTitle: tagList[0])
+            tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
+        case 3:
+            tagFristButtonIsNotHidden(buttonTitle: tagList[0])
+            tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
+            tagThirdButtonIsNotHidden(buttonTitle: tagList[2])
+        default:
+            tagFristButtonIsNotHidden(buttonTitle: tagList[0])
+            tagSecondButtonIsNotHidden(buttonTitle: tagList[1])
+            tagThirdButtonIsNotHidden(buttonTitle: tagList[2])
+        }
+    }
+    
+    override func prepareForReuse() {
+        imgView.isHidden = false
+        textView.isHidden = false
+        buttonStackView.isHidden = false
+        title.snp.remakeConstraints {
+            $0.top.equalTo(imgView.snp.bottom).offset(15)
+            $0.height.equalTo(45)
+            $0.leading.trailing.equalToSuperview().inset(15)
+        }
     }
 }
