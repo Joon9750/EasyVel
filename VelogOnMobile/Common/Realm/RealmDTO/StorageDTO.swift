@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct StorageDTO {
-    var articleID: Int
+struct StorageDTO: Equatable {
+    var articleID: UUID?
 //    var imgs: [String]?
     var folderName: String?
     var count: Int?

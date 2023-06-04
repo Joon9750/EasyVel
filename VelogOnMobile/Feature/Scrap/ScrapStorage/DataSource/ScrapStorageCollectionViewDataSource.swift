@@ -10,8 +10,8 @@ import UIKit
 final class ScrapStorageCollectionViewDataSource {
     
     typealias collectionCell = ScrapStorageCollectionViewCell
-    typealias DiffableDataSource = UICollectionViewDiffableDataSource<Section, Int>
-    typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<ScrapStorageCollectionViewDataSource.Section, Int>
+    typealias DiffableDataSource = UICollectionViewDiffableDataSource<Section, UUID>
+    typealias DiffableSnapshot = NSDiffableDataSourceSnapshot<ScrapStorageCollectionViewDataSource.Section, UUID>
     typealias CompletedUpdate = (() -> Void)
 
     private let collectionView: UICollectionView
@@ -31,7 +31,7 @@ final class ScrapStorageCollectionViewDataSource {
     }
 
     private func createDataSource() -> DiffableDataSource {
-        return UICollectionViewDiffableDataSource<Section, Int>(
+        return UICollectionViewDiffableDataSource<Section, UUID>(
             collectionView: collectionView
         ) { [weak self] _, indexPath, _ in
             guard let self = self else {
@@ -54,7 +54,7 @@ final class ScrapStorageCollectionViewDataSource {
         }
         self.folderData = folderData
         
-        let itemIdentifiers = folderData.map { $0.articleID }
+        let itemIdentifiers = folderData.compactMap { $0.articleID }
         folderData.forEach { folder in
             self.folderData.append(folder)
         }

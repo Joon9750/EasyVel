@@ -114,8 +114,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         )
         
         bottomSheetView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(SizeLiterals.screenHeight / 2)
+            $0.edges.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
@@ -165,10 +164,12 @@ final class ScrapFolderBottomSheetView: BaseUIView {
             newFolderAddTextField.isHidden = false
             addFolderFinishedButton.isHidden = false
             folderTitleLabel.isHidden = true
+            newFolderButton.setImage(ImageLiterals.activePlusFolder, for: .normal)
         } else {
             newFolderAddTextField.isHidden = true
             addFolderFinishedButton.isHidden = true
             folderTitleLabel.isHidden = false
+            newFolderButton.setImage(ImageLiterals.plusFolder, for: .normal)
         }
     }
     

@@ -46,6 +46,13 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             })
             .disposed(by: disposeBag)
 
+        scrapFolderBottomSheetView.addFolderFinishedButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let addFolderTitle: String = self?.scrapFolderBottomSheetView.newFolderAddTextField.text ?? ""
+                self?.viewModel?.addNewFolderTitle.accept(addFolderTitle)
+            })
+            .disposed(by: disposeBag)
+
         scrapFolderBottomSheetView.cancelButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true)
@@ -57,7 +64,18 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         viewModel.folderNameListRelay
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] folderList in
-                self?.dataSource.update(list: folderList)
+                let scrapFolderList = folderList.map {
+                    ScrapFolder(title: $0,articleId: UUID())
+                }
+                self?.dataSource.update(list: scrapFolderList)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.alreadyHaveFolderNameRelay
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] isAlreadyHave in
+                // MARK: - fix me 이미 존재하는 폴더명일 경우 들어옴
+                print("이미 존재라는 폴더명입니다.")
             })
             .disposed(by: disposeBag)
     }
