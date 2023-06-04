@@ -18,6 +18,7 @@
 		8765F00D2A2A4D0D00EF6733 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */; };
 		8765F00F2A2A4DB600EF6733 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F00E2A2A4DB600EF6733 /* PostsViewModel.swift */; };
 		8765F0112A2B01DD00EF6733 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */; };
+		8765F0172A2CA12600EF6733 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765F0162A2CA12600EF6733 /* HomeViewModel.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -167,6 +168,7 @@
 		8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		8765F00E2A2A4DB600EF6733 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		8765F0162A2CA12600EF6733 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -321,8 +323,8 @@
 		8765EFFB2A2A054D00EF6733 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8765F0152A2CA11C00EF6733 /* ViewModel */,
 				8765EFFD2A2A058600EF6733 /* ViewConroller */,
-				8765EFFF2A2A059D00EF6733 /* ViewModel */,
 				8765EFFE2A2A059700EF6733 /* View */,
 			);
 			path = Home;
@@ -333,7 +335,6 @@
 			children = (
 				8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */,
 				8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */,
-				8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */,
 			);
 			path = ViewConroller;
 			sourceTree = "<group>";
@@ -342,7 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				8765F0042A2A05DA00EF6733 /* MenuBar */,
-				8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +371,40 @@
 				8765F00A2A2A129000EF6733 /* ViewControllerCreator.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		8765F0122A2CA0C800EF6733 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				8765F0142A2CA0F800EF6733 /* ViewController */,
+				8765F0132A2CA0F200EF6733 /* View */,
+				8765EFFF2A2A059D00EF6733 /* ViewModel */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		8765F0132A2CA0F200EF6733 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8765F0102A2B01DD00EF6733 /* PostTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8765F0142A2CA0F800EF6733 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8765F00C2A2A4D0D00EF6733 /* PostsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8765F0152A2CA11C00EF6733 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8765F0162A2CA12600EF6733 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9128AFE22A21178600FB1252 /* ViewModel */ = {
@@ -663,7 +697,8 @@
 				91BFF2EE2A25D53200F5D13E /* Scrap */,
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				91487F4829FD9663009CFECF /* Search */,
-				91487EE529FC39D8009CFECF /* Posts */,
+				8765F0122A2CA0C800EF6733 /* Posts */,
+				91487EE529FC39D8009CFECF /* Deprecated_Posts */,
 				91487EE429FC39C3009CFECF /* List */,
 				91487EE629FC39E8009CFECF /* Setting */,
 			);
@@ -716,14 +751,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		91487EE529FC39D8009CFECF /* Posts */ = {
+		91487EE529FC39D8009CFECF /* Deprecated_Posts */ = {
 			isa = PBXGroup;
 			children = (
 				91487F5729FDA256009CFECF /* Keyword */,
 				91487F0929FC45AD009CFECF /* Subscriber */,
 				91487F6229FDA348009CFECF /* TabMan */,
 			);
-			path = Posts;
+			path = Deprecated_Posts;
 			sourceTree = "<group>";
 		};
 		91487EE629FC39E8009CFECF /* Setting */ = {
@@ -1347,6 +1382,7 @@
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
+				8765F0172A2CA12600EF6733 /* HomeViewModel.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
