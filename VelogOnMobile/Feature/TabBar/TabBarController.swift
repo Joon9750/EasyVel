@@ -24,7 +24,8 @@ final class TabBarController: UITabBarController {
     
     // MARK: - viewController properties
     
-    let homeVC = UINavigationController(rootViewController: HomeViewController()) 
+//    let homeVC = UINavigationController(rootViewController: HomeViewController())
+    let homeVC = Deprecated_PostsTabManViewController()
     lazy var listVC = ListViewController(viewModel: listViewModel)
 //    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
     lazy var storageVC = StorageViewController(viewModel: storageViewModel)

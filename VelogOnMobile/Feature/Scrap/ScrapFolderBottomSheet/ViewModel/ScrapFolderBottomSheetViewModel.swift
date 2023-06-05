@@ -17,6 +17,7 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     // MARK: - Input
     
     var addNewFolderTitle = PublishRelay<String>()
+    var selectedFolderTableViewCell = PublishRelay<String>()
     
     // MARK: - Output
     
@@ -61,6 +62,12 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
                 } else {
                     self?.alreadyHaveFolderNameRelay.accept(true)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        selectedFolderTableViewCell
+            .subscribe(onNext: { [weak self] seletedFolderName in
+                
             })
             .disposed(by: disposeBag)
     }
