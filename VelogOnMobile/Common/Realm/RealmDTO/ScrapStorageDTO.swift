@@ -15,7 +15,6 @@ final class ScrapStorageDTO: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     
     @Persisted var articleID: UUID?
-//    @Persisted var imgs: [String]?
     @Persisted var folderName: String?
     @Persisted var count: Int?
     
@@ -26,7 +25,6 @@ final class ScrapStorageDTO: Object {
     convenience init(input: StorageDTO){
         self.init()
         
-//        self.imgs = input.imgs
         self.articleID = input.articleID
         self.folderName = input.folderName
         self.count = input.count

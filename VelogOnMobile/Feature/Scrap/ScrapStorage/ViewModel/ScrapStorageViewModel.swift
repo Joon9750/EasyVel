@@ -17,7 +17,7 @@ final class ScrapStorageViewModel: BaseViewModel {
     
     // MARK: - Output
     
-    var storageListOutput = PublishRelay<[StorageDTO]>()
+    var storageListOutput = PublishRelay<([StorageDTO], [String])>()
     
     override init() {
         super.init()
@@ -32,7 +32,11 @@ final class ScrapStorageViewModel: BaseViewModel {
                 return Observable<[StorageDTO]>.just(scrapFolder ?? [StorageDTO]())
             })
             .subscribe(onNext: { [weak self] folderList in
-                self?.storageListOutput.accept(folderList)
+                let folderNameList = folderList.map { $0.folderName }
+                let folderImageList = folderNameList.map {
+                    self?.realm.getFolderImage(folderName: $0 ?? "") ?? ""
+                }
+                self?.storageListOutput.accept((folderList, folderImageList))
             })
             .disposed(by: disposeBag)
     }

@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Kingfisher
 
 final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
     
@@ -167,14 +168,24 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    public func configure(folderData: StorageDTO) {
-        updateTable(with: folderData)
+    public func configure(
+        folderData: StorageDTO,
+        folderImage: String
+    ) {
+        updateTable(
+            folderData: folderData,
+            folderImage: folderImage
+        )
     }
     
-    private func updateTable(with folderData: StorageDTO) {
+    private func updateTable(
+        folderData: StorageDTO,
+        folderImage: String
+    ) {
         folderNameLabel.text = folderData.folderName
         if let count = folderData.count {
             postCount.text = String(count) + "개"
         }
+        imageView1.kf.setImage(with: URL(string: folderImage))
     }
 }

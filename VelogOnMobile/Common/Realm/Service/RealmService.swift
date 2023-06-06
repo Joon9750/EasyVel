@@ -76,6 +76,19 @@ final class RealmService {
         return folders
     }
     
+    func getFolderImage(
+        folderName: String
+    ) -> String {
+        let posts = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+        let postsImage = self.convertToStoragePost(input: posts)
+        for post in postsImage {
+            if post.img != "" {
+                return post.img ?? ""
+            }
+        }
+        return ""
+    }
+    
     func deletePost(
         url: String
     ) {
