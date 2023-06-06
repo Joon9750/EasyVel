@@ -52,12 +52,9 @@ final class ScrapStorageCollectionViewDataSource {
             completion?()
             return
         }
-        self.folderData = folderData
-        
         let itemIdentifiers = folderData.compactMap { $0.articleID }
-        folderData.forEach { folder in
-            self.folderData.append(folder)
-        }
+        self.folderData = folderData
+        dataSource = createDataSource()
         
         var snapshot = dataSource.snapshot()
         if snapshot.sectionIdentifiers.contains(Section.main) == false {
