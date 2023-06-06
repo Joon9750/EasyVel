@@ -9,20 +9,13 @@ import Foundation
 
 import RxRelay
 import RxSwift
+import RealmSwift
 
 final class ScrapStorageViewModel: BaseViewModel {
     
-    // MARK: - Output
+    let realm = RealmService()
     
-    let dummyDto1 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto2 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto3 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto4 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto5 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto6 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto7 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto8 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
-    let dummyDto9 = StorageDTO(articleID: UUID(),folderName: "iOS", count: 2)
+    // MARK: - Output
     
     var storageListOutput = PublishRelay<[StorageDTO]>()
     
@@ -34,8 +27,9 @@ final class ScrapStorageViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .flatMapLatest( { [weak self] _ -> Observable<[StorageDTO]> in
-                guard let self = self else { return Observable.empty() }
-                return Observable<[StorageDTO]>.just([self.dummyDto1,self.dummyDto2,self.dummyDto3,self.dummyDto4,self.dummyDto5,self.dummyDto6,self.dummyDto7,self.dummyDto8,self.dummyDto9])
+                guard let scrapFolderRealmDTO: Results<ScrapStorageDTO> = self?.realm.getFolders() else { return Observable.empty() }
+                let scrapFolder = self?.realm.convertToStorageDTO(input: scrapFolderRealmDTO)
+                return Observable<[StorageDTO]>.just(scrapFolder ?? [StorageDTO]())
             })
             .subscribe(onNext: { [weak self] folderList in
                 self?.storageListOutput.accept(folderList)

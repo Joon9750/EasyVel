@@ -20,15 +20,15 @@ final class TabBarController: UITabBarController {
     
     let listViewModel = ListViewModel()
     let storageViewModel = StorageViewModel()
-//    let scrapStorageViewModel = ScrapStorageViewModel()
+    let scrapStorageViewModel = ScrapStorageViewModel()
     
     // MARK: - viewController properties
     
 //    let homeVC = UINavigationController(rootViewController: HomeViewController())
     let homeVC = Deprecated_PostsTabManViewController()
     lazy var listVC = ListViewController(viewModel: listViewModel)
-//    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
-    lazy var storageVC = StorageViewController(viewModel: storageViewModel)
+    lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
+//    lazy var storageVC = StorageViewController(viewModel: storageViewModel)
     let settingVC = SettingViewController()
     
     
