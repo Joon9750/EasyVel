@@ -44,6 +44,27 @@ final class RealmService {
             }
         }
     }
+
+    func changePostFolderTitle(
+        input: StoragePost,
+        newFolderName: String
+    ) {
+        let url = input.url
+        guard let object = localRealm.objects(RealmStoragePost.self).filter("url == %@", url as Any).first else {
+            return
+        }
+        if object.folderName != newFolderName {
+            do {
+                try localRealm.write {
+                    object.folderName = newFolderName
+                }
+                let updatedObject = localRealm.objects(RealmStoragePost.self).filter("url == %@", url as Any).first
+                print(updatedObject as Any)
+            } catch {
+                print("Failed to update object: \(error)")
+            }
+        }
+    }
     
     func getPosts() -> Results<RealmStoragePost> {
         let savedPosts = localRealm.objects(RealmStoragePost.self)

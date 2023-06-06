@@ -9,5 +9,5 @@ import Foundation
 
 protocol ScrapPopUpDelegate {
     func scrapBookButtonTapped()
-    func folderButtonTapped()
+    func folderButtonTapped(scrapPost: StoragePost)
 }

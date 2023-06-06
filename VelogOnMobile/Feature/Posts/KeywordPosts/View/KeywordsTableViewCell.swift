@@ -15,6 +15,8 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     static let identifier = "KeywordsTableViewCell"
     
     weak var cellDelegate: PostScrapButtonDidTapped?
+    weak var scrapPostAddInFolderDelegate: ScrapPostAddInFolderProtocol?
+    
     var isTapped: Bool = false {
         didSet {
             updateButton()
@@ -157,7 +159,16 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     
     @objc func scrapButtonTapped(_ sender: UIButton) {
         if !(isTapped) {
-            NotificationCenter.default.post(name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
+            if let scrapPost = post {
+                let storagePost = StoragePost(
+                    img: scrapPost.img,
+                    name: scrapPost.name,
+                    summary: scrapPost.summary,
+                    title: scrapPost.title,
+                    url: scrapPost.url
+                )
+                NotificationCenter.default.post(name: Notification.Name("ScrapButtonTappedNotification"), object: nil, userInfo: ["data": storagePost])
+            }
         }
         guard let post = post else { return }
         let storagePost = StoragePost(

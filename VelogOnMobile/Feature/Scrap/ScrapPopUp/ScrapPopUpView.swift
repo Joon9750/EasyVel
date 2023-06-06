@@ -14,6 +14,7 @@ final class ScrapPopUpView: BaseUIView {
     // MARK: - Properties
     
     var delegate: ScrapPopUpDelegate?
+    var storagePost: StoragePost?
     
     // MARK: - UI Components
     
@@ -83,6 +84,10 @@ final class ScrapPopUpView: BaseUIView {
             $0.trailing.equalTo(addToFolderButton.snp.leading).offset(-10)
         }
     }
+    
+    public func getPostData(post: StoragePost) {
+        storagePost = post
+    }
 }
 
 private extension ScrapPopUpView {
@@ -93,6 +98,8 @@ private extension ScrapPopUpView {
     
     @objc
     func folderButtonTapped() {
-        delegate?.folderButtonTapped()
+        if let post = storagePost {
+            delegate?.folderButtonTapped(scrapPost: post)
+        }
     }
 }

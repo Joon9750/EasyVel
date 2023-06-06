@@ -9,13 +9,16 @@ import UIKit
 
 import SnapKit
 import RxSwift
+import RxCocoa
 import RxRelay
 
 final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFolderBottomSheetViewModel> {
     
     let scrapFolderBottomSheetView = ScrapFolderBottomSheetView()
-    private lazy var dataSource = ScrapFolderBottomSheetDataSource(tableView: scrapFolderBottomSheetView.folderTableView)
-
+    private lazy var dataSource = ScrapFolderBottomSheetDataSource(
+        tableView: scrapFolderBottomSheetView.folderTableView
+    )
+    
     override func configUI() {
         self.view.backgroundColor = .white
     }
@@ -57,6 +60,16 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true)
             })
+            .disposed(by: disposeBag)
+
+        scrapFolderBottomSheetView.folderTableView.rx.itemSelected
+            .subscribe { [weak self] indexPath in
+                let cell = self?.scrapFolderBottomSheetView.folderTableView.cellForRow(at: indexPath) as? ScrapFolderBottomSheetTableViewCell
+                if let selectedFolderTitle = cell?.folderTitleLabel.text {
+                    self?.viewModel?.selectedFolderTableViewCell.accept(selectedFolderTitle)
+                }
+                self?.dismiss(animated: true)
+            }
             .disposed(by: disposeBag)
     }
     

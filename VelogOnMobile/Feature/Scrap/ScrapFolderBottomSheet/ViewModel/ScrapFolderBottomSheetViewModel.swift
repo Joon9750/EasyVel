@@ -9,14 +9,19 @@ import Foundation
 
 import RxRelay
 import RxSwift
+import RxCocoa
 
 final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     
     let realm = RealmService()
     
+    private var selectedPost: StoragePost?
+    
     // MARK: - Input
     
     var addNewFolderTitle = PublishRelay<String>()
+    var selectedFolderTableViewCell = PublishRelay<String>()
+    var selectedScrapPostAddInFolder = PublishRelay<StoragePost>()
     
     // MARK: - Output
     
@@ -29,6 +34,7 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
+        
         viewWillAppear
             .flatMap({ [weak self] _ -> Observable<[String]> in
                 guard let folderListRealmDTO = self?.realm.getFolders() else {
@@ -61,6 +67,22 @@ final class ScrapFolderBottomSheetViewModel: BaseViewModel {
                 } else {
                     self?.alreadyHaveFolderNameRelay.accept(true)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        selectedScrapPostAddInFolder
+            .subscribe(onNext: { [weak self] post in
+                self?.selectedPost = post
+            })
+            .disposed(by: disposeBag)
+        
+        selectedFolderTableViewCell
+            .subscribe(onNext: { [weak self] seletedFolderName in
+                guard let post = self?.selectedPost else { return }
+                self?.realm.changePostFolderTitle(
+                    input: post,
+                    newFolderName: seletedFolderName
+                )
             })
             .disposed(by: disposeBag)
     }
