@@ -73,7 +73,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     }
 }
 
-extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDidTapped {
+extension KeywordsPostsViewController: PostScrapButtonDidTapped {
     func scrapButtonDidTapped(
         storagePost: StoragePost,
         isScrapped: Bool
@@ -82,7 +82,9 @@ extension KeywordsPostsViewController: UITableViewDataSource, PostScrapButtonDid
         let viewModel = KeywordsPostsViewModel()
         viewModel.cellScrapButtonDidTap.accept((storagePost, isScrapped))
     }
-    
+}
+
+extension KeywordsPostsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return keywordsPosts?.tagPostDtoList?.count ?? 0
     }

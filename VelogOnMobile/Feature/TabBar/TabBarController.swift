@@ -61,17 +61,22 @@ final class TabBarController: UITabBarController {
     }
     
     private func setNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(scrapButtonTapped), name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
     }
     
     @objc
-    private func scrapButtonTapped() {
-        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
+    private func handleNotification(_ notification: Notification) {
+        if let data = notification.userInfo?["data"] as? StoragePost {
+            scrapPopUpView.getPostData(post: data)
+        }
+        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview()
+        }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         } completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83) }
+                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83)
+                }
                 UIView.animate(withDuration: 0.5) {
                     self.view.layoutIfNeeded()
                 }
@@ -124,8 +129,9 @@ extension TabBarController: ScrapPopUpDelegate {
         selectedIndex = 2
     }
     
-    func folderButtonTapped() {
+    func folderButtonTapped(scrapPost: StoragePost) {
         let viewModel = ScrapFolderBottomSheetViewModel()
+        viewModel.selectedScrapPostAddInFolder.accept(scrapPost)
         let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
         folderViewController.modalPresentationStyle = .pageSheet
         self.present(folderViewController, animated: true)

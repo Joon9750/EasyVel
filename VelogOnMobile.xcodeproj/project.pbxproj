@@ -116,6 +116,7 @@
 		915861872A2DFA6D00461F9A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 915861862A2DFA6D00461F9A /* RxCocoa */; };
 		915861892A2DFA6D00461F9A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 915861882A2DFA6D00461F9A /* RxRelay */; };
 		9158618B2A2DFA6D00461F9A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9158618A2A2DFA6D00461F9A /* RxSwift */; };
+		9158618D2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */; };
 		917BA3312A03D8EF000409B7 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3302A03D8EF000409B7 /* StorageViewController.swift */; };
 		917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3322A03D8F7000409B7 /* StorageView.swift */; };
 		917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3342A03E14A000409B7 /* StorageHeadView.swift */; };
@@ -254,6 +255,7 @@
 		914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewModel.swift; sourceTree = "<group>"; };
 		914D8DD32A02A4B500516B4C /* SubscriberPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberPostsViewModel.swift; sourceTree = "<group>"; };
 		914D8DD82A02B22A00516B4C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPostAddInFolderProtocol.swift; sourceTree = "<group>"; };
 		917BA3302A03D8EF000409B7 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		917BA3322A03D8F7000409B7 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		917BA3342A03E14A000409B7 /* StorageHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHeadView.swift; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 				91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */,
 				9128B0452A23BD3800FB1252 /* ScrapPopUpDelegate.swift */,
 				91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */,
+				9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
+				9158618D2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift in Sources */,
 				9128B05C2A23DCEF00FB1252 /* StorageDTO.swift in Sources */,
 				9134422529FFF7C8000E1ED1 /* SettingView.swift in Sources */,
 				9128B02E2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift in Sources */,

@@ -60,7 +60,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
                 LoadingView.hideLoading()
                 if isScrapped == false {
                     // MARK: - fix me : articleID 일단 기본 0
-                    self?.realm.addPost(item: storagePost, folderName: "모두 게시글")
+                    self?.realm.addPost(item: storagePost, folderName: "모든 게시글")
                 } else {
                     self?.realm.deletePost(url: storagePost.url ?? String())
                 }

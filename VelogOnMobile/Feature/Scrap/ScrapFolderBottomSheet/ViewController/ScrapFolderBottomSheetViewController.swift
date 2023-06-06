@@ -18,7 +18,7 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
     private lazy var dataSource = ScrapFolderBottomSheetDataSource(
         tableView: scrapFolderBottomSheetView.folderTableView
     )
-
+    
     override func configUI() {
         self.view.backgroundColor = .white
     }
