@@ -28,10 +28,11 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
             .subscribe { [weak self] indexPath in
                 let cell = self?.scrapView.scrapCollectionView.cellForItem(at: indexPath) as? ScrapStorageCollectionViewCell
                 let storageViewModel = StorageViewModel()
+                let storageViewController = StorageViewController(viewModel: storageViewModel)
                 if let folderName = cell?.folderNameLabel.text {
                     storageViewModel.folderName = folderName
+                    storageViewController.setStorageViewHeadTitle(headTitle: folderName)
                 }
-                let storageViewController = StorageViewController(viewModel: storageViewModel)
                 self?.navigationController?.pushViewController(storageViewController, animated: true)
             }
             .disposed(by: disposeBag)

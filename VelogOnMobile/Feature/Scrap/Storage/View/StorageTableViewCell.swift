@@ -47,15 +47,29 @@ final class StorageTableViewCell: BaseTableViewCell {
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
+    let scrapButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("삭제", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        return button
+    }()
     
     override func render() {
-        self.addSubviews(
+        self.contentView.addSubviews(
             imgView,
             date,
             listWriter,
             listTitle,
-            listText
+            listText,
+            scrapButton
         )
+        
+        scrapButton.snp.makeConstraints {
+            $0.height.width.equalTo(32)
+            $0.bottom.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(8)
+        }
+        contentView.bringSubviewToFront(scrapButton)
 
         imgView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -115,14 +129,14 @@ extension StorageTableViewCell {
             }
         }
     }
-    
-    override func prepareForReuse() {
-        imgView.isHidden = false
-        listText.isHidden = false
-        listTitle.snp.remakeConstraints {
-            $0.top.equalTo(imgView.snp.bottom).offset(15)
-            $0.height.equalTo(45)
-            $0.leading.trailing.equalToSuperview().inset(15)
-        }
+//
+//    override func prepareForReuse() {
+//        imgView.isHidden = false
+//        listText.isHidden = false
+//        listTitle.snp.remakeConstraints {
+//            $0.top.equalTo(imgView.snp.bottom).offset(15)
+//            $0.height.equalTo(45)
+//            $0.leading.trailing.equalToSuperview().inset(15)
+//        }
     }
 }

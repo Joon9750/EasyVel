@@ -24,7 +24,6 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
         
-        setButtonAction()
         storageView.listTableView.dataSource = self
         storageView.listTableView.delegate = self
     }
@@ -50,45 +49,10 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
             .disposed(by: disposeBag)
     }
 
-    @objc
-    private func emptySelectedList() {
-        if storageView.listTableView.isEditing {
-            storageView.storageHeadView.deleteButton.setTitle(TextLiterals.deleteButtonTitle, for: .normal)
-            storageView.storageHeadView.deleteButton.setTitleColor(.red, for: .normal)
-            storageView.listTableView.setEditing(false, animated: true)
-        } else {
-            storageView.storageHeadView.deleteButton.setTitle(TextLiterals.doneButtonTitle, for: .normal)
-            storageView.storageHeadView.deleteButton.setTitleColor(.blue, for: .normal)
-            storageView.listTableView.setEditing(true, animated: true)
-        }
-    }
-    
-    private func setButtonAction() {
-        storageView.moveToTopButton.addTarget(self, action: #selector(scrollToTop), for: .touchUpInside)
-    }
-}
-
-extension StorageViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y > 2 {
-            if isScrolled == false {
-                storageView.scrollDidStart()
-                isScrolled = true
-            }
-        } else if scrollView.contentOffset.y < 0 {
-            storageView.scrollDidEnd()
-            isScrolled = false
-        }
-        if scrollView.contentOffset.y > 200 {
-            storageView.moveToTopButton.isHidden = false
-        } else {
-            storageView.moveToTopButton.isHidden = true
-        }
-    }
-    
-    @objc
-    func scrollToTop() {
-        storageView.listTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
+    func setStorageViewHeadTitle(
+        headTitle: String
+    ) {
+        storageView.storageHeadView.titleLabel.text = headTitle
     }
 }
 
@@ -134,26 +98,5 @@ extension StorageViewController: UITableViewDelegate {
         let webViewModel = WebViewModel(url: url)
         let webViewController = WebViewController(viewModel: webViewModel)
         navigationController?.pushViewController(webViewController, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
-        let swipeAction = UIContextualAction(style: .destructive, title: TextLiterals.tableViewDeleteSwipeTitle, handler: { action, view, completionHaldler in
-            
-            // MARK: - fix me, 스크랩 삭제 Input 연결 필요
-//            self.viewModel?.deletePostButtonDidTap(url: selectedCell.url)
-            completionHaldler(true)
-        })
-        let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
-        return configuration
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
-            
-            // MARK: - fix me, 스크랩 삭제 Input 연결 필요
-//            viewModel?.deletePostButtonDidTap(url: selectedCell.url)
-        }
     }
 }
