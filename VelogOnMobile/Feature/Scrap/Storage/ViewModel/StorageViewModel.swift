@@ -14,6 +14,7 @@ import RxSwift
 final class StorageViewModel: BaseViewModel {
 
     let realm = RealmService()
+    var folderName: String?
 
     // MARK: - Input
     
@@ -32,7 +33,7 @@ final class StorageViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .subscribe(onNext: { [weak self] in
-                let realmData = self?.getPostInRealm()
+                let realmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
                 self?.storagePostsOutput.accept(realmData ?? [StoragePost]())
                 let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
                 self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
@@ -57,8 +58,19 @@ final class StorageViewModel: BaseViewModel {
         let reversePosts = realm.reversePosts(input: posts)
         return reversePosts
     }
+    
+    private func getFolderPostInRealm(
+        folderName: String
+    ) -> [StoragePost] {
+        let realmPostData = realm.getFolderPosts(folderName: folderName)
+        let posts: [StoragePost] = realm.convertToStoragePost(input: realmPostData)
+        let reversePosts = realm.reversePosts(input: posts)
+        return reversePosts
+    }
 
-    private func checkStorageEmpty(storage: [StoragePost]) -> Bool {
+    private func checkStorageEmpty(
+        storage: [StoragePost]
+    ) -> Bool {
         if storage.count == 0 { return true }
         else { return false }
     }

@@ -14,7 +14,7 @@ import RxRelay
 final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewModel> {
     
     let scrapView = ScrapStorageView()
-    private lazy var dataSource = ScrapStorageCollectionViewDataSource(collectionView: scrapView.scarpCollectionView)
+    private lazy var dataSource = ScrapStorageCollectionViewDataSource(collectionView: scrapView.scrapCollectionView)
 
     override func render() {
         view = scrapView
@@ -23,6 +23,18 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
     override func bind(viewModel: ScrapStorageViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
+        
+        scrapView.scrapCollectionView.rx.itemSelected
+            .subscribe { [weak self] indexPath in
+                let cell = self?.scrapView.scrapCollectionView.cellForItem(at: indexPath) as? ScrapStorageCollectionViewCell
+                let storageViewModel = StorageViewModel()
+                if let folderName = cell?.folderNameLabel.text {
+                    storageViewModel.folderName = folderName
+                }
+                let storageViewController = StorageViewController(viewModel: storageViewModel)
+                self?.navigationController?.pushViewController(storageViewController, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: ScrapStorageViewModel) {

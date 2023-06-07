@@ -78,7 +78,7 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
         return stackView
     }()
     
-    private let folderNameLabel: UILabel = {
+    let folderNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont(name: "Avenir-Black", size: 15)
