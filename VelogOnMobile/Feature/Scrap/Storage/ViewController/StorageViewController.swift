@@ -66,8 +66,13 @@ extension StorageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StorageTableViewCell.identifier, for: indexPath) as? StorageTableViewCell ?? StorageTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StorageTableViewCell.identifier, for: indexPath) as? StorageTableViewCell else {
+            return StorageTableViewCell()
+        }
         cell.selectionStyle = .none
+        cell.deleteButtonTappedClosure = { [weak self] url in
+            self?.viewModel?.deletePostButtonDidTap.accept(url)
+        }
         let index = indexPath.section
         if let data = storagePosts?[index] {
             cell.binding(model: data)

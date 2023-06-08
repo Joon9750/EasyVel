@@ -43,9 +43,10 @@ final class StorageViewModel: BaseViewModel {
         deletePostButtonDidTap
             .subscribe(onNext: { [weak self] url in
                 self?.realm.deletePost(url: url)
-                let realmData = self?.getPostInRealm()
-                let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
-                self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
+                let folderRealmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
+                let isfolderEmpty = self?.checkStorageEmpty(storage: folderRealmData ?? [StoragePost]())
+                self?.isPostsEmptyOutput.accept(isfolderEmpty ?? Bool())
+                self?.storagePostsOutput.accept(folderRealmData ?? [StoragePost]())
             })
             .disposed(by: disposeBag)
     }
