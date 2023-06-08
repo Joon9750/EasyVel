@@ -27,7 +27,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
@@ -246,6 +246,7 @@ extension KeywordsTableViewCell {
         imgView.isHidden = false
         textView.isHidden = false
         buttonStackView.isHidden = false
+
         title.snp.remakeConstraints {
             $0.top.equalTo(imgView.snp.bottom).offset(15)
             $0.height.equalTo(45)
