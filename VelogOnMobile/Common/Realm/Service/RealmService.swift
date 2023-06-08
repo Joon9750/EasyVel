@@ -108,13 +108,21 @@ final class RealmService {
             localRealm.delete(postToDelete)
         }
     }
-    
+
     func deleteFolder(
         folderName: String
     ) {
-        guard let folderToDelete = localRealm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName).first else { return }
-        try! localRealm.write {
-            localRealm.delete(folderToDelete)
+        do {
+            try localRealm.write {
+                if let folderToDelete = localRealm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName).first {
+                    localRealm.delete(folderToDelete)
+                }
+
+                let postsInFolderToDelete = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+                localRealm.delete(postsInFolderToDelete)
+            }
+        } catch {
+            print("Failed to delete folder: \(error)")
         }
     }
     
