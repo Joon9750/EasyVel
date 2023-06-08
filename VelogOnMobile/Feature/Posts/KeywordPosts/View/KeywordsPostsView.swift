@@ -26,8 +26,7 @@ final class KeywordsPostsView: BaseUIView {
         )
         
         keywordsTableView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(180)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         keywordsPostsViewExceptionView.snp.makeConstraints {

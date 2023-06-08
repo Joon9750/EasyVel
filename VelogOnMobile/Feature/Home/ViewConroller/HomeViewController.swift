@@ -28,6 +28,10 @@ final class HomeViewController: BaseViewController {
     
     private var dataSourceViewController: [UIViewController] = []
     
+    private var keywordsPostsViewModel = KeywordsPostsViewModel()
+    private lazy var keywordsPostsViewController = KeywordsPostsViewController(viewModel: keywordsPostsViewModel)
+
+    
     //MARK: - UI Components
     
     private let navigationView: UIView = {
@@ -126,7 +130,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func setPageViewController() {
-        let redVC = ColorViewController(color: .red)
+        let redVC = keywordsPostsViewController
         let ornageVC = ColorViewController(color: .orange)
         let yellowVC = ColorViewController(color: .yellow)
         let greenVC = ColorViewController(color: .green)
