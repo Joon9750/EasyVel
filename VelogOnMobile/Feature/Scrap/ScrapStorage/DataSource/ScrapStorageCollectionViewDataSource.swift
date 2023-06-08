@@ -19,6 +19,7 @@ final class ScrapStorageCollectionViewDataSource {
     private lazy var dataSource: DiffableDataSource = createDataSource()
     private var folderData: [StorageDTO]
     private var folderImageList: [String]
+    private var folderPostsCount: [Int]
 
     enum Section {
         case main
@@ -30,6 +31,7 @@ final class ScrapStorageCollectionViewDataSource {
         self.collectionView = collectionView
         self.folderData = .init()
         self.folderImageList = .init()
+        self.folderPostsCount = .init()
     }
 
     private func createDataSource() -> DiffableDataSource {
@@ -41,10 +43,12 @@ final class ScrapStorageCollectionViewDataSource {
             }
             let folderData = self.folderData[indexPath.row]
             let folderImage = self.folderImageList[indexPath.row]
+            let folderPostsCount = self.folderPostsCount[indexPath.row]
             let cell:collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(
                 folderData: folderData,
-                folderImage: folderImage
+                folderImage: folderImage,
+                folderPostsCount: folderPostsCount
             )
             return cell
         }
@@ -53,6 +57,7 @@ final class ScrapStorageCollectionViewDataSource {
     func update(
         folderData: [StorageDTO]?,
         folderImageList: [String]?,
+        folderPostsCount: [Int]?,
         completion: CompletedUpdate? = nil
     ) {
         guard let folderData = folderData else {
@@ -62,6 +67,7 @@ final class ScrapStorageCollectionViewDataSource {
         let itemIdentifiers = folderData.compactMap { $0.articleID }
         self.folderData = folderData
         self.folderImageList = folderImageList ?? [String]()
+        self.folderPostsCount = folderPostsCount ?? [Int]()
         dataSource = createDataSource()
         
         var snapshot = dataSource.snapshot()

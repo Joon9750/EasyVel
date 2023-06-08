@@ -100,6 +100,17 @@ final class RealmService {
         return folderPosts
     }
     
+    func getFolderPostsCount(
+        folderName: String
+    ) -> Int {
+        if folderName == "모든 게시글" {
+            let allPosts = localRealm.objects(RealmStoragePost.self)
+            return allPosts.count
+        }
+        let posts = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+        return posts.count
+    }
+    
     func deletePost(
         url: String
     ) {

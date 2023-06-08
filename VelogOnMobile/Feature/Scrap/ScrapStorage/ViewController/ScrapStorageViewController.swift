@@ -40,11 +40,12 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
     
     private func bindOutput(_ viewModel: ScrapStorageViewModel) {
         viewModel.storageListOutput
-            .asDriver(onErrorJustReturn: ([StorageDTO](), [String]()))
-            .drive(onNext: { [weak self] folderData, folderImageList in
+            .asDriver(onErrorJustReturn: ([StorageDTO](), [String](), [Int]()))
+            .drive(onNext: { [weak self] folderData, folderImageList, folderPostsCount in
                 self?.dataSource.update(
                     folderData: folderData,
-                    folderImageList: folderImageList
+                    folderImageList: folderImageList,
+                    folderPostsCount: folderPostsCount
                 )
             })
             .disposed(by: disposeBag)

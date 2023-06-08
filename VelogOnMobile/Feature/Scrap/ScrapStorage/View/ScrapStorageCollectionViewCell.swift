@@ -170,22 +170,23 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
     
     public func configure(
         folderData: StorageDTO,
-        folderImage: String
+        folderImage: String,
+        folderPostsCount: Int
     ) {
         updateTable(
             folderData: folderData,
-            folderImage: folderImage
+            folderImage: folderImage,
+            folderPostsCount: folderPostsCount
         )
     }
     
     private func updateTable(
         folderData: StorageDTO,
-        folderImage: String
+        folderImage: String,
+        folderPostsCount: Int
     ) {
         folderNameLabel.text = folderData.folderName
-        if let count = folderData.count {
-            postCount.text = String(count) + "개"
-        }
+        postCount.text = String(folderPostsCount) + "개"
         imageView1.kf.setImage(with: URL(string: folderImage))
     }
 }
