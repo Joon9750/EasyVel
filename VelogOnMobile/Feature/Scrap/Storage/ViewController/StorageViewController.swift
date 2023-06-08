@@ -13,7 +13,7 @@ import RxCocoa
 final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private let storageView = StorageView()
-    private var isScrolled: Bool = false
+//    private var isScrolled: Bool = false
     private var storagePosts: [StoragePost]?
 
     override func render() {
@@ -50,6 +50,17 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                     self?.storageView.storageViewExceptionView.isHidden = false
                 } else {
                     self?.storageView.storageViewExceptionView.isHidden = true
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.folderNameOutput
+            .asDriver(onErrorJustReturn: String())
+            .drive(onNext: { [weak self] folderName in
+                if folderName == "모든 게시글" {
+                    self?.storageView.storageHeadView.deleteFolderButton.isHidden = true
+                } else {
+                    self?.storageView.storageHeadView.deleteFolderButton.isHidden = false
                 }
             })
             .disposed(by: disposeBag)

@@ -25,6 +25,7 @@ final class StorageViewModel: BaseViewModel {
     
     var storagePostsOutput = PublishRelay<[StoragePost]>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
+    var folderNameOutput = PublishRelay<String>()
     
     override init() {
         super.init()
@@ -38,6 +39,7 @@ final class StorageViewModel: BaseViewModel {
                 self?.storagePostsOutput.accept(realmData ?? [StoragePost]())
                 let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
                 self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
+                self?.folderNameOutput.accept(self?.folderName ?? String())
             })
             .disposed(by: disposeBag)
         
