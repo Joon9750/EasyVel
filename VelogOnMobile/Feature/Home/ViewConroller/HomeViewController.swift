@@ -42,8 +42,8 @@ final class HomeViewController: BaseViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = TextLiterals.homeViewControllerTitle
-        label.font = .avenir(ofSize: 26)
+        label.text = TextLiterals.homeViewControllerHeadTitle
+        label.font = .avenir(ofSize: 24)
         return label
     }()
     
@@ -99,7 +99,7 @@ final class HomeViewController: BaseViewController {
         navigationView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(122)
+            $0.height.equalTo(132)
         }
         
         menuBar.snp.makeConstraints {
@@ -118,14 +118,14 @@ final class HomeViewController: BaseViewController {
         
         // naviagtionView
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(80)
+            $0.top.equalToSuperview().inset(76)
             $0.leading.equalToSuperview().inset(17)
         }
         
         searchButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(54)
-            $0.trailing.equalToSuperview().inset(24)
-            $0.size.equalTo(20)
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.size.equalTo(24)
         }
     }
     
