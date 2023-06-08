@@ -56,9 +56,4 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
             })
             .disposed(by: disposeBag)
     }
-    
-    override func setupNavigationBar() {
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
-    }
 }

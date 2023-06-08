@@ -43,7 +43,6 @@ final class TabBarController: UITabBarController {
 
         setUpTabBar()
         setDelegate()
-        setNavigation()
         setLayout()
 //        scrapButtonTapped()
         setNotificationCenter()
@@ -74,7 +73,7 @@ final class TabBarController: UITabBarController {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         } completion: { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83)
                 }
                 UIView.animate(withDuration: 0.5) {
@@ -110,10 +109,6 @@ final class TabBarController: UITabBarController {
     private func setDelegate() {
         delegate = self
         scrapPopUpView.delegate = self
-    }
-    
-    private func setNavigation() {
-        self.navigationItem.hidesBackButton = true
     }
 }
 
