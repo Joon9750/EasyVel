@@ -19,14 +19,28 @@ final class StorageHeadView: BaseUIView {
         return label
     }()
     
+    let deleteFolderButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("폴더 삭제", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        return button
+    }()
+    
     override func render() {
         self.addSubviews(
-            titleLabel
+            titleLabel,
+            deleteFolderButton
         )
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(95)
             $0.leading.equalToSuperview().offset(20)
+        }
+        
+        deleteFolderButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(20)
         }
     }
     

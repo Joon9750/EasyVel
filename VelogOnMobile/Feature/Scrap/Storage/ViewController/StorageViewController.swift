@@ -26,6 +26,12 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         
         storageView.listTableView.dataSource = self
         storageView.listTableView.delegate = self
+        
+        storageView.storageHeadView.deleteFolderButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.presentDeleteFolderActionSheet()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: StorageViewModel) {
@@ -47,6 +53,18 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func presentDeleteFolderActionSheet() {
+        let actionSheetController = UIAlertController(title: "폴더 삭제", message: "선택하신 폴더를 정말 삭제하시겠습니까?\n스크랩한 콘텐츠가 모두 삭제됩니다.", preferredStyle: .actionSheet)
+        let actionDefault = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+            self?.viewModel?.deleteFolderButtonDidTap.accept(true)
+            self?.navigationController?.popViewController(animated: true)
+        })
+        let actionCancel = UIAlertAction(title: "취소", style: .cancel)
+        actionSheetController.addAction(actionDefault)
+        actionSheetController.addAction(actionCancel)
+        self.present(actionSheetController, animated: true)
     }
 
     func setStorageViewHeadTitle(

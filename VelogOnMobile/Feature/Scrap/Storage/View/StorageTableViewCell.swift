@@ -49,7 +49,7 @@ final class StorageTableViewCell: BaseTableViewCell {
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
-    let deleteButton : UIButton = {
+    lazy var deleteButton : UIButton = {
         let button = UIButton()
         button.setTitle("삭제", for: .normal)
         button.setTitleColor(.red, for: .normal)

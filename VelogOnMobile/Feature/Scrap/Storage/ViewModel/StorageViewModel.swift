@@ -19,6 +19,7 @@ final class StorageViewModel: BaseViewModel {
     // MARK: - Input
     
     var deletePostButtonDidTap = PublishRelay<String>()
+    var deleteFolderButtonDidTap = PublishRelay<Bool>()
     
     // MARK: - Output
     
@@ -47,6 +48,14 @@ final class StorageViewModel: BaseViewModel {
                 let isfolderEmpty = self?.checkStorageEmpty(storage: folderRealmData ?? [StoragePost]())
                 self?.isPostsEmptyOutput.accept(isfolderEmpty ?? Bool())
                 self?.storagePostsOutput.accept(folderRealmData ?? [StoragePost]())
+            })
+            .disposed(by: disposeBag)
+        
+        deleteFolderButtonDidTap
+            .subscribe(onNext: { [weak self] didFolderDelete in
+                if didFolderDelete {
+                    self?.realm.deleteFolder(folderName: self?.folderName ?? String())
+                }
             })
             .disposed(by: disposeBag)
     }
