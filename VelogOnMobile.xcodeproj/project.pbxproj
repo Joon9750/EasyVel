@@ -92,7 +92,6 @@
 		91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1629FC5481009CFECF /* NetworkMonitor.swift */; };
 		91487F1929FC549C009CFECF /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F1829FC549C009CFECF /* NoNetworkView.swift */; };
 		91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2129FC5F2A009CFECF /* TabBarController.swift */; };
-		91487F2829FD0641009CFECF /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 91487F2729FD0641009CFECF /* Tabman */; };
 		91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */; };
 		91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */; };
 		91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F3629FD88E7009CFECF /* ListViewController.swift */; };
@@ -110,7 +109,6 @@
 		914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */; };
 		914D8DD42A02A4B500516B4C /* SubscriberPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD32A02A4B500516B4C /* SubscriberPostsViewModel.swift */; };
 		914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD82A02B22A00516B4C /* WebViewController.swift */; };
-		914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */; };
 		915861852A2DFA6D00461F9A /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 915861842A2DFA6D00461F9A /* RxBlocking */; };
 		915861872A2DFA6D00461F9A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 915861862A2DFA6D00461F9A /* RxCocoa */; };
 		915861892A2DFA6D00461F9A /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 915861882A2DFA6D00461F9A /* RxRelay */; };
@@ -298,8 +296,6 @@
 				917BA34C2A050861000409B7 /* Realm in Frameworks */,
 				91487F0E29FC4656009CFECF /* Kingfisher in Frameworks */,
 				917BA34E2A050861000409B7 /* RealmSwift in Frameworks */,
-				914D8DDC2A02B68200516B4C /* NVActivityIndicatorView in Frameworks */,
-				91487F2829FD0641009CFECF /* Tabman in Frameworks */,
 				915861852A2DFA6D00461F9A /* RxBlocking in Frameworks */,
 				91487EDA29FC3921009CFECF /* Moya in Frameworks */,
 				91487ED729FC38CC009CFECF /* SnapKit in Frameworks */,
@@ -1230,8 +1226,6 @@
 				91487ED629FC38CC009CFECF /* SnapKit */,
 				91487ED929FC3921009CFECF /* Moya */,
 				91487F0D29FC4656009CFECF /* Kingfisher */,
-				91487F2729FD0641009CFECF /* Tabman */,
-				914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */,
 				917BA34B2A050861000409B7 /* Realm */,
 				917BA34D2A050861000409B7 /* RealmSwift */,
 				915861842A2DFA6D00461F9A /* RxBlocking */,
@@ -1271,8 +1265,6 @@
 				91487ED529FC38CC009CFECF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				91487ED829FC3921009CFECF /* XCRemoteSwiftPackageReference "Moya" */,
 				91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */,
-				914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				917BA34A2A050861000409B7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				915861832A2DFA6D00461F9A /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
@@ -1665,22 +1657,6 @@
 				kind = branch;
 			};
 		};
-		91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uias/Tabman";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		915861832A2DFA6D00461F9A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1714,16 +1690,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 91487F0C29FC4656009CFECF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		91487F2729FD0641009CFECF /* Tabman */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 91487F2629FD0641009CFECF /* XCRemoteSwiftPackageReference "Tabman" */;
-			productName = Tabman;
-		};
-		914D8DDB2A02B68200516B4C /* NVActivityIndicatorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 914D8DDA2A02B68200516B4C /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
-			productName = NVActivityIndicatorView;
 		};
 		915861842A2DFA6D00461F9A /* RxBlocking */ = {
 			isa = XCSwiftPackageProductDependency;
