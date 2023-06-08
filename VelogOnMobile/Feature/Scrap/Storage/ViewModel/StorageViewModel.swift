@@ -14,15 +14,18 @@ import RxSwift
 final class StorageViewModel: BaseViewModel {
 
     let realm = RealmService()
+    var folderName: String?
 
     // MARK: - Input
     
     var deletePostButtonDidTap = PublishRelay<String>()
+    var deleteFolderButtonDidTap = PublishRelay<Bool>()
     
     // MARK: - Output
     
     var storagePostsOutput = PublishRelay<[StoragePost]>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
+    var folderNameOutput = PublishRelay<String>()
     
     override init() {
         super.init()
@@ -32,19 +35,29 @@ final class StorageViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .subscribe(onNext: { [weak self] in
-                let realmData = self?.getPostInRealm()
+                let realmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
                 self?.storagePostsOutput.accept(realmData ?? [StoragePost]())
                 let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
                 self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
+                self?.folderNameOutput.accept(self?.folderName ?? String())
             })
             .disposed(by: disposeBag)
         
         deletePostButtonDidTap
             .subscribe(onNext: { [weak self] url in
                 self?.realm.deletePost(url: url)
-                let realmData = self?.getPostInRealm()
-                let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
-                self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
+                let folderRealmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
+                let isfolderEmpty = self?.checkStorageEmpty(storage: folderRealmData ?? [StoragePost]())
+                self?.isPostsEmptyOutput.accept(isfolderEmpty ?? Bool())
+                self?.storagePostsOutput.accept(folderRealmData ?? [StoragePost]())
+            })
+            .disposed(by: disposeBag)
+        
+        deleteFolderButtonDidTap
+            .subscribe(onNext: { [weak self] didFolderDelete in
+                if didFolderDelete {
+                    self?.realm.deleteFolder(folderName: self?.folderName ?? String())
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -57,8 +70,19 @@ final class StorageViewModel: BaseViewModel {
         let reversePosts = realm.reversePosts(input: posts)
         return reversePosts
     }
+    
+    private func getFolderPostInRealm(
+        folderName: String
+    ) -> [StoragePost] {
+        let realmPostData = realm.getFolderPosts(folderName: folderName)
+        let posts: [StoragePost] = realm.convertToStoragePost(input: realmPostData)
+        let reversePosts = realm.reversePosts(input: posts)
+        return reversePosts
+    }
 
-    private func checkStorageEmpty(storage: [StoragePost]) -> Bool {
+    private func checkStorageEmpty(
+        storage: [StoragePost]
+    ) -> Bool {
         if storage.count == 0 { return true }
         else { return false }
     }

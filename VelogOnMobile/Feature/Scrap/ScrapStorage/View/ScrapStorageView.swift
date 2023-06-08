@@ -51,7 +51,7 @@ final class ScrapStorageView: BaseUIView {
         return button
     }()
     
-    let scarpCollectionView: UICollectionView = {
+    let scrapCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: (SizeLiterals.screenWidth - 40) / 2, height: (SizeLiterals.screenWidth - 30) / 2 + 35)
@@ -76,7 +76,7 @@ final class ScrapStorageView: BaseUIView {
             addFolderButton,
             horiLineView,
             editButton,
-            scarpCollectionView
+            scrapCollectionView
         )
 
         titleLabel.snp.makeConstraints {
@@ -111,7 +111,7 @@ final class ScrapStorageView: BaseUIView {
             $0.width.equalTo(26)
         }
         
-        scarpCollectionView.snp.makeConstraints {
+        scrapCollectionView.snp.makeConstraints {
             $0.top.equalTo(addFolderButton.snp.bottom).offset(16)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()

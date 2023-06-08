@@ -14,6 +14,8 @@ final class StorageTableViewCell: BaseTableViewCell {
     
     static let identifier = "StorageTableViewCell"
     
+    var deleteButtonTappedClosure: ((String) -> Void)?
+    
     var url = String()
     let imgView: UIImageView = {
         let imageView = UIImageView()
@@ -47,15 +49,31 @@ final class StorageTableViewCell: BaseTableViewCell {
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
+    lazy var deleteButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("삭제", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return button
+    }()
     
     override func render() {
-        self.addSubviews(
+        self.contentView.addSubviews(
             imgView,
             date,
             listWriter,
             listTitle,
-            listText
+            listText,
+            deleteButton
         )
+        
+        deleteButton.snp.makeConstraints {
+            $0.height.width.equalTo(32)
+            $0.bottom.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(15)
+        }
+        contentView.bringSubviewToFront(deleteButton)
 
         imgView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -88,6 +106,11 @@ final class StorageTableViewCell: BaseTableViewCell {
             $0.trailing.equalToSuperview().inset(15)
         }
     }
+    
+    @objc
+    private func buttonTapped(_ sender: UIButton) {
+        deleteButtonTappedClosure?(url)
+    }
 }
 
 extension StorageTableViewCell {
@@ -115,7 +138,7 @@ extension StorageTableViewCell {
             }
         }
     }
-    
+
     override func prepareForReuse() {
         imgView.isHidden = false
         listText.isHidden = false

@@ -18,6 +18,8 @@ final class ScrapStorageCollectionViewDataSource {
 
     private lazy var dataSource: DiffableDataSource = createDataSource()
     private var folderData: [StorageDTO]
+    private var folderImageList: [String]
+    private var folderPostsCount: [Int]
 
     enum Section {
         case main
@@ -28,6 +30,8 @@ final class ScrapStorageCollectionViewDataSource {
     ) {
         self.collectionView = collectionView
         self.folderData = .init()
+        self.folderImageList = .init()
+        self.folderPostsCount = .init()
     }
 
     private func createDataSource() -> DiffableDataSource {
@@ -38,26 +42,33 @@ final class ScrapStorageCollectionViewDataSource {
                 return UICollectionViewCell()
             }
             let folderData = self.folderData[indexPath.row]
+            let folderImage = self.folderImageList[indexPath.row]
+            let folderPostsCount = self.folderPostsCount[indexPath.row]
             let cell:collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(folderData: folderData)
+            cell.configure(
+                folderData: folderData,
+                folderImage: folderImage,
+                folderPostsCount: folderPostsCount
+            )
             return cell
         }
     }
 
     func update(
         folderData: [StorageDTO]?,
+        folderImageList: [String]?,
+        folderPostsCount: [Int]?,
         completion: CompletedUpdate? = nil
     ) {
         guard let folderData = folderData else {
             completion?()
             return
         }
-        self.folderData = folderData
-        
         let itemIdentifiers = folderData.compactMap { $0.articleID }
-        folderData.forEach { folder in
-            self.folderData.append(folder)
-        }
+        self.folderData = folderData
+        self.folderImageList = folderImageList ?? [String]()
+        self.folderPostsCount = folderPostsCount ?? [Int]()
+        dataSource = createDataSource()
         
         var snapshot = dataSource.snapshot()
         if snapshot.sectionIdentifiers.contains(Section.main) == false {

@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Kingfisher
 
 final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
     
@@ -77,7 +78,7 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
         return stackView
     }()
     
-    private let folderNameLabel: UILabel = {
+    let folderNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont(name: "Avenir-Black", size: 15)
@@ -167,15 +168,25 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    public func configure(folderData: StorageDTO) {
-        updateTable(with: folderData)
+    public func configure(
+        folderData: StorageDTO,
+        folderImage: String,
+        folderPostsCount: Int
+    ) {
+        updateTable(
+            folderData: folderData,
+            folderImage: folderImage,
+            folderPostsCount: folderPostsCount
+        )
     }
     
-    private func updateTable(with folderData: StorageDTO) {
-        folderNameLabel.text = "iOS"
-        postCount.text = "3개"
-//        if let count = folderData.count {
-//            postCount.text = String(count) + "개"
-//        }
+    private func updateTable(
+        folderData: StorageDTO,
+        folderImage: String,
+        folderPostsCount: Int
+    ) {
+        folderNameLabel.text = folderData.folderName
+        postCount.text = String(folderPostsCount) + "개"
+        imageView1.kf.setImage(with: URL(string: folderImage))
     }
 }

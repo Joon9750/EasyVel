@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RealmSwift
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -16,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         startMonitoringNetwork(on: scene)
+        if checkAllPostIsUnique() {
+            addInitialData()
+        }
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let rootViewController = UINavigationController(rootViewController: TabBarController())
@@ -54,8 +59,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
-extension SceneDelegate {
-    private func startMonitoringNetwork(on scene: UIScene) {
+// MARK: network
+
+private extension SceneDelegate {
+    func startMonitoringNetwork(on scene: UIScene) {
         networkMonitor.startMonitoring(statusUpdateHandler: { [weak self] connectionStatus in
             switch connectionStatus {
             case .satisfied: self?.removeNetworkErrorWindow()
@@ -65,7 +72,7 @@ extension SceneDelegate {
         })
     }
     
-    private func removeNetworkErrorWindow() {
+    func removeNetworkErrorWindow() {
         DispatchQueue.main.async { [weak self] in
             self?.errorWindow?.resignKey()
             self?.errorWindow?.isHidden = true
@@ -73,7 +80,7 @@ extension SceneDelegate {
         }
     }
     
-    private func loadNetworkErrorWindow(on scene: UIScene) {
+    func loadNetworkErrorWindow(on scene: UIScene) {
         if let windowScene = scene as? UIWindowScene {
             DispatchQueue.main.async { [weak self] in
                 let window = UIWindow(windowScene: windowScene)
@@ -84,5 +91,29 @@ extension SceneDelegate {
                 self?.errorWindow = window
             }
         }
+    }
+}
+
+// MARK: - realm
+
+private extension SceneDelegate {
+    func addInitialData() {
+        let realm = try! Realm()
+        let storageDTO = StorageDTO(
+            articleID: UUID(),
+            folderName: "모든 게시글",
+            count: 0
+        )
+        let scrapStorageDTO = ScrapStorageDTO(input: storageDTO)
+        try! realm.write {
+            realm.add(scrapStorageDTO)
+        }
+    }
+    
+    func checkAllPostIsUnique() -> Bool {
+        let realm = try! Realm()
+        let folderName = "모든 게시글"
+        let folder = realm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName)
+        return folder.isEmpty
     }
 }

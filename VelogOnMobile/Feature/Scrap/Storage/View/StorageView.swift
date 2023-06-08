@@ -13,17 +13,6 @@ final class StorageView: BaseUIView {
     
     let listTableView = StorageTableView(frame: .null, style: .insetGrouped)
     let storageHeadView = StorageHeadView()
-    let moveToTopButton: UIButton = {
-        let button = UIButton()
-        button.layer.borderWidth = 1
-        button.layer.cornerRadius = 10
-        button.layer.borderColor = UIColor.lightGrayColor.cgColor
-        button.backgroundColor = .lightGrayColor
-        button.alpha = 0.8
-        button.isHidden = true
-        button.setImage(UIImage(systemName: "arrow.up")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        return button
-    }()
     let storageViewExceptionView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.emptyPostsList
@@ -35,48 +24,24 @@ final class StorageView: BaseUIView {
         self.addSubviews(
             storageHeadView,
             listTableView,
-            moveToTopButton,
             storageViewExceptionView
         )
         
         storageHeadView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(120)
+            $0.height.equalTo(140)
         }
         
         listTableView.snp.makeConstraints {
             $0.top.equalTo(storageHeadView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
-        
-        moveToTopButton.snp.makeConstraints {
-            $0.height.width.equalTo(45)
-            $0.bottom.trailing.equalToSuperview().inset(30)
-        }
-        
+
         storageViewExceptionView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.height.equalTo(166)
             $0.width.equalTo(150)
         }
-    }
-    
-    func scrollDidStart() {
-        storageHeadView.snp.updateConstraints {
-            $0.height.equalTo(0)
-        }
-        UIView.animate(withDuration: 0.7, delay: 0, options: .transitionCurlUp, animations: {
-            self.layoutIfNeeded()
-        })
-    }
-    
-    func scrollDidEnd() {
-        storageHeadView.snp.updateConstraints {
-            $0.height.equalTo(120)
-        }
-        UIView.animate(withDuration: 0.7, delay: 0, options: .transitionCurlUp, animations: {
-            self.layoutIfNeeded()
-        })
     }
 }

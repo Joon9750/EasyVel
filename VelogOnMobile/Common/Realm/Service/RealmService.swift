@@ -76,6 +76,41 @@ final class RealmService {
         return folders
     }
     
+    func getFolderImage(
+        folderName: String
+    ) -> String {
+        let posts = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+        let postsImage = self.convertToStoragePost(input: posts)
+        for post in postsImage {
+            if post.img != "" {
+                return post.img ?? ""
+            }
+        }
+        return ""
+    }
+    
+    func getFolderPosts(
+        folderName: String
+    ) -> Results<RealmStoragePost> {
+        if folderName == "모든 게시글" {
+            let allPosts = localRealm.objects(RealmStoragePost.self)
+            return allPosts
+        }
+        let folderPosts = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+        return folderPosts
+    }
+    
+    func getFolderPostsCount(
+        folderName: String
+    ) -> Int {
+        if folderName == "모든 게시글" {
+            let allPosts = localRealm.objects(RealmStoragePost.self)
+            return allPosts.count
+        }
+        let posts = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+        return posts.count
+    }
+    
     func deletePost(
         url: String
     ) {
@@ -84,13 +119,21 @@ final class RealmService {
             localRealm.delete(postToDelete)
         }
     }
-    
+
     func deleteFolder(
         folderName: String
     ) {
-        guard let folderToDelete = localRealm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName).first else { return }
-        try! localRealm.write {
-            localRealm.delete(folderToDelete)
+        do {
+            try localRealm.write {
+                if let folderToDelete = localRealm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName).first {
+                    localRealm.delete(folderToDelete)
+                }
+
+                let postsInFolderToDelete = localRealm.objects(RealmStoragePost.self).filter("folderName == %@", folderName)
+                localRealm.delete(postsInFolderToDelete)
+            }
+        } catch {
+            print("Failed to delete folder: \(error)")
         }
     }
     

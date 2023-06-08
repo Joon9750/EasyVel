@@ -52,8 +52,9 @@ final class ScrapFolderBottomSheetDataSource {
             completion?()
             return
         }
-        let itemIdentifiers = Array(Set(list.compactMap { $0.articleId }))
-        folderNameList = list.reversed()
+        let filteredList = list.filter { $0.title != "모든 게시글" }
+        let itemIdentifiers = Array(Set(filteredList.compactMap { $0.articleId }))
+        folderNameList = filteredList.reversed()
         dataSource = createDataSource()
         
         var snapshot = dataSource.snapshot()
