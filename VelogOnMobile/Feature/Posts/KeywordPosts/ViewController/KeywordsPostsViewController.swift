@@ -21,10 +21,6 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
         self.view = keywordsPostsView
     }
     
-    override func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = true
-    }
-    
     override func bind(viewModel: KeywordsPostsViewModel) {
         keywordsPostsView.keywordsTableView.dataSource = self
         keywordsPostsView.keywordsTableView.delegate = self

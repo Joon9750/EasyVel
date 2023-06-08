@@ -11,6 +11,10 @@ enum TextLiterals {
     
     static let noneText: String = ""
     
+    // MARK: - Home
+    
+    static let homeViewControllerHeadTitle: String = "Home"
+    
     // MARK: - storage
     
     static let deleteButtonTitle: String = "Edit"
