@@ -23,7 +23,6 @@ final class KeywordsPostsViewModel: BaseViewModel {
     // MARK: - Output
     
     var tagPostsListOutput = PublishRelay<GetTagPostResponse>()
-    var toastPresentOutput = PublishRelay<Bool>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
     var tagPostsListDidScrapOutput = PublishRelay<[Bool]>()
     

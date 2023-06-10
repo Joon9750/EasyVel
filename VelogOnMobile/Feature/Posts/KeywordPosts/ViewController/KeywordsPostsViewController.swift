@@ -11,11 +11,11 @@ import RxSwift
 import RxRelay
 
 final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
-    
-    private let keywordsPostsView = KeywordsPostsView()
-    private var isScrolled: Bool = false
+
     private var keywordsPosts: GetTagPostResponse?
     private var isScrapPostsList: [Bool]?
+    
+    private let keywordsPostsView = KeywordsPostsView()
     
     override func render() {
         self.view = keywordsPostsView
@@ -61,11 +61,6 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
                 }
             })
             .disposed(by: disposeBag)
-    }
-    
-    @objc
-    func scrollToTop() {
-        keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
     }
 }
 

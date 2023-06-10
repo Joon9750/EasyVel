@@ -15,13 +15,13 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
     private var isScrapButtonTapped: Bool = false
     private var isSubscribeButtonTapped: Bool = false
     
-    private let scrapButton: UIButton = {
+    let scrapButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
         return button
     }()
-    private let subscriberButton: UIButton = {
+    let subscriberButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
         button.setTitle("구독", for: .normal)
