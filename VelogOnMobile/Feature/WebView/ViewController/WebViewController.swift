@@ -13,8 +13,8 @@ import RxSwift
 
 final class WebViewController: RxBaseViewController<WebViewModel> {
     
-    private var didScrap: Bool = false
-    private var didSubscribe: Bool = false
+    var didScrap: Bool = false
+    var didSubscribe: Bool = false
     var didScrapClosure: ((Bool) -> Void)?
     
     private let scrapButton: UIButton = {
@@ -89,6 +89,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                         toastText: "구독 했습니다.",
                         toastBackgroundColer: .brandColor
                     )
+                    self?.viewModel?.didSubscribe.accept(true)
                 } else {
                     self?.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
                     self?.subscriberButton.backgroundColor = .white
@@ -96,6 +97,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                         toastText: "구독 취소했습니다.",
                         toastBackgroundColer: .lightGray
                     )
+                    self?.viewModel?.didSubscribe.accept(false)
                 }
             })
             .disposed(by: disposeBag)
@@ -119,6 +121,19 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    func setSubscribeButton(
+        didSubscribe: Bool
+    ) {
+        self.didSubscribe = didSubscribe
+        if didSubscribe {
+            self.subscriberButton.setTitleColor(UIColor.white, for: .normal)
+            self.subscriberButton.backgroundColor = .brandColor
+        } else {
+            self.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
+            self.subscriberButton.backgroundColor = .white
+        }
     }
     
     private func showSubscibeToast(

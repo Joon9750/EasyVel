@@ -13,10 +13,13 @@ import RxSwift
 final class WebViewModel: BaseViewModel {
     
     private var urlString: String = ""
+    private let realm = RealmService()
+    var subscriber: String?
     
     // MARK: - Input
     
     let webViewProgressRelay = PublishRelay<Double>()
+    let didSubscribe = PublishRelay<Bool>()
     
     // MARK: - Output
     
@@ -49,5 +52,51 @@ final class WebViewModel: BaseViewModel {
                 }
             })
             .disposed(by: disposeBag)
+        
+        didSubscribe
+            .subscribe(onNext: { [weak self] response in
+                guard let subscriber = self?.subscriber else { return }
+                if response {
+                    self?.addSubscriber(name: subscriber)
+                } else {
+                    self?.deleteSubscriber(name: subscriber)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension WebViewModel {
+    func addSubscriber(
+        name: String
+    ) {
+        NetworkService.shared.subscriberRepository.addSubscriber(
+            fcmToken: "FCMToken",
+            name: name
+        ) { result in
+            switch result {
+            case .success(_): break
+            case .requestErr(_):
+                print("error")
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func deleteSubscriber(
+        name: String
+    ) {
+        NetworkService.shared.subscriberRepository.deleteSubscriber(
+            targetName: name
+        ) { result in
+            switch result {
+            case .success(_): break
+            case .requestErr(_):
+                print("error")
+            default:
+                print("error")
+            }
+        }
     }
 }

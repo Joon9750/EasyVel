@@ -121,12 +121,20 @@ extension KeywordsPostsViewController: UITableViewDataSource {
 extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
+        let index = indexPath.section
+        
         let webViewModel = WebViewModel(url: selectedCell.url)
+        webViewModel.subscriber = keywordsPosts?.tagPostDtoList?[index].name
+        
         let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.setSubscribeButton(
+            didSubscribe: keywordsPosts?.tagPostDtoList?[index].subscribed ?? Bool()
+        )
         webViewController.didScrapClosure = { [weak self] didScrap in
             selectedCell.isTapped = didScrap
             self?.keywordsPostsView.keywordsTableView.reloadData()
         }
+        
         navigationController?.pushViewController(webViewController, animated: true)
     }
 }
