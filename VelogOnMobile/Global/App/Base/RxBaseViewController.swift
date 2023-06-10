@@ -12,29 +12,6 @@ import SnapKit
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
-    var didScrap: Bool = false
-    var didSubscribe: Bool = false
-    
-    let scrapButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
-        return button
-    }()
-    let subscriberButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
-        button.setTitle("구독", for: .normal)
-        button.setTitleColor(UIColor.brandColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 14)
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.brandColor.cgColor
-        button.layer.cornerRadius = 8
-        return button
-    }()
-    lazy var firstButton = UIBarButtonItem(customView: self.scrapButton)
-    lazy var secondButton = UIBarButtonItem(customView: self.subscriberButton)
-    
     let disposeBag = DisposeBag()
     var viewModel: VM?
 
@@ -63,7 +40,6 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
     func render() {}
     
     func setupNavigationBar() {
-        navigationItem.rightBarButtonItems = [firstButton, secondButton]
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
     }
@@ -100,67 +76,6 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
             .map { _ in () }
             .bind(to: viewModel.viewDidDisappear)
             .disposed(by: disposeBag)
-        
-        scrapButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.didScrap.toggle()
-                guard let didScrap = self?.didScrap else { return }
-                let image = didScrap ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
-                self?.scrapButton.setImage(image, for: .normal)
-            })
-            .disposed(by: disposeBag)
-        
-        subscriberButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.didSubscribe.toggle()
-                guard let didSubscribe = self?.didSubscribe else { return }
-                if didSubscribe {
-                    self?.subscriberButton.setTitleColor(UIColor.white, for: .normal)
-                    self?.subscriberButton.backgroundColor = .brandColor
-                    self?.showSubscibeToast(
-                        toastText: "구독 했습니다.",
-                        toastBackgroundColer: .brandColor
-                    )
-                } else {
-                    self?.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
-                    self?.subscriberButton.backgroundColor = .white
-                    self?.showSubscibeToast(
-                        toastText: "구독 취소했습니다.",
-                        toastBackgroundColer: .lightGray
-                    )
-                }
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func showSubscibeToast(
-        toastText: String,
-        toastBackgroundColer: UIColor
-    ) {
-        let toastLabel = UILabel()
-        toastLabel.text = toastText
-        toastLabel.textColor = .white
-        toastLabel.font = UIFont(name: "Avenir-Black", size: 16)
-        toastLabel.backgroundColor = toastBackgroundColer
-        toastLabel.textAlignment = .center
-        toastLabel.layer.cornerRadius = 24
-        toastLabel.clipsToBounds = true
-        toastLabel.alpha = 1.0
-        view.addSubview(toastLabel)
-        toastLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(36)
-            $0.leading.trailing.equalToSuperview().inset(51)
-            $0.height.equalTo(48)
-        }
-        UIView.animate(withDuration: 0, animations: {
-            toastLabel.alpha = 1.0
-        }, completion: { isCompleted in
-            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
-                toastLabel.alpha = 0
-            }, completion: { isCompleted in
-                toastLabel.removeFromSuperview()
-            })
-        })
     }
 
     deinit {}

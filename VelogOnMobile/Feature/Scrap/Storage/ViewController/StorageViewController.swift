@@ -65,11 +65,6 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
             .disposed(by: disposeBag)
     }
     
-    override func setupNavigationBar() {
-        super.setupNavigationBar()
-        navigationItem.rightBarButtonItems = nil
-    }
-    
     private func presentDeleteFolderActionSheet() {
         let actionSheetController = UIAlertController(title: "폴더 삭제", message: "선택하신 폴더를 정말 삭제하시겠습니까?\n스크랩한 콘텐츠가 모두 삭제됩니다.", preferredStyle: .actionSheet)
         let actionDefault = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in

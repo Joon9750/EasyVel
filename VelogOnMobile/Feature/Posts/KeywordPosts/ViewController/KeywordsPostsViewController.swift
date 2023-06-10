@@ -125,24 +125,4 @@ extension KeywordsPostsViewController: UITableViewDelegate {
         let webViewController = WebViewController(viewModel: webViewModel)
         navigationController?.pushViewController(webViewController, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let index = indexPath.section
-        let swipeAction = UIContextualAction(style: .normal, title: "스크랩", handler: { [weak self] action, view, completionHaldler in
-            let post = StoragePost(
-                img: self?.keywordsPosts?.tagPostDtoList?[index].img,
-                name: self?.keywordsPosts?.tagPostDtoList?[index].name,
-                summary: self?.keywordsPosts?.tagPostDtoList?[index].summary,
-                title: self?.keywordsPosts?.tagPostDtoList?[index].title,
-                url: self?.keywordsPosts?.tagPostDtoList?[index].url
-            )
-            
-            // MARK: - fix me, 스크랩 추가 Input 연결 필요
-//            self?.viewModel?.cellDidTap(input: post)
-            completionHaldler(true)
-        })
-        swipeAction.backgroundColor = .brandColor
-        let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
-        return configuration
-    }
 }
