@@ -11,6 +11,9 @@ import RxSwift
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
+    var isScrapButtonTapped: Bool = false
+    var isSubscribeButtonTapped: Bool = false
+    
     private let scrapButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
@@ -22,7 +25,7 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
         button.setTitle("구독", for: .normal)
         button.setTitleColor(UIColor.brandColor, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 14)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.brandColor.cgColor
         button.layer.cornerRadius = 8
@@ -68,7 +71,7 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
-
+    
     func bind(viewModel: VM) {
         self.viewModel = viewModel
 
@@ -95,6 +98,29 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         rx.methodInvoked(#selector(UIViewController.viewDidDisappear))
             .map { _ in () }
             .bind(to: viewModel.viewDidDisappear)
+            .disposed(by: disposeBag)
+        
+        scrapButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.isScrapButtonTapped.toggle()
+                guard let isScrapButtonTapped = self?.isScrapButtonTapped else { return }
+                let image = isScrapButtonTapped ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
+                self?.scrapButton.setImage(image, for: .normal)
+            })
+            .disposed(by: disposeBag)
+        
+        subscriberButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.isSubscribeButtonTapped.toggle()
+                guard let isSubsribeButtonTapped = self?.isSubscribeButtonTapped else { return }
+                if isSubsribeButtonTapped {
+                    self?.subscriberButton.setTitleColor(UIColor.white, for: .normal)
+                    self?.subscriberButton.backgroundColor = .brandColor
+                } else {
+                    self?.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
+                    self?.subscriberButton.backgroundColor = .white
+                }
+            })
             .disposed(by: disposeBag)
     }
 
