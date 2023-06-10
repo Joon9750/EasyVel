@@ -12,8 +12,8 @@ import SnapKit
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
-    private var isScrapButtonTapped: Bool = false
-    private var isSubscribeButtonTapped: Bool = false
+    var didScrap: Bool = false
+    var didSubscribe: Bool = false
     
     let scrapButton: UIButton = {
         let button = UIButton()
@@ -103,18 +103,18 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         
         scrapButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.isScrapButtonTapped.toggle()
-                guard let isScrapButtonTapped = self?.isScrapButtonTapped else { return }
-                let image = isScrapButtonTapped ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
+                self?.didScrap.toggle()
+                guard let didScrap = self?.didScrap else { return }
+                let image = didScrap ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
                 self?.scrapButton.setImage(image, for: .normal)
             })
             .disposed(by: disposeBag)
         
         subscriberButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.isSubscribeButtonTapped.toggle()
-                guard let didSubscribeSuccess = self?.isSubscribeButtonTapped else { return }
-                if didSubscribeSuccess {
+                self?.didSubscribe.toggle()
+                guard let didSubscribe = self?.didSubscribe else { return }
+                if didSubscribe {
                     self?.subscriberButton.setTitleColor(UIColor.white, for: .normal)
                     self?.subscriberButton.backgroundColor = .brandColor
                     self?.showSubscibeToast(
