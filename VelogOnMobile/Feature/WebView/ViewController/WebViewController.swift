@@ -104,6 +104,13 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     }
     
     private func bindOutput(_ viewModel: WebViewModel) {
+        viewModel.didSubscribeWriter
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] didSubscribed in
+                self?.setSubscribeButton(didSubscribe: didSubscribed)
+            })
+            .disposed(by: disposeBag)
+            
         viewModel.urlRequestOutput
             .asDriver(onErrorJustReturn: URLRequest(url: URL(fileURLWithPath: "")))
             .drive(onNext: { [weak self] url in
@@ -123,7 +130,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
             .disposed(by: disposeBag)
     }
     
-    func setSubscribeButton(
+    private func setSubscribeButton(
         didSubscribe: Bool
     ) {
         self.didSubscribe = didSubscribe

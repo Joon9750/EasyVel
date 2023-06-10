@@ -124,12 +124,9 @@ extension KeywordsPostsViewController: UITableViewDelegate {
         let index = indexPath.section
         
         let webViewModel = WebViewModel(url: selectedCell.url)
-        webViewModel.subscriber = keywordsPosts?.tagPostDtoList?[index].name
+        webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
         
         let webViewController = WebViewController(viewModel: webViewModel)
-        webViewController.setSubscribeButton(
-            didSubscribe: keywordsPosts?.tagPostDtoList?[index].subscribed ?? Bool()
-        )
         webViewController.didScrapClosure = { [weak self] didScrap in
             selectedCell.isTapped = didScrap
             self?.keywordsPostsView.keywordsTableView.reloadData()
