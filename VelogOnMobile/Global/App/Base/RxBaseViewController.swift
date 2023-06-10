@@ -11,8 +11,8 @@ import RxSwift
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
-    var isScrapButtonTapped: Bool = false
-    var isSubscribeButtonTapped: Bool = false
+    private var isScrapButtonTapped: Bool = false
+    private var isSubscribeButtonTapped: Bool = false
     
     private let scrapButton: UIButton = {
         let button = UIButton()
