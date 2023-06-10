@@ -123,6 +123,10 @@ extension KeywordsPostsViewController: UITableViewDelegate {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
         let webViewModel = WebViewModel(url: selectedCell.url)
         let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.didScrapClosure = { [weak self] didScrap in
+            selectedCell.isTapped = didScrap
+            self?.keywordsPostsView.keywordsTableView.reloadData()
+        }
         navigationController?.pushViewController(webViewController, animated: true)
     }
 }
