@@ -11,11 +11,11 @@ import RxSwift
 import RxRelay
 
 final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
-    
-    private let keywordsPostsView = KeywordsPostsView()
-    private var isScrolled: Bool = false
+
     private var keywordsPosts: GetTagPostResponse?
     private var isScrapPostsList: [Bool]?
+    
+    private let keywordsPostsView = KeywordsPostsView()
     
     override func render() {
         self.view = keywordsPostsView
@@ -61,11 +61,6 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
                 }
             })
             .disposed(by: disposeBag)
-    }
-    
-    @objc
-    func scrollToTop() {
-        keywordsPostsView.keywordsTableView.setContentOffset(CGPoint(x: 0, y: -1), animated: true)
     }
 }
 
@@ -126,28 +121,17 @@ extension KeywordsPostsViewController: UITableViewDataSource {
 extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
-        let webViewModel = WebViewModel(url: selectedCell.url)
-        let webViewController = WebViewController(viewModel: webViewModel)
-        navigationController?.pushViewController(webViewController, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let index = indexPath.section
-        let swipeAction = UIContextualAction(style: .normal, title: "스크랩", handler: { [weak self] action, view, completionHaldler in
-            let post = StoragePost(
-                img: self?.keywordsPosts?.tagPostDtoList?[index].img,
-                name: self?.keywordsPosts?.tagPostDtoList?[index].name,
-                summary: self?.keywordsPosts?.tagPostDtoList?[index].summary,
-                title: self?.keywordsPosts?.tagPostDtoList?[index].title,
-                url: self?.keywordsPosts?.tagPostDtoList?[index].url
-            )
-            
-            // MARK: - fix me, 스크랩 추가 Input 연결 필요
-//            self?.viewModel?.cellDidTap(input: post)
-            completionHaldler(true)
-        })
-        swipeAction.backgroundColor = .brandColor
-        let configuration = UISwipeActionsConfiguration(actions: [swipeAction])
-        return configuration
+        
+        let webViewModel = WebViewModel(url: selectedCell.url)
+        webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
+        
+        let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.didScrapClosure = { [weak self] didScrap in
+            selectedCell.isTapped = didScrap
+            self?.keywordsPostsView.keywordsTableView.reloadData()
+        }
+        
+        navigationController?.pushViewController(webViewController, animated: true)
     }
 }

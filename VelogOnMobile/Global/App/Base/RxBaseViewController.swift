@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import SnapKit
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
@@ -47,7 +48,7 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
-
+    
     func bind(viewModel: VM) {
         self.viewModel = viewModel
 

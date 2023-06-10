@@ -13,7 +13,6 @@ import RxCocoa
 final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private let storageView = StorageView()
-//    private var isScrolled: Bool = false
     private var storagePosts: [StoragePost]?
 
     override func render() {

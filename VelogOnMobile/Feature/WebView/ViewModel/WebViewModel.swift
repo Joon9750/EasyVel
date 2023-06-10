@@ -13,13 +13,17 @@ import RxSwift
 final class WebViewModel: BaseViewModel {
     
     private var urlString: String = ""
+    private let realm = RealmService()
+    var postWriter: String?
     
     // MARK: - Input
     
     let webViewProgressRelay = PublishRelay<Double>()
+    let didSubscribe = PublishRelay<Bool>()
     
     // MARK: - Output
     
+    var didSubscribeWriter = PublishRelay<Bool>()
     var urlRequestOutput = PublishRelay<URLRequest>()
     var webViewProgressOutput = PublishRelay<Bool>()
     
@@ -40,6 +44,21 @@ final class WebViewModel: BaseViewModel {
             })
             .disposed(by: disposeBag)
         
+        viewWillAppear
+            .flatMapLatest( { [weak self] _ -> Observable<[String]> in
+                guard let self = self else { return Observable.empty() }
+                return self.getSubscriberList()
+            })
+            .subscribe(onNext: { [weak self] subscriberList in
+                guard let didPostWriterSubscribe = self?.didPostWriterSubscribe(
+                    subscriberList: Set<String>(subscriberList),
+                    postWriter: self?.postWriter ?? String()
+                ) else { return }
+                self?.didSubscribeWriter.accept(didPostWriterSubscribe)
+            })
+            .disposed(by: disposeBag)
+        
+        
         webViewProgressRelay
             .subscribe(onNext: { [weak self] progress in
                 if progress < 0.8 {
@@ -49,5 +68,79 @@ final class WebViewModel: BaseViewModel {
                 }
             })
             .disposed(by: disposeBag)
+        
+        didSubscribe
+            .subscribe(onNext: { [weak self] response in
+                guard let subscriber = self?.postWriter else { return }
+                if response {
+                    self?.addSubscriber(name: subscriber)
+                } else {
+                    self?.deleteSubscriber(name: subscriber)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func didPostWriterSubscribe(
+        subscriberList: Set<String>,
+        postWriter: String
+    ) -> Bool {
+        return subscriberList.contains(postWriter)
+    }
+}
+
+extension WebViewModel {
+    func addSubscriber(
+        name: String
+    ) {
+        NetworkService.shared.subscriberRepository.addSubscriber(
+            fcmToken: "FCMToken",
+            name: name
+        ) { result in
+            switch result {
+            case .success(_): break
+            case .requestErr(_):
+                print("error")
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func deleteSubscriber(
+        name: String
+    ) {
+        NetworkService.shared.subscriberRepository.deleteSubscriber(
+            targetName: name
+        ) { result in
+            switch result {
+            case .success(_): break
+            case .requestErr(_):
+                print("error")
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func getSubscriberList() -> Observable<[String]> {
+        return Observable.create { observer in
+            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else {
+                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
+                        return
+                    }
+                    observer.onNext(list)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    observer.onError(errResponse as! Error)
+                default:
+                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+                }
+            }
+            return Disposables.create()
+        }
     }
 }

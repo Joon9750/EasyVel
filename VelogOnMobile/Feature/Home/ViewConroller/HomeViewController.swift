@@ -64,7 +64,6 @@ final class HomeViewController: BaseViewController {
         style()
         hierarchy()
         layout()
-        
         setPageViewController()
     }
     
@@ -91,7 +90,6 @@ final class HomeViewController: BaseViewController {
         view.addSubview(pageViewController.view)
         
         navigationView.addSubviews(titleLabel, searchButton)
-        
     }
     
     private func layout() {
@@ -114,7 +112,6 @@ final class HomeViewController: BaseViewController {
             $0.bottom.equalToSuperview()
         }
         pageViewController.didMove(toParent: self)
-        
         
         // naviagtionView
         titleLabel.snp.makeConstraints {
@@ -159,10 +156,7 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController: HomeMenuBarDelegate {
     func menuBar(didSelectItemAt indexPath: IndexPath) {
         currentPage = indexPath.row
-        
     }
-    
-    
 }
 
 //MARK: - UIPageViewControllerDataSource
