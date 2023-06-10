@@ -17,6 +17,7 @@ struct SubscribePostDtoList: Codable {
     let img: String?
     let like: Int?
     let name: String?
+    let subscribed: Bool?
     let summary: String?
     let tag: [String]?
     let title: String?
