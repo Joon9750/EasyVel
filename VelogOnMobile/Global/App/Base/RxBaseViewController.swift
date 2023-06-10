@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import SnapKit
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
@@ -112,16 +113,54 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         subscriberButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.isSubscribeButtonTapped.toggle()
-                guard let isSubsribeButtonTapped = self?.isSubscribeButtonTapped else { return }
-                if isSubsribeButtonTapped {
+                guard let didSubscribeSuccess = self?.isSubscribeButtonTapped else { return }
+                if didSubscribeSuccess {
                     self?.subscriberButton.setTitleColor(UIColor.white, for: .normal)
                     self?.subscriberButton.backgroundColor = .brandColor
+                    self?.showSubscibeToast(
+                        toastText: "구독 했습니다.",
+                        toastBackgroundColer: .brandColor
+                    )
                 } else {
                     self?.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
                     self?.subscriberButton.backgroundColor = .white
+                    self?.showSubscibeToast(
+                        toastText: "구독 취소했습니다.",
+                        toastBackgroundColer: .lightGray
+                    )
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func showSubscibeToast(
+        toastText: String,
+        toastBackgroundColer: UIColor
+    ) {
+        let toastLabel = UILabel()
+        toastLabel.text = toastText
+        toastLabel.textColor = .white
+        toastLabel.font = UIFont(name: "Avenir-Black", size: 16)
+        toastLabel.backgroundColor = toastBackgroundColer
+        toastLabel.textAlignment = .center
+        toastLabel.layer.cornerRadius = 24
+        toastLabel.clipsToBounds = true
+        toastLabel.alpha = 1.0
+        view.addSubview(toastLabel)
+        toastLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(36)
+            $0.leading.trailing.equalToSuperview().inset(51)
+            $0.height.equalTo(48)
+        }
+        UIView.animate(withDuration: 0, animations: {
+            toastLabel.alpha = 1.0
+        }, completion: { isCompleted in
+            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
+                toastLabel.alpha = 0
+            }, completion: { isCompleted in
+                toastLabel.removeFromSuperview()
+            })
+        })
     }
 
     deinit {}
