@@ -13,16 +13,17 @@ import RxSwift
 
 final class WebViewController: RxBaseViewController<WebViewModel> {
     
-    var didScrap: Bool = false
-    var didSubscribe: Bool = false
+    private var didScrap: Bool = false
+    private var didSubscribe: Bool = false
+    var didScrapClosure: ((Bool) -> Void)?
     
-    let scrapButton: UIButton = {
+    private let scrapButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
         return button
     }()
-    let subscriberButton: UIButton = {
+    private let subscriberButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
         button.setTitle("구독", for: .normal)
@@ -67,6 +68,10 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         scrapButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.didScrap.toggle()
+                if let didScrapClosure = self?.didScrapClosure,
+                   let didScrap = self?.didScrap {
+                    didScrapClosure(didScrap)
+                }
                 guard let didScrap = self?.didScrap else { return }
                 let image = didScrap ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
                 self?.scrapButton.setImage(image, for: .normal)
@@ -94,7 +99,6 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 }
             })
             .disposed(by: disposeBag)
-
     }
     
     private func bindOutput(_ viewModel: WebViewModel) {
