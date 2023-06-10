@@ -50,4 +50,9 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
             })
             .disposed(by: disposeBag)
     }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        navigationItem.rightBarButtonItems = nil
+    }
 }

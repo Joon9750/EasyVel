@@ -13,7 +13,6 @@ import RxCocoa
 final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private let storageView = StorageView()
-//    private var isScrolled: Bool = false
     private var storagePosts: [StoragePost]?
 
     override func render() {
@@ -64,6 +63,11 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    override func setupNavigationBar() {
+        super.setupNavigationBar()
+        navigationItem.rightBarButtonItems = nil
     }
     
     private func presentDeleteFolderActionSheet() {

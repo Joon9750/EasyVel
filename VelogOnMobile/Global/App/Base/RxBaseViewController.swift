@@ -11,6 +11,26 @@ import RxSwift
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
+    private let scrapButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+        return button
+    }()
+    private let subscriberButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
+        button.setTitle("구독", for: .normal)
+        button.setTitleColor(UIColor.brandColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.brandColor.cgColor
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    lazy var firstButton = UIBarButtonItem(customView: self.scrapButton)
+    lazy var secondButton = UIBarButtonItem(customView: self.subscriberButton)
+    
     let disposeBag = DisposeBag()
     var viewModel: VM?
 
@@ -39,6 +59,7 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
     func render() {}
     
     func setupNavigationBar() {
+        navigationItem.rightBarButtonItems = [firstButton, secondButton]
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
     }
