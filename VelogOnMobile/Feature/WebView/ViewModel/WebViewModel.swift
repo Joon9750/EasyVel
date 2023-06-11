@@ -21,6 +21,7 @@ final class WebViewModel: BaseViewModel {
     
     let webViewProgressRelay = PublishRelay<Double>()
     let didSubscribe = PublishRelay<Bool>()
+    let didUnScrap = PublishRelay<String>()
     
     // MARK: - Output
     
@@ -78,6 +79,12 @@ final class WebViewModel: BaseViewModel {
                 } else {
                     self?.deleteSubscriber(name: subscriber)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        didUnScrap
+            .subscribe(onNext: { [weak self] unScrapPostUrl in
+                self?.realm.deletePost(url: unScrapPostUrl)
             })
             .disposed(by: disposeBag)
     }

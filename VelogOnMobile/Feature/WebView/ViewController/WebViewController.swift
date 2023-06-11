@@ -94,6 +94,10 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     self?.scrapButtonTapped()
                 } else {
                     self?.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+                    if let postData = self?.postData,
+                       let postDataUrl = postData.url {
+                        self?.viewModel?.didUnScrap.accept(postDataUrl)
+                    }
                 }
             })
             .disposed(by: disposeBag)
