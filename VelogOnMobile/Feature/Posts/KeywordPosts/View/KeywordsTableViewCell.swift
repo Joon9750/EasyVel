@@ -22,6 +22,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             updateButton()
         }
     }
+    var cellIndex: Int?
     
     var post: TagPostDtoList?
     var url = String()
@@ -178,10 +179,13 @@ final class KeywordsTableViewCell: BaseTableViewCell {
             title: post.title,
             url: post.url
         )
-        cellDelegate?.scrapButtonDidTapped(
-            storagePost: storagePost,
-            isScrapped: isTapped
-        )
+        if let index = cellIndex {
+            cellDelegate?.scrapButtonDidTapped(
+                storagePost: storagePost,
+                isScrapped: isTapped,
+                cellIndex: index
+            )
+        }
         self.isTapped.toggle()
     }
 }

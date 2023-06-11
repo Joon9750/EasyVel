@@ -58,7 +58,6 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] storagePost, isScrapped in
                 LoadingView.hideLoading()
                 if isScrapped == false {
-                    // MARK: - fix me : articleID 일단 기본 0
                     self?.realm.addPost(item: storagePost, folderName: "모든 게시글")
                 } else {
                     self?.realm.deletePost(url: storagePost.url ?? String())

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PostScrapButtonDidTapped: AnyObject {
-    func scrapButtonDidTapped(storagePost: StoragePost, isScrapped: Bool)
+    func scrapButtonDidTapped(storagePost: StoragePost, isScrapped: Bool, cellIndex: Int)
 }

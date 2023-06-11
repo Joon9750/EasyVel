@@ -67,8 +67,10 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
 extension KeywordsPostsViewController: PostScrapButtonDidTapped {
     func scrapButtonDidTapped(
         storagePost: StoragePost,
-        isScrapped: Bool
+        isScrapped: Bool,
+        cellIndex: Int
     ) {
+        isScrapPostsList?[cellIndex] = isScrapped
         // MARK: - fix me, viewModel 주입 방법 수정
         let viewModel = KeywordsPostsViewModel()
         viewModel.cellScrapButtonDidTap.accept((storagePost, isScrapped))
@@ -89,6 +91,7 @@ extension KeywordsPostsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         let index = indexPath.section
         cell.cellDelegate = self
+        cell.cellIndex = index
         if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
             if let isUnique = isScrapPostsList?[index] {
