@@ -14,10 +14,12 @@ import SnapKit
 
 final class WebViewController: RxBaseViewController<WebViewModel> {
     
-    var didScrap: Bool = false
     var didSubscribe: Bool = false
+    var didScrap: Bool = false
     var didScrapClosure: ((Bool) -> Void)?
     var postData: StoragePost? = nil
+    
+    var realm = RealmService()
     
     private let scrapButton: UIButton = {
         let button = UIButton()
@@ -86,6 +88,9 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 guard let didScrap = self?.didScrap else { return }
                 if didScrap {
                     self?.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+                    if let postData = self?.postData {
+                        self?.realm.addPost(item: postData, folderName: "모든 게시글")
+                    }
                     self?.scrapButtonTapped()
                 } else {
                     self?.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
@@ -135,7 +140,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 self?.setSubscribeButton(didSubscribe: didSubscribed)
             })
             .disposed(by: disposeBag)
-            
+        
         viewModel.urlRequestOutput
             .asDriver(onErrorJustReturn: URLRequest(url: URL(fileURLWithPath: "")))
             .drive(onNext: { [weak self] url in
@@ -165,6 +170,17 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         } else {
             self.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
             self.subscriberButton.backgroundColor = .white
+        }
+    }
+    
+    func setScrapButton(
+        didScrap: Bool
+    ) {
+        self.didScrap = didScrap
+        if didScrap {
+            self.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+        } else {
+            self.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
         }
     }
     

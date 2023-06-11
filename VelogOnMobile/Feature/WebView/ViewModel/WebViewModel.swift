@@ -15,6 +15,7 @@ final class WebViewModel: BaseViewModel {
     private var urlString: String = ""
     private let realm = RealmService()
     var postWriter: String?
+    var storagePost: StoragePost?
     
     // MARK: - Input
     

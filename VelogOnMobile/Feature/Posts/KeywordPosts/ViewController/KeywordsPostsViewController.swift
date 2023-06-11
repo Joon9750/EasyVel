@@ -122,18 +122,23 @@ extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
         let index = indexPath.section
-        
-        let webViewModel = WebViewModel(url: selectedCell.url)
-        webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
-        
-        let webViewController = WebViewController(viewModel: webViewModel)
-        webViewController.postData = StoragePost(
+        let storagePost = StoragePost(
             img: keywordsPosts?.tagPostDtoList?[index].img,
             name: keywordsPosts?.tagPostDtoList?[index].name,
             summary: keywordsPosts?.tagPostDtoList?[index].summary,
             title: keywordsPosts?.tagPostDtoList?[index].title,
             url: keywordsPosts?.tagPostDtoList?[index].url
         )
+        
+        let webViewModel = WebViewModel(url: selectedCell.url)
+        webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
+        webViewModel.storagePost = storagePost
+        
+        let webViewController = WebViewController(viewModel: webViewModel)
+        if let isScrapped = isScrapPostsList?[index] {
+            webViewController.setScrapButton(didScrap: !isScrapped)
+        }
+        webViewController.postData = storagePost
         webViewController.didScrapClosure = { [weak self] didScrap in
             selectedCell.isTapped = didScrap
             self?.keywordsPostsView.keywordsTableView.reloadData()
