@@ -142,11 +142,16 @@ extension KeywordsPostsViewController: UITableViewDelegate {
             webViewController.setScrapButton(didScrap: !isScrapped)
         }
         webViewController.postData = storagePost
-        webViewController.didScrapClosure = { [weak self] didScrap in
-            selectedCell.isTapped = didScrap
-            self?.keywordsPostsView.keywordsTableView.reloadData()
-        }
-        
         navigationController?.pushViewController(webViewController, animated: true)
+        
+        webViewController.didScrapClosure = { [weak self] didScrap in
+            self?.isScrapPostsList?[index] = !didScrap
+            selectedCell.isTapped = didScrap
+            if didScrap {
+                selectedCell.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+            } else {
+                selectedCell.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+            }
+        }
     }
 }
