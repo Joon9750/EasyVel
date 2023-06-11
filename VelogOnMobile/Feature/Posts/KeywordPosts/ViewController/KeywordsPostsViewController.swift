@@ -127,6 +127,13 @@ extension KeywordsPostsViewController: UITableViewDelegate {
         webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
         
         let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.postData = StoragePost(
+            img: keywordsPosts?.tagPostDtoList?[index].img,
+            name: keywordsPosts?.tagPostDtoList?[index].name,
+            summary: keywordsPosts?.tagPostDtoList?[index].summary,
+            title: keywordsPosts?.tagPostDtoList?[index].title,
+            url: keywordsPosts?.tagPostDtoList?[index].url
+        )
         webViewController.didScrapClosure = { [weak self] didScrap in
             selectedCell.isTapped = didScrap
             self?.keywordsPostsView.keywordsTableView.reloadData()

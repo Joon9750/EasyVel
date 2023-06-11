@@ -26,7 +26,7 @@ final class ScrapPopUpView: BaseUIView {
         return label
     }()
     
-    private lazy var moveToStorageButton: UIButton = {
+    lazy var moveToStorageButton: UIButton = {
         let button = UIButton()
         button.setTitle("보러가기", for: .normal)
         button.setTitleColor(UIColor.brandColor, for: .normal)
@@ -41,7 +41,7 @@ final class ScrapPopUpView: BaseUIView {
         return button
     }()
     
-    private lazy var addToFolderButton: UIButton = {
+    lazy var addToFolderButton: UIButton = {
         let button = UIButton()
         button.setTitle("폴더에 담기", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
