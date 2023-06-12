@@ -64,8 +64,7 @@ final class TabBarController: UITabBarController {
         if let data = notification.userInfo?["data"] as? StoragePost {
             scrapPopUpView.getPostData(post: data)
         }
-        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview()
-        }
+        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         } completion: { _ in

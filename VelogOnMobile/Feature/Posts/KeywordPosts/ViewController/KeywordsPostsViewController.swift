@@ -67,8 +67,10 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
 extension KeywordsPostsViewController: PostScrapButtonDidTapped {
     func scrapButtonDidTapped(
         storagePost: StoragePost,
-        isScrapped: Bool
+        isScrapped: Bool,
+        cellIndex: Int
     ) {
+        isScrapPostsList?[cellIndex] = isScrapped
         // MARK: - fix me, viewModel 주입 방법 수정
         let viewModel = KeywordsPostsViewModel()
         viewModel.cellScrapButtonDidTap.accept((storagePost, isScrapped))
@@ -89,6 +91,7 @@ extension KeywordsPostsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         let index = indexPath.section
         cell.cellDelegate = self
+        cell.cellIndex = index
         if let data = keywordsPosts?.tagPostDtoList?[index] {
             cell.binding(model: data)
             if let isUnique = isScrapPostsList?[index] {
@@ -122,16 +125,33 @@ extension KeywordsPostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
         let index = indexPath.section
+        let storagePost = StoragePost(
+            img: keywordsPosts?.tagPostDtoList?[index].img,
+            name: keywordsPosts?.tagPostDtoList?[index].name,
+            summary: keywordsPosts?.tagPostDtoList?[index].summary,
+            title: keywordsPosts?.tagPostDtoList?[index].title,
+            url: keywordsPosts?.tagPostDtoList?[index].url
+        )
         
         let webViewModel = WebViewModel(url: selectedCell.url)
         webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
+        webViewModel.storagePost = storagePost
         
         let webViewController = WebViewController(viewModel: webViewModel)
-        webViewController.didScrapClosure = { [weak self] didScrap in
-            selectedCell.isTapped = didScrap
-            self?.keywordsPostsView.keywordsTableView.reloadData()
+        if let isScrapped = isScrapPostsList?[index] {
+            webViewController.setScrapButton(didScrap: !isScrapped)
         }
-        
+        webViewController.postData = storagePost
         navigationController?.pushViewController(webViewController, animated: true)
+        
+        webViewController.didScrapClosure = { [weak self] didScrap in
+            self?.isScrapPostsList?[index] = !didScrap
+            selectedCell.isTapped = didScrap
+            if didScrap {
+                selectedCell.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+            } else {
+                selectedCell.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+            }
+        }
     }
 }

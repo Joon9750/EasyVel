@@ -10,12 +10,16 @@ import WebKit
 
 import RxCocoa
 import RxSwift
+import SnapKit
 
 final class WebViewController: RxBaseViewController<WebViewModel> {
     
-    var didScrap: Bool = false
     var didSubscribe: Bool = false
+    var didScrap: Bool = false
     var didScrapClosure: ((Bool) -> Void)?
+    var postData: StoragePost? = nil
+    
+    var realm = RealmService()
     
     private let scrapButton: UIButton = {
         let button = UIButton()
@@ -38,7 +42,6 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     }()
     lazy var firstButton = UIBarButtonItem(customView: self.scrapButton)
     lazy var secondButton = UIBarButtonItem(customView: self.subscriberButton)
-    
     lazy var webView : WKWebView = {
         let prefs = WKWebpagePreferences()
         prefs.allowsContentJavaScript = true
@@ -47,9 +50,17 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         let webView = WKWebView(frame: .zero, configuration: configuration)
         return webView
     }()
+    let scrapPopUpView = ScrapPopUpView()
     
     override func render() {
         view = webView
+        view.addSubview(scrapPopUpView)
+        
+        scrapPopUpView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(82)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(83)
+        }
     }
     
     override func setupNavigationBar() {
@@ -75,8 +86,19 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     didScrapClosure(didScrap)
                 }
                 guard let didScrap = self?.didScrap else { return }
-                let image = didScrap ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
-                self?.scrapButton.setImage(image, for: .normal)
+                if didScrap {
+                    self?.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+                    if let postData = self?.postData {
+                        self?.realm.addPost(item: postData, folderName: "모든 게시글")
+                    }
+                    self?.scrapButtonTapped()
+                } else {
+                    self?.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+                    if let postData = self?.postData,
+                       let postDataUrl = postData.url {
+                        self?.viewModel?.didUnScrap.accept(postDataUrl)
+                    }
+                }
             })
             .disposed(by: disposeBag)
         
@@ -103,6 +125,14 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+        
+        scrapPopUpView.addToFolderButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                if let postData = self?.postData {
+                    self?.folderButtonTapped(scrapPost: postData)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: WebViewModel) {
@@ -114,7 +144,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 self?.setSubscribeButton(didSubscribe: didSubscribed)
             })
             .disposed(by: disposeBag)
-            
+        
         viewModel.urlRequestOutput
             .asDriver(onErrorJustReturn: URLRequest(url: URL(fileURLWithPath: "")))
             .drive(onNext: { [weak self] url in
@@ -145,6 +175,42 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
             self.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
             self.subscriberButton.backgroundColor = .white
         }
+    }
+    
+    func setScrapButton(
+        didScrap: Bool
+    ) {
+        self.didScrap = didScrap
+        if didScrap {
+            self.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+        } else {
+            self.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+        }
+    }
+    
+    private func scrapButtonTapped() {
+        scrapPopUpView.snp.updateConstraints { $0.bottom.equalTo(webView.snp.bottom) }
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83)
+                }
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
+            })
+        }
+    }
+    
+    private func folderButtonTapped(
+        scrapPost: StoragePost
+    ) {
+        let viewModel = ScrapFolderBottomSheetViewModel()
+        viewModel.selectedScrapPostAddInFolder.accept(scrapPost)
+        let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
+        folderViewController.modalPresentationStyle = .pageSheet
+        self.present(folderViewController, animated: true)
     }
     
     private func showSubscibeToast(

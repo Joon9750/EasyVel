@@ -15,11 +15,13 @@ final class WebViewModel: BaseViewModel {
     private var urlString: String = ""
     private let realm = RealmService()
     var postWriter: String?
+    var storagePost: StoragePost?
     
     // MARK: - Input
     
     let webViewProgressRelay = PublishRelay<Double>()
     let didSubscribe = PublishRelay<Bool>()
+    let didUnScrap = PublishRelay<String>()
     
     // MARK: - Output
     
@@ -77,6 +79,12 @@ final class WebViewModel: BaseViewModel {
                 } else {
                     self?.deleteSubscriber(name: subscriber)
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        didUnScrap
+            .subscribe(onNext: { [weak self] unScrapPostUrl in
+                self?.realm.deletePost(url: unScrapPostUrl)
             })
             .disposed(by: disposeBag)
     }
