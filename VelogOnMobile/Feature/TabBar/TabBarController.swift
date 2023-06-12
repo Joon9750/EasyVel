@@ -57,6 +57,7 @@ final class TabBarController: UITabBarController {
     
     private func setNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(scrapBookButtonTapped), name: Notification.Name("MoveToScrapStorage"), object: nil)
     }
     
     @objc
@@ -115,6 +116,7 @@ extension TabBarController: UITabBarControllerDelegate {
 }
 
 extension TabBarController: ScrapPopUpDelegate {
+    @objc
     func scrapBookButtonTapped() {
         selectedIndex = 2
     }
