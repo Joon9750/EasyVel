@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class ListView: BaseUIView {
-    let listTableView = ListTableView(frame: CGRect.zero, style: .insetGrouped)
+    let listTableView = ListTableView(frame: .null, style: .plain)
     let postsHeadView = ListHeadView()
     let ListViewExceptionView: UIImageView = {
         let imageView = UIImageView()
@@ -33,7 +33,7 @@ final class ListView: BaseUIView {
         postsHeadView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(120)
+            $0.height.equalTo(171)
         }
         
         listTableView.snp.makeConstraints {

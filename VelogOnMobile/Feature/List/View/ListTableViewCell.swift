@@ -13,18 +13,53 @@ final class ListTableViewCell: BaseTableViewCell {
     
     static let identifier = "ListTableViewCell"
     
-    var listText: UILabel = {
+    let subscriberImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .red
+        return imageView
+    }()
+    
+    let listText: UILabel = {
         let label = UILabel()
         label.tintColor = .black
+        label.font = UIFont(name: "Avenir-Black", size: 16)
         return label
     }()
     
+    let unSubscribeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .brandColor
+        button.setTitle("구독취소", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 12)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    
     override func render() {
-        self.addSubview(listText)
+        self.addSubviews(
+            subscriberImage,
+            listText,
+            unSubscribeButton
+        )
+        
+        subscriberImage.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(20)
+            $0.size.equalTo(48)
+        }
         
         listText.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalTo(subscriberImage.snp.trailing).offset(12)
+        }
+        
+        unSubscribeButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(24)
+            $0.width.equalTo(70)
         }
     }
 }

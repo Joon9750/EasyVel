@@ -22,8 +22,9 @@ final class ListTableView: UITableView {
 
     private func setupTableView() {
         register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
-        separatorStyle = .singleLine
+        separatorStyle = .none
         showsVerticalScrollIndicator = true
         isHidden = true
+        rowHeight = 62
     }
 }
