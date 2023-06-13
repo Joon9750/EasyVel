@@ -133,6 +133,13 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+        
+        scrapPopUpView.moveToStorageButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+                NotificationCenter.default.post(name: Notification.Name("MoveToScrapStorage"), object: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: WebViewModel) {
