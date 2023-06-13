@@ -29,8 +29,6 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
     
     override init(frame: CGRect) {
            super.init(frame: frame)
-       
-        setLayout()
     }
 
     @available(*, unavailable)
@@ -38,7 +36,7 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setLayout() {
+    override func render() {
         
         contentView.addSubview(searchwordLabel)
         

@@ -4,12 +4,11 @@
 //
 //  Created by JuHyeonAh on 2023/06/08.
 //
-import Foundation
-
 import UIKit
+
 import SnapKit
 
-class SearchViewController: BaseViewController {
+final class SearchViewController: BaseViewController {
     
     private let tableView = UITableView()
     private let dummy = Trend.dummy()
@@ -67,7 +66,6 @@ class SearchViewController: BaseViewController {
         self.navigationItem.titleView = searchBar
         
         let search = UIBarButtonItem(systemItem: .search, primaryAction: UIAction(handler: { _ in
-            // cancel action
         }))
         self.navigationItem.rightBarButtonItem = search
     }
@@ -104,12 +102,9 @@ private extension SearchViewController {
             
     
     func setLayout(){
-        view.addSubview(recentLabel)
-        view.addSubview(deleteButton)
-        view.addSubview(collectionView)
-        view.addSubview(trendLabel)
-        view.addSubview(tableView)
         
+        view.addSubviews(recentLabel, deleteButton, collectionView, trendLabel, tableView)
+
         recentLabel.snp.makeConstraints{
             $0.top.equalToSuperview().offset(125)
             $0.leading.equalToSuperview().offset(35)

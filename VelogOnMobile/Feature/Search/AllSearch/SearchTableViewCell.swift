@@ -4,7 +4,6 @@
 //
 //  Created by JuHyeonAh on 2023/06/08.
 //
-
 import UIKit
 
 import SnapKit
@@ -35,7 +34,6 @@ final class SearchTableViewCell: BaseTableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setLayout()
     }
     
     @available(*, unavailable)
@@ -43,10 +41,9 @@ final class SearchTableViewCell: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setLayout() {
-        contentView.addSubview(keywordLabel)
-        contentView.addSubview(numLabel)
-        
+    override func render() {
+        contentView.addSubviews(keywordLabel, numLabel)
+
         numLabel.snp.makeConstraints {
             $0.top.equalTo(contentView).offset(5)
             $0.bottom.equalTo(contentView).offset(-5)

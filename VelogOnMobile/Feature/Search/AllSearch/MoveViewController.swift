@@ -4,9 +4,8 @@
 //
 //  Created by JuHyeonAh on 2023/06/08.
 //
-import Foundation
-
 import UIKit
+
 import SnapKit
 
 class MoveViewController: UIViewController {
