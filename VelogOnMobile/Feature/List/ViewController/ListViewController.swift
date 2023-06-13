@@ -18,8 +18,6 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
             self.listView.listTableView.reloadData()
         }
     }
-
-    var deleteSubscriberText = BehaviorRelay<String?>(value: nil)
     
     override func render() {
         self.view = listView
@@ -29,6 +27,16 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
         super.viewDidLoad()
         setDelegate()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
     
     func setDelegate() {
         listView.listTableView.dataSource = self
@@ -37,11 +45,6 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     override func bind(viewModel: ListViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
-        
-        deleteSubscriberText
-            .compactMap { $0 }
-            .bind(to: viewModel.subscriberDeleteButtonDidTap)
-            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: ListViewModel) {
@@ -74,14 +77,27 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
         }
     }
     
-    func hiddenListExceptionView() {
+    private func hiddenListExceptionView() {
         listView.ListViewExceptionView.isHidden = true
         listView.listTableView.isHidden = false
     }
     
-    func hiddenListTableView() {
+    private func hiddenListTableView() {
         listView.ListViewExceptionView.isHidden = false
         listView.listTableView.isHidden = true
+    }
+    
+    private func presentUnSubscriberAlert(
+        unSubscriberName: String
+    ) {
+        let alertController = UIAlertController(title: "구독 취소", message: "정말 구독을 취소하시겠습니까?", preferredStyle: .alert)
+        let actionDefault = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+            self?.viewModel?.subscriberDeleteButtonDidTap.accept(unSubscriberName)
+        })
+        let actionCancel = UIAlertAction(title: "돌아가기", style: .cancel)
+        alertController.addAction(actionDefault)
+        alertController.addAction(actionCancel)
+        self.present(alertController, animated: true)
     }
 }
 
@@ -95,6 +111,10 @@ extension ListViewController: UITableViewDataSource {
         let row = indexPath.row
         cell.selectionStyle = .none
         cell.listText.text = subscriberList?[row]
+        
+        cell.unSubscribeButtonDidTap = { [weak self] subscriberName in
+            self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
+        }
         return cell
     }
 }

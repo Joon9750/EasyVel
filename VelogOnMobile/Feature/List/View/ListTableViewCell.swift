@@ -13,9 +13,12 @@ final class ListTableViewCell: BaseTableViewCell {
     
     static let identifier = "ListTableViewCell"
     
+    var unSubscribeButtonDidTap: ((String) -> Void)?
+    
     let subscriberImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .red
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -26,19 +29,20 @@ final class ListTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    let unSubscribeButton: UIButton = {
+    lazy var unSubscribeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .brandColor
         button.setTitle("구독취소", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 12)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(unSubscribeButtonTapped), for: .touchUpInside)
         return button
     }()
     
     
     override func render() {
-        self.addSubviews(
+        self.contentView.addSubviews(
             subscriberImage,
             listText,
             unSubscribeButton
@@ -60,6 +64,12 @@ final class ListTableViewCell: BaseTableViewCell {
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(24)
             $0.width.equalTo(70)
+        }
+    }
+    
+    @objc private func unSubscribeButtonTapped() {
+        if let subscriberName = listText.text {
+            unSubscribeButtonDidTap?(subscriberName)
         }
     }
 }
