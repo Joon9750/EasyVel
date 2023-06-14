@@ -35,7 +35,7 @@ final class ScrapStorageView: BaseUIView {
         button.backgroundColor = .white
         return button
     }()
-
+    
     let scrapCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -53,7 +53,7 @@ final class ScrapStorageView: BaseUIView {
     override func configUI() {
         self.backgroundColor = .white
     }
-
+    
     override func render() {
         self.addSubviews(
             titleLabel,
@@ -61,7 +61,7 @@ final class ScrapStorageView: BaseUIView {
             addFolderButton,
             scrapCollectionView
         )
-
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(94)
             $0.leading.equalToSuperview().offset(20)
@@ -85,5 +85,41 @@ final class ScrapStorageView: BaseUIView {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func scrapCollectionViewStartScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.addFolderButton.snp.remakeConstraints {
+                $0.top.equalTo(self.vertiLineView.snp.bottom)
+                $0.trailing.equalToSuperview().inset(20)
+                $0.height.equalTo(0)
+                $0.width.equalTo(0)
+            }
+            self.scrapCollectionView.snp.remakeConstraints {
+                $0.top.equalTo(self.vertiLineView.snp.bottom)
+                $0.leading.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
+    }
+    
+    func scrapCollectionViewEndScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.addFolderButton.snp.remakeConstraints {
+                $0.top.equalTo(self.vertiLineView.snp.bottom).offset(16)
+                $0.trailing.equalToSuperview().inset(20)
+                $0.height.equalTo(30)
+                $0.width.equalTo(80)
+            }
+            self.scrapCollectionView.snp.remakeConstraints {
+                $0.top.equalTo(self.addFolderButton.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
     }
 }
