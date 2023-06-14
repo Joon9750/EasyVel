@@ -35,22 +35,7 @@ final class ScrapStorageView: BaseUIView {
         button.backgroundColor = .white
         return button
     }()
-    
-    private let horiLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lineColor
-        return view
-    }()
-    
-    let editButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("편집", for: .normal)
-        button.setTitleColor(UIColor.textGrayColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
-        button.backgroundColor = .white
-        return button
-    }()
-    
+
     let scrapCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -74,8 +59,6 @@ final class ScrapStorageView: BaseUIView {
             titleLabel,
             vertiLineView,
             addFolderButton,
-            horiLineView,
-            editButton,
             scrapCollectionView
         )
 
@@ -92,23 +75,9 @@ final class ScrapStorageView: BaseUIView {
         
         addFolderButton.snp.makeConstraints {
             $0.top.equalTo(vertiLineView.snp.bottom).offset(16)
-            $0.trailing.equalToSuperview().inset(74)
-            $0.height.equalTo(20)
-            $0.width.equalTo(60)
-        }
-        
-        horiLineView.snp.makeConstraints {
-            $0.height.equalTo(15)
-            $0.width.equalTo(1)
-            $0.leading.equalTo(addFolderButton.snp.trailing).offset(14)
-            $0.centerY.equalTo(addFolderButton)
-        }
-        
-        editButton.snp.makeConstraints {
-            $0.top.equalTo(vertiLineView.snp.bottom).offset(16)
             $0.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-            $0.width.equalTo(26)
+            $0.height.equalTo(30)
+            $0.width.equalTo(80)
         }
         
         scrapCollectionView.snp.makeConstraints {

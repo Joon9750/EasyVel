@@ -19,6 +19,10 @@ final class ScrapStorageViewModel: BaseViewModel {
     
     var storageListOutput = PublishRelay<([StorageDTO], [String], [Int])>()
     
+    // MARK: - Input
+    
+    var addFolderInput = PublishRelay<String>()
+    
     override init() {
         super.init()
         makeOutput()
@@ -40,6 +44,27 @@ final class ScrapStorageViewModel: BaseViewModel {
                     self?.realm.getFolderPostsCount(folderName: $0 ?? "") ?? Int()
                 }
                 self?.storageListOutput.accept((folderList, folderImageList, folderPostsCount))
+            })
+            .disposed(by: disposeBag)
+        
+        addFolderInput
+            .subscribe(onNext: { [weak self] folderName in
+                let storageDTO: StorageDTO = StorageDTO(
+                    articleID: UUID(),
+                    folderName: folderName,
+                    count: 0
+                )
+                if self?.realm.checkUniqueFolder(input: storageDTO) == true {
+                    self?.realm.addFolder(item: storageDTO)
+//                    var folders = [StorageDTO]()
+//                    if let foldersDTO = self?.realm.getFolders() {
+//                        folders = self?.realm.convertToStorageDTO(input: foldersDTO) ?? [StorageDTO]()
+//                    }
+//                    let scrapFoldersName = folders.map { $0.folderName ?? String() }
+//                    self?.folderNameListRelay.accept(scrapFoldersName)
+                } else {
+//                    self?.alreadyHaveFolderNameRelay.accept(true)
+                }
             })
             .disposed(by: disposeBag)
     }

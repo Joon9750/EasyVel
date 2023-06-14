@@ -36,6 +36,12 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
                 self?.navigationController?.pushViewController(storageViewController, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        scrapView.addFolderButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.addFolderAlert()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: ScrapStorageViewModel) {
@@ -49,5 +55,24 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
                 )
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func addFolderAlert() {
+        let alertController = UIAlertController(
+            title: "폴더 추가",
+            message: nil,
+            preferredStyle: .alert
+        )
+        alertController.addTextField()
+        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] action in
+            if let folderTextField = alertController.textFields?.first,
+               let addFolderName = folderTextField.text {
+                self?.viewModel?.addFolderInput.accept(addFolderName)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 }
