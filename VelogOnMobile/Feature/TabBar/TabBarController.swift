@@ -44,7 +44,7 @@ final class TabBarController: UITabBarController {
         setNotificationCenter()
 //        self.resetDB()
     }
-    
+
     private func setLayout() {
         view.addSubview(scrapPopUpView)
         

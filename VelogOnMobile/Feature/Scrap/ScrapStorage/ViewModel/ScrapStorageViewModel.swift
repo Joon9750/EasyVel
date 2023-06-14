@@ -18,6 +18,7 @@ final class ScrapStorageViewModel: BaseViewModel {
     // MARK: - Output
     
     var storageListOutput = PublishRelay<([StorageDTO], [String], [Int])>()
+    var alreadyHaveFolderNameRelay = PublishRelay<Bool>()
     
     // MARK: - Input
     
@@ -56,14 +57,30 @@ final class ScrapStorageViewModel: BaseViewModel {
                 )
                 if self?.realm.checkUniqueFolder(input: storageDTO) == true {
                     self?.realm.addFolder(item: storageDTO)
-//                    var folders = [StorageDTO]()
-//                    if let foldersDTO = self?.realm.getFolders() {
-//                        folders = self?.realm.convertToStorageDTO(input: foldersDTO) ?? [StorageDTO]()
-//                    }
-//                    let scrapFoldersName = folders.map { $0.folderName ?? String() }
-//                    self?.folderNameListRelay.accept(scrapFoldersName)
+                    guard let scrapFolderRealmDTO: Results<ScrapStorageDTO> = self?.realm.getFolders() else { return }
+                    let scrapFolder = self?.realm.convertToStorageDTO(input: scrapFolderRealmDTO)
+                    let folderNameList = scrapFolder.map {
+                        $0.map {
+                            $0.folderName
+                        }
+                    }
+                    let folderImageList = folderNameList.map {
+                        $0.map {
+                            self?.realm.getFolderImage(folderName: $0 ?? "") ?? String()
+                        }
+                    }
+                    let folderPostsCount = folderNameList.map {
+                        $0.map {
+                            self?.realm.getFolderPostsCount(folderName: $0 ?? "") ?? Int()
+                        }
+                    }
+                    if let scrapFolder = scrapFolder,
+                       let folderImageList = folderImageList,
+                       let folderPostsCount = folderPostsCount {
+                        self?.storageListOutput.accept((scrapFolder, folderImageList, folderPostsCount))
+                    }
                 } else {
-//                    self?.alreadyHaveFolderNameRelay.accept(true)
+                    self?.alreadyHaveFolderNameRelay.accept(true)
                 }
             })
             .disposed(by: disposeBag)
