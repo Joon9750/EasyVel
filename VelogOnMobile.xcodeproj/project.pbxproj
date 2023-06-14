@@ -317,10 +317,8 @@
 		7CB706C62A3202EB00083EC6 /* PostSearch */ = {
 			isa = PBXGroup;
 			children = (
-				7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */,
-				7CB706D12A32062500083EC6 /* SearchViewController.swift */,
-				7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */,
-				7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */,
+				91E7ED422A39B990009AA343 /* View */,
+				91E7ED412A39B97F009AA343 /* ViewController */,
 			);
 			path = PostSearch;
 			sourceTree = "<group>";
@@ -1178,6 +1176,24 @@
 				91E442A32A110191008CB516 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91E7ED412A39B97F009AA343 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7CB706D12A32062500083EC6 /* SearchViewController.swift */,
+				7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		91E7ED422A39B990009AA343 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */,
+				7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		91ED17852A00E55600158787 /* Protocol */ = {
