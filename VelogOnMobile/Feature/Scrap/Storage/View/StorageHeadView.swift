@@ -11,25 +11,17 @@ import SnapKit
 
 final class StorageHeadView: BaseUIView {
     
-    var titleLabelWidth: CGFloat?
-    
     // MARK: - property
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir-Black", size: 16)
+        label.font = UIFont(name: "Avenir-Black", size: 20)
         return label
     }()
     
     private let lineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
-        return view
-    }()
-    
-    private let pointLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .brandColor
         return view
     }()
     
@@ -46,7 +38,6 @@ final class StorageHeadView: BaseUIView {
         self.addSubviews(
             titleLabel,
             lineView,
-            pointLineView,
             deleteFolderButton
         )
         
@@ -59,13 +50,6 @@ final class StorageHeadView: BaseUIView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
-        }
-        
-        pointLineView.snp.makeConstraints {
-            $0.centerY.equalTo(lineView)
-            $0.height.equalTo(3)
-            $0.width.equalTo(121)
-            $0.leading.equalToSuperview().offset(12)
         }
         
         deleteFolderButton.snp.makeConstraints {
