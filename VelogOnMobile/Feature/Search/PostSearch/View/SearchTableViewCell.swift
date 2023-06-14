@@ -9,51 +9,39 @@ import UIKit
 import SnapKit
 
 final class SearchTableViewCell: BaseTableViewCell {
-
     
     static let identifier = "SearchTableViewCell"
     
-    private let numLabel: UILabel = {
+    let numLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-
+        label.font = UIFont(name: "Avenir-Black", size: 16)
         return label
     }()
-
+    
     private let keywordLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        
+        label.font = UIFont(name: "Avenir-Black", size: 16)
         return label
     }()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func render() {
-        contentView.addSubviews(keywordLabel, numLabel)
-
+        contentView.addSubviews(
+            keywordLabel,
+            numLabel
+        )
+        
         numLabel.snp.makeConstraints {
-            $0.top.equalTo(contentView).offset(5)
-            $0.bottom.equalTo(contentView).offset(-5)
-            $0.leading.equalTo(contentView).offset(5)
+            $0.top.equalToSuperview().offset(5)
+            $0.bottom.equalToSuperview().inset(5)
+            $0.leading.equalToSuperview().offset(5)
             $0.width.equalTo(30)
             $0.height.equalTo(30)
         }
         
         keywordLabel.snp.makeConstraints {
-            $0.top.equalTo(contentView).offset(5)
+            $0.top.equalToSuperview().offset(5)
             $0.leading.equalTo(numLabel).offset(30)
             $0.height.equalTo(30)
         }
@@ -62,7 +50,5 @@ final class SearchTableViewCell: BaseTableViewCell {
     func configCell(_ trend: Trend) {
         keywordLabel.text = trend.keyword
         numLabel.text = trend.num
-        
     }
-
 }

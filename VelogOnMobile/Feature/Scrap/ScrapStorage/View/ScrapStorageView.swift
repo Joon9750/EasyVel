@@ -15,7 +15,7 @@ final class ScrapStorageView: BaseUIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "스크랩"
+        label.text = "Scrap"
         label.textColor = .black
         label.font = UIFont(name: "Avenir-Black", size: 24)
         return label
@@ -30,21 +30,6 @@ final class ScrapStorageView: BaseUIView {
     let addFolderButton: UIButton = {
         let button = UIButton()
         button.setTitle("폴더 추가", for: .normal)
-        button.setTitleColor(UIColor.textGrayColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
-        button.backgroundColor = .white
-        return button
-    }()
-    
-    private let horiLineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lineColor
-        return view
-    }()
-    
-    let editButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("편집", for: .normal)
         button.setTitleColor(UIColor.textGrayColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
         button.backgroundColor = .white
@@ -68,17 +53,15 @@ final class ScrapStorageView: BaseUIView {
     override func configUI() {
         self.backgroundColor = .white
     }
-
+    
     override func render() {
         self.addSubviews(
             titleLabel,
             vertiLineView,
             addFolderButton,
-            horiLineView,
-            editButton,
             scrapCollectionView
         )
-
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(94)
             $0.leading.equalToSuperview().offset(20)
@@ -92,23 +75,9 @@ final class ScrapStorageView: BaseUIView {
         
         addFolderButton.snp.makeConstraints {
             $0.top.equalTo(vertiLineView.snp.bottom).offset(16)
-            $0.trailing.equalToSuperview().inset(74)
-            $0.height.equalTo(20)
-            $0.width.equalTo(60)
-        }
-        
-        horiLineView.snp.makeConstraints {
-            $0.height.equalTo(15)
-            $0.width.equalTo(1)
-            $0.leading.equalTo(addFolderButton.snp.trailing).offset(14)
-            $0.centerY.equalTo(addFolderButton)
-        }
-        
-        editButton.snp.makeConstraints {
-            $0.top.equalTo(vertiLineView.snp.bottom).offset(16)
             $0.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-            $0.width.equalTo(26)
+            $0.height.equalTo(30)
+            $0.width.equalTo(80)
         }
         
         scrapCollectionView.snp.makeConstraints {
@@ -116,5 +85,41 @@ final class ScrapStorageView: BaseUIView {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func scrapCollectionViewStartScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.addFolderButton.snp.remakeConstraints {
+                $0.top.equalTo(self.vertiLineView.snp.bottom)
+                $0.trailing.equalToSuperview().inset(20)
+                $0.height.equalTo(0)
+                $0.width.equalTo(0)
+            }
+            self.scrapCollectionView.snp.remakeConstraints {
+                $0.top.equalTo(self.vertiLineView.snp.bottom)
+                $0.leading.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
+    }
+    
+    func scrapCollectionViewEndScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.addFolderButton.snp.remakeConstraints {
+                $0.top.equalTo(self.vertiLineView.snp.bottom).offset(16)
+                $0.trailing.equalToSuperview().inset(20)
+                $0.height.equalTo(30)
+                $0.width.equalTo(80)
+            }
+            self.scrapCollectionView.snp.remakeConstraints {
+                $0.top.equalTo(self.addFolderButton.snp.bottom).offset(16)
+                $0.leading.trailing.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
     }
 }

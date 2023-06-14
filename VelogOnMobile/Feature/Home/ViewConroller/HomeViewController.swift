@@ -47,9 +47,10 @@ final class HomeViewController: BaseViewController {
         return label
     }()
     
-    private let searchButton: UIButton = {
+    lazy var searchButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.searchIcon, for: .normal)
+        button.addTarget(self, action: #selector(moveToSearchPostViewController), for: .touchUpInside)
         return button
     }()
     
@@ -69,7 +70,13 @@ final class HomeViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         currentPage = 0
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
     
     //MARK: - Custom Method
@@ -122,7 +129,7 @@ final class HomeViewController: BaseViewController {
         searchButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
             $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(24)
+            $0.size.equalTo(30)
         }
     }
     
@@ -151,6 +158,11 @@ final class HomeViewController: BaseViewController {
     
     //MARK: - Action Method
     
+    @objc
+    private func moveToSearchPostViewController() {
+        let searchPostViewController = SearchViewController()
+        navigationController?.pushViewController(searchPostViewController, animated: true)
+    }
 }
 
 extension HomeViewController: HomeMenuBarDelegate {

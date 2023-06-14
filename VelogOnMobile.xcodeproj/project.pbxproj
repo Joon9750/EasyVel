@@ -314,15 +314,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7CB706C62A3202EB00083EC6 /* AllSearch */ = {
+		7CB706C62A3202EB00083EC6 /* PostSearch */ = {
 			isa = PBXGroup;
 			children = (
-				7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */,
-				7CB706D12A32062500083EC6 /* SearchViewController.swift */,
-				7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */,
-				7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */,
+				91E7ED422A39B990009AA343 /* View */,
+				91E7ED412A39B97F009AA343 /* ViewController */,
 			);
-			path = AllSearch;
+			path = PostSearch;
 			sourceTree = "<group>";
 		};
 		8765EFFB2A2A054D00EF6733 /* Home */ = {
@@ -660,7 +658,7 @@
 				91487F4829FD9663009CFECF /* Search */,
 				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				91487EE529FC39D8009CFECF /* Posts */,
-				91487EE429FC39C3009CFECF /* List */,
+				91487EE429FC39C3009CFECF /* SubscriberList */,
 				91487EE629FC39E8009CFECF /* Setting */,
 			);
 			path = Feature;
@@ -702,14 +700,14 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
-		91487EE429FC39C3009CFECF /* List */ = {
+		91487EE429FC39C3009CFECF /* SubscriberList */ = {
 			isa = PBXGroup;
 			children = (
 				91487F4129FD8ABF009CFECF /* ViewModel */,
 				91487F3F29FD8A95009CFECF /* ViewController */,
 				91487F3E29FD895D009CFECF /* View */,
 			);
-			path = List;
+			path = SubscriberList;
 			sourceTree = "<group>";
 		};
 		91487EE529FC39D8009CFECF /* Posts */ = {
@@ -828,7 +826,7 @@
 		91487F4829FD9663009CFECF /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				7CB706C62A3202EB00083EC6 /* AllSearch */,
+				7CB706C62A3202EB00083EC6 /* PostSearch */,
 				91487F4929FD966B009CFECF /* TagSearch */,
 				91487F2B29FD07F7009CFECF /* SubscriberSearch */,
 			);
@@ -1090,8 +1088,8 @@
 		91BFF2EE2A25D53200F5D13E /* Scrap */ = {
 			isa = PBXGroup;
 			children = (
-				9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */,
 				9128B0302A23774700FB1252 /* ScrapPopUp */,
+				9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */,
 				9128B0482A23C58400FB1252 /* ScrapStorage */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 			);
@@ -1178,6 +1176,24 @@
 				91E442A32A110191008CB516 /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91E7ED412A39B97F009AA343 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7CB706D12A32062500083EC6 /* SearchViewController.swift */,
+				7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		91E7ED422A39B990009AA343 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */,
+				7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		91ED17852A00E55600158787 /* Protocol */ = {

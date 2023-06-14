@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import SnapKit
+
 final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private let storageView = StorageView()
@@ -77,7 +79,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         self.present(actionSheetController, animated: true)
     }
 
-    func setStorageViewHeadTitle(
+    func setStorageHeadView(
         headTitle: String
     ) {
         storageView.storageHeadView.titleLabel.text = headTitle

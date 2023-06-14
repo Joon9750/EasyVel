@@ -91,10 +91,10 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
         unSubscriberName: String
     ) {
         let alertController = UIAlertController(title: "구독 취소", message: "정말 구독을 취소하시겠습니까?", preferredStyle: .alert)
-        let actionDefault = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+        let actionDefault = UIAlertAction(title: "네", style: .destructive, handler: { [weak self] _ in
             self?.viewModel?.subscriberDeleteButtonDidTap.accept(unSubscriberName)
         })
-        let actionCancel = UIAlertAction(title: "돌아가기", style: .cancel)
+        let actionCancel = UIAlertAction(title: "아니요", style: .cancel)
         alertController.addAction(actionDefault)
         alertController.addAction(actionCancel)
         self.present(alertController, animated: true)
@@ -111,7 +111,6 @@ extension ListViewController: UITableViewDataSource {
         let row = indexPath.row
         cell.selectionStyle = .none
         cell.listText.text = subscriberList?[row]
-        
         cell.unSubscribeButtonDidTap = { [weak self] subscriberName in
             self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
         }
