@@ -111,7 +111,6 @@ extension ListViewController: UITableViewDataSource {
         let row = indexPath.row
         cell.selectionStyle = .none
         cell.listText.text = subscriberList?[row]
-        
         cell.unSubscribeButtonDidTap = { [weak self] subscriberName in
             self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
         }

@@ -1090,8 +1090,8 @@
 		91BFF2EE2A25D53200F5D13E /* Scrap */ = {
 			isa = PBXGroup;
 			children = (
-				9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */,
 				9128B0302A23774700FB1252 /* ScrapPopUp */,
+				9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */,
 				9128B0482A23C58400FB1252 /* ScrapStorage */,
 				917BA32F2A03D8C2000409B7 /* Storage */,
 			);

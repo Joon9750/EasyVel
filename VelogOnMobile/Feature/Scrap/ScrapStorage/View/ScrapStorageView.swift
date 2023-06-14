@@ -15,7 +15,7 @@ final class ScrapStorageView: BaseUIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "스크랩"
+        label.text = "Scrap"
         label.textColor = .black
         label.font = UIFont(name: "Avenir-Black", size: 24)
         return label
