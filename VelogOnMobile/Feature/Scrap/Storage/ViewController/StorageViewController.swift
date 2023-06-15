@@ -20,7 +20,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     override func render() {
         self.view = storageView
     }
-    
+  
     override func bind(viewModel: StorageViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)

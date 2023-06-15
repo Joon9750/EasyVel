@@ -32,14 +32,14 @@ final class ScrapStorageView: BaseUIView {
         button.setTitle("폴더 추가", for: .normal)
         button.setTitleColor(UIColor.textGrayColor, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
-        button.backgroundColor = .white
+        button.backgroundColor = .gray100
         return button
     }()
     
     let scrapCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: (SizeLiterals.screenWidth - 40) / 2, height: (SizeLiterals.screenWidth - 30) / 2 + 35)
+        layout.itemSize = CGSize(width: (SizeLiterals.screenWidth - 40) / 2, height: 96)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         
@@ -47,11 +47,12 @@ final class ScrapStorageView: BaseUIView {
         collectionView.register(cell: ScrapStorageCollectionViewCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         collectionView.showsVerticalScrollIndicator = true
+        collectionView.backgroundColor = .gray100
         return collectionView
     }()
     
     override func configUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .gray100
     }
     
     override func render() {
@@ -63,12 +64,12 @@ final class ScrapStorageView: BaseUIView {
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(94)
+            $0.top.equalToSuperview().offset(76)
             $0.leading.equalToSuperview().offset(20)
         }
         
         vertiLineView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
+            $0.top.equalToSuperview().offset(171)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }

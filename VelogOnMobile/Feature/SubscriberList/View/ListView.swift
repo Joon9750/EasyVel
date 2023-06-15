@@ -35,6 +35,7 @@ final class ListView: BaseUIView {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(171)
         }
+        self.bringSubviewToFront(postsHeadView)
         
         listTableView.snp.makeConstraints {
             $0.top.equalTo(postsHeadView.snp.bottom)

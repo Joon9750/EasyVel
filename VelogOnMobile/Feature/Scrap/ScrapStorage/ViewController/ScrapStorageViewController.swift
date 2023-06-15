@@ -20,7 +20,7 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
     override func render() {
         view = scrapView
     }
-    
+
     override func bind(viewModel: ScrapStorageViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
@@ -31,7 +31,6 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
                 let storageViewModel = StorageViewModel()
                 let storageViewController = StorageViewController(viewModel: storageViewModel)
                 if let folderName = cell?.folderNameLabel.text {
-                    let folderNameWitdh = folderName.calcuateWidth(font: UIFont(name: "Avenir-Black", size: 16) ?? UIFont())
                     storageViewModel.folderName = folderName
                     storageViewController.setStorageHeadView(
                         headTitle: folderName
