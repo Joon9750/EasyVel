@@ -66,8 +66,10 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
             .drive(onNext: { [weak self] folderName in
                 if folderName == "모든 게시글" {
                     self?.storageView.storageHeadView.deleteFolderButton.isHidden = true
+                    self?.storageView.storageHeadView.changeFolderNameButton.isHidden = true
                 } else {
                     self?.storageView.storageHeadView.deleteFolderButton.isHidden = false
+                    self?.storageView.storageHeadView.changeFolderNameButton.isHidden = false
                 }
             })
             .disposed(by: disposeBag)
