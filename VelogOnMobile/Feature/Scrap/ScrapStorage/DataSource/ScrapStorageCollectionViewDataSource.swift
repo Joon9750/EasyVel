@@ -45,7 +45,7 @@ final class ScrapStorageCollectionViewDataSource {
             let folderImage = self.folderImageList[indexPath.row]
             let folderPostsCount = self.folderPostsCount[indexPath.row]
             let cell:collectionCell = self.collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(
+            cell.updateTable(
                 folderData: folderData,
                 folderImage: folderImage,
                 folderPostsCount: folderPostsCount

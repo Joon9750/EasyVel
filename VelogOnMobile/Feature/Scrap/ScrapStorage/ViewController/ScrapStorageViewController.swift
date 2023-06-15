@@ -20,7 +20,7 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
     override func render() {
         view = scrapView
     }
-    
+
     override func bind(viewModel: ScrapStorageViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
