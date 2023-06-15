@@ -33,11 +33,21 @@ final class StorageHeadView: BaseUIView {
         button.backgroundColor = .white
         return button
     }()
+
+    let changeFolderNameButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("이름 변경", for: .normal)
+        button.setTitleColor(UIColor.textGrayColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.backgroundColor = .white
+        return button
+    }()
     
     override func render() {
         self.addSubviews(
             titleLabel,
             lineView,
+            changeFolderNameButton,
             deleteFolderButton
         )
         
@@ -55,6 +65,11 @@ final class StorageHeadView: BaseUIView {
         deleteFolderButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
             $0.trailing.equalToSuperview().inset(20)
+        }
+
+        changeFolderNameButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(96)
         }
     }
     
