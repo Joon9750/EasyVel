@@ -19,7 +19,7 @@ final class StorageHeadView: BaseUIView {
         return label
     }()
     
-    private let lineView: UIView = {
+    let lineView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         return view

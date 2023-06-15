@@ -33,6 +33,12 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                 self?.presentDeleteFolderActionSheet()
             })
             .disposed(by: disposeBag)
+        
+        storageView.storageHeadView.changeFolderNameButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.changeFolderNameAlert()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: StorageViewModel) {
@@ -68,7 +74,11 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     }
     
     private func presentDeleteFolderActionSheet() {
-        let actionSheetController = UIAlertController(title: "폴더 삭제", message: "선택하신 폴더를 정말 삭제하시겠습니까?\n스크랩한 콘텐츠가 모두 삭제됩니다.", preferredStyle: .actionSheet)
+        let actionSheetController = UIAlertController(
+            title: "폴더 삭제",
+            message: "선택하신 폴더를 정말 삭제하시겠습니까?\n스크랩한 콘텐츠가 모두 삭제됩니다.",
+            preferredStyle: .actionSheet
+        )
         let actionDefault = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
             self?.viewModel?.deleteFolderButtonDidTap.accept(true)
             self?.navigationController?.popViewController(animated: true)
@@ -77,6 +87,25 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         actionSheetController.addAction(actionDefault)
         actionSheetController.addAction(actionCancel)
         self.present(actionSheetController, animated: true)
+    }
+    
+    private func changeFolderNameAlert() {
+        let alertController = UIAlertController(
+            title: "폴더 이름 변경",
+            message: nil,
+            preferredStyle: .alert
+        )
+        alertController.addTextField()
+        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] action in
+            if let folderTextField = alertController.textFields?.first,
+               let changeFolderName = folderTextField.text {
+                self?.viewModel?.changeFolderButtonDidTap.accept(changeFolderName)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 
     func setStorageHeadView(
