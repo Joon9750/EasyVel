@@ -29,7 +29,7 @@ final class ListHeadView: BaseUIView {
     
     private let lineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .lineColor
         return view
     }()
     
@@ -58,7 +58,7 @@ final class ListHeadView: BaseUIView {
         }
         
         lineView.snp.makeConstraints {
-            $0.top.equalTo(subTitleLabel.snp.bottom).offset(8)
+            $0.top.equalToSuperview().offset(171)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
         }

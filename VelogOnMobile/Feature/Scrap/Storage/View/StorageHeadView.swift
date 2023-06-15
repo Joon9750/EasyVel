@@ -42,12 +42,12 @@ final class StorageHeadView: BaseUIView {
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(132)
+            $0.top.equalToSuperview().offset(130)
             $0.leading.equalToSuperview().offset(20)
         }
         
         lineView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(15)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
         }

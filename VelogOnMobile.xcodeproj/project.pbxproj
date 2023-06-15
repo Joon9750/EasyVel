@@ -800,8 +800,8 @@
 			isa = PBXGroup;
 			children = (
 				9134422629FFF9BC000E1ED1 /* ListView.swift */,
-				91487F3A29FD892B009CFECF /* ListTableView.swift */,
 				91487F3C29FD893D009CFECF /* ListHeadView.swift */,
+				91487F3A29FD892B009CFECF /* ListTableView.swift */,
 				91487F3829FD8915009CFECF /* ListTableViewCell.swift */,
 			);
 			path = View;

@@ -63,12 +63,12 @@ final class ScrapStorageView: BaseUIView {
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(94)
+            $0.top.equalToSuperview().offset(76)
             $0.leading.equalToSuperview().offset(20)
         }
         
         vertiLineView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
+            $0.top.equalToSuperview().offset(171)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
