@@ -16,6 +16,7 @@ final class StorageHeadView: BaseUIView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Black", size: 20)
+        label.textColor = .black
         return label
     }()
     

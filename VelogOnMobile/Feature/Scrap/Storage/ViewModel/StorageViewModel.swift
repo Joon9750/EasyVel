@@ -20,13 +20,14 @@ final class StorageViewModel: BaseViewModel {
     
     var deletePostButtonDidTap = PublishRelay<String>()
     var deleteFolderButtonDidTap = PublishRelay<Bool>()
-    var changeFolderButtonDidTap = PublishRelay<String>()
+    var changeFolderButtonDidTap = PublishRelay<([StoragePost], String)>()
     
     // MARK: - Output
     
     var storagePostsOutput = PublishRelay<[StoragePost]>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
     var folderNameOutput = PublishRelay<String>()
+    var newFolderNameIsUniqueOutput = PublishRelay<(String, Bool)>()
     
     override init() {
         super.init()
@@ -63,12 +64,42 @@ final class StorageViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         changeFolderButtonDidTap
-            .subscribe(onNext: { [weak self] changeFolderName in
+            .subscribe(onNext: { [weak self] storagePosts, changeFolderName in
+                guard let oldFolderName = self?.folderName else { return }
+                guard let isNewFolderNameUnique = self?.checkIsUniqueFolderName(newFolderName: changeFolderName) else {
+                    return
+                }
+                if changeFolderName == "" {
+                    return
+                }
+                if isNewFolderNameUnique {
+                    self?.newFolderNameIsUniqueOutput.accept(
+                        (changeFolderName, true)
+                    )
+                    self?.realm.changeFolderNameInStorage(
+                        input: storagePosts,
+                        oldFolderName: oldFolderName,
+                        newFolderName: changeFolderName
+                    )
+                } else {
+                    self?.newFolderNameIsUniqueOutput.accept(
+                        (changeFolderName, false)
+                    )
+                }
             })
             .disposed(by: disposeBag)
     }
     
     // MARK: - func
+    
+    private func checkIsUniqueFolderName(
+        newFolderName: String
+    ) -> Bool {
+        let isUniqueFolderName = self.realm.checkUniqueFolderName(
+            newFolderName: newFolderName
+        )
+        return isUniqueFolderName
+    }
     
     private func getPostInRealm() -> [StoragePost] {
         let realmPostData = realm.getPosts()

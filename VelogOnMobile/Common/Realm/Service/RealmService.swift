@@ -66,6 +66,37 @@ final class RealmService {
         }
     }
     
+    func changeFolderNameInStorage(
+        input: [StoragePost],
+        oldFolderName: String,
+        newFolderName: String
+    ) {
+        // MARK: - folder
+        guard let folderObject = localRealm.objects(ScrapStorageDTO.self).filter("folderName == %@", oldFolderName).first else {
+            return
+        }
+        do {
+            try localRealm.write {
+                folderObject.folderName = newFolderName
+            }
+        } catch {
+            print("폴더 이름 변경 에러")
+        }
+        
+        // MARK: - posts
+        let urls = input.map { $0.url }
+        let objects = urls.map { localRealm.objects(RealmStoragePost.self).filter("url == %@", $0 as Any).first }
+        for object in objects {
+            do {
+                try localRealm.write {
+                    object?.folderName = newFolderName
+                }
+            } catch {
+                print("Failed to update object: \(error)")
+            }
+        }
+    }
+    
     func getPosts() -> Results<RealmStoragePost> {
         let savedPosts = localRealm.objects(RealmStoragePost.self)
         return savedPosts
@@ -152,11 +183,19 @@ final class RealmService {
     func checkUniqueFolder(
         input: StorageDTO
     ) -> Bool {
-        let folders = convertToStorageDTO(input: getFolders())
-        for item in folders {
-            if input.folderName == item.folderName {
-                return false
-            }
+        let folders = Set(convertToStorageDTO(input: getFolders()).map { $0.folderName })
+        if folders.contains(input.folderName) {
+            return false
+        }
+        return true
+    }
+    
+    func checkUniqueFolderName(
+        newFolderName: String
+    ) -> Bool {
+        let folders = Set(convertToStorageDTO(input: getFolders()).map { $0.folderName })
+        if folders.contains(newFolderName) {
+            return false
         }
         return true
     }

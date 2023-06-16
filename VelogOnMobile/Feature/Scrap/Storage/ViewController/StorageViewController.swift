@@ -73,6 +73,60 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.newFolderNameIsUniqueOutput
+            .asDriver(onErrorJustReturn: (String(), Bool()))
+            .drive(onNext: { [weak self] newFolderName, isUniqueName in
+                if isUniqueName {
+                    self?.storageView.storageHeadView.titleLabel.text = newFolderName
+                    self?.showChangeFolderNameToast(
+                        toastText: "폴더명이 변경되었습니다.",
+                        toastBackgroundColer: .brandColor
+                    )
+                } else {
+                    self?.showChangeFolderNameToast(
+                        toastText: "이미 있는 폴더명입니다.",
+                        toastBackgroundColer: .gray300
+                    )
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func setStorageHeadView(
+        headTitle: String
+    ) {
+        storageView.storageHeadView.titleLabel.text = headTitle
+    }
+    
+    private func showChangeFolderNameToast(
+        toastText: String,
+        toastBackgroundColer: UIColor
+    ) {
+        let toastLabel = UILabel()
+        toastLabel.text = toastText
+        toastLabel.textColor = .white
+        toastLabel.font = UIFont(name: "Avenir-Black", size: 16)
+        toastLabel.backgroundColor = toastBackgroundColer
+        toastLabel.textAlignment = .center
+        toastLabel.layer.cornerRadius = 24
+        toastLabel.clipsToBounds = true
+        toastLabel.alpha = 1.0
+        view.addSubview(toastLabel)
+        toastLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(36)
+            $0.leading.trailing.equalToSuperview().inset(51)
+            $0.height.equalTo(48)
+        }
+        UIView.animate(withDuration: 0, animations: {
+            toastLabel.alpha = 1.0
+        }, completion: { isCompleted in
+            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
+                toastLabel.alpha = 0
+            }, completion: { isCompleted in
+                toastLabel.removeFromSuperview()
+            })
+        })
     }
     
     private func presentDeleteFolderActionSheet() {
@@ -100,20 +154,17 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         alertController.addTextField()
         let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             if let folderTextField = alertController.textFields?.first,
-               let changeFolderName = folderTextField.text {
-                self?.viewModel?.changeFolderButtonDidTap.accept(changeFolderName)
+               let changeFolderName = folderTextField.text,
+               let stoagePosts = self?.storagePosts {
+                self?.viewModel?.changeFolderButtonDidTap.accept(
+                    (stoagePosts, changeFolderName)
+                )
             }
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         present(alertController, animated: true)
-    }
-
-    func setStorageHeadView(
-        headTitle: String
-    ) {
-        storageView.storageHeadView.titleLabel.text = headTitle
     }
 }
 
