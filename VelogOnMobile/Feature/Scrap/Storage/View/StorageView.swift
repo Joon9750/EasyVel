@@ -30,7 +30,7 @@ final class StorageView: BaseUIView {
         storageHeadView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(172)
+            $0.height.equalTo(156)
         }
         
         listTableView.snp.makeConstraints {
@@ -43,5 +43,47 @@ final class StorageView: BaseUIView {
             $0.height.equalTo(166)
             $0.width.equalTo(150)
         }
+    }
+    
+    func storageTableViewStartScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.storageHeadView.snp.remakeConstraints {
+                $0.top.equalToSuperview()
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(116)
+            }
+            self.storageHeadView.gray100View.snp.remakeConstraints {
+                $0.top.equalTo(self.storageHeadView.lineView.snp.bottom)
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(0)
+            }
+            self.storageHeadView.changeFolderNameButton.isHidden = true
+            self.storageHeadView.deleteFolderButton.isHidden = true
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
+    }
+    
+    func storageTableViewEndScroll(
+        isAllpostFolder: Bool
+    ) {
+        UIView.animate(withDuration: 4, animations: {
+            self.storageHeadView.snp.remakeConstraints {
+                $0.top.equalToSuperview()
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(156)
+            }
+            self.storageHeadView.gray100View.snp.remakeConstraints {
+                $0.top.equalTo(self.storageHeadView.lineView.snp.bottom)
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(40)
+            }
+            if !isAllpostFolder {
+                self.storageHeadView.changeFolderNameButton.isHidden = false
+                self.storageHeadView.deleteFolderButton.isHidden = false
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
     }
 }

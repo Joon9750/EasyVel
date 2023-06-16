@@ -16,6 +16,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private let storageView = StorageView()
     private var storagePosts: [StoragePost]?
+    private var storageTableViewDidScroll = false
 
     override func render() {
         self.view = storageView
@@ -37,6 +38,22 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         storageView.storageHeadView.changeFolderNameButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.changeFolderNameAlert()
+            })
+            .disposed(by: disposeBag)
+        
+        storageView.listTableView.rx.contentOffset
+            .subscribe(onNext: { [weak self] contentOffset in
+                let scrollY = contentOffset.y
+                let isAllScrapFolder = self?.viewModel?.folderName == "모든 게시글" ? true : false
+                if scrollY > 5 && self?.storageTableViewDidScroll == false {
+                    self?.storageView.storageTableViewStartScroll()
+                    self?.storageTableViewDidScroll.toggle()
+                } else if scrollY < 2 && self?.storageTableViewDidScroll == true {
+                    self?.storageView.storageTableViewEndScroll(
+                        isAllpostFolder: isAllScrapFolder
+                    )
+                    self?.storageTableViewDidScroll.toggle()
+                }
             })
             .disposed(by: disposeBag)
     }

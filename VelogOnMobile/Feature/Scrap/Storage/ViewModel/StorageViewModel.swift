@@ -37,9 +37,13 @@ final class StorageViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .subscribe(onNext: { [weak self] in
-                let realmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
+                let realmData = self?.getFolderPostInRealm(
+                    folderName: self?.folderName ?? ""
+                )
                 self?.storagePostsOutput.accept(realmData ?? [StoragePost]())
-                let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
+                let isEmpty = self?.checkStorageEmpty(
+                    storage: realmData ?? [StoragePost]()
+                )
                 self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
                 self?.folderNameOutput.accept(self?.folderName ?? String())
             })
@@ -48,8 +52,12 @@ final class StorageViewModel: BaseViewModel {
         deletePostButtonDidTap
             .subscribe(onNext: { [weak self] url in
                 self?.realm.deletePost(url: url)
-                let folderRealmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
-                let isfolderEmpty = self?.checkStorageEmpty(storage: folderRealmData ?? [StoragePost]())
+                let folderRealmData = self?.getFolderPostInRealm(
+                    folderName: self?.folderName ?? ""
+                )
+                let isfolderEmpty = self?.checkStorageEmpty(
+                    storage: folderRealmData ?? [StoragePost]()
+                )
                 self?.isPostsEmptyOutput.accept(isfolderEmpty ?? Bool())
                 self?.storagePostsOutput.accept(folderRealmData ?? [StoragePost]())
             })
@@ -81,6 +89,7 @@ final class StorageViewModel: BaseViewModel {
                         oldFolderName: oldFolderName,
                         newFolderName: changeFolderName
                     )
+                    self?.folderName = changeFolderName
                 } else {
                     self?.newFolderNameIsUniqueOutput.accept(
                         (changeFolderName, false)

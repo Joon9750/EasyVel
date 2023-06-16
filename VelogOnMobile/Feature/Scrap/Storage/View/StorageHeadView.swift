@@ -76,7 +76,7 @@ final class StorageHeadView: BaseUIView {
         gray100View.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(56)
+            $0.height.equalTo(40)
         }
         
         deleteFolderButton.snp.makeConstraints {
