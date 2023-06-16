@@ -107,6 +107,10 @@ final class StorageTableViewCell: BaseTableViewCell {
         }
     }
     
+    override func configUI() {
+        backgroundColor = .white
+    }
+    
     @objc
     private func buttonTapped(_ sender: UIButton) {
         deleteButtonTappedClosure?(url)

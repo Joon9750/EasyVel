@@ -15,32 +15,38 @@ final class StorageHeadView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir-Black", size: 20)
+        label.font = UIFont(name: "Avenir-Black", size: 16)
         label.textColor = .black
         return label
     }()
     
     let lineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .gray200
+        return view
+    }()
+    
+    let gray100View: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray100
         return view
     }()
     
     let deleteFolderButton : UIButton = {
         let button = UIButton()
         button.setTitle("폴더 삭제", for: .normal)
-        button.setTitleColor(UIColor.textGrayColor, for: .normal)
+        button.setTitleColor(.gray300, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
-        button.backgroundColor = .white
+        button.backgroundColor = .gray100
         return button
     }()
 
     let changeFolderNameButton: UIButton = {
         let button = UIButton()
         button.setTitle("이름 변경", for: .normal)
-        button.setTitleColor(UIColor.textGrayColor, for: .normal)
+        button.setTitleColor(.gray300, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
-        button.backgroundColor = .white
+        button.backgroundColor = .gray100
         return button
     }()
     
@@ -48,13 +54,17 @@ final class StorageHeadView: BaseUIView {
         self.addSubviews(
             titleLabel,
             lineView,
+            gray100View
+        )
+        
+        gray100View.addSubviews(
             changeFolderNameButton,
             deleteFolderButton
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(130)
-            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalToSuperview().offset(78)
+            $0.centerX.equalToSuperview()
         }
         
         lineView.snp.makeConstraints {
@@ -63,13 +73,19 @@ final class StorageHeadView: BaseUIView {
             $0.leading.trailing.equalToSuperview()
         }
         
+        gray100View.snp.makeConstraints {
+            $0.top.equalTo(lineView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        
         deleteFolderButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel)
+            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(20)
         }
 
         changeFolderNameButton.snp.makeConstraints {
-            $0.centerY.equalTo(titleLabel)
+            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(96)
         }
     }
