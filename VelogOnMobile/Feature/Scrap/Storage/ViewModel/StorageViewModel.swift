@@ -20,12 +20,14 @@ final class StorageViewModel: BaseViewModel {
     
     var deletePostButtonDidTap = PublishRelay<String>()
     var deleteFolderButtonDidTap = PublishRelay<Bool>()
+    var changeFolderButtonDidTap = PublishRelay<([StoragePost], String)>()
     
     // MARK: - Output
     
     var storagePostsOutput = PublishRelay<[StoragePost]>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
     var folderNameOutput = PublishRelay<String>()
+    var newFolderNameIsUniqueOutput = PublishRelay<(String, Bool)>()
     
     override init() {
         super.init()
@@ -35,9 +37,13 @@ final class StorageViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .subscribe(onNext: { [weak self] in
-                let realmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
+                let realmData = self?.getFolderPostInRealm(
+                    folderName: self?.folderName ?? ""
+                )
                 self?.storagePostsOutput.accept(realmData ?? [StoragePost]())
-                let isEmpty = self?.checkStorageEmpty(storage: realmData ?? [StoragePost]())
+                let isEmpty = self?.checkStorageEmpty(
+                    storage: realmData ?? [StoragePost]()
+                )
                 self?.isPostsEmptyOutput.accept(isEmpty ?? Bool())
                 self?.folderNameOutput.accept(self?.folderName ?? String())
             })
@@ -46,8 +52,12 @@ final class StorageViewModel: BaseViewModel {
         deletePostButtonDidTap
             .subscribe(onNext: { [weak self] url in
                 self?.realm.deletePost(url: url)
-                let folderRealmData = self?.getFolderPostInRealm(folderName: self?.folderName ?? "")
-                let isfolderEmpty = self?.checkStorageEmpty(storage: folderRealmData ?? [StoragePost]())
+                let folderRealmData = self?.getFolderPostInRealm(
+                    folderName: self?.folderName ?? ""
+                )
+                let isfolderEmpty = self?.checkStorageEmpty(
+                    storage: folderRealmData ?? [StoragePost]()
+                )
                 self?.isPostsEmptyOutput.accept(isfolderEmpty ?? Bool())
                 self?.storagePostsOutput.accept(folderRealmData ?? [StoragePost]())
             })
@@ -60,9 +70,45 @@ final class StorageViewModel: BaseViewModel {
                 }
             })
             .disposed(by: disposeBag)
+        
+        changeFolderButtonDidTap
+            .subscribe(onNext: { [weak self] storagePosts, changeFolderName in
+                guard let oldFolderName = self?.folderName else { return }
+                guard let isNewFolderNameUnique = self?.checkIsUniqueFolderName(newFolderName: changeFolderName) else {
+                    return
+                }
+                if changeFolderName == "" {
+                    return
+                }
+                if isNewFolderNameUnique {
+                    self?.newFolderNameIsUniqueOutput.accept(
+                        (changeFolderName, true)
+                    )
+                    self?.realm.changeFolderNameInStorage(
+                        input: storagePosts,
+                        oldFolderName: oldFolderName,
+                        newFolderName: changeFolderName
+                    )
+                    self?.folderName = changeFolderName
+                } else {
+                    self?.newFolderNameIsUniqueOutput.accept(
+                        (changeFolderName, false)
+                    )
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - func
+    
+    private func checkIsUniqueFolderName(
+        newFolderName: String
+    ) -> Bool {
+        let isUniqueFolderName = self.realm.checkUniqueFolderName(
+            newFolderName: newFolderName
+        )
+        return isUniqueFolderName
+    }
     
     private func getPostInRealm() -> [StoragePost] {
         let realmPostData = realm.getPosts()

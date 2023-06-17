@@ -956,8 +956,8 @@
 		914D8DD72A02B17000516B4C /* WebView */ = {
 			isa = PBXGroup;
 			children = (
-				9128AFE32A21179000FB1252 /* ViewController */,
 				9128AFE22A21178600FB1252 /* ViewModel */,
+				9128AFE32A21179000FB1252 /* ViewController */,
 			);
 			path = WebView;
 			sourceTree = "<group>";

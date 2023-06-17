@@ -25,5 +25,6 @@ final class StorageTableView: UITableView {
                     StorageTableViewCell.identifier)
         separatorStyle = .singleLine
         showsVerticalScrollIndicator = true
+        backgroundColor = .gray100
     }
 }
