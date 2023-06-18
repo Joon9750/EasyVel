@@ -23,7 +23,7 @@ final class SignInViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] in
                 
                 //MARK: - fix me
-                self?.realm.setAutoSignIn(didSignIn: true)
+//                self?.realm.setAutoSignIn(didSignIn: true)
             })
             .disposed(by: disposeBag)
     }

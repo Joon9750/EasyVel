@@ -39,7 +39,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.makeKeyAndVisible()
         } else {
             let signInViewModel = SignInViewModel()
-            let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
+//            let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
+            // MARK: - fix me
+            let rootViewController = UINavigationController(rootViewController: TabBarController())
             window?.rootViewController = rootViewController
             window?.makeKeyAndVisible()
         }

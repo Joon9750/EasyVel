@@ -37,4 +37,8 @@ final class SettingView: BaseUIView {
             $0.height.equalTo(220)
         }
     }
+    
+    override func configUI() {
+        self.backgroundColor = .white
+    }
 }
