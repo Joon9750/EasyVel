@@ -19,7 +19,7 @@ final class SettingViewModel: BaseViewModel {
     
     // MARK: - Input
     
-    let logoutCellDidTouched = PublishRelay<Bool>()
+    let signOutCellDidTouched = PublishRelay<Bool>()
     
     // MARK: - init
     
@@ -29,7 +29,7 @@ final class SettingViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
-        logoutCellDidTouched
+        signOutCellDidTouched
             .subscribe(onNext: { [weak self] didTouched in
                 if didTouched {
                     self?.realm.setAutoSignIn(didSignIn: false)
