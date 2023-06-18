@@ -28,7 +28,9 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
         
         settingView.tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                self?.presentSignOutAlert()
+                if indexPath.row == 0 {
+                    self?.presentSignOutAlert()
+                }
             })
             .disposed(by: disposeBag)
     }
