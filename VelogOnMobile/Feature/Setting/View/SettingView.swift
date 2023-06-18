@@ -18,7 +18,7 @@ final class SettingView: BaseUIView {
         return label
     }()
     
-    private let tableView = SettingTableView()
+    let tableView = SettingTableView()
     
     override func render() {
         self.addSubviews(

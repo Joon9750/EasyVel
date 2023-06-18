@@ -14,18 +14,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private var errorWindow: UIWindow?
     private var networkMonitor: NetworkMonitor = NetworkMonitor()
+    private var realm = RealmService()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        
+        // MARK: - check network
+        
         startMonitoringNetwork(on: scene)
+        
+        // MARK: - realm folder
+        
         if checkAllPostIsUnique() {
             addInitialData()
         }
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-        let rootViewController = UINavigationController(rootViewController: TabBarController())
-        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
+        
+        // MARK: - check auto signIn
+        
+        if realm.checkIsUserSignIn() {
+            let rootViewController = UINavigationController(rootViewController: TabBarController())
+            window?.rootViewController = rootViewController
+            window?.makeKeyAndVisible()
+        } else {
+            let signInViewModel = SignInViewModel()
+            let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
+            window?.rootViewController = rootViewController
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

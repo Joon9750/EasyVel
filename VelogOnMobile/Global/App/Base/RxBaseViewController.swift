@@ -8,7 +8,7 @@
 import UIKit
 
 import RxSwift
-import SnapKit
+import RxRelay
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
