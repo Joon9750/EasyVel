@@ -21,6 +21,11 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     override func render() {
         self.view = storageView
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
   
     override func bind(viewModel: StorageViewModel) {
         super.bind(viewModel: viewModel)

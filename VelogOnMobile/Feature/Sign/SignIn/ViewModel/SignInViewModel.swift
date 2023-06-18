@@ -11,7 +11,12 @@ import RxSwift
 import RxRelay
 
 final class SignInViewModel: BaseViewModel {
+    
     let realm = RealmService()
+    
+    // MARK: - Input
+    
+    let appleSignInButtonTapped = PublishRelay<Bool>()
     
     override init() {
         super.init()
@@ -19,11 +24,9 @@ final class SignInViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
-        viewWillAppear
-            .subscribe(onNext: { [weak self] in
-                
-                //MARK: - fix me
-//                self?.realm.setAutoSignIn(didSignIn: true)
+        appleSignInButtonTapped
+            .subscribe(onNext: { [weak self] didTapped in
+                self?.realm.setAutoSignIn(didSignIn: true)
             })
             .disposed(by: disposeBag)
     }

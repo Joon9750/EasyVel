@@ -121,6 +121,7 @@
 		916E29A82A3EDA45006F5FE9 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */; };
 		916E29AA2A3EE332006F5FE9 /* AutoSignInDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */; };
 		916E29AE2A3EE90F006F5FE9 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */; };
+		916E29B12A3EEE60006F5FE9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29B02A3EEE60006F5FE9 /* SignInView.swift */; };
 		917BA3312A03D8EF000409B7 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3302A03D8EF000409B7 /* StorageViewController.swift */; };
 		917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3322A03D8F7000409B7 /* StorageView.swift */; };
 		917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3342A03E14A000409B7 /* StorageHeadView.swift */; };
@@ -266,6 +267,7 @@
 		916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDTO.swift; sourceTree = "<group>"; };
 		916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		916E29B02A3EEE60006F5FE9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		917BA3302A03D8EF000409B7 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		917BA3322A03D8F7000409B7 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		917BA3342A03E14A000409B7 /* StorageHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHeadView.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 			children = (
 				916E29AC2A3EE901006F5FE9 /* ViewModel */,
 				916E29AB2A3EE8F9006F5FE9 /* ViewController */,
+				916E29AF2A3EEE4B006F5FE9 /* View */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -992,6 +995,14 @@
 				916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		916E29AF2A3EEE4B006F5FE9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				916E29B02A3EEE60006F5FE9 /* SignInView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		916FDCFA2A17E9E700BB1E16 /* Common */ = {
@@ -1370,6 +1381,7 @@
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
 				913442322A004663000E1ED1 /* PostsAPI.swift in Sources */,
 				91ED178D2A00E5A600158787 /* SignRepository.swift in Sources */,
+				916E29B12A3EEE60006F5FE9 /* SignInView.swift in Sources */,
 				91487F1029FC4736009CFECF /* UIStackView+Extension.swift in Sources */,
 				9134423A2A004B9B000E1ED1 /* DefaultSubscriberRepository.swift in Sources */,
 				91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */,

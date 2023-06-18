@@ -29,11 +29,18 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
         settingView.tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 self?.viewModel?.logoutCellDidTouched.accept(true)
+                self?.pushToSignInView()
             })
             .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: SettingViewModel) {
         
+    }
+    
+    private func pushToSignInView() {
+        let signInViewModel = SignInViewModel()
+        let signInViewController = SignInViewController(viewModel: signInViewModel)
+        self.navigationController?.pushViewController(signInViewController, animated: true)
     }
 }
