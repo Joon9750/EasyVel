@@ -52,6 +52,11 @@ final class SearchViewController: BaseViewController {
         setCollectionView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     override func setupNavigationBar() {
         super.setupNavigationBar()
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
