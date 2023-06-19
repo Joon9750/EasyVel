@@ -44,6 +44,8 @@ final class SettingViewModel: BaseViewModel {
                     let accessToken = self?.realm.getAccessToken()
                     let signOutRequest = SignOutRequest(accessToken: accessToken)
                     self?.signOut(body: signOutRequest)
+                    self?.realm.setAccessToken(accessToken: "")
+                    self?.realm.setAutoSignIn(didSignIn: false)
                 }
             })
             .disposed(by: disposeBag)
