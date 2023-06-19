@@ -20,6 +20,7 @@ final class SettingViewModel: BaseViewModel {
     // MARK: - Input
     
     let signOutCellDidTouched = PublishRelay<Bool>()
+    let withdrawalCellDidTouched = PublishRelay<Bool>()
     
     // MARK: - init
     
@@ -33,6 +34,13 @@ final class SettingViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] didTouched in
                 if didTouched {
                     self?.realm.setAutoSignIn(didSignIn: false)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        withdrawalCellDidTouched
+            .subscribe(onNext: { [weak self] didTouched in
+                if didTouched {
                 }
             })
             .disposed(by: disposeBag)

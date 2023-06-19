@@ -29,7 +29,17 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
         settingView.tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
                 if indexPath.row == 0 {
-                    self?.presentSignOutAlert()
+                    self?.presentAlert(
+                        title: "로그아웃",
+                        message: "정말 로그아웃 하시겠습니까?",
+                        touchedIndexPath: indexPath.row
+                    )
+                } else if indexPath.row == 1 {
+                    self?.presentAlert(
+                        title: "회원탈퇴",
+                        message: "정말 회원탈퇴 하시겠습니까?\n복구하실 수 없습니다.",
+                        touchedIndexPath: indexPath.row
+                    )
                 }
             })
             .disposed(by: disposeBag)
@@ -39,11 +49,24 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
         
     }
     
-    private func presentSignOutAlert() {
-        let alertController = UIAlertController(title: "로그아웃", message: "정말 로그아웃 하시겠습니까?", preferredStyle: .alert)
+    private func presentAlert(
+        title: String,
+        message: String,
+        touchedIndexPath: Int
+    ) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
         let actionDefault = UIAlertAction(title: "네", style: .destructive, handler: { [weak self] _ in
-            self?.viewModel?.signOutCellDidTouched.accept(true)
-            self?.pushToSignInView()
+            if touchedIndexPath == 0 {
+                self?.viewModel?.signOutCellDidTouched.accept(true)
+                self?.pushToSignInView()
+            } else if touchedIndexPath == 1 {
+                self?.viewModel?.withdrawalCellDidTouched.accept(true)
+                self?.pushToSignInView()
+            }
         })
         let actionCancel = UIAlertAction(title: "아니요", style: .cancel)
         alertController.addAction(actionDefault)
