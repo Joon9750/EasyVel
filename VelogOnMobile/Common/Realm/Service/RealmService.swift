@@ -31,9 +31,9 @@ final class RealmService {
     
     func getAccessToken() -> String {
         guard let object = localRealm.objects(AccessTokenDTO.self).first else {
-            return String()
+            return ""
         }
-        guard let token = object.accessToken else { return String() }
+        guard let token = object.accessToken else { return "" }
         return token
     }
     
