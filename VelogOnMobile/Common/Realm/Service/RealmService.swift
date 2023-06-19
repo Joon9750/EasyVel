@@ -290,6 +290,12 @@ final class RealmService {
         let posts = Array(input.reversed())
         return posts
     }
+    
+    func deleteAllRealmData() {
+        try! localRealm.write {
+            localRealm.deleteAll()
+        }
+    }
 
     init() {
         print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location.")

@@ -40,9 +40,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = rootViewController
             window?.makeKeyAndVisible()
             return
-        } else {
-            // MARK: - fix me
-            realm.setAccessToken(accessToken: "")
         }
         
         // MARK: - check auto signIn
