@@ -7,6 +7,7 @@
 
 import Foundation
 
+import AuthenticationServices
 import RxSwift
 import RxRelay
 
@@ -27,10 +28,46 @@ final class SignInViewController: RxBaseViewController<SignInViewModel> {
                 self?.pushToTabBarController()
             })
             .disposed(by: disposeBag)
+        
+        signInView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLogin), for: .touchUpInside)
     }
     
     private func pushToTabBarController() {
         let tabBarController = TabBarController()
         self.navigationController?.pushViewController(tabBarController, animated: true)
+    }
+}
+
+extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    @objc func handleAppleLogin() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = []
+
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+
+            let idToken = credential.identityToken!
+            let tokeStr = String(data: idToken, encoding: .utf8)
+
+            guard let code = credential.authorizationCode else { return }
+            let codeStr = String(data: code, encoding: .utf8)
+
+            let user = credential.user
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("error")
     }
 }

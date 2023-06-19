@@ -7,6 +7,7 @@
 
 import UIKit
 
+import AuthenticationServices
 import SnapKit
 
 final class SignInView: BaseUIView {
@@ -18,8 +19,17 @@ final class SignInView: BaseUIView {
         return button
     }()
     
+    let realAppleSignInButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
+    
     override func render() {
-        self.addSubview(appleSignInButton)
+        self.addSubviews(
+            realAppleSignInButton,
+            appleSignInButton
+        )
+        
+        realAppleSignInButton.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
         
         appleSignInButton.snp.makeConstraints {
             $0.height.equalTo(60)
