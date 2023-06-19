@@ -8,7 +8,5 @@
 import Foundation
 
 struct SignOutRequest: Codable {
-    let fcmToken: String?
-    let id: String?
-    let password: String?
+    let accessToken: String?
 }

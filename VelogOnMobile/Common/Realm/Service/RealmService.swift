@@ -14,6 +14,29 @@ final class RealmService {
     
     private let localRealm = try! Realm()
     
+    func setAccessToken(
+        accessToken: String
+    ) {
+        guard let object = localRealm.objects(AccessTokenDTO.self).first else {
+            let firstAccessToken = AccessTokenDTO(input: accessToken)
+            try! localRealm.write {
+                localRealm.add(firstAccessToken)
+            }
+            return
+        }
+        try! localRealm.write {
+            object.accessToken = accessToken
+        }
+    }
+    
+    func getAccessToken() -> String {
+        guard let object = localRealm.objects(AccessTokenDTO.self).first else {
+            return ""
+        }
+        guard let token = object.accessToken else { return "" }
+        return token
+    }
+    
     func setAutoSignIn(
         didSignIn: Bool
     ) {
@@ -266,6 +289,12 @@ final class RealmService {
     ) -> [StoragePost] {
         let posts = Array(input.reversed())
         return posts
+    }
+    
+    func deleteAllRealmData() {
+        try! localRealm.write {
+            localRealm.deleteAll()
+        }
     }
 
     init() {

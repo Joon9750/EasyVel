@@ -20,6 +20,7 @@ final class SettingViewModel: BaseViewModel {
     // MARK: - Input
     
     let signOutCellDidTouched = PublishRelay<Bool>()
+    let withdrawalCellDidTouched = PublishRelay<Bool>()
     
     // MARK: - init
     
@@ -36,5 +37,36 @@ final class SettingViewModel: BaseViewModel {
                 }
             })
             .disposed(by: disposeBag)
+        
+        withdrawalCellDidTouched
+            .subscribe(onNext: { [weak self] didTouched in
+                if didTouched {
+                    let accessToken = self?.realm.getAccessToken()
+                    let signOutRequest = SignOutRequest(accessToken: accessToken)
+                    self?.realm.deleteAllRealmData()
+                    self?.signOut(body: signOutRequest)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - api
+
+extension SettingViewModel {
+    func signOut(
+        body: SignOutRequest
+    ) {
+        NetworkService.shared.signRepository.signOut(
+            body: body
+        ) { result in
+            switch result {
+            case .success(_): return
+            case .requestErr(let errResponse):
+                print(errResponse)
+                return
+            default: return
+            }
+        }
     }
 }

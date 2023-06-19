@@ -27,6 +27,8 @@ final class SignInViewModel: BaseViewModel {
         appleSignInButtonTapped
             .subscribe(onNext: { [weak self] didTapped in
                 self?.realm.setAutoSignIn(didSignIn: true)
+                // MARK: - access token fix me
+                self?.realm.setAccessToken(accessToken: "")
             })
             .disposed(by: disposeBag)
     }

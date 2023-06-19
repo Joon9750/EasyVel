@@ -122,6 +122,7 @@
 		916E29AA2A3EE332006F5FE9 /* AutoSignInDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */; };
 		916E29AE2A3EE90F006F5FE9 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */; };
 		916E29B12A3EEE60006F5FE9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29B02A3EEE60006F5FE9 /* SignInView.swift */; };
+		916E29B42A406952006F5FE9 /* AccessTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29B32A406952006F5FE9 /* AccessTokenDTO.swift */; };
 		917BA3312A03D8EF000409B7 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3302A03D8EF000409B7 /* StorageViewController.swift */; };
 		917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3322A03D8F7000409B7 /* StorageView.swift */; };
 		917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917BA3342A03E14A000409B7 /* StorageHeadView.swift */; };
@@ -268,6 +269,7 @@
 		916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDTO.swift; sourceTree = "<group>"; };
 		916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		916E29B02A3EEE60006F5FE9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		916E29B32A406952006F5FE9 /* AccessTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenDTO.swift; sourceTree = "<group>"; };
 		917BA3302A03D8EF000409B7 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		917BA3322A03D8F7000409B7 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		917BA3342A03E14A000409B7 /* StorageHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHeadView.swift; sourceTree = "<group>"; };
@@ -1051,6 +1053,7 @@
 				9128B0532A23CADD00FB1252 /* ScrapStorageDTO.swift */,
 				9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */,
 				916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */,
+				916E29B32A406952006F5FE9 /* AccessTokenDTO.swift */,
 			);
 			path = RealmDTO;
 			sourceTree = "<group>";
@@ -1488,6 +1491,7 @@
 				91E442872A10F385008CB516 /* RxBaseViewController.swift in Sources */,
 				9134423C2A004BA2000E1ED1 /* DefaultPostsRepository.swift in Sources */,
 				91487F2D29FD0812009CFECF /* SubscriberSearchViewController.swift in Sources */,
+				916E29B42A406952006F5FE9 /* AccessTokenDTO.swift in Sources */,
 				91487F1729FC5481009CFECF /* NetworkMonitor.swift in Sources */,
 				917BA3352A03E14A000409B7 /* StorageHeadView.swift in Sources */,
 				914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */,

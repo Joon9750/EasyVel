@@ -31,17 +31,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             addInitialData()
         }
         
-        // MARK: - check auto signIn
+        // MARK: - fix me : set access token
         
-        if realm.checkIsUserSignIn() {
-            let rootViewController = UINavigationController(rootViewController: TabBarController())
-            window?.rootViewController = rootViewController
-            window?.makeKeyAndVisible()
-        } else {
+        if realm.getAccessToken() == "" {
+            // MARK: - 초기 유저
             let signInViewModel = SignInViewModel()
             let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
             window?.rootViewController = rootViewController
             window?.makeKeyAndVisible()
+            return
+        }
+        
+        // MARK: - check auto signIn
+        
+        if realm.checkIsUserSignIn() {
+            // MARK: - 자동 로그인 된 유저
+            let rootViewController = UINavigationController(rootViewController: TabBarController())
+            window?.rootViewController = rootViewController
+            window?.makeKeyAndVisible()
+            return
+        } else {
+            // MARK: - 자동 로그인 이후 로그아웃한 유저
+            let signInViewModel = SignInViewModel()
+            let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
+            window?.rootViewController = rootViewController
+            window?.makeKeyAndVisible()
+            return
         }
     }
 
