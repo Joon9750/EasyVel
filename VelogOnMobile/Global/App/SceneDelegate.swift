@@ -31,6 +31,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             addInitialData()
         }
         
+        // MARK: - fix me : set access token
+        
+        realm.setAccessToken(accessToken: "")
+        
         // MARK: - check auto signIn
         
         if realm.checkIsUserSignIn() {
