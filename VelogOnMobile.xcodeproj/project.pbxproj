@@ -270,6 +270,7 @@
 		916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		916E29B02A3EEE60006F5FE9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		916E29B32A406952006F5FE9 /* AccessTokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenDTO.swift; sourceTree = "<group>"; };
+		916E29B52A408CC3006F5FE9 /* VelogOnMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VelogOnMobile.entitlements; sourceTree = "<group>"; };
 		917BA3302A03D8EF000409B7 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		917BA3322A03D8F7000409B7 /* StorageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageView.swift; sourceTree = "<group>"; };
 		917BA3342A03E14A000409B7 /* StorageHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHeadView.swift; sourceTree = "<group>"; };
@@ -649,6 +650,7 @@
 		91487EC029FC380A009CFECF /* VelogOnMobile */ = {
 			isa = PBXGroup;
 			children = (
+				916E29B52A408CC3006F5FE9 /* VelogOnMobile.entitlements */,
 				916FDCFA2A17E9E700BB1E16 /* Common */,
 				913441E229FFD5BE000E1ED1 /* Network */,
 				91487EDE29FC3946009CFECF /* Feature */,
@@ -1651,6 +1653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VelogOnMobile/VelogOnMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D96A3BCL3R;
@@ -1679,6 +1682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VelogOnMobile/VelogOnMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D96A3BCL3R;
