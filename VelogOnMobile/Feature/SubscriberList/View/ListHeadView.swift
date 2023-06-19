@@ -11,8 +11,6 @@ import SnapKit
 
 final class ListHeadView: BaseUIView {
     
-    // MARK: - property
-    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.listTitleLabelText

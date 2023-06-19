@@ -63,6 +63,11 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     override func setupNavigationBar() {
         navigationItem.rightBarButtonItems = [firstButton, secondButton]
         super.setupNavigationBar()

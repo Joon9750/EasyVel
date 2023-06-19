@@ -8,7 +8,7 @@
 import UIKit
 
 import RxSwift
-import SnapKit
+import RxRelay
 
 public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
@@ -32,6 +32,11 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
         setupNavigationBar()
         setupNavigationPopGesture()
     }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
 
     func configUI() {
         view.backgroundColor = .white
@@ -40,6 +45,7 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
     func render() {}
     
     func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
     }

@@ -14,6 +14,33 @@ final class RealmService {
     
     private let localRealm = try! Realm()
     
+    func setAutoSignIn(
+        didSignIn: Bool
+    ) {
+        guard let object = localRealm.objects(AutoSignInDTO.self).first else {
+            let firstAutoSignIn = AutoSignInDTO(input: true)
+            try! localRealm.write {
+                localRealm.add(firstAutoSignIn)
+            }
+            return
+        }
+        if didSignIn {
+            try! localRealm.write {
+                object.didSignIn = true
+            }
+        } else {
+            try! localRealm.write {
+                object.didSignIn = false
+            }
+        }
+    }
+    
+    func checkIsUserSignIn() -> Bool {
+        guard let object = localRealm.objects(AutoSignInDTO.self).first else { return false }
+        guard let didSignIn = object.didSignIn else { return false }
+        return didSignIn
+    }
+    
     func addPost(
         item: StoragePost,
         folderName: String

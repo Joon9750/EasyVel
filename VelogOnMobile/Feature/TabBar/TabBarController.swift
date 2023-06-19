@@ -26,7 +26,8 @@ final class TabBarController: UITabBarController {
     let homeVC = HomeViewController()
     lazy var listVC = ListViewController(viewModel: listViewModel)
     lazy var storageVC = ScrapStorageViewController(viewModel: scrapStorageViewModel)
-    let settingVC = SettingViewController()
+    let settingViewModel = SettingViewModel()
+    lazy var settingVC = SettingViewController(viewModel: settingViewModel)
     
     
     // MARK: - view properties

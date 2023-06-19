@@ -20,6 +20,7 @@ class BaseViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+        navigationController?.navigationBar.isHidden = true
     }
     
     func render() {}
@@ -29,6 +30,7 @@ class BaseViewController: UIViewController {
     }
     
     func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
     }
