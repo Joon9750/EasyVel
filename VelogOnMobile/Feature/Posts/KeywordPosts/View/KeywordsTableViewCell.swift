@@ -142,7 +142,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         date.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(10)
             $0.height.equalTo(15)
-            $0.trailing.equalTo(name.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().inset(15)
         }
     }
     
