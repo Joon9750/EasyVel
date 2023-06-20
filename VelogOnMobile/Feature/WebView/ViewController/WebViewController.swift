@@ -124,7 +124,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     self?.subscriberButton.backgroundColor = .white
                     self?.showSubscibeToast(
                         toastText: "구독 취소했습니다.",
-                        toastBackgroundColer: .lightGray
+                        toastBackgroundColer: .gray300
                     )
                     self?.viewModel?.didSubscribe.accept(false)
                 }
@@ -201,12 +201,15 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     }
     
     private func scrapButtonTapped() {
-        scrapPopUpView.snp.updateConstraints { $0.bottom.equalTo(webView.snp.bottom) }
+        scrapPopUpView.snp.updateConstraints {
+            $0.bottom.equalTo(webView.snp.bottom)
+        }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         } completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83)
+                self.scrapPopUpView.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().offset(83)
                 }
                 UIView.animate(withDuration: 0.5) {
                     self.view.layoutIfNeeded()

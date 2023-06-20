@@ -141,8 +141,6 @@
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
 		91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */; };
-		91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */; };
-		91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */; };
 		91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */; };
 		91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCEA5F2A0E9CC9001362AD /* HapticService.swift */; };
 		91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */; };
@@ -287,8 +285,6 @@
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		91CC1D522A0C0BCD006BF786 /* TagSearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchProtocol.swift; sourceTree = "<group>"; };
-		91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
-		91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		91CCEA3B2A0D017A001362AD /* PostTagUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagUIButton.swift; sourceTree = "<group>"; };
 		91CCEA5F2A0E9CC9001362AD /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
 		91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
@@ -328,8 +324,8 @@
 		7CB706C62A3202EB00083EC6 /* PostSearch */ = {
 			isa = PBXGroup;
 			children = (
-				91E7ED422A39B990009AA343 /* View */,
 				91E7ED412A39B97F009AA343 /* ViewController */,
+				91E7ED422A39B990009AA343 /* View */,
 			);
 			path = PostSearch;
 			sourceTree = "<group>";
@@ -668,7 +664,6 @@
 				91BFF2EF2A25D54500F5D13E /* Sign */,
 				91BFF2EE2A25D53200F5D13E /* Scrap */,
 				91487F4829FD9663009CFECF /* Search */,
-				91CCEA2E2A0CDDA8001362AD /* OnBoarding */,
 				91487EE529FC39D8009CFECF /* Posts */,
 				91487EE429FC39C3009CFECF /* SubscriberList */,
 				91487EE629FC39E8009CFECF /* Setting */,
@@ -1178,31 +1173,6 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
-		91CCEA2E2A0CDDA8001362AD /* OnBoarding */ = {
-			isa = PBXGroup;
-			children = (
-				91CCEA332A0CDDE7001362AD /* ViewController */,
-				91CCEA342A0CDDF6001362AD /* View */,
-			);
-			path = OnBoarding;
-			sourceTree = "<group>";
-		};
-		91CCEA332A0CDDE7001362AD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91CCEA2F2A0CDDBD001362AD /* OnBoardingViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		91CCEA342A0CDDF6001362AD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				91CCEA312A0CDDE4001362AD /* OnBoardingView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		91CCEA5E2A0E9CBC001362AD /* Haptic */ = {
 			isa = PBXGroup;
 			children = (
@@ -1239,8 +1209,8 @@
 		91E7ED422A39B990009AA343 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */,
 				7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */,
+				7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1445,12 +1415,10 @@
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
-				91CCEA322A0CDDE4001362AD /* OnBoardingView.swift in Sources */,
 				91E4428B2A10F3C7008CB516 /* BaseViewModel.swift in Sources */,
 				8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */,
 				9134422729FFF9BC000E1ED1 /* ListView.swift in Sources */,
 				91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */,
-				91CCEA302A0CDDBD001362AD /* OnBoardingViewController.swift in Sources */,
 				91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
 				91BFF2F52A2776F000F5D13E /* PopularPostsDTO.swift in Sources */,

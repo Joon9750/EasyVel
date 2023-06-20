@@ -19,8 +19,8 @@ final class ScrapFolderBottomSheetTableViewCell: UITableViewCell {
 
     let folderTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont(name: "Avenir-Black", size: 15)
+        label.textColor = .gray700
+        label.font = UIFont(name: "Avenir-Black", size: 14)
         return label
     }()
     

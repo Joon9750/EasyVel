@@ -15,7 +15,7 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            titleLabel.textColor = isSelected ? .black : .gray
+            titleLabel.textColor = isSelected ? .gray700 : .gray300
         }
     }
     
@@ -31,7 +31,7 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .gray300
         label.font = .avenir(ofSize: 16)
         return label
     }()
@@ -68,4 +68,3 @@ extension HomeMenuCollectionViewCell {
                                                         verticalFittingPriority: .required)
     }
 }
-

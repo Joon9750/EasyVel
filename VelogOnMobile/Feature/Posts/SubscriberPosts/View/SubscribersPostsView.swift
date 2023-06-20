@@ -16,8 +16,8 @@ final class SubscribersPostsView: BaseUIView {
         let button = UIButton()
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 10
-        button.layer.borderColor = UIColor.lightGrayColor.cgColor
-        button.backgroundColor = .lightGrayColor
+        button.layer.borderColor = UIColor.gray200.cgColor
+        button.backgroundColor = .gray300
         button.alpha = 0.8
         button.isHidden = true
         button.setImage(UIImage(systemName: "arrow.up")?.withRenderingMode(.alwaysOriginal), for: .normal)

@@ -15,8 +15,8 @@ final class StorageTableViewCell: BaseTableViewCell {
     static let identifier = "StorageTableViewCell"
     
     var deleteButtonTappedClosure: ((String) -> Void)?
-    
     var url = String()
+    
     let imgView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -24,31 +24,37 @@ final class StorageTableViewCell: BaseTableViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
-    let listText: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 5
-        label.textColor = UIColor.darkGray
-        label.font = UIFont(name: "Avenir-Black", size: 12)
-        return label
-    }()
+    
     let listTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.tintColor = .black
+        label.tintColor = .gray700
         label.font = UIFont(name: "Avenir-Black", size: 15)
         return label
     }()
-    let date: UILabel = {
+    
+    let listText: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir-Black", size: 10)
-        return label
-    }()
-    let listWriter: UILabel = {
-        let label = UILabel()
-        label.tintColor = .black
+        label.numberOfLines = 5
+        label.textColor = .gray500
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
+    
+    let date: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray300
+        label.font = UIFont(name: "Avenir-Black", size: 10)
+        return label
+    }()
+    
+    let listWriter: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray300
+        label.font = UIFont(name: "Avenir-Black", size: 12)
+        return label
+    }()
+    
     lazy var deleteButton : UIButton = {
         let button = UIButton()
         button.setTitle("삭제", for: .normal)
