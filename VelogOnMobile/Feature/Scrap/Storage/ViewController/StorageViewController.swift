@@ -30,9 +30,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     override func bind(viewModel: StorageViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
-        
-        storageView.listTableView.dataSource = self
-        storageView.listTableView.delegate = self
+        setDelegate()
         
         storageView.storageHeadView.deleteFolderButton.rx.tap
             .subscribe(onNext: { [weak self] in
@@ -119,6 +117,11 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         headTitle: String
     ) {
         storageView.storageHeadView.titleLabel.text = headTitle
+    }
+    
+    private func setDelegate() {
+        storageView.listTableView.dataSource = self
+        storageView.listTableView.delegate = self
     }
     
     private func showChangeFolderNameToast(

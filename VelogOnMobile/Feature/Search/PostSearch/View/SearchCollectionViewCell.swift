@@ -16,9 +16,9 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Black", size: 12)
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .gray700
         label.layer.borderWidth = 1.0
-        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.borderColor = UIColor.gray200.cgColor
         label.layer.cornerRadius = 10.0
         label.layer.masksToBounds = true
         return label

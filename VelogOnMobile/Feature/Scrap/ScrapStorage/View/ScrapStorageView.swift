@@ -16,22 +16,22 @@ final class ScrapStorageView: BaseUIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Scrap"
-        label.textColor = .black
+        label.textColor = .gray700
         label.font = UIFont(name: "Avenir-Black", size: 24)
         return label
     }()
     
     private let vertiLineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lineColor
+        view.backgroundColor = .gray200
         return view
     }()
     
     let addFolderButton: UIButton = {
         let button = UIButton()
         button.setTitle("폴더 추가", for: .normal)
-        button.setTitleColor(UIColor.textGrayColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.setTitleColor(.gray300, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
         button.backgroundColor = .gray100
         return button
     }()

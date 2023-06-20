@@ -21,7 +21,7 @@ final class SearchViewController: BaseViewController {
         let label = UILabel()
         label.text = "최근 검색어"
         label.font = UIFont(name: "Avenir-Black", size: 20)
-        label.textColor = .black
+        label.textColor = .gray700
         label.textAlignment = .center
         return label
     }()
@@ -31,7 +31,7 @@ final class SearchViewController: BaseViewController {
         button.setTitle("모두 지우기", for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 12)
         button.backgroundColor = .white
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(.gray200, for: .normal)
         button.titleLabel?.textAlignment = NSTextAlignment.center
         return button
     }()
@@ -40,7 +40,7 @@ final class SearchViewController: BaseViewController {
         let label = UILabel()
         label.text = "인기 키워드"
         label.font = UIFont(name: "Avenir-Black", size: 16)
-        label.textColor = .black
+        label.textColor = .gray700
         label.textAlignment = .center
         return label
     }()

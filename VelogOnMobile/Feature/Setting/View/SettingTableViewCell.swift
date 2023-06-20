@@ -17,6 +17,7 @@ final class SettingTableViewCell: BaseTableViewCell {
     
     let buttonLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .gray700
         return label
     }()
     

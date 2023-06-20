@@ -20,7 +20,7 @@ final class ListView: BaseUIView {
     }()
     
     override func configUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .gray100
     }
     
     override func render() {

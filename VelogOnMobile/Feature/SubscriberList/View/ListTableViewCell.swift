@@ -24,7 +24,7 @@ final class ListTableViewCell: BaseTableViewCell {
     
     let listText: UILabel = {
         let label = UILabel()
-        label.tintColor = .black
+        label.tintColor = .gray700
         label.font = UIFont(name: "Avenir-Black", size: 16)
         return label
     }()
@@ -32,14 +32,13 @@ final class ListTableViewCell: BaseTableViewCell {
     lazy var unSubscribeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .brandColor
-        button.setTitle("구독취소", for: .normal)
+        button.setTitle("팔로우 취소", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 12)
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(unSubscribeButtonTapped), for: .touchUpInside)
         return button
     }()
-    
     
     override func render() {
         self.contentView.addSubviews(
@@ -63,8 +62,12 @@ final class ListTableViewCell: BaseTableViewCell {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(24)
-            $0.width.equalTo(70)
+            $0.width.equalTo(80)
         }
+    }
+    
+    override func configUI() {
+        self.backgroundColor = .gray100
     }
     
     @objc private func unSubscribeButtonTapped() {

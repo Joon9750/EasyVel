@@ -26,5 +26,6 @@ final class ListTableView: UITableView {
         showsVerticalScrollIndicator = true
         isHidden = true
         rowHeight = 62
+        backgroundColor = .gray100
     }
 }

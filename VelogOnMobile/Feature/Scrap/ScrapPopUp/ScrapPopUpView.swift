@@ -33,11 +33,7 @@ final class ScrapPopUpView: BaseUIView {
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
         button.backgroundColor = .white
         button.makeRoundBorder(cornerRadius: 5, borderWidth: 1, borderColor: .brandColor)
-        button.addTarget(
-            self,
-            action: #selector(scrapBookButtonTapped),
-            for: .touchUpInside
-        )
+        button.addTarget(self, action: #selector(scrapBookButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -48,11 +44,7 @@ final class ScrapPopUpView: BaseUIView {
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
         button.backgroundColor = .brandColor
         button.makeRoundBorder(cornerRadius: 5, borderWidth: 1, borderColor: .brandColor)
-        button.addTarget(
-            self,
-            action: #selector(folderButtonTapped),
-            for: .touchUpInside
-        )
+        button.addTarget(self, action: #selector(folderButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -61,9 +53,11 @@ final class ScrapPopUpView: BaseUIView {
     }
     
     override func configUI() {
-        self.addSubviews(ScrapLabel,
-                         moveToStorageButton,
-                         addToFolderButton)
+        self.addSubviews(
+            ScrapLabel,
+            moveToStorageButton,
+            addToFolderButton
+        )
         
         ScrapLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)

@@ -35,7 +35,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         let label = UILabel()
         label.text = TextLiterals.bottomSheetText
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .gray700
         label.font = UIFont(name: "Avenir-Black", size: 18)
         return label
     }()
@@ -43,7 +43,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
     let cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .darkGrayColor
+        button.tintColor = .gray700
         return button
     }()
     
@@ -60,7 +60,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         let label = UILabel()
         label.text = TextLiterals
             .makeNewFolderButtonText
-        label.textColor = .black
+        label.textColor = .gray300
         label.font = UIFont(name: "Avenir-Black", size: 15)
         return label
     }()
@@ -86,10 +86,10 @@ final class ScrapFolderBottomSheetView: BaseUIView {
     
     let addFolderFinishedButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor.ECECEC
+        button.backgroundColor = .gray100
         button.setTitle(TextLiterals.addFolderFinishedButtonTitleText, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
-        button.tintColor = UIColor.A4A4A4
+        button.tintColor = .gray300
         button.layer.cornerRadius = 5
         button.isHidden = true
         return button

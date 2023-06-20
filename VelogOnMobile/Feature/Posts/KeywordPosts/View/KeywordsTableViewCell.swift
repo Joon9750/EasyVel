@@ -16,16 +16,15 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     
     weak var cellDelegate: PostScrapButtonDidTapped?
     weak var scrapPostAddInFolderDelegate: ScrapPostAddInFolderProtocol?
-    
     var isTapped: Bool = false {
         didSet {
             updateButton()
         }
     }
     var cellIndex: Int?
-    
     var post: TagPostDtoList?
     var url = String()
+    
     let imgView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -33,35 +32,44 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         imageView.clipsToBounds = true
         return imageView
     }()
+    
+    let title: UILabel = {
+        let title = UILabel()
+        title.textColor = .gray700
+        title.font = UIFont(name: "Avenir-Black", size: 17)
+        return title
+    }()
+    
     let textView: UITextView = {
         let textView = UITextView()
-        textView.textColor = UIColor.darkGray
+        textView.textColor = .gray500
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.font = UIFont(name: "Avenir-Black", size: 12)
         return textView
     }()
-    let title: UILabel = {
-        let title = UILabel()
-        title.font = UIFont(name: "Avenir-Black", size: 17)
-        return title
-    }()
+
     let date: UILabel = {
         let label = UILabel()
+        label.textColor = .gray300
         label.font = UIFont(name: "Avenir-Black", size: 10)
         return label
     }()
+    
     let name: UILabel = {
         let label = UILabel()
+        label.textColor = .gray300
         label.font = UIFont(name: "Avenir-Black", size: 12)
         return label
     }()
+    
     let scrapButton : UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
         return button
     }()
+    
     let tagFristButton: PostTagUIButton = PostTagUIButton()
     let tagSecondButton: PostTagUIButton = PostTagUIButton()
     let tagThirdButton: PostTagUIButton = PostTagUIButton()
@@ -168,7 +176,11 @@ final class KeywordsTableViewCell: BaseTableViewCell {
                     title: scrapPost.title,
                     url: scrapPost.url
                 )
-                NotificationCenter.default.post(name: Notification.Name("ScrapButtonTappedNotification"), object: nil, userInfo: ["data": storagePost])
+                NotificationCenter.default.post(
+                    name: Notification.Name("ScrapButtonTappedNotification"),
+                    object: nil,
+                    userInfo: ["data": storagePost]
+                )
             }
         }
         guard let post = post else { return }

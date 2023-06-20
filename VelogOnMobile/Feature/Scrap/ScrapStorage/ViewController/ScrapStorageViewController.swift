@@ -78,7 +78,7 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
                 if alreadyHaveFolderName {
                     self?.showSubscibeToast(
                         toastText: "이미 존재하는 폴더명입니다.",
-                        toastBackgroundColer: .lightGray
+                        toastBackgroundColer: .gray300
                     )
                 }
             })
