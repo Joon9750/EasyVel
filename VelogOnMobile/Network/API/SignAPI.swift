@@ -11,7 +11,7 @@ import Moya
 
 enum SignAPI {
     case signIn(body: SignInRequest)
-    case signOut(body: SignOutRequest)
+    case signOut
     case signUp(body: SignUpRequest)
 }
 
@@ -38,8 +38,8 @@ extension SignAPI: BaseTargetType {
         switch self {
         case .signIn(let body):
             return .requestJSONEncodable(body)
-        case .signOut(let body):
-            return .requestJSONEncodable(body)
+        case .signOut:
+            return .requestPlain
         case .signUp(let body):
             return .requestJSONEncodable(body)
         }
