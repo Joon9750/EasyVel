@@ -131,7 +131,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         let toastLabel = UILabel()
         toastLabel.text = toastText
         toastLabel.textColor = .white
-        toastLabel.font = UIFont(name: "Avenir-Black", size: 16)
+        toastLabel.font = .body_2_M
         toastLabel.backgroundColor = toastBackgroundColer
         toastLabel.textAlignment = .center
         toastLabel.layer.cornerRadius = 24

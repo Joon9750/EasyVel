@@ -36,7 +36,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     let title: UILabel = {
         let title = UILabel()
         title.textColor = .gray700
-        title.font = UIFont(name: "Avenir-Black", size: 17)
+        title.font = .subhead
         return title
     }()
     
@@ -46,21 +46,21 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
-        textView.font = UIFont(name: "Avenir-Black", size: 12)
+        textView.font = .body_1_M
         return textView
     }()
 
     let date: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 10)
+        label.font = .caption_1_M
         return label
     }()
     
     let name: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 12)
+        label.font = .caption_1_M
         return label
     }()
     
@@ -122,28 +122,30 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         
         title.snp.makeConstraints {
             $0.top.equalTo(imgView.snp.bottom).offset(15)
-            $0.height.equalTo(45)
+            $0.height.equalTo(28)
             $0.leading.trailing.equalToSuperview().inset(15)
         }
         
         textView.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(5)
+            $0.top.equalTo(title.snp.bottom).offset(3)
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(60)
         }
         
         name.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(5)
             $0.height.equalTo(15)
             $0.width.equalTo(120)
             $0.leading.equalToSuperview().inset(15)
         }
+        contentView.bringSubviewToFront(name)
         
         date.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(10)
             $0.height.equalTo(15)
             $0.trailing.equalToSuperview().inset(15)
         }
+        contentView.bringSubviewToFront(date)
     }
     
     private func tagFristButtonIsNotHidden(buttonTitle: String) {

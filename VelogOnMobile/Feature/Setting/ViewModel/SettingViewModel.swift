@@ -21,6 +21,7 @@ final class SettingViewModel: BaseViewModel {
     
     let signOutCellDidTouched = PublishRelay<Bool>()
     let withdrawalCellDidTouched = PublishRelay<Bool>()
+    let didWithdrawalSuccess = PublishRelay<Bool>()
     
     // MARK: - init
     
@@ -39,12 +40,21 @@ final class SettingViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         withdrawalCellDidTouched
-            .subscribe(onNext: { [weak self] didTouched in
+            .flatMapLatest { [weak self] didTouched -> Observable<Bool> in
                 if didTouched {
                     let accessToken = self?.realm.getAccessToken()
                     let signOutRequest = SignOutRequest(accessToken: accessToken)
+                    return self?.signOut(body: signOutRequest) ?? Observable.just(false)
+                } else {
+                    return Observable.just(false)
+                }
+            }
+            .subscribe(onNext: { [weak self] didWithdrawalSuccess in
+                if didWithdrawalSuccess {
                     self?.realm.deleteAllRealmData()
-                    self?.signOut(body: signOutRequest)
+                    self?.didWithdrawalSuccess.accept(true)
+                } else {
+                    self?.didWithdrawalSuccess.accept(false)
                 }
             })
             .disposed(by: disposeBag)
@@ -56,17 +66,20 @@ final class SettingViewModel: BaseViewModel {
 extension SettingViewModel {
     func signOut(
         body: SignOutRequest
-    ) {
-        NetworkService.shared.signRepository.signOut(
-            body: body
-        ) { result in
-            switch result {
-            case .success(_): return
-            case .requestErr(let errResponse):
-                print(errResponse)
-                return
-            default: return
+    ) -> Observable<Bool> {
+        return Observable.create { observer in
+            NetworkService.shared.signRepository.signOut() { result in
+                switch result {
+                case .success(_):
+                    observer.onNext(true)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    observer.onError(errResponse as! Error)
+                default:
+                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+                }
             }
+            return Disposables.create()
         }
     }
 }

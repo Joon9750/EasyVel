@@ -76,7 +76,7 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] alreadyHaveFolderName in
                 if alreadyHaveFolderName {
-                    self?.showSubscibeToast(
+                    self?.showAlreadyHaveFolderToast(
                         toastText: "이미 존재하는 폴더명입니다.",
                         toastBackgroundColer: .gray300
                     )
@@ -104,14 +104,14 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
         present(alertController, animated: true)
     }
     
-    private func showSubscibeToast(
+    private func showAlreadyHaveFolderToast(
         toastText: String,
         toastBackgroundColer: UIColor
     ) {
         let toastLabel = UILabel()
         toastLabel.text = toastText
         toastLabel.textColor = .white
-        toastLabel.font = UIFont(name: "Avenir-Black", size: 16)
+        toastLabel.font = .body_2_M
         toastLabel.backgroundColor = toastBackgroundColer
         toastLabel.textAlignment = .center
         toastLabel.layer.cornerRadius = 24

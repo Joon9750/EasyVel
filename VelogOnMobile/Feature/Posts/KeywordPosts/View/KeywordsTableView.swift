@@ -23,7 +23,6 @@ final class KeywordsTableView: UITableView {
 
     private func setupTableView() {
         register(KeywordsTableViewCell.self, forCellReuseIdentifier: KeywordsTableViewCell.identifier)
-        
         showsVerticalScrollIndicator = true
     }
 }

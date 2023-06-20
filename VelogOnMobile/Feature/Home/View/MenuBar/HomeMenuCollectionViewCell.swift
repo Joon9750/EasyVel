@@ -32,7 +32,7 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = .avenir(ofSize: 16)
+        label.font = .body_2_M
         return label
     }()
     

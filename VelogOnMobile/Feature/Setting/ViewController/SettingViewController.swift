@@ -46,7 +46,16 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
     }
     
     private func bindOutput(_ viewModel: SettingViewModel) {
-        
+        viewModel.didWithdrawalSuccess
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] didSuccess in
+                if didSuccess {
+                    self?.pushToSignInView()
+                } else {
+                    // MARK: - 회원탈퇴 실패
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func presentAlert(
@@ -65,7 +74,6 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 self?.pushToSignInView()
             } else if touchedIndexPath == 1 {
                 self?.viewModel?.withdrawalCellDidTouched.accept(true)
-                self?.pushToSignInView()
             }
         })
         let actionCancel = UIAlertAction(title: "아니요", style: .cancel)

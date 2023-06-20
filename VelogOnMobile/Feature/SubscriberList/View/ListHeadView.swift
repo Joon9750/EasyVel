@@ -14,14 +14,14 @@ final class ListHeadView: BaseUIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.listTitleLabelText
-        label.font = UIFont(name: "Avenir-Black", size: 24)
+        label.font = .display
         return label
     }()
     
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "구독 중인 사용자"
-        label.font = UIFont(name: "Avenir-Black", size: 16)
+        label.text = "팔로우 중인 사람"
+        label.font = .body_2_B
         return label
     }()
     

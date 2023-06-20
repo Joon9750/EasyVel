@@ -17,7 +17,7 @@ final class ScrapStorageView: BaseUIView {
         let label = UILabel()
         label.text = "Scrap"
         label.textColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 24)
+        label.font = .display
         return label
     }()
     
@@ -31,7 +31,7 @@ final class ScrapStorageView: BaseUIView {
         let button = UIButton()
         button.setTitle("폴더 추가", for: .normal)
         button.setTitleColor(.gray300, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 16)
+        button.titleLabel?.font = .body_2_B
         button.backgroundColor = .gray100
         return button
     }()

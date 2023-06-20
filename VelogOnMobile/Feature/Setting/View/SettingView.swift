@@ -14,7 +14,7 @@ final class SettingView: BaseUIView {
     private let title: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.settingTitleLabelText
-        label.font = UIFont(name: "Avenir-Black", size: 24)
+        label.font = .display
         return label
     }()
     

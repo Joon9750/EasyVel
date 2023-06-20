@@ -43,7 +43,7 @@ final class HomeViewController: BaseViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.homeViewControllerHeadTitle
-        label.font = .avenir(ofSize: 24)
+        label.font = .display
         return label
     }()
     

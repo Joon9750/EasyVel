@@ -31,10 +31,9 @@ final class DefaultSignRepository: BaseRepository, SignRepository {
     }
     
     func signOut(
-        body: SignOutRequest,
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
-        provider.request(.signOut(body: body)) { result in
+        provider.request(.signOut) { result in
             switch result {
             case.success(let response):
                 let statusCode = response.statusCode

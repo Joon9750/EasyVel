@@ -29,7 +29,7 @@ final class StorageTableViewCell: BaseTableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.tintColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 15)
+        label.font = .subhead
         return label
     }()
     
@@ -37,21 +37,14 @@ final class StorageTableViewCell: BaseTableViewCell {
         let label = UILabel()
         label.numberOfLines = 5
         label.textColor = .gray500
-        label.font = UIFont(name: "Avenir-Black", size: 12)
-        return label
-    }()
-    
-    let date: UILabel = {
-        let label = UILabel()
-        label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 10)
+        label.font = .body_1_M
         return label
     }()
     
     let listWriter: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 12)
+        label.font = .caption_1_M
         return label
     }()
     
@@ -59,7 +52,7 @@ final class StorageTableViewCell: BaseTableViewCell {
         let button = UIButton()
         button.setTitle("삭제", for: .normal)
         button.setTitleColor(.red, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
+        button.titleLabel?.font = .caption_1_B
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
@@ -67,7 +60,6 @@ final class StorageTableViewCell: BaseTableViewCell {
     override func render() {
         self.contentView.addSubviews(
             imgView,
-            date,
             listWriter,
             listTitle,
             listText,
@@ -89,28 +81,23 @@ final class StorageTableViewCell: BaseTableViewCell {
         
         listTitle.snp.makeConstraints {
             $0.top.equalTo(imgView.snp.bottom).offset(15)
-            $0.height.equalTo(45)
+            $0.height.equalTo(28)
             $0.leading.trailing.equalToSuperview().inset(15)
         }
         
         listText.snp.makeConstraints {
-            $0.top.equalTo(listTitle.snp.bottom).offset(5)
+            $0.top.equalTo(listTitle.snp.bottom).offset(3)
             $0.leading.trailing.equalToSuperview().inset(15)
             $0.height.equalTo(60)
         }
         
         listWriter.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(5)
             $0.height.equalTo(15)
             $0.width.equalTo(120)
             $0.leading.equalToSuperview().inset(15)
         }
-        
-        date.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(10)
-            $0.height.equalTo(15)
-            $0.trailing.equalToSuperview().inset(15)
-        }
+        contentView.bringSubviewToFront(listWriter)
     }
     
     override func configUI() {

@@ -15,14 +15,14 @@ final class SearchTableViewCell: BaseTableViewCell {
     let numLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 16)
+        label.font = .body_1_B
         return label
     }()
     
     private let keywordLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 16)
+        label.font = .body_1_M
         return label
     }()
     

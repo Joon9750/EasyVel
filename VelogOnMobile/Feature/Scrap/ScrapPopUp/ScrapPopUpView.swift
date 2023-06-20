@@ -22,7 +22,7 @@ final class ScrapPopUpView: BaseUIView {
         let label = UILabel()
         label.text = "스크랩했습니다."
         label.textColor = .black
-        label.font = UIFont(name: "Avenir-Black", size: 15)
+        label.font = .body_2_M
         return label
     }()
     
@@ -30,7 +30,7 @@ final class ScrapPopUpView: BaseUIView {
         let button = UIButton()
         button.setTitle("보러가기", for: .normal)
         button.setTitleColor(UIColor.brandColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.titleLabel?.font = .body_1_B
         button.backgroundColor = .white
         button.makeRoundBorder(cornerRadius: 5, borderWidth: 1, borderColor: .brandColor)
         button.addTarget(self, action: #selector(scrapBookButtonTapped), for: .touchUpInside)
@@ -41,7 +41,7 @@ final class ScrapPopUpView: BaseUIView {
         let button = UIButton()
         button.setTitle("폴더에 담기", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.titleLabel?.font = .body_1_B
         button.backgroundColor = .brandColor
         button.makeRoundBorder(cornerRadius: 5, borderWidth: 1, borderColor: .brandColor)
         button.addTarget(self, action: #selector(folderButtonTapped), for: .touchUpInside)
