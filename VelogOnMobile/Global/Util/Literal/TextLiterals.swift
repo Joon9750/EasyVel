@@ -90,4 +90,10 @@ enum TextLiterals {
     static let makeNewFolderButtonText: String = "새 폴더 만들기"
     static let newFolderAddTextFieldPlaceholder: String = "폴더명을 입력하세요."
     static let addFolderFinishedButtonTitleText: String = "완료"
+    
+    // MARK: - navigation bar
+    
+    static let addSubscriberToastText:String = "팔로우 했습니다."
+    static let deleteSubscriberToastText: String = "팔로우 취소 했습니다."
+    static let navigationBarSubscribeButtonText: String = "팔로우"
 }

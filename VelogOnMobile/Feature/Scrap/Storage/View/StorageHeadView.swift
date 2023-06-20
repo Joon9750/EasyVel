@@ -91,6 +91,6 @@ final class StorageHeadView: BaseUIView {
     }
     
     override func configUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .gray100
     }
 }

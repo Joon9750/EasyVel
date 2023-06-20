@@ -86,7 +86,7 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     private func presentUnSubscriberAlert(
         unSubscriberName: String
     ) {
-        let alertController = UIAlertController(title: "구독 취소", message: "정말 구독을 취소하시겠습니까?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "팔로우 취소", message: "정말 팔로우를 취소하시겠습니까?", preferredStyle: .alert)
         let actionDefault = UIAlertAction(title: "네", style: .destructive, handler: { [weak self] _ in
             self?.viewModel?.subscriberDeleteButtonDidTap.accept(unSubscriberName)
         })

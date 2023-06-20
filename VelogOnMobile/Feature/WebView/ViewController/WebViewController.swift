@@ -30,8 +30,8 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     }()
     private let subscriberButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
-        button.setTitle("구독", for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 32)
+        button.setTitle(TextLiterals.navigationBarSubscribeButtonText, for: .normal)
         button.setTitleColor(UIColor.brandColor, for: .normal)
         button.titleLabel?.font = .body_1_B
         button.layer.borderWidth = 2
@@ -115,7 +115,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     self?.subscriberButton.setTitleColor(UIColor.white, for: .normal)
                     self?.subscriberButton.backgroundColor = .brandColor
                     self?.showSubscibeToast(
-                        toastText: "구독 했습니다.",
+                        toastText: TextLiterals.addSubscriberToastText,
                         toastBackgroundColer: .brandColor
                     )
                     self?.viewModel?.didSubscribe.accept(true)
@@ -123,7 +123,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     self?.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
                     self?.subscriberButton.backgroundColor = .white
                     self?.showSubscibeToast(
-                        toastText: "구독 취소했습니다.",
+                        toastText: TextLiterals.deleteSubscriberToastText,
                         toastBackgroundColer: .gray300
                     )
                     self?.viewModel?.didSubscribe.accept(false)
