@@ -160,9 +160,10 @@ extension HomeMenuBar: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 
 extension HomeMenuBar: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(#function) 눌림!!!! \(indexPath.row)")
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         delegate?.menuBar(didSelectItemAt: indexPath)
+        return indexPath.section != 0
     }
 }
 

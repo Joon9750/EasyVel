@@ -20,8 +20,6 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    static var cellId = "HomeMenuCollectionViewCell"
-    
     var title: String? {
         didSet {
             titleLabel.text = title

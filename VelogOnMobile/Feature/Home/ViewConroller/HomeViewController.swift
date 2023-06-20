@@ -167,7 +167,16 @@ final class HomeViewController: BaseViewController {
 
 extension HomeViewController: HomeMenuBarDelegate {
     func menuBar(didSelectItemAt indexPath: IndexPath) {
-        currentPage = indexPath.row
+        switch indexPath.section {
+        case 0:
+            let tagSearchVC = TagSearchViewController(viewModel: TagSearchViewModel())
+            navigationController?.pushViewController(tagSearchVC, animated: true)
+        case 1:
+            currentPage = indexPath.item
+        default:
+            return
+        }
+        
     }
 }
 
