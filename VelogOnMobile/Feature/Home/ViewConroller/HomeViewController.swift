@@ -88,7 +88,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func style() {
-        view.backgroundColor = .systemGray2
+        view.backgroundColor = .gray100
     }
     
     private func hierarchy() {
