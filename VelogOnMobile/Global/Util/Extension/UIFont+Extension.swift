@@ -15,7 +15,7 @@ extension UIFont {
         return UIFont(name: "Pretendard-Bold", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .bold)
     }
     static var subhead: UIFont {
-        return UIFont(name: "Pretendard-Medium", size: 18) ?? UIFont.systemFont(ofSize: 18, weight: .medium)
+        return UIFont(name: "Pretendard-Bold", size: 18) ?? UIFont.systemFont(ofSize: 18, weight: .medium)
     }
     static var body_2_B: UIFont {
         return UIFont(name: "Pretendard-Bold", size: 16) ?? UIFont.systemFont(ofSize: 16, weight: .bold)
