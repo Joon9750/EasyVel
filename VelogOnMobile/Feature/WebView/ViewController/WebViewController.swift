@@ -33,7 +33,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 32)
         button.setTitle("구독", for: .normal)
         button.setTitleColor(UIColor.brandColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 14)
+        button.titleLabel?.font = .body_1_B
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.brandColor.cgColor
         button.layer.cornerRadius = 8
@@ -235,7 +235,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         let toastLabel = UILabel()
         toastLabel.text = toastText
         toastLabel.textColor = .white
-        toastLabel.font = UIFont(name: "Avenir-Black", size: 16)
+        toastLabel.font = .body_2_B
         toastLabel.backgroundColor = toastBackgroundColer
         toastLabel.textAlignment = .center
         toastLabel.layer.cornerRadius = 24

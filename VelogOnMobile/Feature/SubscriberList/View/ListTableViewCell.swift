@@ -25,7 +25,7 @@ final class ListTableViewCell: BaseTableViewCell {
     let listText: UILabel = {
         let label = UILabel()
         label.tintColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 16)
+        label.font = .body_2_M
         return label
     }()
     
@@ -34,7 +34,7 @@ final class ListTableViewCell: BaseTableViewCell {
         button.backgroundColor = .brandColor
         button.setTitle("팔로우 취소", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 12)
+        button.titleLabel?.font = .caption_1_B
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(unSubscribeButtonTapped), for: .touchUpInside)
         return button

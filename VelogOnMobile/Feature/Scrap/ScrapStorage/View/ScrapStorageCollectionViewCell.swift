@@ -23,14 +23,14 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
     let folderNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 15)
+        label.font = .body_2_M
         return label
     }()
     
     private let postCount: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 13)
+        label.font = .caption_1_M
         return label
     }()
     

@@ -69,7 +69,7 @@ enum TextLiterals {
     static let listActionSheetCancelText: String = "Cancel"
     static let listAlertControllerTitleText: String = "추가"
     static let listAlertControllerMessageText: String = "추가할 기준을 선택해주세요."
-    static let listTitleLabelText: String = "Subscribe"
+    static let listTitleLabelText: String = "Follow"
     
     // MARK: - setting
     

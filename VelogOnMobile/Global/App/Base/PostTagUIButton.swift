@@ -24,7 +24,7 @@ class PostTagUIButton: UIButton {
         self.backgroundColor = .brandColor
         self.setTitleColor(.white, for: .normal)
         self.layer.cornerRadius = 8
-        self.titleLabel?.font = UIFont(name: "Avenir-Black", size: 12)
+        self.titleLabel?.font = .caption_1_M
         self.contentEdgeInsets = UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)
         self.isHidden = true
     }

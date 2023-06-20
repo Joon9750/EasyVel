@@ -29,7 +29,7 @@ final class StorageTableViewCell: BaseTableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.tintColor = .gray700
-        label.font = UIFont(name: "Avenir-Black", size: 15)
+        label.font = .headline
         return label
     }()
     
@@ -37,21 +37,21 @@ final class StorageTableViewCell: BaseTableViewCell {
         let label = UILabel()
         label.numberOfLines = 5
         label.textColor = .gray500
-        label.font = UIFont(name: "Avenir-Black", size: 12)
+        label.font = .body_1_M
         return label
     }()
     
     let date: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 10)
+        label.font = .caption_1_M
         return label
     }()
     
     let listWriter: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 12)
+        label.font = .caption_1_M
         return label
     }()
     
@@ -59,7 +59,7 @@ final class StorageTableViewCell: BaseTableViewCell {
         let button = UIButton()
         button.setTitle("삭제", for: .normal)
         button.setTitleColor(.red, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
+        button.titleLabel?.font = .body_2_B
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()

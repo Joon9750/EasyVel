@@ -36,7 +36,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     let title: UILabel = {
         let title = UILabel()
         title.textColor = .gray700
-        title.font = UIFont(name: "Avenir-Black", size: 17)
+        title.font = .headline
         return title
     }()
     
@@ -46,21 +46,21 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
-        textView.font = UIFont(name: "Avenir-Black", size: 12)
+        textView.font = .body_1_M
         return textView
     }()
 
     let date: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 10)
+        label.font = .caption_1_M
         return label
     }()
     
     let name: UILabel = {
         let label = UILabel()
         label.textColor = .gray300
-        label.font = UIFont(name: "Avenir-Black", size: 12)
+        label.font = .caption_1_M
         return label
     }()
     

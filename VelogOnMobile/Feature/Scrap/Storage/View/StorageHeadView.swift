@@ -15,7 +15,7 @@ final class StorageHeadView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Avenir-Black", size: 16)
+        label.font = .body_2_B
         label.textColor = .gray700
         return label
     }()
@@ -36,7 +36,7 @@ final class StorageHeadView: BaseUIView {
         let button = UIButton()
         button.setTitle("폴더 삭제", for: .normal)
         button.setTitleColor(.gray300, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.titleLabel?.font = .body_2_B
         button.backgroundColor = .gray100
         return button
     }()
@@ -45,7 +45,7 @@ final class StorageHeadView: BaseUIView {
         let button = UIButton()
         button.setTitle("이름 변경", for: .normal)
         button.setTitleColor(.gray300, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 15)
+        button.titleLabel?.font = .body_2_B
         button.backgroundColor = .gray100
         return button
     }()
