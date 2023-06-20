@@ -89,7 +89,7 @@ final class ScrapFolderBottomSheetView: BaseUIView {
         button.backgroundColor = .gray100
         button.setTitle(TextLiterals.addFolderFinishedButtonTitleText, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
-        button.tintColor = .gray300
+        button.setTitleColor(.gray300, for: .normal)
         button.layer.cornerRadius = 5
         button.isHidden = true
         return button
@@ -174,9 +174,9 @@ final class ScrapFolderBottomSheetView: BaseUIView {
     }
     
     private func updateAddFolderFinishedButton() {
-        let addFolderFinishedButtonBackgroundColor: UIColor = isStartWriting ? UIColor.brandColor : UIColor.ECECEC
-        let addFolderFinishedButtonTintColor: UIColor = isStartWriting ? .white : UIColor.A4A4A4
+        let addFolderFinishedButtonBackgroundColor: UIColor = isStartWriting ? .brandColor : .gray100
+        let addFolderFinishedButtonTintColor: UIColor = isStartWriting ? .white : .gray300
         addFolderFinishedButton.backgroundColor = addFolderFinishedButtonBackgroundColor
-        addFolderFinishedButton.tintColor = addFolderFinishedButtonTintColor
+        addFolderFinishedButton.setTitleColor(addFolderFinishedButtonTintColor, for: .normal)
     }
 }

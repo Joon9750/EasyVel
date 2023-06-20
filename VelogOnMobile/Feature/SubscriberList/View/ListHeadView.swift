@@ -27,7 +27,7 @@ final class ListHeadView: BaseUIView {
     
     private let lineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lineColor
+        view.backgroundColor = .gray200
         return view
     }()
     
