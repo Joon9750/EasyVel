@@ -23,6 +23,7 @@ enum ImageLiterals {
     static var plusFolder: UIImage { .load(name: "plusFolder") }
     static var activePlusFolder: UIImage { .load(name: "activePlusFolder") }
     static var scrapFolderIcon: UIImage { .load(name: "scrapFolderIcon") }
+    static var plusIcon: UIImage { .load(name: "plus") }
     
     // MARK: - Exception
     

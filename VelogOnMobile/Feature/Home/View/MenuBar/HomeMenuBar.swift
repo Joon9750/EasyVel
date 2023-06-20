@@ -35,6 +35,12 @@ final class HomeMenuBar: UIView {
     
     private var underLine: UIView = {
         let view = UIView()
+        view.backgroundColor = .gray200
+        return view
+    }()
+    
+    private var tintLine: UIView = {
+        let view = UIView()
         view.backgroundColor = .brandColor
         return view
     }()
@@ -68,12 +74,20 @@ private extension HomeMenuBar {
     func hierarchy() {
         addSubview(collectionView)
         addSubview(underLine)
+        addSubview(tintLine)
     }
     
     func layout() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        underLine.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+    
     }
     
     func setDelegate() {
@@ -88,12 +102,12 @@ private extension HomeMenuBar {
     func updateBar(from isSelected: Int?) {
         guard let isSelected else { return }
         
-        collectionView.selectItem(at: IndexPath(item: isSelected, section: 0),
+        collectionView.selectItem(at: IndexPath(item: isSelected, section: 1),
                                   animated: true,
                                   scrollPosition: .centeredHorizontally)
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 0)) as? HomeMenuCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 1)) as? HomeMenuCollectionViewCell else { return }
         
-        underLine.snp.remakeConstraints { make in
+        tintLine.snp.remakeConstraints { make in
             make.bottom.equalTo(collectionView.snp.bottom)
             make.leading.equalTo(cell.snp.leading)
             make.trailing.equalTo(cell.snp.trailing)
@@ -110,14 +124,36 @@ private extension HomeMenuBar {
 //MARK: - UICollectionViewDataSource
 
 extension HomeMenuBar: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return labels.count
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return labels.count
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.title = labels[indexPath.item]
-        return cell
+        
+        switch indexPath.section {
+        case 0:
+            let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.setPlusMenu()
+            return cell
+        case 1:
+            let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.dataBind(tag: labels[indexPath.item])
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
 }
 
@@ -136,9 +172,17 @@ extension HomeMenuBar: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cell = HomeMenuCollectionViewCell()
-        cell.title = labels[indexPath.item]
-        return cell.sizeFittingWith(cellHeight: 40)
+        switch indexPath.section {
+        case 0:
+            return CGSize(width: 65, height: 40)
+        case 1:
+            let cell = HomeMenuCollectionViewCell()
+            cell.dataBind(tag: labels[indexPath.item])
+            return cell.sizeFittingWith(cellHeight: 40)
+        default:
+            return .zero
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
