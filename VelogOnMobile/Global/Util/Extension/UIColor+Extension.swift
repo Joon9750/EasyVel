@@ -11,6 +11,27 @@ extension UIColor {
     static var brandColor: UIColor {
         return UIColor(hex: "#1EC897")
     }
+    
+    static var white: UIColor {
+        return UIColor(hex: "#FFFFFF")
+    }
+    
+    static var gray100: UIColor {
+        return UIColor(hex: "#F8F9FA")
+    }
+    static var gray200: UIColor {
+        return UIColor(hex: "#C9CCD0")
+    }
+    static var gray300: UIColor {
+        return UIColor(hex: "#868E96")
+    }
+    static var gray500: UIColor {
+        return UIColor(hex: "#495057")
+    }
+    static var gray700: UIColor {
+        return UIColor(hex: "#212529")
+    }
+    
     static var grayColor: UIColor {
         return UIColor(hex: "#EEEEEE")
     }
@@ -31,15 +52,6 @@ extension UIColor {
     }
     static var A4A4A4: UIColor {
         return UIColor(hex: "#A4A4A4")
-    }
-    static var gray100: UIColor {
-        return UIColor(hex: "#F8F9FA")
-    }
-    static var gray200: UIColor {
-        return UIColor(hex: "#C9CCD0")
-    }
-    static var gray300: UIColor {
-        return UIColor(hex: "#868E96")
     }
 }
 
