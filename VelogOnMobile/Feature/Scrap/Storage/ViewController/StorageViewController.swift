@@ -47,7 +47,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         storageView.listTableView.rx.contentOffset
             .subscribe(onNext: { [weak self] contentOffset in
                 let scrollY = contentOffset.y
-                let isAllScrapFolder = self?.viewModel?.folderName == "모든 게시글" ? true : false
+                let isAllScrapFolder = self?.viewModel?.folderName == TextLiterals.allPostsScrapFolderText ? true : false
                 if scrollY > 5 && self?.storageTableViewDidScroll == false {
                     self?.storageView.storageTableViewStartScroll()
                     self?.storageTableViewDidScroll.toggle()
@@ -84,7 +84,7 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
         viewModel.folderNameOutput
             .asDriver(onErrorJustReturn: String())
             .drive(onNext: { [weak self] folderName in
-                if folderName == "모든 게시글" {
+                if folderName == TextLiterals.allPostsScrapFolderText {
                     self?.storageView.storageHeadView.deleteFolderButton.isHidden = true
                     self?.storageView.storageHeadView.changeFolderNameButton.isHidden = true
                 } else {
@@ -100,12 +100,12 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                 if isUniqueName {
                     self?.storageView.storageHeadView.titleLabel.text = newFolderName
                     self?.showChangeFolderNameToast(
-                        toastText: "폴더명이 변경되었습니다.",
+                        toastText: TextLiterals.folderNameChangeSuccessToastText,
                         toastBackgroundColer: .brandColor
                     )
                 } else {
                     self?.showChangeFolderNameToast(
-                        toastText: "이미 있는 폴더명입니다.",
+                        toastText: TextLiterals.alreadyHaveFolderToastText,
                         toastBackgroundColer: .gray300
                     )
                 }
@@ -156,15 +156,21 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private func presentDeleteFolderActionSheet() {
         let actionSheetController = UIAlertController(
-            title: "폴더 삭제",
-            message: "선택하신 폴더를 정말 삭제하시겠습니까?\n스크랩한 콘텐츠가 모두 삭제됩니다.",
+            title: TextLiterals.deleteFolderActionSheetTitle,
+            message: TextLiterals.deleteFolderActionSheetMessage,
             preferredStyle: .actionSheet
         )
-        let actionDefault = UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
-            self?.viewModel?.deleteFolderButtonDidTap.accept(true)
-            self?.navigationController?.popViewController(animated: true)
-        })
-        let actionCancel = UIAlertAction(title: "취소", style: .cancel)
+        let actionDefault = UIAlertAction(
+            title: TextLiterals.deleteFolderActionSheetOkActionText,
+            style: .destructive,
+            handler: { [weak self] _ in
+                self?.viewModel?.deleteFolderButtonDidTap.accept(true)
+                self?.navigationController?.popViewController(animated: true)
+            })
+        let actionCancel = UIAlertAction(
+            title: TextLiterals.deleteFolderActionSheetCancelActionText,
+            style: .cancel
+        )
         actionSheetController.addAction(actionDefault)
         actionSheetController.addAction(actionCancel)
         self.present(actionSheetController, animated: true)
@@ -172,12 +178,15 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     
     private func changeFolderNameAlert() {
         let alertController = UIAlertController(
-            title: "폴더 이름 변경",
+            title: TextLiterals.folderNameChangeToastTitle,
             message: nil,
             preferredStyle: .alert
         )
         alertController.addTextField()
-        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] action in
+        let okAction = UIAlertAction(
+            title: TextLiterals.folderNameChangeToastOkActionText,
+            style: .default
+        ) { [weak self] action in
             if let folderTextField = alertController.textFields?.first,
                let changeFolderName = folderTextField.text,
                let stoagePosts = self?.storagePosts {
@@ -186,7 +195,10 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                 )
             }
         }
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        let cancelAction = UIAlertAction(
+            title: TextLiterals.folderNameChangeToastCancelActionText,
+            style: .cancel
+        )
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         present(alertController, animated: true)

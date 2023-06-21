@@ -8,6 +8,7 @@
 import UIKit
 
 final class SettingTableView: UITableView {
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         setupTableView()
@@ -20,21 +21,10 @@ final class SettingTableView: UITableView {
     private func setupTableView() {
         register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.cellId)
         dataSource = self
-        delegate = self
         separatorStyle = .singleLine
         showsVerticalScrollIndicator = false
         backgroundColor = .white
         isScrollEnabled = false
-    }
-}
-
-extension SettingTableView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0: print("로그아웃")
-        case 1: print("회원탈퇴")
-        default: return
-        }
     }
 }
 

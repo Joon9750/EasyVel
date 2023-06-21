@@ -168,7 +168,8 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         scrapButton.setImage(image, for: .normal)
     }
     
-    @objc func scrapButtonTapped(_ sender: UIButton) {
+    @objc
+    func scrapButtonTapped(_ sender: UIButton) {
         if !(isTapped) {
             if let scrapPost = post {
                 let storagePost = StoragePost(

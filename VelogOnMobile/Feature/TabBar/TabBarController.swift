@@ -57,8 +57,18 @@ final class TabBarController: UITabBarController {
     }
     
     private func setNotificationCenter() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name("ScrapButtonTappedNotification"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(scrapBookButtonTapped), name: Notification.Name("MoveToScrapStorage"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNotification(_:)),
+            name: Notification.Name("ScrapButtonTappedNotification"),
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrapBookButtonTapped),
+            name: Notification.Name("MoveToScrapStorage"),
+            object: nil
+        )
     }
     
     @objc
@@ -66,12 +76,15 @@ final class TabBarController: UITabBarController {
         if let data = notification.userInfo?["data"] as? StoragePost {
             scrapPopUpView.getPostData(post: data)
         }
-        scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview() }
+        scrapPopUpView.snp.updateConstraints {
+            $0.bottom.equalToSuperview()
+        }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         } completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                self.scrapPopUpView.snp.updateConstraints { $0.bottom.equalToSuperview().offset(83)
+                self.scrapPopUpView.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().offset(83)
                 }
                 UIView.animate(withDuration: 0.5) {
                     self.view.layoutIfNeeded()

@@ -20,7 +20,7 @@ final class ListHeadView: BaseUIView {
     
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "팔로우 중인 사람"
+        label.text = TextLiterals.subscriberListViewSubTitleLabel
         label.font = .body_2_B
         return label
     }()

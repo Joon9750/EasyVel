@@ -39,7 +39,7 @@ final class WebViewModel: BaseViewModel {
     private func makeOutput() {
         viewDidLoad
             .subscribe(onNext: { [weak self] in
-                let urlString = "https://velog.io" + (self?.urlString ?? "")
+                let urlString = TextLiterals.velogBaseURL + (self?.urlString ?? "")
                 guard let encodedStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
                 let PostURL = URL(string: encodedStr)!
                 self?.urlRequestOutput.accept(URLRequest(url: PostURL))
@@ -102,7 +102,7 @@ extension WebViewModel {
         name: String
     ) {
         NetworkService.shared.subscriberRepository.addSubscriber(
-            fcmToken: "FCMToken",
+            fcmToken: TextLiterals.noneText,
             name: name
         ) { result in
             switch result {

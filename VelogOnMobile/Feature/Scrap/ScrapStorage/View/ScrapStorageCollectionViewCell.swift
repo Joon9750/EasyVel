@@ -70,6 +70,6 @@ final class ScrapStorageCollectionViewCell: BaseCollectionViewCell {
         folderPostsCount: Int
     ) {
         folderNameLabel.text = folderData.folderName
-        postCount.text = String(folderPostsCount) + "개"
+        postCount.text = String(folderPostsCount) + TextLiterals.postInFolderCountText
     }
 }

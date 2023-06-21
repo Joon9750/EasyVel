@@ -15,11 +15,12 @@ final class SearchViewController: BaseViewController {
     private let flowLayout = UICollectionViewFlowLayout()
 
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    
     private let popularSearchTagTableView = UITableView()
     
     private let recentLabel: UILabel = {
         let label = UILabel()
-        label.text = "최근 검색어"
+        label.text = TextLiterals.postSearchViewRecentLabel
         label.font = .headline
         label.textColor = .gray700
         label.textAlignment = .center
@@ -28,7 +29,7 @@ final class SearchViewController: BaseViewController {
     
     private let deleteButton: UIButton = {
         let button = UIButton()
-        button.setTitle("모두 지우기", for: .normal)
+        button.setTitle(TextLiterals.postSearchViewDeleteAllRecentDataButtonText, for: .normal)
         button.titleLabel?.font = .caption_1_M
         button.backgroundColor = .white
         button.setTitleColor(.gray200, for: .normal)
@@ -38,7 +39,7 @@ final class SearchViewController: BaseViewController {
     
     private let trendLabel: UILabel = {
         let label = UILabel()
-        label.text = "인기 키워드"
+        label.text = TextLiterals.postSearchViewTrendLabel
         label.font = .body_2_B
         label.textColor = .gray700
         label.textAlignment = .center
@@ -60,7 +61,7 @@ final class SearchViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
-        searchBar.placeholder = "통합검색"
+        searchBar.placeholder = TextLiterals.postSearchViewSearchBarPlaceholderText
         self.navigationItem.titleView = searchBar
     }
     
