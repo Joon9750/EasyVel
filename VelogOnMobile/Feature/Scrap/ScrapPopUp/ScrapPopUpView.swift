@@ -20,7 +20,7 @@ final class ScrapPopUpView: BaseUIView {
     
     private let ScrapLabel: UILabel = {
         let label = UILabel()
-        label.text = "스크랩했습니다."
+        label.text = TextLiterals.scrapPopUpViewLeftText
         label.textColor = .black
         label.font = .body_2_M
         return label
@@ -28,7 +28,7 @@ final class ScrapPopUpView: BaseUIView {
     
     lazy var moveToStorageButton: UIButton = {
         let button = UIButton()
-        button.setTitle("보러가기", for: .normal)
+        button.setTitle(TextLiterals.moveToScrapStorageButtonText, for: .normal)
         button.setTitleColor(UIColor.brandColor, for: .normal)
         button.titleLabel?.font = .body_1_B
         button.backgroundColor = .white
@@ -39,7 +39,7 @@ final class ScrapPopUpView: BaseUIView {
     
     lazy var addToFolderButton: UIButton = {
         let button = UIButton()
-        button.setTitle("폴더에 담기", for: .normal)
+        button.setTitle(TextLiterals.presentScrapFolderBottomSheetButtonText, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = .body_1_B
         button.backgroundColor = .brandColor

@@ -50,7 +50,7 @@ final class StorageTableViewCell: BaseTableViewCell {
     
     lazy var deleteButton : UIButton = {
         let button = UIButton()
-        button.setTitle("삭제", for: .normal)
+        button.setTitle(TextLiterals.storageViewPostDeleteButtonText, for: .normal)
         button.setTitleColor(.red, for: .normal)
         button.titleLabel?.font = .caption_1_B
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)

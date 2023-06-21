@@ -34,7 +34,7 @@ final class StorageHeadView: BaseUIView {
     
     let deleteFolderButton : UIButton = {
         let button = UIButton()
-        button.setTitle("폴더 삭제", for: .normal)
+        button.setTitle(TextLiterals.storageViewDeleteFolderButtonText, for: .normal)
         button.setTitleColor(.gray300, for: .normal)
         button.titleLabel?.font = .body_2_B
         button.backgroundColor = .gray100
@@ -43,7 +43,7 @@ final class StorageHeadView: BaseUIView {
 
     let changeFolderNameButton: UIButton = {
         let button = UIButton()
-        button.setTitle("이름 변경", for: .normal)
+        button.setTitle(TextLiterals.storageViewChangeFolderNameButtonText, for: .normal)
         button.setTitleColor(.gray300, for: .normal)
         button.titleLabel?.font = .body_2_B
         button.backgroundColor = .gray100

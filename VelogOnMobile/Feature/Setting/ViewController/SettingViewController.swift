@@ -30,14 +30,14 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
             .subscribe(onNext: { [weak self] indexPath in
                 if indexPath.row == 0 {
                     self?.presentAlert(
-                        title: "로그아웃",
-                        message: "정말 로그아웃 하시겠습니까?",
+                        title: TextLiterals.signOutAlertTitle,
+                        message: TextLiterals.signOutAlertMessage,
                         touchedIndexPath: indexPath.row
                     )
                 } else if indexPath.row == 1 {
                     self?.presentAlert(
-                        title: "회원탈퇴",
-                        message: "정말 회원탈퇴 하시겠습니까?\n복구하실 수 없습니다.",
+                        title: TextLiterals.withdrawalAlertTitle,
+                        message: TextLiterals.withdrawalAlertMessage,
                         touchedIndexPath: indexPath.row
                     )
                 }
@@ -68,15 +68,21 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
             message: message,
             preferredStyle: .alert
         )
-        let actionDefault = UIAlertAction(title: "네", style: .destructive, handler: { [weak self] _ in
-            if touchedIndexPath == 0 {
-                self?.viewModel?.signOutCellDidTouched.accept(true)
-                self?.pushToSignInView()
-            } else if touchedIndexPath == 1 {
-                self?.viewModel?.withdrawalCellDidTouched.accept(true)
-            }
-        })
-        let actionCancel = UIAlertAction(title: "아니요", style: .cancel)
+        let actionDefault = UIAlertAction(
+            title: TextLiterals.settingAlertOkActionText,
+            style: .destructive,
+            handler: { [weak self] _ in
+                if touchedIndexPath == 0 {
+                    self?.viewModel?.signOutCellDidTouched.accept(true)
+                    self?.pushToSignInView()
+                } else if touchedIndexPath == 1 {
+                    self?.viewModel?.withdrawalCellDidTouched.accept(true)
+                }
+            })
+        let actionCancel = UIAlertAction(
+            title: TextLiterals.settingAlertCancelActionText,
+            style: .cancel
+        )
         alertController.addAction(actionDefault)
         alertController.addAction(actionCancel)
         self.present(alertController, animated: true)

@@ -86,11 +86,21 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     private func presentUnSubscriberAlert(
         unSubscriberName: String
     ) {
-        let alertController = UIAlertController(title: "팔로우 취소", message: "정말 팔로우를 취소하시겠습니까?", preferredStyle: .alert)
-        let actionDefault = UIAlertAction(title: "네", style: .destructive, handler: { [weak self] _ in
-            self?.viewModel?.subscriberDeleteButtonDidTap.accept(unSubscriberName)
-        })
-        let actionCancel = UIAlertAction(title: "아니요", style: .cancel)
+        let alertController = UIAlertController(
+            title: TextLiterals.unSubscriberAlertTitle,
+            message: TextLiterals.unSubscriberAlertMessage,
+            preferredStyle: .alert
+        )
+        let actionDefault = UIAlertAction(
+            title: TextLiterals.unSubscriberAlertOkActionText,
+            style: .destructive,
+            handler: { [weak self] _ in
+                self?.viewModel?.subscriberDeleteButtonDidTap.accept(unSubscriberName)
+            })
+        let actionCancel = UIAlertAction(
+            title: TextLiterals.unSubscriberAlertCancelActionText,
+            style: .cancel
+        )
         alertController.addAction(actionDefault)
         alertController.addAction(actionCancel)
         self.present(alertController, animated: true)
