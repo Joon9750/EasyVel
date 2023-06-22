@@ -9,6 +9,10 @@ import UIKit
 
 enum ImageLiterals {
     
+    // MARK: - sign in
+    
+    static var signInViewImage: UIImage { .load(name: "signInIcon") }
+    
     // MARK: - tabBar
     
     static var homeTabIcon: UIImage { .load(name: "homeIcon") }
