@@ -51,7 +51,7 @@ final class ListHeadView: BaseUIView {
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(27)
             $0.leading.equalToSuperview().offset(20)
         }
         
