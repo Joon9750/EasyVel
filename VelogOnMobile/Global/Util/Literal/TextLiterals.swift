@@ -156,6 +156,10 @@ enum TextLiterals {
     static let subscriberListViewSubTitleLabel: String = "팔로우 중인 사람"
     static let subscriberListViewUnSubscribeButtonText: String = "팔로우 취소"
     
+    // MARK: - search subscriber view
+    
+    static let searchSubscriberTitle: String = "팔로우 추가"
+    
     // MARK: - setting view
     
     static let signOutAlertTitle: String = "로그아웃"

@@ -18,6 +18,12 @@ final class ListHeadView: BaseUIView {
         return label
     }()
     
+    let searchSubscriberButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.searchIcon, for: .normal)
+        return button
+    }()
+    
     private let subTitleLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.subscriberListViewSubTitleLabel
@@ -40,6 +46,7 @@ final class ListHeadView: BaseUIView {
     override func render() {
         self.addSubviews(
             titleLabel,
+            searchSubscriberButton,
             subTitleLabel,
             lineView,
             pointLineView
@@ -48,6 +55,12 @@ final class ListHeadView: BaseUIView {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(76)
             $0.leading.equalToSuperview().offset(20)
+        }
+        
+        searchSubscriberButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.size.equalTo(24)
         }
         
         subTitleLabel.snp.makeConstraints {

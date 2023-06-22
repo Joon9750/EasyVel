@@ -41,6 +41,12 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     override func bind(viewModel: ListViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
+        
+        listView.postsHeadView.searchSubscriberButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.searchSubcriberButtonTapped()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: ListViewModel) {
@@ -81,6 +87,13 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     private func hiddenListTableView() {
         listView.ListViewExceptionView.isHidden = false
         listView.listTableView.isHidden = true
+    }
+    
+    private func searchSubcriberButtonTapped() {
+        let viewModel = SubscriberSearchViewModel()
+        let searchSubcriberViewController = SubscriberSearchViewController(viewModel: viewModel)
+        searchSubcriberViewController.modalPresentationStyle = .pageSheet
+        self.present(searchSubcriberViewController, animated: true)
     }
     
     private func presentUnSubscriberAlert(
