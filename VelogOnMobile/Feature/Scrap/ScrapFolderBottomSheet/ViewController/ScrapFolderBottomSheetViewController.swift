@@ -14,10 +14,18 @@ import RxRelay
 
 final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFolderBottomSheetViewModel> {
     
+    private var keyboardHeight: CGFloat = 0.0
+    
     let scrapFolderBottomSheetView = ScrapFolderBottomSheetView()
     private lazy var dataSource = ScrapFolderBottomSheetDataSource(
         tableView: scrapFolderBottomSheetView.folderTableView
     )
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setKeyBoardNotification()
+    }
     
     override func configUI() {
         self.view.backgroundColor = .white
@@ -87,10 +95,29 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         viewModel.alreadyHaveFolderNameRelay
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] isAlreadyHave in
-                // MARK: - fix me 이미 존재하는 폴더명일 경우 들어옴
-                print("이미 존재라는 폴더명입니다.")
+                self?.showAlreadyHaveFolderToast(
+                    toastText: TextLiterals.alreadyHaveFolderToastText,
+                    toastBackgroundColer: .gray300
+                )
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setKeyBoardNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+    }
+    
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardHeight = keyboardRectangle.height
+        }
     }
 
     private func setupSheet() {
@@ -100,5 +127,35 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             sheet.prefersGrabberVisible = false
             sheet.preferredCornerRadius = 8.0
         }
+    }
+    
+    private func showAlreadyHaveFolderToast(
+        toastText: String,
+        toastBackgroundColer: UIColor
+    ) {
+        let toastLabel = UILabel()
+        toastLabel.text = toastText
+        toastLabel.textColor = .white
+        toastLabel.font = .body_2_M
+        toastLabel.backgroundColor = toastBackgroundColer
+        toastLabel.textAlignment = .center
+        toastLabel.layer.cornerRadius = 24
+        toastLabel.clipsToBounds = true
+        toastLabel.alpha = 1.0
+        view.addSubview(toastLabel)
+        toastLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(keyboardHeight + 36)
+            $0.leading.trailing.equalToSuperview().inset(51)
+            $0.height.equalTo(48)
+        }
+        UIView.animate(withDuration: 0, animations: {
+            toastLabel.alpha = 1.0
+        }, completion: { isCompleted in
+            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
+                toastLabel.alpha = 0
+            }, completion: { isCompleted in
+                toastLabel.removeFromSuperview()
+            })
+        })
     }
 }
