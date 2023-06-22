@@ -37,12 +37,12 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         scrapFolderBottomSheetView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        setupSheet()
     }
     
     override func bind(viewModel: ScrapFolderBottomSheetViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
-        setupSheet()
         
         scrapFolderBottomSheetView.newFolderButton.rx.tap
             .subscribe(onNext: { [weak self] _ in

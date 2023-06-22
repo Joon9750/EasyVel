@@ -21,12 +21,12 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
     
     override func render() {
         self.view = searchView
+        setupSheet()
     }
 
     override func bind(viewModel: SubscriberSearchViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
-        setupSheet()
         
         searchView.addSubscriberButton.rx.tap
             .flatMap { [weak self] _ -> Observable<String> in
