@@ -17,7 +17,7 @@ final class ListViewModel: BaseViewModel {
     
     // MARK: - Output
 
-    var subscriberListOutput = PublishRelay<[String]>()
+    var subscriberListOutput = PublishRelay<[SubscriberListResponse]>()
     var isListEmptyOutput = PublishRelay<Bool>()
     
     // MARK: - Input
@@ -60,7 +60,8 @@ final class ListViewModel: BaseViewModel {
         getSubscriberList()
             .map { Array($0.reversed()) }
             .subscribe(onNext: { [weak self] subscriberList in
-                self?.checkListIsEmpty(subsciberList: subscriberList)
+                let subscriberNameList = subscriberList.map { $0.name ?? String() }
+                self?.checkListIsEmpty(subsciberList: subscriberNameList)
             })
             .disposed(by: disposeBag)
     }
@@ -79,12 +80,12 @@ final class ListViewModel: BaseViewModel {
 // MARK: - API
 
 private extension ListViewModel {
-    func getSubscriberList() -> Observable<[String]> {
+    func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer -> Disposable in
             NetworkService.shared.subscriberRepository.getSubscriber() { result in
                 switch result {
                 case .success(let response):
-                    guard let list = response as? [String] else { return }
+                    guard let list = response as? [SubscriberListResponse] else { return }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):

@@ -9,11 +9,12 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberSearchProtocol {
 
     private let listView = ListView()
-    private var subscriberList: [String]? {
+    private var subscriberList: [SubscriberListResponse]? {
         didSet {
             self.listView.listTableView.reloadData()
         }
@@ -69,7 +70,7 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     }
 
     func searchSubscriberViewWillDisappear(
-        input: [String]
+        input: [SubscriberListResponse]
     ) {
         self.subscriberList = input
         if input.isEmpty == false {
@@ -129,7 +130,9 @@ extension ListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier) as? ListTableViewCell ?? ListTableViewCell()
         let row = indexPath.row
         cell.selectionStyle = .none
-        cell.listText.text = subscriberList?[row]
+        let subscriberImageURL = URL(string: subscriberList?[row].img ?? String())
+        cell.subscriberImage.kf.setImage(with: subscriberImageURL)
+        cell.listText.text = subscriberList?[row].name
         cell.unSubscribeButtonDidTap = { [weak self] subscriberName in
             self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
         }

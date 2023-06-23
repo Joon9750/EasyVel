@@ -29,7 +29,7 @@ final class SubscriberSearchViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillDisappear
-            .flatMapLatest( { [weak self] _ -> Observable<[String]> in
+            .flatMapLatest( { [weak self] _ -> Observable<[SubscriberListResponse]> in
                 guard let self = self else { return Observable.empty() }
                 return self.getSubscriberList()
             })
@@ -107,12 +107,12 @@ private extension SubscriberSearchViewModel {
         }
     }
     
-    func getSubscriberList() -> Observable<[String]> {
+    func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer in
             NetworkService.shared.subscriberRepository.getSubscriber() { result in
                 switch result {
                 case .success(let response):
-                    guard let list = response as? [String] else {
+                    guard let list = response as? [SubscriberListResponse] else {
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }

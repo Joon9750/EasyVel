@@ -119,6 +119,7 @@
 		9158618B2A2DFA6D00461F9A /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9158618A2A2DFA6D00461F9A /* RxSwift */; };
 		9158618D2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */; };
 		916227D82A44569500118018 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916227D72A44569500118018 /* UITextField+Extension.swift */; };
+		916227DA2A454FD800118018 /* SubscriberListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916227D92A454FD800118018 /* SubscriberListResponse.swift */; };
 		916E29A82A3EDA45006F5FE9 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */; };
 		916E29AA2A3EE332006F5FE9 /* AutoSignInDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */; };
 		916E29AE2A3EE90F006F5FE9 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */; };
@@ -274,6 +275,7 @@
 		914D8DD82A02B22A00516B4C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPostAddInFolderProtocol.swift; sourceTree = "<group>"; };
 		916227D72A44569500118018 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		916227D92A454FD800118018 /* SubscriberListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberListResponse.swift; sourceTree = "<group>"; };
 		916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDTO.swift; sourceTree = "<group>"; };
 		916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -605,6 +607,7 @@
 				9134421029FFDB5D000E1ED1 /* SearchSubscriberResponse.swift */,
 				9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */,
 				9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */,
+				916227D92A454FD800118018 /* SubscriberListResponse.swift */,
 			);
 			path = SubscribeDTO;
 			sourceTree = "<group>";
@@ -1432,6 +1435,7 @@
 				9128B05A2A23CC9000FB1252 /* ScrapStorageViewModel.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
+				916227DA2A454FD800118018 /* SubscriberListResponse.swift in Sources */,
 				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
 				7CB706D02A3205EC00083EC6 /* MoveViewController.swift in Sources */,
 				9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */,
