@@ -146,7 +146,7 @@ final class HomeViewController: BaseViewController {
             dataSourceViewController.append(vc)
         }
         
-        currentPage = 1
+        currentPage = 0
 //        let redVC = keywordsPostsViewController
 //        let ornageVC = ColorViewController(color: .orange)
 //        let yellowVC = ColorViewController(color: .yellow)

@@ -104,6 +104,13 @@ private extension HomeMenuBar {
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(1)
         }
+        
+        tintLine.snp.makeConstraints {
+            $0.bottom.equalTo(collectionView)
+            $0.leading.equalTo(collectionView).offset(65)
+            $0.width.equalTo(65)
+            $0.height.equalTo(3)
+        }
     
     }
     
@@ -117,6 +124,7 @@ private extension HomeMenuBar {
     }
     
     func updateBar(from isSelected: Int?) {
+        self.layoutIfNeeded()
         guard let isSelected else { return }
         
         collectionView.selectItem(at: IndexPath(item: isSelected, section: 1),
@@ -129,7 +137,6 @@ private extension HomeMenuBar {
             make.leading.equalTo(cell.snp.leading)
             make.trailing.equalTo(cell.snp.trailing)
             make.height.equalTo(3)
-            
         }
         
         UIView.animate(withDuration: 0.3) {
