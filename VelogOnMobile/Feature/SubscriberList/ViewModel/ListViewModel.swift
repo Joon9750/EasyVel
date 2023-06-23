@@ -23,6 +23,7 @@ final class ListViewModel: BaseViewModel {
     // MARK: - Input
     
     let subscriberDeleteButtonDidTap = PublishRelay<String>()
+    let refreshSubscriberList = PublishRelay<Bool>()
     
     // MARK: - init
     
@@ -47,6 +48,13 @@ final class ListViewModel: BaseViewModel {
                 self.deleteSubscriber(targetName: subscriber) { [weak self] _ in
                     self?.getListData()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        refreshSubscriberList
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.getListData()
             })
             .disposed(by: disposeBag)
     }

@@ -36,24 +36,18 @@ final class SubscriberSearchViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         viewWillDisappear
-            .flatMapLatest( { [weak self] _ -> Observable<[SubscriberListResponse]> in
-                guard let self = self else { return Observable.empty() }
-                return self.getSubscriberList()
-            })
-            .subscribe(onNext: { [weak self] list in
-                self?.subscriberSearchDelegate?.searchSubscriberViewWillDisappear(input: list.reversed())
+            .subscribe(onNext: { [weak self] in
+                self?.subscriberSearchDelegate?.searchSubscriberViewWillDisappear()
             })
             .disposed(by: disposeBag)
         
         subscriberAddButtonDidTap
             .flatMapLatest { [weak self] name -> Observable<SearchSubscriberResponse> in
                 guard let self = self else { return Observable.empty() }
-                
                 return self.searchSubscriber(name: name)
             }
             .filter { [weak self] response in
                 guard let self = self else { return false }
-                
                 guard let addSubscriberName = response.userName else { return false }
                 let subscriberNameList = self.subscriberList?.compactMap { $0.name }
                 let isUniqueSubscriber = !(subscriberNameList?.contains(addSubscriberName) ?? true)
@@ -64,7 +58,6 @@ final class SubscriberSearchViewModel: BaseViewModel {
             }
             .flatMapLatest { [weak self] response -> Observable<Bool> in
                 guard let self = self else { return Observable.empty() }
-                
                 if response.validate == false {
                     let text = TextLiterals.searchSubscriberIsNotValidText
                     self.subscriberAddStatusOutput.accept((false, text))

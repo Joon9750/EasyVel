@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SubscriberSearchProtocol {
-    func searchSubscriberViewWillDisappear(input: [SubscriberListResponse])
+    func searchSubscriberViewWillDisappear()
 }
