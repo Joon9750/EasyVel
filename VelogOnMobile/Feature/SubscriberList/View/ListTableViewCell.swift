@@ -32,7 +32,7 @@ final class ListTableViewCell: BaseTableViewCell {
     lazy var unSubscribeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .brandColor
-        button.setTitle("팔로우 취소", for: .normal)
+        button.setTitle(TextLiterals.subscriberListViewUnSubscribeButtonText, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .caption_1_B
         button.layer.cornerRadius = 10
@@ -70,7 +70,8 @@ final class ListTableViewCell: BaseTableViewCell {
         self.backgroundColor = .gray100
     }
     
-    @objc private func unSubscribeButtonTapped() {
+    @objc
+    private func unSubscribeButtonTapped() {
         if let subscriberName = listText.text {
             unSubscribeButtonDidTap?(subscriberName)
         }

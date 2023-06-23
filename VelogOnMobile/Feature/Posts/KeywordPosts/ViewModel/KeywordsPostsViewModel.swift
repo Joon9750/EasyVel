@@ -58,7 +58,10 @@ final class KeywordsPostsViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] storagePost, isScrapped in
                 LoadingView.hideLoading()
                 if isScrapped == false {
-                    self?.realm.addPost(item: storagePost, folderName: "모든 게시글")
+                    self?.realm.addPost(
+                        item: storagePost,
+                        folderName: TextLiterals.allPostsScrapFolderText
+                    )
                 } else {
                     self?.realm.deletePost(url: storagePost.url ?? String())
                 }

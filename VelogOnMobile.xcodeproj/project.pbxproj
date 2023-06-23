@@ -421,7 +421,6 @@
 		9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				91A052112A28F9DA009F32D1 /* DTO */,
 				9128B03D2A237DFB00FB1252 /* DataSource */,
 				9128B02F2A23772A00FB1252 /* ViewModel */,
 				9128B02C2A2376E700FB1252 /* ViewController */,
@@ -1081,6 +1080,7 @@
 				9128B05B2A23DCEF00FB1252 /* StorageDTO.swift */,
 				916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */,
 				916E29B32A406952006F5FE9 /* AccessTokenDTO.swift */,
+				91A052122A28F9E6009F32D1 /* ScrapFolder.swift */,
 			);
 			path = RealmDTO;
 			sourceTree = "<group>";
@@ -1149,14 +1149,6 @@
 				9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		91A052112A28F9DA009F32D1 /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-				91A052122A28F9E6009F32D1 /* ScrapFolder.swift */,
-			);
-			path = DTO;
 			sourceTree = "<group>";
 		};
 		91A5C6452A41CBEA0078D8A9 /* Font */ = {

@@ -84,6 +84,26 @@ enum TextLiterals {
     
     static let tableViewDeleteSwipeTitle: String = "delete"
     
+    // MARK: - navigation bar
+    
+    static let addSubscriberToastText:String = "팔로우 했습니다."
+    static let deleteSubscriberToastText: String = "팔로우 취소 했습니다."
+    static let navigationBarSubscribeButtonText: String = "팔로우"
+    
+    // MARK: - velog url
+    
+    static let velogBaseURL: String = "https://velog.io"
+    
+    // MARK: - scrap folder
+    
+    static let allPostsScrapFolderText: String = "모든 게시글"
+    
+    // MARK: - scrap PopUp view
+    
+    static let scrapPopUpViewLeftText: String = "스크랩했습니다."
+    static let moveToScrapStorageButtonText: String = "보러가기"
+    static let presentScrapFolderBottomSheetButtonText: String = "폴더에 담기"
+    
     // MARK: - scrapFolderBottomSheet
     
     static let bottomSheetText: String = "폴더 선택"
@@ -91,9 +111,59 @@ enum TextLiterals {
     static let newFolderAddTextFieldPlaceholder: String = "폴더명을 입력하세요."
     static let addFolderFinishedButtonTitleText: String = "완료"
     
-    // MARK: - navigation bar
+    // MARK: - scrap storage view
     
-    static let addSubscriberToastText:String = "팔로우 했습니다."
-    static let deleteSubscriberToastText: String = "팔로우 취소 했습니다."
-    static let navigationBarSubscribeButtonText: String = "팔로우"
+    static let scrapStorageTitleLabel: String = "Scrap"
+    static let addFolderAlertTitle: String = "폴더 추가"
+    static let addFolderAlertOkActionTitle: String = "확인"
+    static let addFolderAlertCancelActionTitle: String = "취소"
+    static let alreadyHaveFolderToastText: String = "이미 존재하는 폴더명입니다."
+    static let addFolderButtonTitle: String = "폴더 추가"
+    static let postInFolderCountText: String = "개"
+    
+    // MARK: - storage view
+    
+    static let deleteFolderActionSheetTitle: String = "폴더 삭제"
+    static let deleteFolderActionSheetMessage: String = "선택하신 폴더를 정말 삭제하시겠습니까?\n스크랩한 콘텐츠가 모두 삭제됩니다."
+    static let deleteFolderActionSheetOkActionText: String = "삭제"
+    static let deleteFolderActionSheetCancelActionText: String = "취소"
+    
+    static let folderNameChangeSuccessToastText: String = "폴더명이 변경되었습니다."
+    static let folderNameChangeToastTitle: String = "폴더 이름 변경"
+    static let folderNameChangeToastOkActionText: String = "확인"
+    static let folderNameChangeToastCancelActionText: String = "취소"
+    
+    static let storageViewDeleteFolderButtonText: String = "폴더 삭제"
+    static let storageViewChangeFolderNameButtonText: String = "이름 변경"
+    
+    static let storageViewPostDeleteButtonText: String = "삭제"
+    
+    // MARK: - post search view
+    
+    static let postSearchViewRecentLabel: String = "최근 검색어"
+    static let postSearchViewDeleteAllRecentDataButtonText: String = "모두 지우기"
+    static let postSearchViewTrendLabel: String = "인기 키워드"
+    
+    static let postSearchViewSearchBarPlaceholderText: String = "통합검색"
+    
+    // MARK: - subscriber list view
+    
+    static let unSubscriberAlertTitle: String = "팔로우 취소"
+    static let unSubscriberAlertMessage: String = "정말 팔로우를 취소하시겠습니까?"
+    static let unSubscriberAlertOkActionText: String = "네"
+    static let unSubscriberAlertCancelActionText: String = "아니요"
+    
+    static let subscriberListViewSubTitleLabel: String = "팔로우 중인 사람"
+    static let subscriberListViewUnSubscribeButtonText: String = "팔로우 취소"
+    
+    // MARK: - setting view
+    
+    static let signOutAlertTitle: String = "로그아웃"
+    static let signOutAlertMessage: String = "정말 로그아웃 하시겠습니까?"
+    
+    static let withdrawalAlertTitle: String = "회원탈퇴"
+    static let withdrawalAlertMessage: String = "정말 회원탈퇴 하시겠습니까?\n복구하실 수 없습니다."
+    
+    static let settingAlertOkActionText: String = "네"
+    static let settingAlertCancelActionText: String = "아니요"
 }

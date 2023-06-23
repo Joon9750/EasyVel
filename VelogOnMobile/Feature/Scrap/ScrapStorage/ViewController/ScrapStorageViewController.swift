@@ -77,7 +77,7 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
             .drive(onNext: { [weak self] alreadyHaveFolderName in
                 if alreadyHaveFolderName {
                     self?.showAlreadyHaveFolderToast(
-                        toastText: "이미 존재하는 폴더명입니다.",
+                        toastText: TextLiterals.alreadyHaveFolderToastText,
                         toastBackgroundColer: .gray300
                     )
                 }
@@ -87,18 +87,24 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
     
     private func addFolderAlert() {
         let alertController = UIAlertController(
-            title: "폴더 추가",
+            title: TextLiterals.addFolderAlertTitle,
             message: nil,
             preferredStyle: .alert
         )
         alertController.addTextField()
-        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] action in
+        let okAction = UIAlertAction(
+            title: TextLiterals.addFolderAlertOkActionTitle,
+            style: .default
+        ) { [weak self] action in
             if let folderTextField = alertController.textFields?.first,
                let addFolderName = folderTextField.text {
                 self?.viewModel?.addFolderInput.accept(addFolderName)
             }
         }
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        let cancelAction = UIAlertAction(
+            title: TextLiterals.addFolderAlertCancelActionTitle,
+            style: .cancel
+        )
         alertController.addAction(cancelAction)
         alertController.addAction(okAction)
         present(alertController, animated: true)

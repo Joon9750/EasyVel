@@ -43,7 +43,8 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
         return self.view.window!
     }
     
-    @objc func handleAppleLogin() {
+    @objc
+    func handleAppleLogin() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = []

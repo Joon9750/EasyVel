@@ -28,6 +28,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         button.isHidden = true
         return button
     }()
+    
     private let subscriberButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 56, height: 32)
@@ -40,8 +41,11 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         button.isHidden = true
         return button
     }()
+    
     lazy var firstButton = UIBarButtonItem(customView: self.scrapButton)
+    
     lazy var secondButton = UIBarButtonItem(customView: self.subscriberButton)
+    
     lazy var webView : WKWebView = {
         let prefs = WKWebpagePreferences()
         prefs.allowsContentJavaScript = true
@@ -50,6 +54,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         let webView = WKWebView(frame: .zero, configuration: configuration)
         return webView
     }()
+    
     let scrapPopUpView = ScrapPopUpView()
     
     override func render() {
@@ -94,7 +99,10 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 if didScrap {
                     self?.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
                     if let postData = self?.postData {
-                        self?.realm.addPost(item: postData, folderName: "모든 게시글")
+                        self?.realm.addPost(
+                            item: postData,
+                            folderName: TextLiterals.allPostsScrapFolderText
+                        )
                     }
                     self?.scrapButtonTapped()
                 } else {
@@ -142,7 +150,10 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         scrapPopUpView.moveToStorageButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
-                NotificationCenter.default.post(name: Notification.Name("MoveToScrapStorage"), object: nil)
+                NotificationCenter.default.post(
+                    name: Notification.Name("MoveToScrapStorage"),
+                    object: nil
+                )
             })
             .disposed(by: disposeBag)
     }
