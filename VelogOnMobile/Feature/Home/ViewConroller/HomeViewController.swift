@@ -142,25 +142,11 @@ final class HomeViewController: BaseViewController {
         dataSourceViewController = []
         
         for tag in tags {
-            let vc = ColorViewController(color: .red)
+            let vc = factory.create(tag: tag)
             dataSourceViewController.append(vc)
         }
         
         currentPage = 0
-//        let redVC = keywordsPostsViewController
-//        let ornageVC = ColorViewController(color: .orange)
-//        let yellowVC = ColorViewController(color: .yellow)
-//        let greenVC = ColorViewController(color: .green)
-//        let blueVC = ColorViewController(color: .blue)
-//        let purpleVC = ColorViewController(color: .purple)
-//        let blackVC = ColorViewController(color: .black)
-//        dataSourceViewController = [redVC,
-//                                    ornageVC,
-//                                    yellowVC,
-//                                    greenVC,
-//                                    blueVC,
-//                                    purpleVC,
-//                                    blackVC]
     }
     
     private func changeViewController(before beforeIndex: Int, after newIndex: Int) {
