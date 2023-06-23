@@ -19,11 +19,13 @@ final class ListViewModel: BaseViewModel {
 
     var subscriberListOutput = PublishRelay<[SubscriberListResponse]>()
     var isListEmptyOutput = PublishRelay<Bool>()
+    var subscriberUserMainURL = PublishRelay<URL>()
     
     // MARK: - Input
     
     let subscriberDeleteButtonDidTap = PublishRelay<String>()
     let refreshSubscriberList = PublishRelay<Bool>()
+    let subscriberTableViewCellDidTap = PublishRelay<String>()
     
     // MARK: - init
     
@@ -55,6 +57,19 @@ final class ListViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.getListData()
+            })
+            .disposed(by: disposeBag)
+        
+        subscriberTableViewCellDidTap
+            .flatMapLatest( { [weak self] _ -> Observable<String> in
+                guard let self = self else { return Observable.empty() }
+                return self.getSubscriberUserMainURL()
+            })
+            .subscribe(onNext: { [weak self] subscriberURL in
+                guard let self = self else { return }
+                if let subscriberUserMainURL = URL(string: subscriberURL) {
+                    self.subscriberUserMainURL.accept(subscriberUserMainURL)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -119,6 +134,24 @@ private extension ListViewModel {
             default:
                 print("error")
             }
+        }
+    }
+    
+    func getSubscriberUserMainURL() -> Observable<String> {
+        return Observable.create { observer -> Disposable in
+            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+                switch result {
+                case .success(let response):
+                    guard let url = response as? String else { return }
+                    observer.onNext(url)
+                    observer.onCompleted()
+                case .requestErr(let errResponse):
+                    dump(errResponse)
+                default:
+                    print("error")
+                }
+            }
+            return Disposables.create()
         }
     }
 }
