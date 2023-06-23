@@ -37,9 +37,9 @@ enum TextLiterals {
     
     // MARK: - subscriber search
     
-    static let searchSubscriberIsNotValidText: String = "없는 사용자입니다."
+    static let searchSubscriberIsNotValidText: String = "없는 팔로우입니다. 다시 검색해주세요."
     static let addSubsriberSuccessText: String = "구독자 추가되었습니다."
-    static let addSubscriberRequestErrText: String = "이미 추가한 구독자입니다."
+    static let addSubscriberRequestErrText: String = "이미 추가한 팔로우입니다. 다시 검색해주세요."
     static let subscriberSearchTitleLabelText: String = "Search Subscribers"
     static let subscriberSearchTextFieldPlaceholderText: String = "velog 아이디를 입력해주세요."
     

@@ -54,13 +54,18 @@ final class SubscriberSearchViewModel: BaseViewModel {
         subscriberAddButtonDidTap
             .flatMapLatest { [weak self] name -> Observable<SearchSubscriberResponse> in
                 guard let self = self else { return Observable.empty() }
+                
                 return self.searchSubscriber(name: name)
             }
             .filter { [weak self] response in
                 guard let self = self else { return false }
+                
                 guard let addSubscriberName = response.userName else { return false }
                 let subscriberNameList = self.subscriberList?.compactMap { $0.name }
                 let isUniqueSubscriber = !(subscriberNameList?.contains(addSubscriberName) ?? true)
+                if isUniqueSubscriber == false {
+                    self.subscriberAddStatusOutput.accept((false, TextLiterals.addSubscriberRequestErrText))
+                }
                 return isUniqueSubscriber
             }
             .flatMapLatest { [weak self] response -> Observable<Bool> in
