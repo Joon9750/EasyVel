@@ -14,15 +14,24 @@ protocol HomeMenuBarDelegate: AnyObject {
 
 final class HomeMenuBar: UIView {
     
+    //MARK: - Properties
+    
+    weak var delegate: HomeMenuBarDelegate?
+    
     var isSelected: Int? {
         didSet {
             updateBar(from: isSelected)
         }
     }
     
-    weak var delegate: HomeMenuBarDelegate?
+    private var tags: [String] = [""] {
+        didSet {
+            collectionView.reloadData()
+            isSelected = 0
+        }
+    }
     
-    private let labels = ["트렌드", "팔로우", "iOS", "홍준혁", "화이팅", "현아님", "화이팅"]
+    //MARK: - UI Components
     
     private var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -45,6 +54,8 @@ final class HomeMenuBar: UIView {
         return view
     }()
     
+    //MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -56,12 +67,18 @@ final class HomeMenuBar: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        self.isSelected = 0
+        //self.isSelected = 0
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Public Method
+    
+    func dataBind(tags: [String]) {
+        self.tags = tags
     }
 }
 
@@ -134,7 +151,7 @@ extension HomeMenuBar: UICollectionViewDataSource {
         case 0:
             return 1
         case 1:
-            return labels.count
+            return tags.count
         default:
             return 0
         }
@@ -149,7 +166,7 @@ extension HomeMenuBar: UICollectionViewDataSource {
             return cell
         case 1:
             let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.dataBind(tag: labels[indexPath.item])
+            cell.dataBind(tag: tags[indexPath.item])
             return cell
         default:
             return UICollectionViewCell()
@@ -178,7 +195,7 @@ extension HomeMenuBar: UICollectionViewDelegateFlowLayout {
             return CGSize(width: 65, height: 40)
         case 1:
             let cell = HomeMenuCollectionViewCell()
-            cell.dataBind(tag: labels[indexPath.item])
+            cell.dataBind(tag: tags[indexPath.item])
             return cell.sizeFittingWith(cellHeight: 40)
         default:
             return .zero

@@ -19,6 +19,13 @@ final class HomeViewController: BaseViewController {
         }
     }
     
+    private var tags: [String] = [] {
+        didSet {
+            menuBar.dataBind(tags: tags)
+            setPageViewController()
+        }
+    }
+    
     //MARK: - PageViewController
     
     private lazy var pageViewController: UIPageViewController = {
@@ -27,9 +34,6 @@ final class HomeViewController: BaseViewController {
     }()
     
     private var dataSourceViewController: [UIViewController] = []
-    
-    private var keywordsPostsViewModel = KeywordsPostsViewModel()
-    private lazy var keywordsPostsViewController = KeywordsPostsViewController(viewModel: keywordsPostsViewModel)
 
     
     //MARK: - UI Components
@@ -65,13 +69,13 @@ final class HomeViewController: BaseViewController {
         style()
         hierarchy()
         layout()
-        setPageViewController()
+        requestGetTagAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-        currentPage = 0
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -128,32 +132,56 @@ final class HomeViewController: BaseViewController {
         
         searchButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(22)
             $0.size.equalTo(30)
         }
     }
     
     private func setPageViewController() {
-        let redVC = keywordsPostsViewController
-        let ornageVC = ColorViewController(color: .orange)
-        let yellowVC = ColorViewController(color: .yellow)
-        let greenVC = ColorViewController(color: .green)
-        let blueVC = ColorViewController(color: .blue)
-        let purpleVC = ColorViewController(color: .purple)
-        let blackVC = ColorViewController(color: .black)
-        dataSourceViewController = [redVC,
-                                    ornageVC,
-                                    yellowVC,
-                                    greenVC,
-                                    blueVC,
-                                    purpleVC,
-                                    blackVC]
+        let factory = KeywordPostsVCFactory()
+        dataSourceViewController = []
+        
+        for tag in tags {
+            let vc = ColorViewController(color: .red)
+            dataSourceViewController.append(vc)
+        }
+        
+        currentPage = 1
+//        let redVC = keywordsPostsViewController
+//        let ornageVC = ColorViewController(color: .orange)
+//        let yellowVC = ColorViewController(color: .yellow)
+//        let greenVC = ColorViewController(color: .green)
+//        let blueVC = ColorViewController(color: .blue)
+//        let purpleVC = ColorViewController(color: .purple)
+//        let blackVC = ColorViewController(color: .black)
+//        dataSourceViewController = [redVC,
+//                                    ornageVC,
+//                                    yellowVC,
+//                                    greenVC,
+//                                    blueVC,
+//                                    purpleVC,
+//                                    blackVC]
     }
     
     private func changeViewController(before beforeIndex: Int, after newIndex: Int) {
         let direction: UIPageViewController.NavigationDirection = beforeIndex < newIndex ? .forward : .reverse
-        pageViewController.setViewControllers([dataSourceViewController[currentPage]], direction: direction, animated: true, completion: nil)
+        pageViewController.setViewControllers([dataSourceViewController[currentPage]],
+                                              direction: direction,
+                                              animated: true,
+                                              completion: nil)
         menuBar.isSelected = newIndex
+    }
+    
+    private func requestGetTagAPI() {
+        NetworkService.shared.tagRepository.getTag { result in
+            switch result {
+            case .success(let response):
+                guard let response = response as? [String] else { return }
+                self.tags = response
+            default :
+                return
+            }
+        }
     }
     
     //MARK: - Action Method
