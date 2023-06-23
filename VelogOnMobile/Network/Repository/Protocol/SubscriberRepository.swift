@@ -12,4 +12,5 @@ protocol SubscriberRepository {
     func getSubscriber(completion: @escaping (NetworkResult<Any>) -> Void)
     func searchSubscriber(name: String, completion: @escaping (NetworkResult<Any>) -> Void)
     func deleteSubscriber(targetName: String, completion: @escaping (NetworkResult<Any>) -> Void)
+    func getSubscriberUserMain(name: String, completion: @escaping (NetworkResult<Any>) -> Void)
 }
