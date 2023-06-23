@@ -13,6 +13,7 @@ import RxSwift
 final class SubscriberSearchViewModel: BaseViewModel {
     
     var subscriberSearchDelegate: SubscriberSearchProtocol?
+    var subscriberList: [SubscriberListResponse]?
 
     // MARK: - Output
     
@@ -28,49 +29,75 @@ final class SubscriberSearchViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
-        viewWillDisappear
-            .flatMapLatest( { [weak self] _ -> Observable<[String]> in
-                guard let self = self else { return Observable.empty() }
-                return self.getSubscriberList()
+        viewWillAppear
+            .subscribe(onNext: { [weak self] in
+                self?.subscribeToSubscriberList()
             })
-            .subscribe(onNext: { [weak self] list in
-                self?.subscriberSearchDelegate?.searchSubscriberViewWillDisappear(input: list.reversed())
+            .disposed(by: disposeBag)
+        
+        viewWillDisappear
+            .subscribe(onNext: { [weak self] in
+                self?.subscriberSearchDelegate?.searchSubscriberViewWillDisappear()
             })
             .disposed(by: disposeBag)
         
         subscriberAddButtonDidTap
-            .flatMapLatest( { [weak self] name -> Observable<SearchSubscriberResponse> in
+            .flatMapLatest { [weak self] name -> Observable<SearchSubscriberResponse> in
                 guard let self = self else { return Observable.empty() }
                 return self.searchSubscriber(name: name)
-            })
+            }
             .filter { [weak self] response in
+                guard let self = self else { return false }
+                guard let addSubscriberName = response.userName else { return false }
+                let subscriberNameList = self.subscriberList?.compactMap { $0.name }
+                let isUniqueSubscriber = !(subscriberNameList?.contains(addSubscriberName) ?? true)
+                if isUniqueSubscriber == false {
+                    self.subscriberAddStatusOutput.accept((false, TextLiterals.addSubscriberRequestErrText))
+                }
+                return isUniqueSubscriber
+            }
+            .flatMapLatest { [weak self] response -> Observable<Bool> in
+                guard let self = self else { return Observable.empty() }
                 if response.validate == false {
                     let text = TextLiterals.searchSubscriberIsNotValidText
-                    self?.subscriberAddStatusOutput.accept((false, text))
-                }
-                return response.validate ?? false
-            }
-            .flatMapLatest( { [weak self] response -> Observable<Bool> in
-                guard let self = self else { return Observable.empty() }
-                return self.addSubscriber(name: response.userName ?? String())
-            })
-            .subscribe(onNext: { [weak self] response in
-                if response {
-                    let text = TextLiterals.addSubsriberSuccessText
-                    self?.subscriberAddStatusOutput.accept((response, text))
+                    self.subscriberAddStatusOutput.accept((false, text))
+                    return Observable.just(false)
                 } else {
-                    let text = TextLiterals.addSubscriberRequestErrText
-                    self?.subscriberAddStatusOutput.accept((response, text))
+                    return self.addSubscriber(name: response.userName ?? String())
                 }
+            }
+            .subscribe(onNext: { [weak self] response in
+                let text: String
+                if response {
+                    text = TextLiterals.addSubsriberSuccessText
+                    self?.subscribeToSubscriberList()
+                } else {
+                    text = TextLiterals.searchSubscriberIsNotValidText
+                }
+                self?.subscriberAddStatusOutput.accept((response, text))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func subscribeToSubscriberList() {
+        getSubscriberList()
+            .subscribe(onNext: { [weak self] subscriberList in
+                self?.subscriberList = subscriberList
+            }, onError: { error in
+                print("Error: \(error)")
             })
             .disposed(by: disposeBag)
     }
 }
 
 private extension SubscriberSearchViewModel {
-    func searchSubscriber(name: String) -> Observable<SearchSubscriberResponse> {
+    func searchSubscriber(
+        name: String
+    ) -> Observable<SearchSubscriberResponse> {
         return Observable.create { observer in
-            NetworkService.shared.subscriberRepository.searchSubscriber(name: name) { result in
+            NetworkService.shared.subscriberRepository.searchSubscriber(
+                name: name
+            ) { result in
                 switch result {
                 case .success(let response):
                     guard let result = response as? SearchSubscriberResponse else {
@@ -89,9 +116,14 @@ private extension SubscriberSearchViewModel {
         }
     }
     
-    func addSubscriber(name: String) -> Observable<Bool> {
+    func addSubscriber(
+        name: String
+    ) -> Observable<Bool> {
         return Observable.create { observer in
-            NetworkService.shared.subscriberRepository.addSubscriber(fcmToken: "FCMToken", name: name) { result in
+            NetworkService.shared.subscriberRepository.addSubscriber(
+                fcmToken: "",
+                name: name
+            ) { result in
                 switch result {
                 case .success(_):
                     observer.onNext(true)
@@ -107,12 +139,12 @@ private extension SubscriberSearchViewModel {
         }
     }
     
-    func getSubscriberList() -> Observable<[String]> {
+    func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer in
             NetworkService.shared.subscriberRepository.getSubscriber() { result in
                 switch result {
                 case .success(let response):
-                    guard let list = response as? [String] else {
+                    guard let list = response as? [SubscriberListResponse] else {
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }

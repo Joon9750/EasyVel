@@ -41,7 +41,7 @@ class BaseRepository {
             return .success(decodedData)
         case .addSubscriber: return .success((Any).self)
         case .getSubscriber:
-            guard let decodedData = try? decoder.decode([String].self, from: data) else {
+            guard let decodedData = try? decoder.decode([SubscriberListResponse].self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
