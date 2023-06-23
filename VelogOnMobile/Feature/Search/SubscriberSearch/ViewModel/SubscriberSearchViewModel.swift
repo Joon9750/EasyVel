@@ -30,14 +30,8 @@ final class SubscriberSearchViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
-            .flatMapLatest { [weak self] _ -> Observable<[SubscriberListResponse]> in
-                guard let self = self else { return Observable.empty() }
-                return self.getSubscriberList()
-            }
-            .subscribe(onNext: { [weak self] subscriberList in
-                self?.subscriberList = subscriberList
-            }, onError: { error in
-                print("Error: \(error)")
+            .subscribe(onNext: { [weak self] in
+                self?.subscribeToSubscriberList()
             })
             .disposed(by: disposeBag)
         
@@ -83,10 +77,21 @@ final class SubscriberSearchViewModel: BaseViewModel {
                 let text: String
                 if response {
                     text = TextLiterals.addSubsriberSuccessText
+                    self?.subscribeToSubscriberList()
                 } else {
-                    text = TextLiterals.addSubscriberRequestErrText
+                    text = TextLiterals.searchSubscriberIsNotValidText
                 }
                 self?.subscriberAddStatusOutput.accept((response, text))
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func subscribeToSubscriberList() {
+        getSubscriberList()
+            .subscribe(onNext: { [weak self] subscriberList in
+                self?.subscriberList = subscriberList
+            }, onError: { error in
+                print("Error: \(error)")
             })
             .disposed(by: disposeBag)
     }

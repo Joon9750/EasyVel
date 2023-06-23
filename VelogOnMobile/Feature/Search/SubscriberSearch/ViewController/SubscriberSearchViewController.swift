@@ -29,6 +29,7 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
         bindOutput(viewModel)
         
         searchView.addSubscriberButton.rx.tap
+            .throttle(.seconds(2), latest: false, scheduler: MainScheduler.asyncInstance)
             .flatMap { [weak self] _ -> Observable<String> in
                 if let text = self?.searchView.searchSubscriberTextField.text {
                     return .just(text)
