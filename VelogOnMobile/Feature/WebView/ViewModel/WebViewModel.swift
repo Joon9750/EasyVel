@@ -47,13 +47,16 @@ final class WebViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         viewWillAppear
-            .flatMapLatest( { [weak self] _ -> Observable<[String]> in
+            .flatMapLatest( { [weak self] _ -> Observable<[SubscriberListResponse]> in
                 guard let self = self else { return Observable.empty() }
                 return self.getSubscriberList()
             })
-            .subscribe(onNext: { [weak self] subscriberList in
+            .map { subscriberList -> [String] in
+                return subscriberList.map { $0.name ?? String() }
+            }
+            .subscribe(onNext: { [weak self] subscriberNameList in
                 guard let didPostWriterSubscribe = self?.didPostWriterSubscribe(
-                    subscriberList: Set<String>(subscriberList),
+                    subscriberList: Set<String>(subscriberNameList),
                     postWriter: self?.postWriter ?? String()
                 ) else { return }
                 self?.didSubscribeWriter.accept(didPostWriterSubscribe)
@@ -131,12 +134,12 @@ extension WebViewModel {
         }
     }
     
-    func getSubscriberList() -> Observable<[String]> {
+    func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer in
             NetworkService.shared.subscriberRepository.getSubscriber() { result in
                 switch result {
                 case .success(let response):
-                    guard let list = response as? [String] else {
+                    guard let list = response as? [SubscriberListResponse] else {
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }

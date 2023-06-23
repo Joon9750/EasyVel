@@ -25,7 +25,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
-        button.isHidden = true
+//        button.isHidden = true
         return button
     }()
     
@@ -38,7 +38,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.brandColor.cgColor
         button.layer.cornerRadius = 8
-        button.isHidden = true
+//        button.isHidden = true
         return button
     }()
     
@@ -162,8 +162,8 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         viewModel.didSubscribeWriter
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] didSubscribed in
-                self?.subscriberButton.isHidden = false
-                self?.scrapButton.isHidden = false
+//                self?.subscriberButton.isHidden = false
+//                self?.scrapButton.isHidden = false
                 self?.setSubscribeButton(didSubscribe: didSubscribed)
             })
             .disposed(by: disposeBag)
