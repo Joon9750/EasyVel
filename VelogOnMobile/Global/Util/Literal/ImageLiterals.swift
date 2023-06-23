@@ -28,6 +28,7 @@ enum ImageLiterals {
     static var activePlusFolder: UIImage { .load(name: "activePlusFolder") }
     static var scrapFolderIcon: UIImage { .load(name: "scrapFolderIcon") }
     static var subscriberAddIcon: UIImage { .load(name: "addIcon" )}
+    static var subscriberImage: UIImage { .load(name: "subscriberImage" )}
     
     // MARK: - Exception
     
