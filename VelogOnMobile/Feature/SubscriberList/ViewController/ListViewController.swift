@@ -9,11 +9,12 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberSearchProtocol {
 
     private let listView = ListView()
-    private var subscriberList: [String]? {
+    private var subscriberList: [SubscriberListResponse]? {
         didSet {
             self.listView.listTableView.reloadData()
         }
@@ -41,6 +42,12 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     override func bind(viewModel: ListViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
+        
+        listView.postsHeadView.searchSubscriberButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.searchSubcriberButtonTapped()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: ListViewModel) {
@@ -62,15 +69,8 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
             .disposed(by: disposeBag)
     }
 
-    func searchSubscriberViewWillDisappear(
-        input: [String]
-    ) {
-        self.subscriberList = input
-        if input.isEmpty == false {
-            hiddenListExceptionView()
-        } else {
-            hiddenListTableView()
-        }
+    func searchSubscriberViewWillDisappear() {
+        self.viewModel?.refreshSubscriberList.accept(true)
     }
     
     private func hiddenListExceptionView() {
@@ -81,6 +81,14 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     private func hiddenListTableView() {
         listView.ListViewExceptionView.isHidden = false
         listView.listTableView.isHidden = true
+    }
+    
+    private func searchSubcriberButtonTapped() {
+        let viewModel = SubscriberSearchViewModel()
+        let searchSubcriberViewController = SubscriberSearchViewController(viewModel: viewModel)
+        viewModel.subscriberSearchDelegate = self
+        searchSubcriberViewController.modalPresentationStyle = .pageSheet
+        self.present(searchSubcriberViewController, animated: true)
     }
     
     private func presentUnSubscriberAlert(
@@ -116,7 +124,13 @@ extension ListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier) as? ListTableViewCell ?? ListTableViewCell()
         let row = indexPath.row
         cell.selectionStyle = .none
-        cell.listText.text = subscriberList?[row]
+        if subscriberList?[row].img == "" {
+            cell.subscriberImage.image = ImageLiterals.subscriberImage
+        } else {
+            let subscriberImageURL = URL(string: subscriberList?[row].img ?? String())
+            cell.subscriberImage.kf.setImage(with: subscriberImageURL)
+        }
+        cell.listText.text = subscriberList?[row].name
         cell.unSubscribeButtonDidTap = { [weak self] subscriberName in
             self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
         }

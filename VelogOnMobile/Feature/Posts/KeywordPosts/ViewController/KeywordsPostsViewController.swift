@@ -142,7 +142,8 @@ extension KeywordsPostsViewController: UITableViewDelegate {
             webViewController.setScrapButton(didScrap: !isScrapped)
         }
         webViewController.postData = storagePost
-        navigationController?.pushViewController(webViewController, animated: true)
+        
+        self.navigationController?.pushViewController(webViewController, animated: true)
         
         webViewController.didScrapClosure = { [weak self] didScrap in
             self?.isScrapPostsList?[index] = !didScrap

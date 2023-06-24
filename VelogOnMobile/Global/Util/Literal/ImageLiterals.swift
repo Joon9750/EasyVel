@@ -9,6 +9,10 @@ import UIKit
 
 enum ImageLiterals {
     
+    // MARK: - sign in
+    
+    static var signInViewImage: UIImage { .load(name: "signInIcon") }
+    
     // MARK: - tabBar
     
     static var homeTabIcon: UIImage { .load(name: "homeIcon") }
@@ -24,6 +28,8 @@ enum ImageLiterals {
     static var activePlusFolder: UIImage { .load(name: "activePlusFolder") }
     static var scrapFolderIcon: UIImage { .load(name: "scrapFolderIcon") }
     static var plusIcon: UIImage { .load(name: "plus") }
+    static var subscriberAddIcon: UIImage { .load(name: "addIcon" )}
+    static var subscriberImage: UIImage { .load(name: "subscriberImage" )}
     
     // MARK: - Exception
     

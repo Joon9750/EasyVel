@@ -21,15 +21,17 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
     
     override func render() {
         self.view = searchView
+        setupSheet()
     }
 
     override func bind(viewModel: SubscriberSearchViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
         
-        searchView.addSubscriberBtn.rx.tap
+        searchView.addSubscriberButton.rx.tap
+            .throttle(.seconds(2), latest: false, scheduler: MainScheduler.asyncInstance)
             .flatMap { [weak self] _ -> Observable<String> in
-                if let text = self?.searchView.textField.text {
+                if let text = self?.searchView.searchSubscriberTextField.text {
                     return .just(text)
                 } else {
                     return .empty()
@@ -71,11 +73,20 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
         return Observable<Void>.just(())
                 .delay(.seconds(Int(seconds)), scheduler: MainScheduler.instance)
     }
+    
+    private func setupSheet() {
+        if let sheet = sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.selectedDetentIdentifier = .medium
+            sheet.prefersGrabberVisible = false
+            sheet.preferredCornerRadius = 8.0
+        }
+    }
 }
 
 private extension SubscriberSearchViewController {
     func setButtonAction() {
-        searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+        searchView.dismissButton.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
     }
     
     @objc

@@ -13,8 +13,9 @@ final class SubscriberSearchView: BaseUIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = TextLiterals.subscriberSearchTitleLabelText
-        label.font = UIFont(name: "Avenir-Black", size: 20)
+        label.text = TextLiterals.searchSubscriberTitle
+        label.textColor = .gray700
+        label.font = .subhead
         return label
     }()
     
@@ -28,19 +29,36 @@ final class SubscriberSearchView: BaseUIView {
         return button
     }()
     
-    let dismissBtn: UIButton = {
+    let dismissButton: UIButton = {
         let button = UIButton()
-        button.setTitle(TextLiterals.dismissButtonText, for: .normal)
-        button.setTitleColor(.red, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .gray700
         return button
     }()
     
-    let textField: UITextField = {
+    let searchSubscriberTextFieldAddImageView: UIImageView = {
+        let imageView = UIImageView(image: ImageLiterals.subscriberAddIcon)
+        imageView.backgroundColor = .gray100
+        return imageView
+    }()
+    
+    let searchSubscriberTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextLiterals.subscriberSearchTextFieldPlaceholderText
-        textField.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
+        textField.placeholder = "팔로우를 추가해보시오."
+        textField.font = .body_1_M
+        textField.backgroundColor = .gray100
+        textField.addLeftPadding(leftPaddingWidth: 35)
         return textField
+    }()
+    
+    let addSubscriberButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .brandColor
+        button.setTitle("추가", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .body_1_M
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     let searchStatusLabel: UILabel = {
@@ -55,40 +73,49 @@ final class SubscriberSearchView: BaseUIView {
         setTextField()
 
         self.addSubviews(
-            dismissBtn,
             titleLabel,
-            textField,
-            searchStatusLabel,
-            addSubscriberBtn
+            dismissButton,
+            searchSubscriberTextField,
+            addSubscriberButton,
+            searchStatusLabel
         )
         
-        dismissBtn.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(15)
-            $0.trailing.equalToSuperview().inset(15)
-            $0.height.equalTo(40)
-            $0.width.equalTo(80)
-        }
+        searchSubscriberTextField.addSubview(searchSubscriberTextFieldAddImageView)
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(60)
+            $0.top.equalToSuperview().offset(20)
             $0.centerX.equalToSuperview()
         }
         
-        textField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(35)
-            $0.leading.equalToSuperview().offset(41)
-            $0.trailing.equalToSuperview().offset(-47)
+        dismissButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.size.equalTo(24)
+        }
+        
+        searchSubscriberTextField.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(90)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(93)
+            $0.height.equalTo(36)
+        }
+        
+        addSubscriberButton.snp.makeConstraints {
+            $0.centerY.equalTo(searchSubscriberTextField)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(32)
+            $0.width.equalTo(50)
         }
         
         searchStatusLabel.snp.makeConstraints {
-            $0.top.equalTo(textField.snp.bottom).offset(5)
-            $0.leading.equalTo(textField.snp.leading)
+            $0.top.equalTo(addSubscriberButton.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(60)
         }
         
-        addSubscriberBtn.snp.makeConstraints {
-            $0.top.equalTo(textField.snp.bottom).offset(50)
-            $0.leading.equalTo(textField.snp.leading)
-            $0.trailing.equalTo(textField.snp.trailing)
+        searchSubscriberTextFieldAddImageView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(16)
+            $0.leading.equalToSuperview().inset(12)
         }
     }
     
@@ -97,8 +124,8 @@ final class SubscriberSearchView: BaseUIView {
     }
         
     func setTextField(){
-        textField.autocapitalizationType = .none
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.clearButtonMode = .always
+        searchSubscriberTextField.autocapitalizationType = .none
+        searchSubscriberTextField.borderStyle = UITextField.BorderStyle.none
+        searchSubscriberTextField.clearButtonMode = .always
     }
 }

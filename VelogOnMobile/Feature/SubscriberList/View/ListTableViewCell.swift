@@ -17,7 +17,6 @@ final class ListTableViewCell: BaseTableViewCell {
     
     let subscriberImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .red
         imageView.layer.cornerRadius = 10
         return imageView
     }()
