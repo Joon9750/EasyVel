@@ -92,7 +92,7 @@ class BaseRepository {
             }
             return .success(decodedData)
         case .getSubscriberUserMain:
-            guard let decodedData = try? decoder.decode(String.self, from: data) else {
+            guard let decodedData = try? decoder.decode(SubscriberUserMainResponse.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)

@@ -18,6 +18,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     var didScrap: Bool = false
     var didScrapClosure: ((Bool) -> Void)?
     var postData: StoragePost? = nil
+    var isPostWebView: Bool = false
     
     var realm = RealmService()
     
@@ -72,7 +73,9 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     }
     
     override func setupNavigationBar() {
-        navigationItem.rightBarButtonItems = [firstButton, secondButton]
+        if isPostWebView {
+            navigationItem.rightBarButtonItems = [firstButton, secondButton]
+        }
         super.setupNavigationBar()
     }
     

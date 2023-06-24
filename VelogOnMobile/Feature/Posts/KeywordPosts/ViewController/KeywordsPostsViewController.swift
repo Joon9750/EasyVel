@@ -133,11 +133,12 @@ extension KeywordsPostsViewController: UITableViewDelegate {
             url: keywordsPosts?.tagPostDtoList?[index].url
         )
         
-        let webViewModel = WebViewModel(url: selectedCell.url)
+        let webViewModel = WebViewModel(url: selectedCell.url, isPostWebView: true)
         webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
         webViewModel.storagePost = storagePost
         
         let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.isPostWebView = true
         if let isScrapped = isScrapPostsList?[index] {
             webViewController.setScrapButton(didScrap: !isScrapped)
         }

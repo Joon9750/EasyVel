@@ -19,7 +19,7 @@ final class ListViewModel: BaseViewModel {
 
     var subscriberListOutput = PublishRelay<[SubscriberListResponse]>()
     var isListEmptyOutput = PublishRelay<Bool>()
-    var subscriberUserMainURL = PublishRelay<URL>()
+    var subscriberUserMainURLOutput = PublishRelay<String>()
     
     // MARK: - Input
     
@@ -38,6 +38,7 @@ final class ListViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
+            .startWith(LoadingView.showLoading())
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.getListData()
@@ -61,14 +62,13 @@ final class ListViewModel: BaseViewModel {
             .disposed(by: disposeBag)
         
         subscriberTableViewCellDidTap
-            .flatMapLatest( { [weak self] _ -> Observable<String> in
-                guard let self = self else { return Observable.empty() }
-                return self.getSubscriberUserMainURL()
-            })
-            .subscribe(onNext: { [weak self] subscriberURL in
+            .subscribe(onNext: { [weak self] subscriberName in
                 guard let self = self else { return }
-                if let subscriberUserMainURL = URL(string: subscriberURL) {
-                    self.subscriberUserMainURL.accept(subscriberUserMainURL)
+                self.getSubscriberUserMainURL(
+                    name: subscriberName
+                ) { [weak self] subscriberUserMainURLString in
+                    guard let userMainURL = subscriberUserMainURLString.userMainUrl else { return }
+                    self?.subscriberUserMainURLOutput.accept(userMainURL)
                 }
             })
             .disposed(by: disposeBag)
@@ -110,6 +110,9 @@ private extension ListViewModel {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else { return }
                     observer.onNext(list)
+                    
+                    // MARK: - fix me
+                    LoadingView.hideLoading()
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     dump(errResponse)
@@ -137,21 +140,20 @@ private extension ListViewModel {
         }
     }
     
-    func getSubscriberUserMainURL() -> Observable<String> {
-        return Observable.create { observer -> Disposable in
-            NetworkService.shared.subscriberRepository.getSubscriber() { result in
-                switch result {
-                case .success(let response):
-                    guard let url = response as? String else { return }
-                    observer.onNext(url)
-                    observer.onCompleted()
-                case .requestErr(let errResponse):
-                    dump(errResponse)
-                default:
-                    print("error")
-                }
+    func getSubscriberUserMainURL(
+        name: String,
+        completion: @escaping (SubscriberUserMainResponse) -> Void
+    ) {
+        NetworkService.shared.subscriberRepository.getSubscriberUserMain(name: name) { result in
+            switch result {
+            case .success(let response):
+                guard let url = response as? SubscriberUserMainResponse else { return }
+                completion(url)
+            case .requestErr(let errResponse):
+                dump(errResponse)
+            default:
+                print("error")
             }
-            return Disposables.create()
         }
     }
 }
