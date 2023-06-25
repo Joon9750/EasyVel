@@ -34,8 +34,8 @@ final class KeywordsPostsViewModel: BaseViewModel {
     private func makeOutput() {
         viewWillAppear
             .startWith(LoadingView.showLoading())
-            .flatMapLatest( { [weak self] _ -> Observable<GetTagPostResponse> in
-                guard let self = self else { return Observable.empty() }
+            .flatMapLatest( { _ -> Observable<GetTagPostResponse> in
+                //guard let self = self else { return Observable.empty() }
                 return self.getTagPosts()
             })
             .map { [weak self] response -> (GetTagPostResponse, [Bool]) in
