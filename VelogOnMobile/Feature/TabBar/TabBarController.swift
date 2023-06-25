@@ -14,10 +14,6 @@ import RxRelay
 import RealmSwift
 import Realm
 
-protocol TabBarReselectHandling {
-    func handleReselect()
-}
-
 final class TabBarController: UITabBarController {
 
     // MARK: - viewModel properties

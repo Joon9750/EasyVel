@@ -177,9 +177,3 @@ extension KeywordsPostsViewController: UITableViewDelegate {
         }
     }
 }
-
-extension KeywordsPostsViewController: TabBarReselectHandling {
-    func handleReselect() {
-        keywordsPostsView.keywordsTableView.setContentOffset(.zero, animated: true)
-    }
-}
