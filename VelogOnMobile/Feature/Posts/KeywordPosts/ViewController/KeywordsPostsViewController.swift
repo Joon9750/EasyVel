@@ -17,6 +17,12 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     
     private let keywordsPostsView = KeywordsPostsView()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNotification()
+    }
+    
     override func render() {
         self.view = keywordsPostsView
     }
@@ -61,6 +67,20 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToTop),
+            name: Notification.Name("scrollToTop"),
+            object: nil
+        )
+    }
+    
+    @objc
+    private func scrollToTop() {
+        keywordsPostsView.keywordsTableView.setContentOffset(.zero, animated: true)
     }
 }
 
@@ -155,5 +175,11 @@ extension KeywordsPostsViewController: UITableViewDelegate {
                 selectedCell.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
             }
         }
+    }
+}
+
+extension KeywordsPostsViewController: TabBarReselectHandling {
+    func handleReselect() {
+        keywordsPostsView.keywordsTableView.setContentOffset(.zero, animated: true)
     }
 }

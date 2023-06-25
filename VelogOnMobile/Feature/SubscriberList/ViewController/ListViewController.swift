@@ -28,6 +28,7 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
         super.viewDidLoad()
         
         setDelegate()
+        setNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -133,6 +134,20 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
         alertController.addAction(actionDefault)
         alertController.addAction(actionCancel)
         self.present(alertController, animated: true)
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToTop),
+            name: Notification.Name("scrollToTop"),
+            object: nil
+        )
+    }
+    
+    @objc
+    private func scrollToTop() {
+        listView.listTableView.setContentOffset(.zero, animated: true)
     }
 }
 

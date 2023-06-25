@@ -14,6 +14,10 @@ import RxRelay
 import RealmSwift
 import Realm
 
+protocol TabBarReselectHandling {
+    func handleReselect()
+}
+
 final class TabBarController: UITabBarController {
 
     // MARK: - viewModel properties
@@ -124,6 +128,10 @@ final class TabBarController: UITabBarController {
 
 extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        NotificationCenter.default.post(
+            name: Notification.Name("scrollToTop"),
+            object: nil
+        )
         let impactService = HapticService.impact(.light)
         impactService.run()
     }
