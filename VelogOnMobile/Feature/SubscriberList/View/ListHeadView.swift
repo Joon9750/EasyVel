@@ -54,13 +54,13 @@ final class ListHeadView: BaseUIView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(76)
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(17)
         }
         
         searchSubscriberButton.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
-            $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(24)
+            $0.trailing.equalToSuperview().inset(22)
+            $0.size.equalTo(30)
         }
         
         subTitleLabel.snp.makeConstraints {
