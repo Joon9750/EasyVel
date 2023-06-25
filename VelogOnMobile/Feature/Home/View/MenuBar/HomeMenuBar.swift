@@ -66,10 +66,6 @@ final class HomeMenuBar: UIView {
         setCollectionView()
     }
     
-    override func draw(_ rect: CGRect) {
-        //self.isSelected = 0
-    }
-    
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

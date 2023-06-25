@@ -158,6 +158,7 @@ final class HomeViewController: BaseViewController {
         menuBar.isSelected = newIndex
     }
     
+    //TODO: - MVVM 리팩시 ViewModel이 담당
     private func requestGetTagAPI() {
         NetworkService.shared.tagRepository.getTag { result in
             switch result {

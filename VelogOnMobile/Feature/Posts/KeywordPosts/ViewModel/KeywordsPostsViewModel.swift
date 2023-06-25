@@ -35,6 +35,7 @@ final class KeywordsPostsViewModel: BaseViewModel {
         viewWillAppear
             .startWith(LoadingView.showLoading())
             .flatMapLatest( { _ -> Observable<GetTagPostResponse> in
+                //MARK: - fix me  Rx와 참조 관련 공부 후 리팩
                 //guard let self = self else { return Observable.empty() }
                 return self.getTagPosts()
             })
