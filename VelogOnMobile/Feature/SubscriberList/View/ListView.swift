@@ -14,7 +14,7 @@ final class ListView: BaseUIView {
     let postsHeadView = ListHeadView()
     let ListViewExceptionView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.emptyKeywordList
+        imageView.image = ImageLiterals.subscriberListException
         imageView.isHidden = true
         return imageView
     }()
@@ -43,9 +43,10 @@ final class ListView: BaseUIView {
         }
         
         ListViewExceptionView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(360)
             $0.height.equalTo(168)
-            $0.width.equalToSuperview()
+            $0.width.equalTo(190)
         }
     }
 }
