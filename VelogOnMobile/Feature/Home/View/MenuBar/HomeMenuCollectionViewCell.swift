@@ -16,10 +16,9 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             titleLabel.textColor = isSelected ? .gray700 : .gray300
+            titleLabel.font = isSelected ? .body_2_B : .body_2_M
         }
     }
-    
-    static var cellId = "HomeMenuCollectionViewCell"
     
     var title: String? {
         didSet {
@@ -36,17 +35,29 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let plusImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.plusIcon
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     //MARK: - Life Cycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.backgroundColor = .white
-        contentView.addSubview(titleLabel)
+        contentView.addSubviews(titleLabel, plusImageView)
         
         titleLabel.snp.makeConstraints {
             $0.verticalEdges.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(15)
+        }
+        
+        plusImageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(16)
         }
     }
     
@@ -58,10 +69,26 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
+    
+    //MARK: - Custom Method
+    
+    func dataBind(tag: String) {
+        titleLabel.isHidden = false
+        plusImageView.isHidden = true
+        
+        self.title = tag
+    }
+    
+    func setPlusMenu() {
+        titleLabel.isHidden = true
+        plusImageView.isHidden = false   
+    }
 }
 
 extension HomeMenuCollectionViewCell {
+    
     func sizeFittingWith(cellHeight: CGFloat) -> CGSize {
+        titleLabel.font = .body_2_B
         let targetSize = CGSize(width: UIView.layoutFittingCompressedSize.width, height: cellHeight)
         return self.contentView.systemLayoutSizeFitting(targetSize,
                                                         withHorizontalFittingPriority: .fittingSizeLevel,

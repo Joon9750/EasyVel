@@ -11,6 +11,7 @@
 		7CB706D22A32062500083EC6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D12A32062500083EC6 /* SearchViewController.swift */; };
 		7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */; };
 		7CB706D62A32067900083EC6 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */; };
+		8745835E2A42184B00954274 /* KeywordPostsVCFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */; };
 		8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */; };
 		8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */; };
 		8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */; };
@@ -173,6 +174,7 @@
 		7CB706D12A32062500083EC6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPostsVCFactory.swift; sourceTree = "<group>"; };
 		8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuBar.swift; sourceTree = "<group>"; };
@@ -352,6 +354,14 @@
 				91E7ED422A39B990009AA343 /* View */,
 			);
 			path = PostSearch;
+			sourceTree = "<group>";
+		};
+		8745835C2A42183A00954274 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 		8765EFFB2A2A054D00EF6733 /* Home */ = {
@@ -922,6 +932,7 @@
 		91487F5729FDA256009CFECF /* KeywordPosts */ = {
 			isa = PBXGroup;
 			children = (
+				8745835C2A42183A00954274 /* Factory */,
 				914D8DCF2A028ADE00516B4C /* ViewModel */,
 				91487F5F29FDA2F8009CFECF /* ViewController */,
 				91487F5E29FDA2F0009CFECF /* View */,
@@ -1479,6 +1490,7 @@
 				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */,
+				8745835E2A42184B00954274 /* KeywordPostsVCFactory.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
 				91487F3D29FD893D009CFECF /* ListHeadView.swift in Sources */,
 				8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */,
