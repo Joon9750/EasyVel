@@ -13,6 +13,7 @@ import RxSwift
 final class WebViewModel: BaseViewModel {
     
     private var urlString: String = ""
+    private var isPostWebView: Bool = false
     private let realm = RealmService()
     var postWriter: String?
     var storagePost: StoragePost?
@@ -29,20 +30,32 @@ final class WebViewModel: BaseViewModel {
     var urlRequestOutput = PublishRelay<URLRequest>()
     var webViewProgressOutput = PublishRelay<Bool>()
     
-    init(url: String) {
+    init(
+        url: String,
+        isPostWebView: Bool
+    ) {
         super.init()
         
         self.urlString = url
+        self.isPostWebView = isPostWebView
         makeOutput()
     }
     
     private func makeOutput() {
         viewDidLoad
             .subscribe(onNext: { [weak self] in
-                let urlString = TextLiterals.velogBaseURL + (self?.urlString ?? "")
+                guard let webURL = self?.urlString else { return }
+                guard let isPostWebView = self?.isPostWebView else { return }
+                var urlString: String
+                if isPostWebView {
+                    urlString = TextLiterals.velogBaseURL + webURL
+                } else {
+                    urlString = webURL
+                }
                 guard let encodedStr = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-                let PostURL = URL(string: encodedStr)!
-                self?.urlRequestOutput.accept(URLRequest(url: PostURL))
+                if let PostURL = URL(string: encodedStr) {
+                    self?.urlRequestOutput.accept(URLRequest(url: PostURL))
+                }
             })
             .disposed(by: disposeBag)
         

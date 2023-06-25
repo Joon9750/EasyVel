@@ -19,11 +19,13 @@ final class ListViewModel: BaseViewModel {
 
     var subscriberListOutput = PublishRelay<[SubscriberListResponse]>()
     var isListEmptyOutput = PublishRelay<Bool>()
+    var subscriberUserMainURLOutput = PublishRelay<String>()
     
     // MARK: - Input
     
     let subscriberDeleteButtonDidTap = PublishRelay<String>()
     let refreshSubscriberList = PublishRelay<Bool>()
+    let subscriberTableViewCellDidTap = PublishRelay<String>()
     
     // MARK: - init
     
@@ -36,6 +38,7 @@ final class ListViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
+            .startWith(LoadingView.showLoading())
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.getListData()
@@ -55,6 +58,18 @@ final class ListViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.getListData()
+            })
+            .disposed(by: disposeBag)
+        
+        subscriberTableViewCellDidTap
+            .subscribe(onNext: { [weak self] subscriberName in
+                guard let self = self else { return }
+                self.getSubscriberUserMainURL(
+                    name: subscriberName
+                ) { [weak self] subscriberUserMainURLString in
+                    guard let userMainURL = subscriberUserMainURLString.userMainUrl else { return }
+                    self?.subscriberUserMainURLOutput.accept(userMainURL)
+                }
             })
             .disposed(by: disposeBag)
     }
@@ -95,6 +110,9 @@ private extension ListViewModel {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else { return }
                     observer.onNext(list)
+                    
+                    // MARK: - fix me
+                    LoadingView.hideLoading()
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     dump(errResponse)
@@ -114,6 +132,23 @@ private extension ListViewModel {
             switch result {
             case .success(_):
                 completion("success")
+            case .requestErr(let errResponse):
+                dump(errResponse)
+            default:
+                print("error")
+            }
+        }
+    }
+    
+    func getSubscriberUserMainURL(
+        name: String,
+        completion: @escaping (SubscriberUserMainResponse) -> Void
+    ) {
+        NetworkService.shared.subscriberRepository.getSubscriberUserMain(name: name) { result in
+            switch result {
+            case .success(let response):
+                guard let url = response as? SubscriberUserMainResponse else { return }
+                completion(url)
             case .requestErr(let errResponse):
                 dump(errResponse)
             default:

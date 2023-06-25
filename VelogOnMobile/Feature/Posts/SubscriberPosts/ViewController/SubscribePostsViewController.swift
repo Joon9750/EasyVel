@@ -169,8 +169,9 @@ extension SubscribePostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! SubscribersPostsTableViewCell
         let url = selectedCell.url
-        let webViewModel = WebViewModel(url: url)
+        let webViewModel = WebViewModel(url: url, isPostWebView: true)
         let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.isPostWebView = true
         navigationController?.pushViewController(webViewController, animated: true)
     }
     

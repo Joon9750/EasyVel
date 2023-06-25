@@ -17,7 +17,8 @@ final class ListTableViewCell: BaseTableViewCell {
     
     let subscriberImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 20.0
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     

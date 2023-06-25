@@ -120,6 +120,7 @@
 		9158618D2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */; };
 		916227D82A44569500118018 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916227D72A44569500118018 /* UITextField+Extension.swift */; };
 		916227DA2A454FD800118018 /* SubscriberListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916227D92A454FD800118018 /* SubscriberListResponse.swift */; };
+		916227DE2A46C6E900118018 /* SubscriberUserMainResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916227DD2A46C6E900118018 /* SubscriberUserMainResponse.swift */; };
 		916E29A82A3EDA45006F5FE9 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */; };
 		916E29AA2A3EE332006F5FE9 /* AutoSignInDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */; };
 		916E29AE2A3EE90F006F5FE9 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */; };
@@ -276,6 +277,7 @@
 		9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPostAddInFolderProtocol.swift; sourceTree = "<group>"; };
 		916227D72A44569500118018 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		916227D92A454FD800118018 /* SubscriberListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberListResponse.swift; sourceTree = "<group>"; };
+		916227DD2A46C6E900118018 /* SubscriberUserMainResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberUserMainResponse.swift; sourceTree = "<group>"; };
 		916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		916E29A92A3EE332006F5FE9 /* AutoSignInDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDTO.swift; sourceTree = "<group>"; };
 		916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				9134421229FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift */,
 				9134421429FFDC9C000E1ED1 /* UnSubsribeResponse.swift */,
 				916227D92A454FD800118018 /* SubscriberListResponse.swift */,
+				916227DD2A46C6E900118018 /* SubscriberUserMainResponse.swift */,
 			);
 			path = SubscribeDTO;
 			sourceTree = "<group>";
@@ -1444,6 +1447,7 @@
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
+				916227DE2A46C6E900118018 /* SubscriberUserMainResponse.swift in Sources */,
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
 				91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */,
 				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,

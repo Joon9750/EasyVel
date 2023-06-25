@@ -14,6 +14,7 @@ enum SubscriberAPI {
     case getSubscriber
     case searchSubscriber(name: String)
     case deleteSubscriber(targetName: String)
+    case getSubscriberUserMain(name: String)
 }
 
 extension SubscriberAPI: BaseTargetType {
@@ -27,6 +28,8 @@ extension SubscriberAPI: BaseTargetType {
             return URLConstants.subscriber + "/inputname/" + name
         case .deleteSubscriber(let targetName):
             return URLConstants.subscriber + "/unsubscribe/" + targetName
+        case .getSubscriberUserMain(let name):
+            return URLConstants.subscriber + "/usermain/" + name
         }
     }
     
@@ -34,7 +37,7 @@ extension SubscriberAPI: BaseTargetType {
         switch self {
         case .addSubscriber:
             return .post
-        case .getSubscriber, .searchSubscriber:
+        case .getSubscriber, .searchSubscriber, .getSubscriberUserMain:
             return .get
         case .deleteSubscriber:
             return .delete
@@ -59,6 +62,11 @@ extension SubscriberAPI: BaseTargetType {
         case .deleteSubscriber(let targetName):
             return .requestParameters(
                 parameters: ["targetName": targetName],
+                encoding: URLEncoding.queryString
+            )
+        case .getSubscriberUserMain(let name):
+            return .requestParameters(
+                parameters: ["name": name],
                 encoding: URLEncoding.queryString
             )
         }

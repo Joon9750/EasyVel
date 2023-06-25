@@ -37,6 +37,7 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     
     func setDelegate() {
         listView.listTableView.dataSource = self
+        listView.listTableView.delegate = self
     }
 
     override func bind(viewModel: ListViewModel) {
@@ -59,12 +60,20 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
             .disposed(by: disposeBag)
         
         viewModel.isListEmptyOutput
-            .subscribe(onNext: { [weak self] isListEmpty in
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] isListEmpty in
                 if isListEmpty {
                     self?.hiddenListTableView()
                 } else {
                     self?.hiddenListExceptionView()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.subscriberUserMainURLOutput
+            .asDriver(onErrorJustReturn: String())
+            .drive(onNext: { [weak self] subscriberUserMainURL in
+                self?.pushSubscriberUserMainViewController(userMainURL: subscriberUserMainURL)
             })
             .disposed(by: disposeBag)
     }
@@ -89,6 +98,18 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
         viewModel.subscriberSearchDelegate = self
         searchSubcriberViewController.modalPresentationStyle = .pageSheet
         self.present(searchSubcriberViewController, animated: true)
+    }
+    
+    private func pushSubscriberUserMainViewController(
+        userMainURL: String
+    ) {
+        let webViewModel = WebViewModel(
+            url: userMainURL,
+            isPostWebView: false
+        )
+        let webViewController = WebViewController(viewModel: webViewModel)
+        webViewController.isPostWebView = false
+        self.navigationController?.pushViewController(webViewController, animated: true)
     }
     
     private func presentUnSubscriberAlert(
@@ -135,5 +156,14 @@ extension ListViewController: UITableViewDataSource {
             self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
         }
         return cell
+    }
+}
+
+extension ListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
+        if let subscriberName = cell.listText.text {
+            self.viewModel?.subscriberTableViewCellDidTap.accept(subscriberName)
+        }
     }
 }
