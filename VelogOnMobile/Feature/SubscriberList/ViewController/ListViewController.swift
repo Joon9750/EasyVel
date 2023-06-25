@@ -8,12 +8,14 @@
 import UIKit
 
 import RxSwift
+import RxRelay
 import RxCocoa
 import Kingfisher
 
 final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberSearchProtocol {
 
     private let listView = ListView()
+    private var scrapTableViewDidScroll = false
     private var subscriberList: [SubscriberListResponse]? {
         didSet {
             self.listView.listTableView.reloadData()
@@ -179,6 +181,19 @@ extension ListViewController: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
         if let subscriberName = cell.listText.text {
             self.viewModel?.subscriberTableViewCellDidTap.accept(subscriberName)
+        }
+    }
+}
+
+extension ListViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollY = scrollView.contentOffset.y
+        if scrollY > 5 && self.scrapTableViewDidScroll == false {
+            self.listView.tableViewStartScroll()
+            self.scrapTableViewDidScroll.toggle()
+        } else if scrollY < 2 && self.scrapTableViewDidScroll == true {
+            self.listView.tableViewEndScroll()
+            self.scrapTableViewDidScroll.toggle()
         }
     }
 }

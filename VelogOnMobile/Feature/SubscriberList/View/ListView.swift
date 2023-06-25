@@ -49,4 +49,26 @@ final class ListView: BaseUIView {
             $0.width.equalTo(190)
         }
     }
+    
+    func tableViewStartScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.listTableView.snp.remakeConstraints {
+                $0.top.equalTo(self.postsHeadView.snp.bottom)
+                $0.leading.trailing.bottom.equalToSuperview()
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
+    }
+    
+    func tableViewEndScroll() {
+        UIView.animate(withDuration: 4, animations: {
+            self.listTableView.snp.remakeConstraints {
+                $0.top.equalTo(self.postsHeadView.snp.bottom).offset(28)
+                $0.leading.trailing.bottom.equalToSuperview()
+            }
+        }, completion: { isCompleted in
+            self.layoutIfNeeded()
+        })
+    }
 }
