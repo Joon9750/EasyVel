@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,17 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="M36-7S-GDf">
-                                <rect key="frame" x="111" y="335" width="171" height="183"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="signInIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hDP-M7-W64">
+                                <rect key="frame" x="114" y="324" width="165" height="204"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="jM1-8U-sRX"/>
+                                    <constraint firstAttribute="height" constant="204" id="rfx-bB-8vU"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.11764705882352941" green="0.78431372549019607" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="M36-7S-GDf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="111" id="Lov-n5-eI0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="M36-7S-GDf" secondAttribute="trailing" constant="111" id="OCC-wS-BTQ"/>
-                            <constraint firstItem="M36-7S-GDf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="276" id="Ud1-Sb-9dX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="M36-7S-GDf" secondAttribute="bottom" constant="300" id="Yct-PR-pfP"/>
+                            <constraint firstItem="hDP-M7-W64" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CeB-jL-A3W"/>
+                            <constraint firstItem="hDP-M7-W64" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GXh-Td-oJc"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,9 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchIcon" width="259" height="259"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="signInIcon" width="148" height="204"/>
     </resources>
 </document>

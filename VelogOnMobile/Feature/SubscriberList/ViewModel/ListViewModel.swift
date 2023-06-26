@@ -38,10 +38,8 @@ final class ListViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
-            .startWith(LoadingView.showLoading())
-            .subscribe(onNext: { [weak self] _ in
-                guard let self = self else { return }
-                self.getListData()
+            .subscribe(onNext: { [weak self] in
+                self?.getListData()
             })
             .disposed(by: disposeBag)
         
@@ -77,12 +75,8 @@ final class ListViewModel: BaseViewModel {
     private func getListData() {
         getSubscriberList()
             .map { Array($0.reversed()) }
-            .bind(to: subscriberListOutput)
-            .disposed(by: disposeBag)
-        
-        getSubscriberList()
-            .map { Array($0.reversed()) }
             .subscribe(onNext: { [weak self] subscriberList in
+                self?.subscriberListOutput.accept(subscriberList)
                 let subscriberNameList = subscriberList.map { $0.name ?? String() }
                 self?.checkListIsEmpty(subsciberList: subscriberNameList)
             })
@@ -110,9 +104,6 @@ private extension ListViewModel {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else { return }
                     observer.onNext(list)
-                    
-                    // MARK: - fix me
-                    LoadingView.hideLoading()
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     dump(errResponse)

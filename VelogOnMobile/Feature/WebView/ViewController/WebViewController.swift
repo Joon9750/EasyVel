@@ -123,17 +123,17 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 if didSubscribe {
                     self?.subscriberButton.setTitleColor(UIColor.white, for: .normal)
                     self?.subscriberButton.backgroundColor = .brandColor
-                    self?.showSubscibeToast(
+                    self?.showToast(
                         toastText: TextLiterals.addSubscriberToastText,
-                        toastBackgroundColer: .brandColor
+                        backgroundColor: .brandColor
                     )
                     self?.viewModel?.didSubscribe.accept(true)
                 } else {
                     self?.subscriberButton.setTitleColor(UIColor.brandColor, for: .normal)
                     self?.subscriberButton.backgroundColor = .white
-                    self?.showSubscibeToast(
+                    self?.showToast(
                         toastText: TextLiterals.deleteSubscriberToastText,
-                        toastBackgroundColer: .gray300
+                        backgroundColor: .gray300
                     )
                     self?.viewModel?.didSubscribe.accept(false)
                 }
@@ -236,35 +236,5 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
         folderViewController.modalPresentationStyle = .pageSheet
         self.present(folderViewController, animated: true)
-    }
-    
-    private func showSubscibeToast(
-        toastText: String,
-        toastBackgroundColer: UIColor
-    ) {
-        let toastLabel = UILabel()
-        toastLabel.text = toastText
-        toastLabel.textColor = .white
-        toastLabel.font = .body_2_B
-        toastLabel.backgroundColor = toastBackgroundColer
-        toastLabel.textAlignment = .center
-        toastLabel.layer.cornerRadius = 24
-        toastLabel.clipsToBounds = true
-        toastLabel.alpha = 1.0
-        view.addSubview(toastLabel)
-        toastLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(36)
-            $0.leading.trailing.equalToSuperview().inset(51)
-            $0.height.equalTo(48)
-        }
-        UIView.animate(withDuration: 0, animations: {
-            toastLabel.alpha = 1.0
-        }, completion: { isCompleted in
-            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
-                toastLabel.alpha = 0
-            }, completion: { isCompleted in
-                toastLabel.removeFromSuperview()
-            })
-        })
     }
 }

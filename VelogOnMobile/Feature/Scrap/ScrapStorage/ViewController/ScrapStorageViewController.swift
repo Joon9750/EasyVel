@@ -82,9 +82,9 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] alreadyHaveFolderName in
                 if alreadyHaveFolderName {
-                    self?.showAlreadyHaveFolderToast(
+                    self?.showToast(
                         toastText: TextLiterals.alreadyHaveFolderToastText,
-                        toastBackgroundColer: .gray300
+                        backgroundColor: .gray300
                     )
                 }
             })
@@ -115,37 +115,7 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
-    
-    private func showAlreadyHaveFolderToast(
-        toastText: String,
-        toastBackgroundColer: UIColor
-    ) {
-        let toastLabel = UILabel()
-        toastLabel.text = toastText
-        toastLabel.textColor = .white
-        toastLabel.font = .body_2_M
-        toastLabel.backgroundColor = toastBackgroundColer
-        toastLabel.textAlignment = .center
-        toastLabel.layer.cornerRadius = 24
-        toastLabel.clipsToBounds = true
-        toastLabel.alpha = 1.0
-        view.addSubview(toastLabel)
-        toastLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(36)
-            $0.leading.trailing.equalToSuperview().inset(51)
-            $0.height.equalTo(48)
-        }
-        UIView.animate(withDuration: 0, animations: {
-            toastLabel.alpha = 1.0
-        }, completion: { isCompleted in
-            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
-                toastLabel.alpha = 0
-            }, completion: { isCompleted in
-                toastLabel.removeFromSuperview()
-            })
-        })
-    }
-    
+
     private func setNotification() {
         NotificationCenter.default.addObserver(
             self,
