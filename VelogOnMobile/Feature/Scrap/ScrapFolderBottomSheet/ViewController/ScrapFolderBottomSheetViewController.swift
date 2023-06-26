@@ -95,9 +95,9 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
         viewModel.alreadyHaveFolderNameRelay
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] isAlreadyHave in
-                self?.showAlreadyHaveFolderToast(
+                self?.showToast(
                     toastText: TextLiterals.alreadyHaveFolderToastText,
-                    toastBackgroundColer: .gray300
+                    backgroundColor: .gray300
                 )
             })
             .disposed(by: disposeBag)
@@ -127,35 +127,5 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             sheet.prefersGrabberVisible = false
             sheet.preferredCornerRadius = 8.0
         }
-    }
-    
-    private func showAlreadyHaveFolderToast(
-        toastText: String,
-        toastBackgroundColer: UIColor
-    ) {
-        let toastLabel = UILabel()
-        toastLabel.text = toastText
-        toastLabel.textColor = .white
-        toastLabel.font = .body_2_M
-        toastLabel.backgroundColor = toastBackgroundColer
-        toastLabel.textAlignment = .center
-        toastLabel.layer.cornerRadius = 24
-        toastLabel.clipsToBounds = true
-        toastLabel.alpha = 1.0
-        view.addSubview(toastLabel)
-        toastLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(keyboardHeight + 36)
-            $0.leading.trailing.equalToSuperview().inset(51)
-            $0.height.equalTo(48)
-        }
-        UIView.animate(withDuration: 0, animations: {
-            toastLabel.alpha = 1.0
-        }, completion: { isCompleted in
-            UIView.animate(withDuration: 0.5, delay: 3.0, animations: {
-                toastLabel.alpha = 0
-            }, completion: { isCompleted in
-                toastLabel.removeFromSuperview()
-            })
-        })
     }
 }
