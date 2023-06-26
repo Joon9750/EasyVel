@@ -29,7 +29,6 @@ final class WebViewModel: BaseViewModel {
     var didSubscribeWriter = PublishRelay<Bool>()
     var urlRequestOutput = PublishRelay<URLRequest>()
     var webViewProgressOutput = PublishRelay<Bool>()
-    var serverFailOutput = PublishRelay<Bool>()
     
     init(
         url: String,
@@ -123,13 +122,13 @@ extension WebViewModel {
         NetworkService.shared.subscriberRepository.addSubscriber(
             fcmToken: TextLiterals.noneText,
             name: name
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(_): break
             case .requestErr(_):
-                self.serverFailOutput.accept(true)
+                self?.serverFailOutput.accept(true)
             default:
-                self.serverFailOutput.accept(true)
+                self?.serverFailOutput.accept(true)
             }
         }
     }
@@ -139,34 +138,34 @@ extension WebViewModel {
     ) {
         NetworkService.shared.subscriberRepository.deleteSubscriber(
             targetName: name
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(_): break
             case .requestErr(_):
-                self.serverFailOutput.accept(true)
+                self?.serverFailOutput.accept(true)
             default:
-                self.serverFailOutput.accept(true)
+                self?.serverFailOutput.accept(true)
             }
         }
     }
     
     func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer in
-            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+            NetworkService.shared.subscriberRepository.getSubscriber() { [weak self] result in
                 switch result {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else {
-                        self.serverFailOutput.accept(true)
+                        self?.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
-                    self.serverFailOutput.accept(true)
+                    self?.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
-                    self.serverFailOutput.accept(true)
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

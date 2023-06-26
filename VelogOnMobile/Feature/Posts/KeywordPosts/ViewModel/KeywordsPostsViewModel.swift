@@ -125,18 +125,21 @@ final class KeywordsPostsViewModel: BaseViewModel {
 private extension KeywordsPostsViewModel {
     func getTagPosts() -> Observable<GetTagPostResponse> {
         return Observable.create { observer in
-            NetworkService.shared.postsRepository.getTagPosts() { result in
+            NetworkService.shared.postsRepository.getTagPosts() { [weak self] result in
                 switch result {
                 case .success(let response):
                     guard let posts = response as? GetTagPostResponse else {
+                        self?.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
                     observer.onNext(posts)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self?.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

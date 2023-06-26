@@ -166,7 +166,7 @@ final class HomeViewController: BaseViewController {
                 guard let response = response as? [String] else { return }
                 self.tags = response
             default :
-                ServerFailViewController.show(from: self)
+                ServerFailViewController.show()
                 return
             }
         }

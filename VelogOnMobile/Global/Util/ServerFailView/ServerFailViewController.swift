@@ -13,11 +13,6 @@ final class ServerFailViewController: BaseViewController {
     
     let serverFailImage: UIImageView = UIImageView(image: ImageLiterals.serverFailImage)
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-    }
-    
     override func render() {
         view.addSubview(serverFailImage)
         
@@ -32,8 +27,11 @@ final class ServerFailViewController: BaseViewController {
         view.backgroundColor = .gray100
     }
     
-    static func show(from viewController: UIViewController) {
-        let serverFailVC = ServerFailViewController()
-        viewController.navigationController?.pushViewController(serverFailVC, animated: true)
+    static func show() {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            let serverFailVC = ServerFailViewController()
+            window.rootViewController = serverFailVC
+        }
     }
 }
