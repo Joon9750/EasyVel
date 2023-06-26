@@ -82,6 +82,15 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
             .map { _ in () }
             .bind(to: viewModel.viewDidDisappear)
             .disposed(by: disposeBag)
+        
+        viewModel.serverFailOutput
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { isFail in
+                if isFail {
+                    ServerFailViewController.show()
+                }
+            })
+            .disposed(by: disposeBag)
     }
 
     deinit {}

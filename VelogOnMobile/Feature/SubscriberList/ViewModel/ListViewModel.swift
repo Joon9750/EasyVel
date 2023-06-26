@@ -99,15 +99,20 @@ final class ListViewModel: BaseViewModel {
 private extension ListViewModel {
     func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer -> Disposable in
-            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+            NetworkService.shared.subscriberRepository.getSubscriber() { [weak self] result in
                 switch result {
                 case .success(let response):
-                    guard let list = response as? [SubscriberListResponse] else { return }
+                    guard let list = response as? [SubscriberListResponse] else {
+                        self?.serverFailOutput.accept(true)
+                        return
+                    }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self?.serverFailOutput.accept(true)
                     dump(errResponse)
                 default:
+                    self?.serverFailOutput.accept(true)
                     print("error")
                 }
             }
@@ -119,13 +124,17 @@ private extension ListViewModel {
         targetName: String,
         completion: @escaping (String) -> Void
     ) {
-        NetworkService.shared.subscriberRepository.deleteSubscriber(targetName: targetName){ result in
+        NetworkService.shared.subscriberRepository.deleteSubscriber(
+            targetName: targetName
+        ){ [weak self] result in
             switch result {
             case .success(_):
                 completion("success")
             case .requestErr(let errResponse):
+                self?.serverFailOutput.accept(true)
                 dump(errResponse)
             default:
+                self?.serverFailOutput.accept(true)
                 print("error")
             }
         }
@@ -135,14 +144,21 @@ private extension ListViewModel {
         name: String,
         completion: @escaping (SubscriberUserMainResponse) -> Void
     ) {
-        NetworkService.shared.subscriberRepository.getSubscriberUserMain(name: name) { result in
+        NetworkService.shared.subscriberRepository.getSubscriberUserMain(
+            name: name
+        ) { [weak self] result in
             switch result {
             case .success(let response):
-                guard let url = response as? SubscriberUserMainResponse else { return }
+                guard let url = response as? SubscriberUserMainResponse else {
+                    self?.serverFailOutput.accept(true)
+                    return
+                }
                 completion(url)
             case .requestErr(let errResponse):
+                self?.serverFailOutput.accept(true)
                 dump(errResponse)
             default:
+                self?.serverFailOutput.accept(true)
                 print("error")
             }
         }

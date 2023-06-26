@@ -90,6 +90,8 @@ final class SubscriberSearchViewModel: BaseViewModel {
     }
 }
 
+// MARK: - api
+
 private extension SubscriberSearchViewModel {
     func searchSubscriber(
         name: String
@@ -97,18 +99,21 @@ private extension SubscriberSearchViewModel {
         return Observable.create { observer in
             NetworkService.shared.subscriberRepository.searchSubscriber(
                 name: name
-            ) { result in
+            ) { [weak self] result in
                 switch result {
                 case .success(let response):
                     guard let result = response as? SearchSubscriberResponse else {
+                        self?.serverFailOutput.accept(true)
                         observer.onCompleted()
                         return
                     }
                     observer.onNext(result)
                     observer.onCompleted()
                 case .requestErr(_):
+                    self?.serverFailOutput.accept(true)
                     observer.onCompleted()
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onCompleted()
                 }
             }
@@ -123,15 +128,17 @@ private extension SubscriberSearchViewModel {
             NetworkService.shared.subscriberRepository.addSubscriber(
                 fcmToken: "",
                 name: name
-            ) { result in
+            ) { [weak self] result in
                 switch result {
                 case .success(_):
                     observer.onNext(true)
                     observer.onCompleted()
                 case .requestErr(_):
+                    self?.serverFailOutput.accept(true)
                     observer.onNext(false)
                     observer.onCompleted()
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }
@@ -141,18 +148,21 @@ private extension SubscriberSearchViewModel {
     
     func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer in
-            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+            NetworkService.shared.subscriberRepository.getSubscriber() { [weak self] result in
                 switch result {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else {
+                        self?.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self?.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

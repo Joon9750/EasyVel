@@ -113,6 +113,8 @@ final class WebViewModel: BaseViewModel {
     }
 }
 
+// MARK: - api
+
 extension WebViewModel {
     func addSubscriber(
         name: String
@@ -120,13 +122,13 @@ extension WebViewModel {
         NetworkService.shared.subscriberRepository.addSubscriber(
             fcmToken: TextLiterals.noneText,
             name: name
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(_): break
             case .requestErr(_):
-                print("error")
+                self?.serverFailOutput.accept(true)
             default:
-                print("error")
+                self?.serverFailOutput.accept(true)
             }
         }
     }
@@ -136,31 +138,34 @@ extension WebViewModel {
     ) {
         NetworkService.shared.subscriberRepository.deleteSubscriber(
             targetName: name
-        ) { result in
+        ) { [weak self] result in
             switch result {
             case .success(_): break
             case .requestErr(_):
-                print("error")
+                self?.serverFailOutput.accept(true)
             default:
-                print("error")
+                self?.serverFailOutput.accept(true)
             }
         }
     }
     
     func getSubscriberList() -> Observable<[SubscriberListResponse]> {
         return Observable.create { observer in
-            NetworkService.shared.subscriberRepository.getSubscriber() { result in
+            NetworkService.shared.subscriberRepository.getSubscriber() { [weak self] result in
                 switch result {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else {
+                        self?.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self?.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

@@ -56,18 +56,22 @@ final class TagSearchViewModel: BaseViewModel {
     }
 }
 
+// MARK: - api
+
 private extension TagSearchViewModel {
     func addTag(tag: String) -> Observable<Bool> {
         return Observable.create { observer in
-            NetworkService.shared.tagRepository.addTag(tag: tag) { result in
+            NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
                 switch result {
                 case .success(_):
                     observer.onNext(true)
                     observer.onCompleted()
                 case .requestErr(_):
+                    self?.serverFailOutput.accept(true)
                     observer.onNext(false)
                     observer.onCompleted()
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }
@@ -77,18 +81,21 @@ private extension TagSearchViewModel {
         
     func getTagList() -> Observable<[String]> {
         return Observable.create { observer in
-            NetworkService.shared.tagRepository.getTag() { result in
+            NetworkService.shared.tagRepository.getTag() { [weak self] result in
                 switch result {
                 case .success(let response):
                     guard let list = response as? [String] else {
+                        self?.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self?.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

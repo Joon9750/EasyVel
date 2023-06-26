@@ -68,14 +68,16 @@ extension SettingViewModel {
         body: SignOutRequest
     ) -> Observable<Bool> {
         return Observable.create { observer in
-            NetworkService.shared.signRepository.signOut() { result in
+            NetworkService.shared.signRepository.signOut() { [weak self] result in
                 switch result {
                 case .success(_):
                     observer.onNext(true)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self?.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
+                    self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

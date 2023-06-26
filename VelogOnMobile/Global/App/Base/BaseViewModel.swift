@@ -16,6 +16,7 @@ public protocol BaseViewBindable {
     var viewDidAppear: PublishRelay<Void> { get }
     var viewWillDisappear: PublishRelay<Void> { get }
     var viewDidDisappear: PublishRelay<Void> { get }
+    var serverFailOutput: PublishRelay<Bool> { get }
     var disposeBag: DisposeBag { get }
 }
 
@@ -27,6 +28,7 @@ public class BaseViewModel: BaseViewBindable {
     public let viewDidDisappear = PublishRelay<Void>()
     public let finishForPop = PublishRelay<Void>()
     public let finishForDismiss = PublishRelay<Void>()
+    public let serverFailOutput = PublishRelay<Bool>()
     public let disposeBag = DisposeBag()
 
     public init() {}
