@@ -29,6 +29,7 @@ final class WebViewModel: BaseViewModel {
     var didSubscribeWriter = PublishRelay<Bool>()
     var urlRequestOutput = PublishRelay<URLRequest>()
     var webViewProgressOutput = PublishRelay<Bool>()
+    var serverFailOutput = PublishRelay<Bool>()
     
     init(
         url: String,
@@ -113,6 +114,8 @@ final class WebViewModel: BaseViewModel {
     }
 }
 
+// MARK: - api
+
 extension WebViewModel {
     func addSubscriber(
         name: String
@@ -124,9 +127,9 @@ extension WebViewModel {
             switch result {
             case .success(_): break
             case .requestErr(_):
-                print("error")
+                self.serverFailOutput.accept(true)
             default:
-                print("error")
+                self.serverFailOutput.accept(true)
             }
         }
     }
@@ -140,9 +143,9 @@ extension WebViewModel {
             switch result {
             case .success(_): break
             case .requestErr(_):
-                print("error")
+                self.serverFailOutput.accept(true)
             default:
-                print("error")
+                self.serverFailOutput.accept(true)
             }
         }
     }
@@ -153,14 +156,17 @@ extension WebViewModel {
                 switch result {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else {
+                        self.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
                     observer.onNext(list)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
+                    self.serverFailOutput.accept(true)
                     observer.onError(errResponse as! Error)
                 default:
+                    self.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
                 }
             }

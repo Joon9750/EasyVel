@@ -184,6 +184,15 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.serverFailOutput
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { isFail in
+                if isFail {
+                    ServerFailViewController.show(from: self)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setSubscribeButton(
