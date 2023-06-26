@@ -124,6 +124,10 @@ final class TabBarController: UITabBarController {
 
 extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        NotificationCenter.default.post(
+            name: Notification.Name("scrollToTop"),
+            object: nil
+        )
         let impactService = HapticService.impact(.light)
         impactService.run()
     }

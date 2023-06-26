@@ -17,6 +17,12 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
     private lazy var dataSource = ScrapStorageCollectionViewDataSource(collectionView: scrapView.scrapCollectionView)
     private var scrapCollectionViewDidScroll = false
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setNotification()
+    }
+    
     override func render() {
         view = scrapView
     }
@@ -138,5 +144,20 @@ final class ScrapStorageViewController: RxBaseViewController<ScrapStorageViewMod
                 toastLabel.removeFromSuperview()
             })
         })
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToTop),
+            name: Notification.Name("scrollToTop"),
+            object: nil
+        )
+    }
+    
+    @objc
+    private func scrollToTop() {
+        let topIndexPath = IndexPath(item: 0, section: 0)
+        scrapView.scrapCollectionView.scrollToItem(at: topIndexPath, at: .top, animated: true)
     }
 }

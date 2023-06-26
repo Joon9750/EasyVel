@@ -13,6 +13,12 @@ final class ScrapStorageView: BaseUIView {
 
     // MARK: - UI Components
     
+    private let headView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.scrapStorageTitleLabel
@@ -58,22 +64,31 @@ final class ScrapStorageView: BaseUIView {
     }()
     
     override func configUI() {
-        self.backgroundColor = .white
+        self.backgroundColor = .gray100
     }
     
     override func render() {
         self.addSubviews(
-            titleLabel,
-            vertiLineView,
+            headView,
             buttonBackView,
             scrapCollectionView
         )
         
+        headView.addSubviews(
+            titleLabel,
+            vertiLineView
+        )
+        
         buttonBackView.addSubview(addFolderButton)
+        
+        headView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(172)
+        }
         
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(76)
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(17)
         }
         
         vertiLineView.snp.makeConstraints {
