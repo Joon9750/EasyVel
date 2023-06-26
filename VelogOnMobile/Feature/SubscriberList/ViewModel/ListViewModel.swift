@@ -38,7 +38,6 @@ final class ListViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
-            .startWith(LoadingView.showLoading())
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 self.getListData()
@@ -110,9 +109,6 @@ private extension ListViewModel {
                 case .success(let response):
                     guard let list = response as? [SubscriberListResponse] else { return }
                     observer.onNext(list)
-                    
-                    // MARK: - fix me
-                    LoadingView.hideLoading()
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     dump(errResponse)
