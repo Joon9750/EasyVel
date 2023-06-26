@@ -38,6 +38,7 @@ enum ImageLiterals {
     static var emptyKeywordList: UIImage { .load(name: "emptyKeywordList") }
     static var networkFail: UIImage { .load(name: "networkFail") }
     static var subscriberListException: UIImage { .load(name: "subscriberListException") }
+    static var serverFailImage: UIImage { .load(name: "serverFailImage") }    
 }
 
 extension UIImage {
