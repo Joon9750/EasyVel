@@ -21,6 +21,7 @@
 		8765F0012A2A05B100EF6733 /* empty in Resources */ = {isa = PBXBuildFile; fileRef = 8765F0002A2A05B100EF6733 /* empty */; };
 		877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */; };
 		877ED7C62A4ACC0900D80464 /* TrendPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */; };
+		877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -105,11 +106,11 @@
 		91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4A29FD9838009CFECF /* TagSearchView.swift */; };
 		91487F4D29FD9858009CFECF /* TagSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F4C29FD9858009CFECF /* TagSearchViewController.swift */; };
 		91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5129FDA143009CFECF /* SettingTableViewCell.swift */; };
-		91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */; };
+		91487F5929FDA269009CFECF /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5829FDA269009CFECF /* PostsTableViewCell.swift */; };
 		91487F5B29FDA287009CFECF /* KeywordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5A29FDA287009CFECF /* KeywordsTableView.swift */; };
-		91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */; };
+		91487F5D29FDA2C0009CFECF /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487F5C29FDA2C0009CFECF /* PostsViewController.swift */; };
 		914D8DCE2A02417C00516B4C /* SubscriberSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */; };
-		914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */; };
+		914D8DD12A028AED00516B4C /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD02A028AED00516B4C /* PostsViewModel.swift */; };
 		914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914D8DD82A02B22A00516B4C /* WebViewController.swift */; };
 		915861852A2DFA6D00461F9A /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 915861842A2DFA6D00461F9A /* RxBlocking */; };
 		915861872A2DFA6D00461F9A /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 915861862A2DFA6D00461F9A /* RxCocoa */; };
@@ -183,6 +184,7 @@
 		8765F0002A2A05B100EF6733 /* empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = empty; sourceTree = "<group>"; };
 		877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendPostsDTO.swift; sourceTree = "<group>"; };
+		877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -266,11 +268,11 @@
 		91487F4A29FD9838009CFECF /* TagSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchView.swift; sourceTree = "<group>"; };
 		91487F4C29FD9858009CFECF /* TagSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewController.swift; sourceTree = "<group>"; };
 		91487F5129FDA143009CFECF /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableViewCell.swift; sourceTree = "<group>"; };
+		91487F5829FDA269009CFECF /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		91487F5A29FDA287009CFECF /* KeywordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsTableView.swift; sourceTree = "<group>"; };
-		91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewController.swift; sourceTree = "<group>"; };
+		91487F5C29FDA2C0009CFECF /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberSearchViewModel.swift; sourceTree = "<group>"; };
-		914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsPostsViewModel.swift; sourceTree = "<group>"; };
+		914D8DD02A028AED00516B4C /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		914D8DD82A02B22A00516B4C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		9158618C2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPostAddInFolderProtocol.swift; sourceTree = "<group>"; };
 		916227D72A44569500118018 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -413,6 +415,14 @@
 				877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */,
 			);
 			path = TrendDTO;
+			sourceTree = "<group>";
+		};
+		877ED7C72A4AD29500D80464 /* PostsDTO */ = {
+			isa = PBXGroup;
+			children = (
+				877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */,
+			);
+			path = PostsDTO;
 			sourceTree = "<group>";
 		};
 		9128AFE22A21178600FB1252 /* ViewModel */ = {
@@ -596,6 +606,7 @@
 		913441F729FFD760000E1ED1 /* ServerDTO */ = {
 			isa = PBXGroup;
 			children = (
+				877ED7C72A4AD29500D80464 /* PostsDTO */,
 				877ED7C42A4ACBEB00D80464 /* TrendDTO */,
 				91BFF2F62A27770300F5D13E /* StorageDTO */,
 				91BFF2F32A2776D600F5D13E /* PopularDTO */,
@@ -934,7 +945,7 @@
 			children = (
 				913442282A0001EC000E1ED1 /* KeywordsPostsView.swift */,
 				91487F5A29FDA287009CFECF /* KeywordsTableView.swift */,
-				91487F5829FDA269009CFECF /* KeywordsTableViewCell.swift */,
+				91487F5829FDA269009CFECF /* PostsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -942,7 +953,7 @@
 		91487F5F29FDA2F8009CFECF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				91487F5C29FDA2C0009CFECF /* KeywordsPostsViewController.swift */,
+				91487F5C29FDA2C0009CFECF /* PostsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -958,7 +969,7 @@
 		914D8DCF2A028ADE00516B4C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				914D8DD02A028AED00516B4C /* KeywordsPostsViewModel.swift */,
+				914D8DD02A028AED00516B4C /* PostsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1416,7 +1427,7 @@
 				91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */,
 				91487F0029FC3BFE009CFECF /* TextLiterals.swift in Sources */,
 				91487F4D29FD9858009CFECF /* TagSearchViewController.swift in Sources */,
-				914D8DD12A028AED00516B4C /* KeywordsPostsViewModel.swift in Sources */,
+				914D8DD12A028AED00516B4C /* PostsViewModel.swift in Sources */,
 				917BA3312A03D8EF000409B7 /* StorageViewController.swift in Sources */,
 				913442362A00491C000E1ED1 /* NotificationAPI.swift in Sources */,
 				91BFF2F82A27833C00F5D13E /* PostScrapButtonDidTapped.swift in Sources */,
@@ -1424,6 +1435,7 @@
 				9134422D2A00418A000E1ED1 /* URLConstants.swift in Sources */,
 				8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */,
 				91487F2F29FD1A67009CFECF /* SubscriberSearchView.swift in Sources */,
+				877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */,
 				91487EFE29FC3BD0009CFECF /* ImageLiterals.swift in Sources */,
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
 				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
@@ -1449,7 +1461,7 @@
 				9166BE952A498B1700FFC026 /* ShowToast.swift in Sources */,
 				9128B02A2A23757200FB1252 /* ScrapFolderBottomSheetView.swift in Sources */,
 				917BA3432A0503D5000409B7 /* StoragePost.swift in Sources */,
-				91487F5D29FDA2C0009CFECF /* KeywordsPostsViewController.swift in Sources */,
+				91487F5D29FDA2C0009CFECF /* PostsViewController.swift in Sources */,
 				913442292A0001EC000E1ED1 /* KeywordsPostsView.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
@@ -1518,7 +1530,7 @@
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,
 				9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */,
 				914D8DD92A02B22A00516B4C /* WebViewController.swift in Sources */,
-				91487F5929FDA269009CFECF /* KeywordsTableViewCell.swift in Sources */,
+				91487F5929FDA269009CFECF /* PostsTableViewCell.swift in Sources */,
 				91ED17892A00E58D00158787 /* SubscriberRepository.swift in Sources */,
 				9128B0562A23CC7400FB1252 /* ScrapStorageViewController.swift in Sources */,
 				91487F3729FD88E7009CFECF /* ListViewController.swift in Sources */,

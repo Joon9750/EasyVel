@@ -8,19 +8,6 @@
 import Foundation
 
 struct GetTagPostResponse: Codable {
-    let tagPostDtoList: [TagPostDtoList]?
-}
-
-struct TagPostDtoList: Codable {
-    let comment: Int?
-    let date: String?
-    let img: String?
-    let like: Int?
-    let name: String?
-    let subscribed: Bool?
-    let summary: String?
-    let tag: [String]?
-    let title: String?
-    let url: String?
+    let tagPostDtoList: [PostDTO]?
 }
 

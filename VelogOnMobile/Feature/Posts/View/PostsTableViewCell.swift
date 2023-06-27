@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-final class KeywordsTableViewCell: BaseTableViewCell {
+final class PostsTableViewCell: BaseTableViewCell {
     
     static let identifier = "KeywordsTableViewCell"
     
@@ -22,7 +22,7 @@ final class KeywordsTableViewCell: BaseTableViewCell {
         }
     }
     var cellIndex: Int?
-    var post: TagPostDtoList?
+    var post: PostDTO?
     var url = String()
     
     let imgView: UIImageView = {
@@ -205,8 +205,8 @@ final class KeywordsTableViewCell: BaseTableViewCell {
     }
 }
 
-extension KeywordsTableViewCell {
-    public func binding(model: TagPostDtoList){
+extension PostsTableViewCell {
+    public func binding(model: PostDTO){
         post = model
         title.text = model.title
         name.text = model.name

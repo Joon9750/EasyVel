@@ -96,6 +96,11 @@ class BaseRepository {
                 return .pathErr
             }
             return .success(decodedData)
+        case .trendPosts:
+            guard let decodedData = try? decoder.decode(TrendPostResponse.self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
         }
     }
 }

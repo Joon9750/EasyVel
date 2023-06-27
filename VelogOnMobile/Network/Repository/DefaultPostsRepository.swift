@@ -60,4 +60,20 @@ final class DefaultPostsRepository: BaseRepository, PostsRepository {
             }
         }
     }
+    
+    func getTrendPosts(
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.trendsPosts) { result in
+            switch result {
+            case.success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .trendPosts)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }

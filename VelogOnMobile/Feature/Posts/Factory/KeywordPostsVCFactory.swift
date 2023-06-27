@@ -8,8 +8,8 @@
 import Foundation
 
 final class KeywordPostsVCFactory {
-    func create(tag: String) -> KeywordsPostsViewController {
-        let vc = KeywordsPostsViewController(viewModel: KeywordsPostsViewModel())
+    func create(tag: String) -> PostsViewController {
+        let vc = PostsViewController(viewModel: PostsViewModel(viewType: .keyword))
         return vc
     }
 }

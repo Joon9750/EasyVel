@@ -25,4 +25,5 @@ enum ResponseData {
     case joinGroup
     case getPopularPosts
     case getSubscriberUserMain
+    case trendPosts
 }

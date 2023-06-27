@@ -22,7 +22,7 @@ final class KeywordsTableView: UITableView {
     }
 
     private func setupTableView() {
-        register(KeywordsTableViewCell.self, forCellReuseIdentifier: KeywordsTableViewCell.identifier)
+        register(PostsTableViewCell.self, forCellReuseIdentifier: PostsTableViewCell.identifier)
         showsVerticalScrollIndicator = true
     }
 }

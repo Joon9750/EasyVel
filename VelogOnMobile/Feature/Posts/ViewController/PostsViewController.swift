@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import RxRelay
 
-final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewModel> {
+final class PostsViewController: RxBaseViewController<PostsViewModel> {
 
-    private var keywordsPosts: GetTagPostResponse?
+    private var posts: [PostDTO]?
     private var isScrapPostsList: [Bool]?
     
     private let keywordsPostsView = KeywordsPostsView()
@@ -27,7 +27,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
         self.view = keywordsPostsView
     }
     
-    override func bind(viewModel: KeywordsPostsViewModel) {
+    override func bind(viewModel: PostsViewModel) {
         keywordsPostsView.keywordsTableView.dataSource = self
         keywordsPostsView.keywordsTableView.delegate = self
         bindOutput(viewModel)
@@ -41,11 +41,11 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
             .disposed(by: disposeBag)
     }
     
-    private func bindOutput(_ viewModel: KeywordsPostsViewModel) {
-        viewModel.tagPostsListOutput
-            .asDriver(onErrorJustReturn: GetTagPostResponse(tagPostDtoList: [TagPostDtoList]()))
+    private func bindOutput(_ viewModel: PostsViewModel) {
+        viewModel.postsListOutput
+            .asDriver(onErrorJustReturn: [PostDTO]())
             .drive(onNext: { [weak self] post in
-                self?.keywordsPosts = post
+                self?.posts = post
                 self?.keywordsPostsView.keywordsTableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -84,7 +84,7 @@ final class KeywordsPostsViewController: RxBaseViewController<KeywordsPostsViewM
     }
 }
 
-extension KeywordsPostsViewController: PostScrapButtonDidTapped {
+extension PostsViewController: PostScrapButtonDidTapped {
     func scrapButtonDidTapped(
         storagePost: StoragePost,
         isScrapped: Bool,
@@ -92,14 +92,15 @@ extension KeywordsPostsViewController: PostScrapButtonDidTapped {
     ) {
         isScrapPostsList?[cellIndex] = isScrapped
         // MARK: - fix me, viewModel 주입 방법 수정
-        let viewModel = KeywordsPostsViewModel()
+        
+        let viewModel = PostsViewModel(viewType: .keyword)
         viewModel.cellScrapButtonDidTap.accept((storagePost, isScrapped))
     }
 }
 
-extension KeywordsPostsViewController: UITableViewDataSource {
+extension PostsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return keywordsPosts?.tagPostDtoList?.count ?? 0
+        return posts?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,12 +108,12 @@ extension KeywordsPostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordsTableViewCell.identifier, for: indexPath) as? KeywordsTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostsTableViewCell.identifier, for: indexPath) as? PostsTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         let index = indexPath.section
         cell.cellDelegate = self
         cell.cellIndex = index
-        if let data = keywordsPosts?.tagPostDtoList?[index] {
+        if let data = posts?[index] {
             cell.binding(model: data)
             if let isUnique = isScrapPostsList?[index] {
                 if isUnique {
@@ -127,8 +128,8 @@ extension KeywordsPostsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let textNum = keywordsPosts?.tagPostDtoList?[indexPath.section].summary?.count ?? 0
-        if keywordsPosts?.tagPostDtoList?[indexPath.section].img ?? String() == TextLiterals.noneText {
+        let textNum = posts?[indexPath.section].summary?.count ?? 0
+        if posts?[indexPath.section].img ?? String() == TextLiterals.noneText {
             switch textNum {
             case 0...50: return SizeLiterals.postCellSmall
             case 51...80: return SizeLiterals.postCellMedium
@@ -141,20 +142,20 @@ extension KeywordsPostsViewController: UITableViewDataSource {
     }
 }
 
-extension KeywordsPostsViewController: UITableViewDelegate {
+extension PostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath) as! KeywordsTableViewCell
+        let selectedCell = tableView.cellForRow(at: indexPath) as! PostsTableViewCell
         let index = indexPath.section
         let storagePost = StoragePost(
-            img: keywordsPosts?.tagPostDtoList?[index].img,
-            name: keywordsPosts?.tagPostDtoList?[index].name,
-            summary: keywordsPosts?.tagPostDtoList?[index].summary,
-            title: keywordsPosts?.tagPostDtoList?[index].title,
-            url: keywordsPosts?.tagPostDtoList?[index].url
+            img: posts?[index].img,
+            name: posts?[index].name,
+            summary: posts?[index].summary,
+            title: posts?[index].title,
+            url: posts?[index].url
         )
         
         let webViewModel = WebViewModel(url: selectedCell.url, isPostWebView: true)
-        webViewModel.postWriter = keywordsPosts?.tagPostDtoList?[index].name
+        webViewModel.postWriter = posts?[index].name
         webViewModel.storagePost = storagePost
         
         let webViewController = WebViewController(viewModel: webViewModel)
