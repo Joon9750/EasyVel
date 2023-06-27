@@ -12,7 +12,7 @@ import RxRelay
 import RxCocoa
 import Kingfisher
 
-final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberSearchProtocol {
+final class ListViewController: RxBaseViewController<ListViewModel> {
 
     private let listView = ListView()
     private var scrapTableViewDidScroll = false
@@ -150,6 +150,14 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     @objc
     private func scrollToTop() {
         listView.listTableView.setContentOffset(.zero, animated: true)
+    }
+}
+
+extension ListViewController: SubscriberSearchProtocol {
+    func searchSubscriberViewWillDisappear(
+        subscriberList: [SubscriberListResponse]
+    ) {
+        self.subscriberList = subscriberList
     }
 }
 

@@ -50,6 +50,7 @@ final class ListViewModel: BaseViewModel {
                     let reloadSubscriberList = subscriberList.filter {
                         $0.name != subscriber
                     }
+                    self.subscriberList = reloadSubscriberList
                     self.subscriberListOutput.accept(reloadSubscriberList)
                 }
                 self.deleteSubscriber(targetName: subscriber) { [weak self] _ in
