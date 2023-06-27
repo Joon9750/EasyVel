@@ -87,8 +87,6 @@ final class HomeViewController: BaseViewController {
     
     private func delegate() {
         menuBar.delegate = self
-        pageViewController.dataSource = self
-        pageViewController.delegate = self
     }
     
     private func style() {
@@ -154,7 +152,7 @@ final class HomeViewController: BaseViewController {
         
         var direction: UIPageViewController.NavigationDirection = beforeIndex.item < newIndex.item ? .forward : .reverse
         
-        if beforeIndex != newIndex {
+        if beforeIndex.section != newIndex.section {
             direction = beforeIndex.section < newIndex.section ? .forward : .reverse
         }
         
@@ -198,34 +196,3 @@ extension HomeViewController: HomeMenuBarDelegate {
     }
 }
 
-//MARK: - UIPageViewControllerDataSource
-
-extension HomeViewController: UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = dataSourceViewController.firstIndex(of: viewController) else { return nil }
-        let nextIndex = currentIndex + 1
-        guard nextIndex != dataSourceViewController.count else { return nil }
-        return dataSourceViewController[nextIndex]
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = dataSourceViewController.firstIndex(of: viewController) else { return nil }
-        let previousIndex = currentIndex - 1
-        guard previousIndex >= 0 else { return nil }
-        return dataSourceViewController[previousIndex]
-    }
-}
-
-//MARK: - UIPageViewControllerDelegate
-
-extension HomeViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            didFinishAnimating finished: Bool,
-                            previousViewControllers: [UIViewController],
-                            transitionCompleted completed: Bool) {
-        
-        guard let currentVC = pageViewController.viewControllers?.first,
-              let currentIndex = dataSourceViewController.firstIndex(of: currentVC) else { return }
-        currentPage = IndexPath(row: currentIndex, section: 1)
-    }
-}
