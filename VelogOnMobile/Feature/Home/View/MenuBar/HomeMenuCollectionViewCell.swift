@@ -2,7 +2,7 @@
 //  HomeMenuCollectionViewCell.swift
 //  VelogOnMobile
 //
-//  Created by 장석우 on 2023/06/02.
+//  Created by 장석우 on 2023/06/27.
 //
 
 import UIKit
@@ -13,6 +13,28 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    enum MenuType: String, CaseIterable {
+        case plus = ""
+        case trend = "트렌드"
+        case follow = "팔로우"
+        case tag
+        
+        var isText: Bool {
+            switch self {
+            case .plus:
+                return false
+            default:
+                return true
+            }
+        }
+    }
+    
+    private var menuType: MenuType = .plus {
+        didSet{
+            updateUI()
+        }
+    }
+    
     override var isSelected: Bool {
         didSet {
             titleLabel.textColor = isSelected ? .gray700 : .gray300
@@ -20,11 +42,7 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var title: String? {
-        didSet {
-            titleLabel.text = title
-        }
-    }
+    private var keyword: String?
     
     //MARK: - UI Components
     
@@ -47,18 +65,9 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .white
-        contentView.addSubviews(titleLabel, plusImageView)
-        
-        titleLabel.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(15)
-        }
-        
-        plusImageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.size.equalTo(16)
-        }
+        style()
+        hierarchy()
+        layout()
     }
     
     @available(*, unavailable)
@@ -72,16 +81,46 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Custom Method
     
-    func dataBind(tag: String) {
-        titleLabel.isHidden = false
+    func dataBind(_ type: MenuType, keyword: String?) {
+        self.keyword = keyword
+        self.menuType = type
+    }
+}
+
+private extension HomeMenuCollectionViewCell {
+    
+    func style() {
+        contentView.backgroundColor = .white
         plusImageView.isHidden = true
-        
-        self.title = tag
     }
     
-    func setPlusMenu() {
-        titleLabel.isHidden = true
-        plusImageView.isHidden = false   
+    func hierarchy() {
+        contentView.addSubviews(titleLabel, plusImageView)
+    }
+    
+    func layout() {
+        titleLabel.snp.makeConstraints {
+            $0.verticalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(15)
+        }
+        
+        plusImageView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.size.equalTo(16)
+        }
+    }
+    
+    func updateUI() {
+        plusImageView.isHidden = menuType.isText
+        titleLabel.isHidden = !menuType.isText
+        
+        switch menuType {
+        case .plus: return
+        case .trend, .follow:
+            titleLabel.text = menuType.rawValue
+        case .tag:
+            titleLabel.text = keyword
+        }
     }
 }
 
@@ -95,3 +134,5 @@ extension HomeMenuCollectionViewCell {
                                                         verticalFittingPriority: .required)
     }
 }
+
+

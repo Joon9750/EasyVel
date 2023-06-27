@@ -18,16 +18,19 @@ final class HomeMenuBar: UIView {
     
     weak var delegate: HomeMenuBarDelegate?
     
-    var isSelected: Int? {
+    var selectedIndexPath: IndexPath? {
         didSet {
-            updateBar(from: isSelected)
+            updateBar(from: selectedIndexPath)
         }
     }
+    
+    private var menuData = HomeMenuCollectionViewCell.MenuType.allCases
+    
     
     private var tags: [String] = [""] {
         didSet {
             collectionView.reloadData()
-            isSelected = 0
+            selectedIndexPath = IndexPath(row: 0, section: 1)
         }
     }
     
@@ -119,14 +122,14 @@ private extension HomeMenuBar {
         collectionView.register(cell: HomeMenuCollectionViewCell.self)
     }
     
-    func updateBar(from isSelected: Int?) {
+    func updateBar(from indexPath: IndexPath?) {
         self.layoutIfNeeded()
-        guard let isSelected else { return }
+        guard let indexPath else { return }
         
-        collectionView.selectItem(at: IndexPath(item: isSelected, section: 1),
+        collectionView.selectItem(at: indexPath,
                                   animated: true,
                                   scrollPosition: .centeredHorizontally)
-        guard let cell = collectionView.cellForItem(at: IndexPath(item: isSelected, section: 1)) as? HomeMenuCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeMenuCollectionViewCell else { return }
         
         tintLine.snp.remakeConstraints { make in
             make.bottom.equalTo(collectionView.snp.bottom)
@@ -146,33 +149,29 @@ private extension HomeMenuBar {
 extension HomeMenuBar: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return menuData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 1
-        case 1:
+        case 3:
             return tags.count
         default:
-            return 0
+            return 1
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch indexPath.section {
-        case 0:
+        case 3:
             let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.setPlusMenu()
-            return cell
-        case 1:
-            let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.dataBind(tag: tags[indexPath.item])
+            cell.dataBind(menuData[indexPath.section], keyword: tags[indexPath.item])
             return cell
         default:
-            return UICollectionViewCell()
+            let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.dataBind(menuData[indexPath.section], keyword: nil)
+            return cell
         }
     }
 }
@@ -196,17 +195,17 @@ extension HomeMenuBar: UICollectionViewDelegateFlowLayout {
         switch indexPath.section {
         case 0:
             return CGSize(width: 65, height: 40)
-        case 1:
-            let cell = HomeMenuCollectionViewCell()
-            cell.dataBind(tag: tags[indexPath.item])
-            return cell.sizeFittingWith(cellHeight: 40)
         default:
-            return .zero
+            let cell = HomeMenuCollectionViewCell()
+            cell.dataBind(menuData[indexPath.section], keyword: tags[indexPath.item])
+            return cell.sizeFittingWith(cellHeight: 40)
         }
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 }

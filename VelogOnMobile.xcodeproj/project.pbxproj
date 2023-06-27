@@ -15,10 +15,11 @@
 		8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */; };
 		8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */; };
 		8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */; };
-		8765EFF22A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */; };
+		8765EFF22A29EB5A00EF6733 /* HomeMenuKeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF12A29EB5A00EF6733 /* HomeMenuKeywordCollectionViewCell.swift */; };
 		8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF32A29ECDE00EF6733 /* String+Extension.swift */; };
 		8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */; };
 		8765F0012A2A05B100EF6733 /* empty in Resources */ = {isa = PBXBuildFile; fileRef = 8765F0002A2A05B100EF6733 /* empty */; };
+		877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -180,10 +181,11 @@
 		8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuBar.swift; sourceTree = "<group>"; };
-		8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		8765EFF12A29EB5A00EF6733 /* HomeMenuKeywordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuKeywordCollectionViewCell.swift; sourceTree = "<group>"; };
 		8765EFF32A29ECDE00EF6733 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		8765F0002A2A05B100EF6733 /* empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = empty; sourceTree = "<group>"; };
+		877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -407,7 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */,
-				8765EFF12A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift */,
+				8765EFF12A29EB5A00EF6733 /* HomeMenuKeywordCollectionViewCell.swift */,
+				877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */,
 			);
 			path = MenuBar;
 			sourceTree = "<group>";
@@ -1444,6 +1447,7 @@
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */,
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
+				877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
@@ -1476,7 +1480,7 @@
 				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
 				7CB706D02A3205EC00083EC6 /* MoveViewController.swift in Sources */,
 				9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */,
-				8765EFF22A29EB5A00EF6733 /* HomeMenuCollectionViewCell.swift in Sources */,
+				8765EFF22A29EB5A00EF6733 /* HomeMenuKeywordCollectionViewCell.swift in Sources */,
 				9128B0322A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift in Sources */,
 				917BA3452A050631000409B7 /* StorageViewModel.swift in Sources */,
 				913441FB29FFD8AC000E1ED1 /* SignInRequest.swift in Sources */,
