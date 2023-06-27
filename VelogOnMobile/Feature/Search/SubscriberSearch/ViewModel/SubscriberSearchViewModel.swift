@@ -23,15 +23,19 @@ final class SubscriberSearchViewModel: BaseViewModel {
     
     let subscriberAddButtonDidTap = PublishRelay<String>()
 
-    override init() {
+    init(
+        subscriberList: [SubscriberListResponse]?
+    ) {
         super.init()
+        self.subscriberList = subscriberList
         makeOutput()
     }
     
     private func makeOutput() {
         viewWillAppear
             .subscribe(onNext: { [weak self] in
-                self?.subscribeToSubscriberList()
+                print(self?.subscriberList)
+//                self?.subscribeToSubscriberList()
             })
             .disposed(by: disposeBag)
         
@@ -70,7 +74,7 @@ final class SubscriberSearchViewModel: BaseViewModel {
                 let text: String
                 if response {
                     text = TextLiterals.addSubsriberSuccessText
-                    self?.subscribeToSubscriberList()
+//                    self?.subscribeToSubscriberList()
                 } else {
                     text = TextLiterals.searchSubscriberIsNotValidText
                 }
@@ -79,15 +83,15 @@ final class SubscriberSearchViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
-    private func subscribeToSubscriberList() {
-        getSubscriberList()
-            .subscribe(onNext: { [weak self] subscriberList in
-                self?.subscriberList = subscriberList
-            }, onError: { error in
-                print("Error: \(error)")
-            })
-            .disposed(by: disposeBag)
-    }
+//    private func subscribeToSubscriberList() {
+//        getSubscriberList()
+//            .subscribe(onNext: { [weak self] subscriberList in
+//                self?.subscriberList = subscriberList
+//            }, onError: { error in
+//                print("Error: \(error)")
+//            })
+//            .disposed(by: disposeBag)
+//    }
 }
 
 // MARK: - api
@@ -146,27 +150,27 @@ private extension SubscriberSearchViewModel {
         }
     }
     
-    func getSubscriberList() -> Observable<[SubscriberListResponse]> {
-        return Observable.create { observer in
-            NetworkService.shared.subscriberRepository.getSubscriber() { [weak self] result in
-                switch result {
-                case .success(let response):
-                    guard let list = response as? [SubscriberListResponse] else {
-                        self?.serverFailOutput.accept(true)
-                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
-                        return
-                    }
-                    observer.onNext(list)
-                    observer.onCompleted()
-                case .requestErr(let errResponse):
-                    self?.serverFailOutput.accept(true)
-                    observer.onError(errResponse as! Error)
-                default:
-                    self?.serverFailOutput.accept(true)
-                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
-                }
-            }
-            return Disposables.create()
-        }
-    }
+//    func getSubscriberList() -> Observable<[SubscriberListResponse]> {
+//        return Observable.create { observer in
+//            NetworkService.shared.subscriberRepository.getSubscriber() { [weak self] result in
+//                switch result {
+//                case .success(let response):
+//                    guard let list = response as? [SubscriberListResponse] else {
+//                        self?.serverFailOutput.accept(true)
+//                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
+//                        return
+//                    }
+//                    observer.onNext(list)
+//                    observer.onCompleted()
+//                case .requestErr(let errResponse):
+//                    self?.serverFailOutput.accept(true)
+//                    observer.onError(errResponse as! Error)
+//                default:
+//                    self?.serverFailOutput.accept(true)
+//                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+//                }
+//            }
+//            return Disposables.create()
+//        }
+//    }
 }

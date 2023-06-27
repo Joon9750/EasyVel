@@ -96,7 +96,7 @@ final class ListViewController: RxBaseViewController<ListViewModel>, SubscriberS
     }
     
     private func searchSubcriberButtonTapped() {
-        let viewModel = SubscriberSearchViewModel()
+        let viewModel = SubscriberSearchViewModel(subscriberList: viewModel?.subscriberList)
         let searchSubcriberViewController = SubscriberSearchViewController(viewModel: viewModel)
         viewModel.subscriberSearchDelegate = self
         searchSubcriberViewController.modalPresentationStyle = .pageSheet

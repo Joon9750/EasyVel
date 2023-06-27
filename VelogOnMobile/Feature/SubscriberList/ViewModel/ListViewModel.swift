@@ -12,7 +12,7 @@ import RxSwift
 
 final class ListViewModel: BaseViewModel {
     
-    var subscriberList: [String] = [String]()
+    var subscriberList: [SubscriberListResponse]?
     var isListEmpty: Bool = Bool()
     
     // MARK: - Output
@@ -46,6 +46,12 @@ final class ListViewModel: BaseViewModel {
         subscriberDeleteButtonDidTap
             .subscribe(onNext: { [weak self] subscriber in
                 guard let self = self else { return }
+                if let subscriberList = self.subscriberList {
+                    let reloadSubscriberList = subscriberList.filter {
+                        $0.name != subscriber
+                    }
+                    self.subscriberListOutput.accept(reloadSubscriberList)
+                }
                 self.deleteSubscriber(targetName: subscriber) { [weak self] _ in
                     self?.getListData()
                 }
@@ -76,6 +82,7 @@ final class ListViewModel: BaseViewModel {
         getSubscriberList()
             .map { Array($0.reversed()) }
             .subscribe(onNext: { [weak self] subscriberList in
+                self?.subscriberList = subscriberList
                 self?.subscriberListOutput.accept(subscriberList)
                 let subscriberNameList = subscriberList.map { $0.name ?? String() }
                 self?.checkListIsEmpty(subsciberList: subscriberNameList)
