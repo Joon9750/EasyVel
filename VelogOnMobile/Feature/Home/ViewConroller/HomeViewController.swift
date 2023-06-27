@@ -33,7 +33,10 @@ final class HomeViewController: BaseViewController {
         return viewController
     }()
     
-    private var dataSourceViewController: [UIViewController] = [ColorViewController(color: .red),ColorViewController(color: .orange)]
+    private var dataSourceViewController: [[UIViewController]] = [[],
+                                                                  [ColorViewController(color: .red)],
+                                                                  [ColorViewController(color: .orange)],
+                                                                  []]
 
     
     //MARK: - UI Components
@@ -137,12 +140,12 @@ final class HomeViewController: BaseViewController {
     
     private func setPageViewController() {
         let factory = KeywordPostsVCFactory()
-        dataSourceViewController = [ColorViewController(color: .red),ColorViewController(color: .orange)]
+        dataSourceViewController[3] = []
         
         
         for tag in tags {
             let vc = factory.create(tag: tag)
-            dataSourceViewController.append(vc)
+            dataSourceViewController[3].append(vc)
         }
         
         currentPage = IndexPath(row: 0, section: 1)
@@ -156,7 +159,8 @@ final class HomeViewController: BaseViewController {
             direction = beforeIndex.section < newIndex.section ? .forward : .reverse
         }
         
-        pageViewController.setViewControllers([dataSourceViewController[currentPage.item]],
+        
+        pageViewController.setViewControllers([dataSourceViewController[currentPage.section][currentPage.item]],
                                               direction: direction,
                                               animated: true,
                                               completion: nil)
