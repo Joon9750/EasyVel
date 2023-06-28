@@ -12,7 +12,7 @@ import Kingfisher
 
 final class PostsTableViewCell: BaseTableViewCell {
     
-    static let identifier = "KeywordsTableViewCell"
+    static let identifier = "PostsTableViewCell"
     
     weak var cellDelegate: PostScrapButtonDidTapped?
     weak var scrapPostAddInFolderDelegate: ScrapPostAddInFolderProtocol?

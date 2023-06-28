@@ -13,9 +13,9 @@ final class HomeViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private var currentPage: IndexPath = IndexPath(row: 0, section: 1) {
+    private var currentIndex: Int = 1 {
         didSet {
-            changeViewController(before: oldValue, after: currentPage)
+            changeViewController(before: oldValue, after: currentIndex)
         }
     }
     
@@ -33,10 +33,9 @@ final class HomeViewController: BaseViewController {
         return viewController
     }()
     
-    private var dataSourceViewController: [[UIViewController]] = [[],
-                                                                  [ColorViewController(color: .red)],
-                                                                  [ColorViewController(color: .orange)],
-                                                                  []]
+    private var dataSourceViewController: [UIViewController] = [ColorViewController(color: .black),
+                                                                ColorViewController(color: .red),
+                                                                ColorViewController(color: .yellow),]
 
     
     //MARK: - UI Components
@@ -90,6 +89,8 @@ final class HomeViewController: BaseViewController {
     
     private func delegate() {
         menuBar.delegate = self
+        pageViewController.dataSource = self
+        pageViewController.delegate = self
     }
     
     private func style() {
@@ -140,27 +141,25 @@ final class HomeViewController: BaseViewController {
     
     private func setPageViewController() {
         let factory = KeywordPostsVCFactory()
-        dataSourceViewController[3] = []
+        dataSourceViewController = [ColorViewController(color: .black),
+                                    ColorViewController(color: .red),
+                                    ColorViewController(color: .yellow),]
         
         
         for tag in tags {
             let vc = factory.create(tag: tag)
-            dataSourceViewController[3].append(vc)
+            dataSourceViewController.append(vc)
         }
         
-        currentPage = IndexPath(row: 0, section: 1)
+        currentIndex = 1
     }
     
-    private func changeViewController(before beforeIndex: IndexPath, after newIndex: IndexPath) {
+    private func changeViewController(before beforeIndex: Int, after newIndex: Int) {
         
-        var direction: UIPageViewController.NavigationDirection = beforeIndex.item < newIndex.item ? .forward : .reverse
-        
-        if beforeIndex.section != newIndex.section {
-            direction = beforeIndex.section < newIndex.section ? .forward : .reverse
-        }
+        var direction: UIPageViewController.NavigationDirection = beforeIndex < newIndex ? .forward : .reverse
         
         
-        pageViewController.setViewControllers([dataSourceViewController[currentPage.section][currentPage.item]],
+        pageViewController.setViewControllers([dataSourceViewController[currentIndex]],
                                               direction: direction,
                                               animated: true,
                                               completion: nil)
@@ -191,12 +190,45 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeMenuBarDelegate {
-    func menuBar(didSelectItemAt indexPath: IndexPath) {
-        if indexPath == IndexPath(row: 0, section: 0) {
+    func menuBar(didSelectItemAt item: Int) {
+        if item == 0 {
             let tagSearchVC = TagSearchViewController(viewModel: TagSearchViewModel())
             navigationController?.pushViewController(tagSearchVC, animated: true)
+            return 
         }
-        currentPage = indexPath
+        currentIndex = item
+    }
+}
+
+//MARK: - UIPageViewControllerDataSource
+
+extension HomeViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let currentIndex = dataSourceViewController.firstIndex(of: viewController) else { return nil }
+        let nextIndex = currentIndex + 1
+        guard nextIndex != dataSourceViewController.count else { return nil }
+        return dataSourceViewController[nextIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let currentIndex = dataSourceViewController.firstIndex(of: viewController) else { return nil }
+        let previousIndex = currentIndex - 1
+        guard previousIndex >= 1 else { return nil }
+        return dataSourceViewController[previousIndex]
+    }
+}
+
+//MARK: - UIPageViewControllerDelegate
+
+extension HomeViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
+        
+        guard let currentVC = pageViewController.viewControllers?.first,
+              let currentIndex = dataSourceViewController.firstIndex(of: currentVC) else { return }
+        self.currentIndex = currentIndex
     }
 }
 

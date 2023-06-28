@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeMenuBarDelegate: AnyObject {
-    func menuBar(didSelectItemAt indexPath: IndexPath)
+    func menuBar(didSelectItemAt item: Int)
 }
 
 
@@ -18,7 +18,7 @@ final class HomeMenuBar: UIView {
     
     weak var delegate: HomeMenuBarDelegate?
     
-    var selectedIndexPath: IndexPath? {
+    var selectedIndexPath: Int? {
         didSet {
             updateBar(from: selectedIndexPath)
         }
@@ -30,7 +30,7 @@ final class HomeMenuBar: UIView {
     private var tags: [String] = [""] {
         didSet {
             collectionView.reloadData()
-            selectedIndexPath = IndexPath(row: 0, section: 1)
+            selectedIndexPath = 1
         }
     }
     
@@ -122,9 +122,10 @@ private extension HomeMenuBar {
         collectionView.register(cell: HomeMenuCollectionViewCell.self)
     }
     
-    func updateBar(from indexPath: IndexPath?) {
+    func updateBar(from index: Int?) {
         self.layoutIfNeeded()
-        guard let indexPath else { return }
+        guard let index else { return }
+        let indexPath = IndexPath(item: index, section: 0)
         
         collectionView.selectItem(at: indexPath,
                                   animated: true,
@@ -148,29 +149,20 @@ private extension HomeMenuBar {
 
 extension HomeMenuBar: UICollectionViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return menuData.count
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case 3:
-            return tags.count
-        default:
-            return 1
-        }
+        return 3 + tags.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch indexPath.section {
-        case 3:
+        switch indexPath.row {
+        case 0...2:
             let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.dataBind(menuData[indexPath.section], keyword: tags[indexPath.item])
+            cell.dataBind(menuData[indexPath.row], keyword: nil)
             return cell
         default:
             let cell: HomeMenuCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.dataBind(menuData[indexPath.section], keyword: nil)
+            cell.dataBind(.tag, keyword: tags[indexPath.item - 3])
             return cell
         }
     }
@@ -181,8 +173,8 @@ extension HomeMenuBar: UICollectionViewDataSource {
 extension HomeMenuBar: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        delegate?.menuBar(didSelectItemAt: indexPath)
-        return indexPath.section != 0
+        delegate?.menuBar(didSelectItemAt: indexPath.item)
+        return indexPath.item != 0
     }
 }
 
@@ -192,12 +184,16 @@ extension HomeMenuBar: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.section {
+        switch indexPath.item {
         case 0:
             return CGSize(width: 65, height: 40)
+        case 1...2:
+            let cell = HomeMenuCollectionViewCell()
+            cell.dataBind(menuData[indexPath.item], keyword: nil)
+            return cell.sizeFittingWith(cellHeight: 40)
         default:
             let cell = HomeMenuCollectionViewCell()
-            cell.dataBind(menuData[indexPath.section], keyword: tags[indexPath.item])
+            cell.dataBind(.tag, keyword: tags[indexPath.item - 3])
             return cell.sizeFittingWith(cellHeight: 40)
         }
         

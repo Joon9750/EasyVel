@@ -32,7 +32,7 @@ final class PostsViewModel: BaseViewModel {
     
     var postsListOutput = PublishRelay<[PostDTO]>()
     var isPostsEmptyOutput = PublishRelay<Bool>()
-    var tagPostsListDidScrapOutput = PublishRelay<[Bool]>()
+    var postsListDidScrapOutput = PublishRelay<[Bool]>()
     
     init(viewType: ViewType) {
         self.viewType = viewType
@@ -60,7 +60,7 @@ final class PostsViewModel: BaseViewModel {
             })
             .map { [weak self] dto -> ([PostDTO], [Bool]) in
                 let posts = dto ?? []
-                let storagePosts = posts.map { self?.convertTagPostDtoListToStoragePost(input: $0) }
+                let storagePosts = posts.map { self?.convertPostDtoToStoragePost(input: $0) }
                 let isScrapList = storagePosts.map {
                     self?.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
                 }
@@ -69,7 +69,7 @@ final class PostsViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.postsListOutput.accept(postList)
-                self?.tagPostsListDidScrapOutput.accept(isScrapList)
+                self?.postsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
             })
             .disposed(by: disposeBag)
@@ -103,7 +103,7 @@ final class PostsViewModel: BaseViewModel {
             })
             .map { [weak self] dto -> ([PostDTO], [Bool]) in
                 let posts = dto ?? []
-                let storagePosts = posts.map { self?.convertTagPostDtoListToStoragePost(input: $0) }
+                let storagePosts = posts.map { self?.convertPostDtoToStoragePost(input: $0) }
                 let isScrapList = storagePosts.map {
                     self?.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
                 }
@@ -112,7 +112,7 @@ final class PostsViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.postsListOutput.accept(postList)
-                self?.tagPostsListDidScrapOutput.accept(isScrapList)
+                self?.postsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
             })
             .disposed(by: disposeBag)
@@ -120,7 +120,7 @@ final class PostsViewModel: BaseViewModel {
     
     // MARK: - func
 
-    private func convertTagPostDtoListToStoragePost(
+    private func convertPostDtoToStoragePost(
         input: PostDTO
     ) -> StoragePost {
         return StoragePost(

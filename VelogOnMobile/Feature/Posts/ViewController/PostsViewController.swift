@@ -15,7 +15,7 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
     private var posts: [PostDTO]?
     private var isScrapPostsList: [Bool]?
     
-    private let keywordsPostsView = KeywordsPostsView()
+    private let postsView = PostsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +24,15 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
     }
     
     override func render() {
-        self.view = keywordsPostsView
+        self.view = postsView
     }
     
     override func bind(viewModel: PostsViewModel) {
-        keywordsPostsView.keywordsTableView.dataSource = self
-        keywordsPostsView.keywordsTableView.delegate = self
+        postsView.postsTableView.dataSource = self
+        postsView.postsTableView.delegate = self
         bindOutput(viewModel)
         
-        keywordsPostsView.keywordsTableView.rx.contentOffset
+        postsView.postsTableView.rx.contentOffset
             .filter { contentOffset in
                 return contentOffset.y < -30
             }
@@ -46,11 +46,11 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
             .asDriver(onErrorJustReturn: [PostDTO]())
             .drive(onNext: { [weak self] post in
                 self?.posts = post
-                self?.keywordsPostsView.keywordsTableView.reloadData()
+                self?.postsView.postsTableView.reloadData()
             })
             .disposed(by: disposeBag)
         
-        viewModel.tagPostsListDidScrapOutput
+        viewModel.postsListDidScrapOutput
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] isScrapList in
                 self?.isScrapPostsList = isScrapList
@@ -61,9 +61,9 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] isEmpty in
                 if isEmpty {
-                    self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = false
+                    self?.postsView.keywordsPostsViewExceptionView.isHidden = false
                 } else {
-                    self?.keywordsPostsView.keywordsPostsViewExceptionView.isHidden = true
+                    self?.postsView.keywordsPostsViewExceptionView.isHidden = true
                 }
             })
             .disposed(by: disposeBag)
@@ -80,7 +80,7 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
     
     @objc
     private func scrollToTop() {
-        keywordsPostsView.keywordsTableView.setContentOffset(.zero, animated: true)
+        postsView.postsTableView.setContentOffset(.zero, animated: true)
     }
 }
 
