@@ -58,16 +58,17 @@ final class PostsViewModel: BaseViewModel {
                 }
                 
             })
-            .map { dto -> ([PostDTO], [Bool]) in
+            .map { [weak self] dto -> ([PostDTO], [Bool]) in
                 let posts = dto ?? []
-                let storagePosts = posts.map { self.convertPostDtoToStoragePost(input: $0) }
+                let storagePosts = posts.map { self?.convertPostDtoToStoragePost(input: $0) }
                 let isScrapList = storagePosts.map {
-                    self.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
+                    self?.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
                 }
                 return (posts, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
+                self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
@@ -111,6 +112,7 @@ final class PostsViewModel: BaseViewModel {
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
+                self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
