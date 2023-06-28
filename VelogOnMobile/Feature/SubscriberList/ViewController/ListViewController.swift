@@ -158,6 +158,7 @@ extension ListViewController: SubscriberSearchProtocol {
         subscriberList: [SubscriberListResponse]
     ) {
         self.subscriberList = subscriberList
+        self.viewModel?.subscriberList = subscriberList
     }
 }
 
