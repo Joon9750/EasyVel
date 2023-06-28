@@ -33,9 +33,7 @@ final class HomeViewController: BaseViewController {
         return viewController
     }()
     
-    private var dataSourceViewController: [UIViewController] = [ColorViewController(color: .black),
-                                                                ColorViewController(color: .red),
-                                                                ColorViewController(color: .yellow),]
+    private var dataSourceViewController: [UIViewController] = []
 
     
     //MARK: - UI Components
@@ -142,8 +140,8 @@ final class HomeViewController: BaseViewController {
     private func setPageViewController() {
         let factory = KeywordPostsVCFactory()
         dataSourceViewController = [ColorViewController(color: .black),
-                                    ColorViewController(color: .red),
-                                    ColorViewController(color: .yellow),]
+                                    PostsViewController(viewModel: .init(viewType: .trend)),
+                                    PostsViewController(viewModel: .init(viewType: .follow))]
         
         
         for tag in tags {
@@ -156,7 +154,7 @@ final class HomeViewController: BaseViewController {
     
     private func changeViewController(before beforeIndex: Int, after newIndex: Int) {
         
-        var direction: UIPageViewController.NavigationDirection = beforeIndex < newIndex ? .forward : .reverse
+        let direction: UIPageViewController.NavigationDirection = beforeIndex < newIndex ? .forward : .reverse
         
         
         pageViewController.setViewControllers([dataSourceViewController[currentIndex]],
@@ -194,7 +192,7 @@ extension HomeViewController: HomeMenuBarDelegate {
         if item == 0 {
             let tagSearchVC = TagSearchViewController(viewModel: TagSearchViewModel())
             navigationController?.pushViewController(tagSearchVC, animated: true)
-            return 
+            return
         }
         currentIndex = item
     }

@@ -58,11 +58,11 @@ final class PostsViewModel: BaseViewModel {
                 }
                 
             })
-            .map { [weak self] dto -> ([PostDTO], [Bool]) in
+            .map { dto -> ([PostDTO], [Bool]) in
                 let posts = dto ?? []
-                let storagePosts = posts.map { self?.convertPostDtoToStoragePost(input: $0) }
+                let storagePosts = posts.map { self.convertPostDtoToStoragePost(input: $0) }
                 let isScrapList = storagePosts.map {
-                    self?.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
+                    self.checkIsUniquePost(post: $0 ?? StoragePost(img: "", name: "", summary: "", title: "", url: "")) ?? false
                 }
                 return (posts, isScrapList)
             }
@@ -183,7 +183,7 @@ private extension PostsViewModel {
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
-                    observer.onNext(posts.trendPostDtoList)
+                    observer.onNext(posts.trendPostDtos)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     self?.serverFailOutput.accept(true)
