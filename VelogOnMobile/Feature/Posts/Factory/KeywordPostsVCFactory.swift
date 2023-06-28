@@ -9,7 +9,7 @@ import Foundation
 
 final class KeywordPostsVCFactory {
     func create(tag: String) -> PostsViewController {
-        let vc = PostsViewController(viewModel: PostsViewModel(viewType: .keyword))
+        let vc = PostsViewController(viewModel: PostsViewModel(viewType: .keyword, tag: tag))
         return vc
     }
 }

@@ -22,6 +22,7 @@ final class PostsViewModel: BaseViewModel {
     let realm = RealmService()
     
     private var viewType: ViewType = .trend
+    private var tag: String
 
     // MARK: - Input
     
@@ -34,8 +35,10 @@ final class PostsViewModel: BaseViewModel {
     var isPostsEmptyOutput = PublishRelay<Bool>()
     var postsListDidScrapOutput = PublishRelay<[Bool]>()
     
-    init(viewType: ViewType) {
+    init(viewType: ViewType,
+         tag: String = "") {
         self.viewType = viewType
+        self.tag = tag
         super.init()
         
         makeOutput()
@@ -54,7 +57,7 @@ final class PostsViewModel: BaseViewModel {
                 case .follow:
                     return self.getSubscriberPosts()
                 case .keyword:
-                    return self.getTagPosts()
+                    return self.getOneTagPosts(tag: self.tag)
                 }
                 
             })
@@ -91,7 +94,7 @@ final class PostsViewModel: BaseViewModel {
         
         tableViewReload
             .startWith(LoadingView.showLoading())
-            .flatMapLatest( { [weak self] _ -> Observable<[PostDTO]?> in
+            .flatMapLatest( { [weak self] _  -> Observable<[PostDTO]?> in
                 guard let self = self else { return Observable.empty() }
                 switch self.viewType {
                 case .trend:
@@ -99,7 +102,7 @@ final class PostsViewModel: BaseViewModel {
                 case .follow:
                     return self.getSubscriberPosts()
                 case .keyword:
-                    return self.getTagPosts()
+                    return self.getOneTagPosts(tag: self.tag)
                 }
             })
             .map { [weak self] dto -> ([PostDTO], [Bool]) in
@@ -151,17 +154,17 @@ final class PostsViewModel: BaseViewModel {
 // MARK: - API
 
 private extension PostsViewModel {
-    func getTagPosts() -> Observable<[PostDTO]?> {
+        func getOneTagPosts(tag: String) -> Observable<[PostDTO]?> {
         return Observable.create { observer in
-            NetworkService.shared.postsRepository.getTagPosts() { [weak self] result in
+            NetworkService.shared.postsRepository.getOneTagPosts(tag: tag) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    guard let posts = response as? GetTagPostResponse else {
+                    guard let posts = response as? [PostDTO] else {
                         self?.serverFailOutput.accept(true)
                         observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
                         return
                     }
-                    observer.onNext(posts.tagPostDtoList)
+                    observer.onNext(posts)
                     observer.onCompleted()
                 case .requestErr(let errResponse):
                     self?.serverFailOutput.accept(true)

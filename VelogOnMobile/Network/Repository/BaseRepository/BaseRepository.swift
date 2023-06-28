@@ -65,6 +65,11 @@ class BaseRepository {
                 return .pathErr
             }
             return .success(decodedData)
+        case .getOneTagPosts:
+            guard let decodedData = try? decoder.decode([PostDTO].self, from: data) else {
+                return .pathErr
+            }
+            return .success(decodedData)
         case .signIn:
             guard let decodedData = try? decoder.decode(SignInResponse.self, from: data) else {
                 return .pathErr

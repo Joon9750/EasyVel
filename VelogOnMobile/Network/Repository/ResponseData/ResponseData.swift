@@ -18,6 +18,7 @@ enum ResponseData {
     case deleteSubscriber
     case getSubscriberPosts
     case getTagPosts
+    case getOneTagPosts
     case signIn
     case signOut
     case signUp
