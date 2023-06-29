@@ -154,7 +154,7 @@ final class PostsViewModel: BaseViewModel {
 // MARK: - API
 
 private extension PostsViewModel {
-        func getOneTagPosts(tag: String) -> Observable<[PostDTO]?> {
+    func getOneTagPosts(tag: String) -> Observable<[PostDTO]?> {
         return Observable.create { observer in
             NetworkService.shared.postsRepository.getOneTagPosts(tag: tag) { [weak self] result in
                 switch result {

@@ -4,16 +4,22 @@
 //
 //  Created by JuHyeonAh on 2023/06/08.
 //
+
 import UIKit
 
-import SnapKit
+import RxSwift
+import RxRelay
 
-final class SearchViewController: BaseViewController {
+final class SearchViewController: RxBaseViewController<PostSearchViewModel> {
     
-    private let dummy = Trend.dummy()
-
+    private var popularSearchTagList: [String] = [] {
+        didSet {
+            self.popularSearchTagTableView.reloadData()
+        }
+    }
+    
     private let flowLayout = UICollectionViewFlowLayout()
-
+    
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     private let popularSearchTagTableView = UITableView()
@@ -48,7 +54,7 @@ final class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setTableView()
         setCollectionView()
     }
@@ -63,6 +69,12 @@ final class SearchViewController: BaseViewController {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
         searchBar.placeholder = TextLiterals.postSearchViewSearchBarPlaceholderText
         self.navigationItem.titleView = searchBar
+
+        searchBar.rx.searchButtonClicked
+            .subscribe(onNext: { [weak searchBar] in
+                guard let searchText = searchBar?.text else { return }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func render() {
@@ -73,7 +85,7 @@ final class SearchViewController: BaseViewController {
             trendLabel,
             popularSearchTagTableView
         )
-
+        
         recentLabel.snp.makeConstraints{
             $0.top.equalToSuperview().offset(125)
             $0.leading.equalToSuperview().offset(35)
@@ -100,6 +112,21 @@ final class SearchViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview().inset(35)
             $0.bottom.equalToSuperview().inset(100)
         }
+    }
+    
+    override func bind(viewModel: PostSearchViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
+    }
+    
+    private func bindOutput(_ viewModel: PostSearchViewModel) {
+        viewModel.popularPostKeywordListOutput
+            .asDriver(onErrorJustReturn: [String]())
+            .drive(onNext: { [weak self] popularPostKeywordList in
+                guard let self = self else { return }
+                self.popularSearchTagList = popularPostKeywordList
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -130,16 +157,18 @@ extension SearchViewController {
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummy.count
+        return popularSearchTagList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else {
+            return UITableViewCell()
+        }
         if indexPath.row < 3 {
             cell.numLabel.textColor = .brandColor
         }
         cell.selectionStyle = .none
-        cell.configCell(dummy[indexPath.row])
+        cell.configCell(self.popularSearchTagList[indexPath.row], indexPath.row)
         return cell
     }
 }
@@ -151,39 +180,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        cell.configCell(dummy[indexPath.item])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell()
+        }
+//        cell.configCell(popularSearchTagList[indexPath.item])
         return cell
-    }
-}
-
-struct Trend {
-    let keyword: String
-    let num: String
-}
-
-extension Trend{
-    static func dummy() -> [Trend]{
-        return [Trend(keyword: "iOS",
-                      num: "1"),
-                Trend(keyword: "Android",
-                      num: "2"),
-                Trend(keyword: "Sever",
-                      num: "3"),
-                Trend(keyword: "Design",
-                      num: "4"),
-                Trend(keyword: "알고리즘",
-                      num: "5"),
-                Trend(keyword: "TIL",
-                      num: "6"),
-                Trend(keyword: "프로그래머스",
-                      num: "7"),
-                Trend(keyword: "코딩테스트",
-                      num: "8"),
-                Trend(keyword: "Spring",
-                      num: "9"),
-                Trend(keyword: "CSS",
-                      num: "10"),
-        ]
     }
 }
