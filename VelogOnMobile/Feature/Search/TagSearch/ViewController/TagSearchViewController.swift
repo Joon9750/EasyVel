@@ -110,8 +110,35 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
             $0.height.equalTo(popularTagTableView.contentSize.height)
         }
     }
-}
+    
     //MARK: - Bind
+    
+    override func bind(viewModel: TagSearchViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
+    }
+    
+    private func bindOutput(_ viewModel: TagSearchViewModel) {
+        viewModel.myTagstOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive { myTags in
+                print("☺️")
+                print(myTags)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.popularTagsOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive { popularTags in
+                print("☺️")
+                print(popularTags)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
+}
+
     
 
 

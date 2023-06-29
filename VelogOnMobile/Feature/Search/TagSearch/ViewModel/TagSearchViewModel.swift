@@ -8,6 +8,7 @@
 import UIKit
 
 import RxRelay
+import RxCocoa
 import RxSwift
 
 final class TagSearchViewModel: BaseViewModel {
@@ -20,6 +21,9 @@ final class TagSearchViewModel: BaseViewModel {
 
     // MARK: - Output
     
+    var myTagstOutput = PublishRelay<[String]>()
+    var popularTagsOutput = PublishRelay<[String]>()
+    
     var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     
     override init() {
@@ -28,37 +32,69 @@ final class TagSearchViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
-        viewWillDisappear
-            .flatMapLatest { [weak self] _ -> Observable<[String]> in
-                return self?.getTagList() ?? .empty()
+        viewWillAppear
+            .subscribe { [weak self] _ in
+                self?.getMyTagDummy()
+                self?.getPopularTagDummy()
             }
-            .subscribe(onNext: { [weak self] list in
-                self?.tagSearchDelegate?.searchTagViewWillDisappear(input: list.reversed())
-            }, onError: { error in
-                print(error)
-            })
             .disposed(by: disposeBag)
         
-        tagAddButtonDidTap
-            .flatMapLatest { [weak self] tag in
-                return self?.addTag(tag: tag) ?? .empty()
-            }
-            .subscribe(onNext: { [weak self] success in
-                if success {
-                    let text: String = TextLiterals.addTagSuccessText
-                    self?.tagAddStatusOutput.accept((success, text))
-                } else {
-                    let text: String = TextLiterals.addTagRequestErrText
-                    self?.tagAddStatusOutput.accept((success, text))
-                }
-            })
-            .disposed(by: disposeBag)
+        
+//        viewWillDisappear
+//            .flatMapLatest { [weak self] _ -> Observable<[String]> in
+//                return self?.getTagList() ?? .empty()
+//            }
+//            .subscribe(onNext: { [weak self] list in
+//                self?.tagSearchDelegate?.searchTagViewWillDisappear(input: list.reversed())
+//            }, onError: { error in
+//                print(error)
+//            })
+//            .disposed(by: disposeBag)
+//
+//        tagAddButtonDidTap
+//            .flatMapLatest { [weak self] tag in
+//                return self?.addTag(tag: tag) ?? .empty()
+//            }
+//            .subscribe(onNext: { [weak self] success in
+//                if success {
+//                    let text: String = TextLiterals.addTagSuccessText
+//                    self?.tagAddStatusOutput.accept((success, text))
+//                } else {
+//                    let text: String = TextLiterals.addTagRequestErrText
+//                    self?.tagAddStatusOutput.accept((success, text))
+//                }
+//            })
+//            .disposed(by: disposeBag)
     }
 }
 
 // MARK: - api
 
 private extension TagSearchViewModel {
+    
+    func getMyTagDummy() {
+        let dummy: Observable<[String]> = Observable.just(["나의", "더미", "태그"])
+                                
+        dummy.bind(to: self.myTagstOutput)
+            .disposed(by: self.disposeBag)
+    }
+    
+    func getPopularTagDummy() {
+        let dummy: Observable<[String]> = Observable.just(["매우",
+                                                           "인기있는",
+                                                           "태그들",
+                                                           "매우",
+                                                           "인기있는",
+                                                           "태그들",
+                                                           "매우",
+                                                           "인기있는",
+                                                           "태그들",
+                                                           "마지막"])
+                                
+        dummy.bind(to: self.popularTagsOutput)
+            .disposed(by: self.disposeBag)
+    }
+    
     func addTag(tag: String) -> Observable<Bool> {
         return Observable.create { observer in
             NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
