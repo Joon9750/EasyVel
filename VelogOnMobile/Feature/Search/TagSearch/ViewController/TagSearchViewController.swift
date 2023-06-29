@@ -68,11 +68,9 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 0)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(cell: MyTagCollectionViewCell.self)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
-    
-        collectionView.register(cell: MyTagCollectionViewCell.self)
-        
         return collectionView
     }()
     
@@ -86,10 +84,11 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
     private let popularTagTableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(cell: PopularTagTableViewCell.self)
         tableView.backgroundColor = .clear
-        tableView.backgroundColor = .orange
         tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
+        tableView.rowHeight = 30
         return tableView
     }()
     
@@ -137,12 +136,12 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         .disposed(by: disposeBag)
         
         viewModel.popularTagsOutput
-            .asDriver(onErrorJustReturn: [])
-            .drive { popularTags in
-                print("☺️")
-                print(popularTags)
-            }
-            .disposed(by: disposeBag)
+            .bind(to: popularTagTableView.rx.items(cellIdentifier: PopularTagTableViewCell.reuseIdentifier,
+                                                   cellType: PopularTagTableViewCell.self))
+        { index, tag, cell in
+            cell.dataBind(index: index, data: tag)
+        }
+        .disposed(by: disposeBag)
     }
     
     
