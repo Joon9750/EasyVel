@@ -48,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // MARK: - 자동 로그인 된 유저
             let testVC = UINavigationController(rootViewController: TagSearchViewController(viewModel: TagSearchViewModel()))
             let rootViewController = UINavigationController(rootViewController: TabBarController())
-            window?.rootViewController = rootViewController
+            window?.rootViewController = testVC
             window?.makeKeyAndVisible()
             return
         } else {

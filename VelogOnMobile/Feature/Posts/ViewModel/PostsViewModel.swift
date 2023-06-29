@@ -71,7 +71,7 @@ final class PostsViewModel: BaseViewModel {
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
                 self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
-                self?.isPostsEmptyOutput.accept(postList.isEmpty)
+                //self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()

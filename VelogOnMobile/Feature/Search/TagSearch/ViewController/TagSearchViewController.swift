@@ -9,10 +9,11 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import SnapKit
 
 final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
-    private let searchView = TagSearchView()
+    //private let searchView = TagSearchView()
     
     //MARK: - Properties
     
@@ -21,6 +22,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
         searchBar.placeholder = TextLiterals.tagSearchPlaceholderText
+        searchBar.searchTextField.textColor = .gray500
         searchBar.setImage(ImageLiterals.tagPlusIcon,
                            for: .search,
                            state: .normal)
@@ -37,15 +39,58 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
     private let contentView = UIView()
     
+    private let myTagView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray100
+        return view
+    }()
+    
+    private let myTagLabel: UILabel = {
+        let label = UILabel()
+        label.text = TextLiterals.myTag
+        label.font = .headline
+        label.textColor = .gray700
+        return label
+    }()
+    
+    private let removeAllButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(TextLiterals.deleteAll, for: .normal)
+        button.setTitleColor( .gray200, for: .normal)
+        button.titleLabel?.font = .caption_1_M
+        return button
+    }()
+    
+    private let myTagCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        collectionView.backgroundColor = .systemPink
+        return collectionView
+    }()
+    
+    private let popularTagLabel: UILabel = {
+        let label = UILabel()
+        label.text = TextLiterals.popularTag
+        label.textColor = .gray700
+        label.font = .body_2_B
+        return label
+    }()
+    
+    private let popularTagTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .orange
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false
+        return tableView
+    }()
     
     //MARK: - Life Cycle
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setButtonAction()
-        
-        
         hierarchy()
         layout()
         
@@ -57,11 +102,15 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         setNaviagtionBar()
         
     }
-
-    override func render() {
-        self.view = searchView
-    }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        popularTagTableView.snp.updateConstraints {
+            $0.height.equalTo(popularTagTableView.contentSize.height)
+        }
+    }
+}
     //MARK: - Bind
     
 
@@ -71,7 +120,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
 
 private extension TagSearchViewController {
     func setButtonAction() {
-        searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
+//        searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
     }
     
     @objc
@@ -90,6 +139,7 @@ private extension TagSearchViewController {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
         appearance.shadowColor = .gray200
+        
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.standardAppearance.shadowColor = .gray200
@@ -97,9 +147,69 @@ private extension TagSearchViewController {
     
     func hierarchy() {
         navigationItem.titleView = searchBar
+        
+        view.addSubviews(scrollView)
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubviews(myTagView,
+                                popularTagLabel,
+                                popularTagTableView)
+        
+        myTagView.addSubviews(myTagLabel,
+                              removeAllButton,
+                              myTagCollectionView)
+        
     }
     
     func layout() {
+        scrollView.snp.makeConstraints {
+            $0.verticalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.height.equalTo(scrollView.frameLayoutGuide).priority(.low)
+            $0.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
+        //MARK: ContentView
+        
+        myTagView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+        }
+        
+        popularTagLabel.snp.makeConstraints {
+            $0.top.equalTo(myTagView.snp.bottom).offset(44)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        popularTagTableView.snp.makeConstraints {
+            $0.top.equalTo(popularTagLabel.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(80)
+            $0.height.equalTo(popularTagTableView.contentSize.height)
+        }
+        
+        //MARK: MyTagView
+        
+        myTagLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        removeAllButton.snp.makeConstraints {
+            $0.centerY.equalTo(myTagLabel)
+            $0.trailing.equalToSuperview().inset(28)
+        }
+        
+        myTagCollectionView.snp.makeConstraints {
+            $0.top.equalTo(myTagLabel.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(16)
+            $0.height.equalTo(40)
+        }
         
     }
     
