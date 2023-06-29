@@ -144,7 +144,7 @@ extension PostsViewController: UITableViewDataSource {
 
 extension PostsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath) as! PostsTableViewCell
+        guard let selectedCell = tableView.cellForRow(at: indexPath) as? PostsTableViewCell else { return }
         let index = indexPath.section
         let storagePost = StoragePost(
             img: posts?[index].img,
