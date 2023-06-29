@@ -217,9 +217,9 @@ extension StorageViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath) as! StorageTableViewCell
-        let url = selectedCell.url
-        let webViewModel = WebViewModel(url: url, isPostWebView: true)
+        let selectedCell = tableView.cellForRow(at: indexPath) as? StorageTableViewCell
+        guard let url = selectedCell?.url else { return }
+        let webViewModel = WebViewModel(url: url)
         let webViewController = WebViewController(viewModel: webViewModel)
         webViewController.isPostWebView = true
         navigationController?.pushViewController(webViewController, animated: true)

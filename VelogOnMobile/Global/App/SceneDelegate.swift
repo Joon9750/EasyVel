@@ -131,7 +131,7 @@ private extension SceneDelegate {
 
 private extension SceneDelegate {
     func addInitialData() {
-        let realm = try! Realm()
+        guard let realm = try? Realm() else { return }
         let storageDTO = StorageDTO(
             articleID: UUID(),
             folderName: "모든 게시글",
@@ -144,7 +144,7 @@ private extension SceneDelegate {
     }
     
     func checkAllPostIsUnique() -> Bool {
-        let realm = try! Realm()
+        guard let realm = try? Realm() else { return Bool() }
         let folderName = "모든 게시글"
         let folder = realm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName)
         return folder.isEmpty

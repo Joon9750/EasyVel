@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7CB706D02A3205EC00083EC6 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */; };
-		7CB706D22A32062500083EC6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D12A32062500083EC6 /* SearchViewController.swift */; };
+		7CB706D22A32062500083EC6 /* PostSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D12A32062500083EC6 /* PostSearchViewController.swift */; };
 		7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */; };
 		7CB706D62A32067900083EC6 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */; };
 		8745835E2A42184B00954274 /* KeywordPostsVCFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */; };
@@ -21,6 +20,7 @@
 		877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */; };
 		877ED7C62A4ACC0900D80464 /* TrendPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */; };
 		877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */; };
+		910C02FB2A4D7BC5005D5797 /* PostSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
 		9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0272A236E7600FB1252 /* UIButton+Extension.swift */; };
@@ -169,8 +169,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
-		7CB706D12A32062500083EC6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7CB706D12A32062500083EC6 /* PostSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchViewController.swift; sourceTree = "<group>"; };
 		7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPostsVCFactory.swift; sourceTree = "<group>"; };
@@ -183,6 +182,7 @@
 		877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendPostsDTO.swift; sourceTree = "<group>"; };
 		877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
+		910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchViewModel.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
 		9128B0272A236E7600FB1252 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -348,6 +348,7 @@
 		7CB706C62A3202EB00083EC6 /* PostSearch */ = {
 			isa = PBXGroup;
 			children = (
+				910C02F92A4D7BAC005D5797 /* ViewModel */,
 				91E7ED412A39B97F009AA343 /* ViewController */,
 				91E7ED422A39B990009AA343 /* View */,
 			);
@@ -420,6 +421,14 @@
 				877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */,
 			);
 			path = PostsDTO;
+			sourceTree = "<group>";
+		};
+		910C02F92A4D7BAC005D5797 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		9128AFE22A21178600FB1252 /* ViewModel */ = {
@@ -1236,8 +1245,7 @@
 		91E7ED412A39B97F009AA343 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7CB706D12A32062500083EC6 /* SearchViewController.swift */,
-				7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */,
+				7CB706D12A32062500083EC6 /* PostSearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1441,7 +1449,6 @@
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				916227DA2A454FD800118018 /* SubscriberListResponse.swift in Sources */,
 				91CC1D532A0C0BCD006BF786 /* TagSearchProtocol.swift in Sources */,
-				7CB706D02A3205EC00083EC6 /* MoveViewController.swift in Sources */,
 				9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */,
 				877ED7C62A4ACC0900D80464 /* TrendPostsDTO.swift in Sources */,
 				9128B0322A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift in Sources */,
@@ -1477,6 +1484,7 @@
 				913441F429FFD742000E1ED1 /* TagAPI.swift in Sources */,
 				916E29AA2A3EE332006F5FE9 /* AutoSignInDTO.swift in Sources */,
 				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
+				910C02FB2A4D7BC5005D5797 /* PostSearchViewModel.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
 				7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */,
 				8745835E2A42184B00954274 /* KeywordPostsVCFactory.swift in Sources */,
@@ -1520,7 +1528,7 @@
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */,
 				8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */,
-				7CB706D22A32062500083EC6 /* SearchViewController.swift in Sources */,
+				7CB706D22A32062500083EC6 /* PostSearchViewController.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,
 				9134420B29FFDA71000E1ED1 /* SignOutResponse.swift in Sources */,

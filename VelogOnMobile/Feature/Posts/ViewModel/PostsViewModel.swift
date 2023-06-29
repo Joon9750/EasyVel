@@ -35,8 +35,10 @@ final class PostsViewModel: BaseViewModel {
     var isPostsEmptyOutput = PublishRelay<Bool>()
     var postsListDidScrapOutput = PublishRelay<[Bool]>()
     
-    init(viewType: ViewType,
-         tag: String = "") {
+    init(
+        viewType: ViewType,
+         tag: String = ""
+    ) {
         self.viewType = viewType
         self.tag = tag
         super.init()
@@ -70,8 +72,7 @@ final class PostsViewModel: BaseViewModel {
                 return (posts, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
-                self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
-                //self?.isPostsEmptyOutput.accept(postList.isEmpty)
+                self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
                 LoadingView.hideLoading()
@@ -114,7 +115,6 @@ final class PostsViewModel: BaseViewModel {
                 return (posts, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
-                self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
@@ -142,19 +142,12 @@ final class PostsViewModel: BaseViewModel {
     ) -> Bool {
         return realm.checkUniquePost(input: post)
     }
-
-    private func checkStorageEmpty(
-        input: [PostDTO]?
-    ) -> Bool {
-        if input == nil { return true }
-        else { return false }
-    }
 }
 
 // MARK: - API
 
 private extension PostsViewModel {
-        func getOneTagPosts(tag: String) -> Observable<[PostDTO]?> {
+    func getOneTagPosts(tag: String) -> Observable<[PostDTO]?> {
         return Observable.create { observer in
             NetworkService.shared.postsRepository.getOneTagPosts(tag: tag) { [weak self] result in
                 switch result {
@@ -166,9 +159,9 @@ private extension PostsViewModel {
                     }
                     observer.onNext(posts)
                     observer.onCompleted()
-                case .requestErr(let errResponse):
+                case .requestErr(_):
                     self?.serverFailOutput.accept(true)
-                    observer.onError(errResponse as! Error)
+                    observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
                 default:
                     self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
@@ -190,9 +183,9 @@ private extension PostsViewModel {
                     }
                     observer.onNext(posts.trendPostDtos)
                     observer.onCompleted()
-                case .requestErr(let errResponse):
+                case .requestErr(_):
                     self?.serverFailOutput.accept(true)
-                    observer.onError(errResponse as! Error)
+                    observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
                 default:
                     self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
@@ -214,9 +207,9 @@ private extension PostsViewModel {
                     }
                     observer.onNext(posts.subscribePostDtoList)
                     observer.onCompleted()
-                case .requestErr(let errResponse):
+                case .requestErr(_):
                     self?.serverFailOutput.accept(true)
-                    observer.onError(errResponse as! Error)
+                    observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
                 default:
                     self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))

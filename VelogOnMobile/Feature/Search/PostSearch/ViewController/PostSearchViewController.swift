@@ -4,19 +4,26 @@
 //
 //  Created by JuHyeonAh on 2023/06/08.
 //
+
 import UIKit
 
-import SnapKit
+import RxSwift
+import RxRelay
 
-final class SearchViewController: BaseViewController {
+final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> {
     
-    private let dummy = Trend.dummy()
-
+    private var popularSearchTagList: [String] = [] {
+        didSet {
+            self.popularSearchTagTableView.reloadData()
+        }
+    }
+    private var searchedTag: String = String()
+    
     private let flowLayout = UICollectionViewFlowLayout()
-
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    
     private let popularSearchTagTableView = UITableView()
+    private let tapGesture = UITapGestureRecognizer()
+    private let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
     
     private let recentLabel: UILabel = {
         let label = UILabel()
@@ -48,9 +55,10 @@ final class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setTableView()
         setCollectionView()
+        setTagGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +68,6 @@ final class SearchViewController: BaseViewController {
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
         searchBar.placeholder = TextLiterals.postSearchViewSearchBarPlaceholderText
         self.navigationItem.titleView = searchBar
     }
@@ -73,7 +80,7 @@ final class SearchViewController: BaseViewController {
             trendLabel,
             popularSearchTagTableView
         )
-
+        
         recentLabel.snp.makeConstraints{
             $0.top.equalToSuperview().offset(125)
             $0.leading.equalToSuperview().offset(35)
@@ -101,9 +108,73 @@ final class SearchViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(100)
         }
     }
+    
+    override func bind(viewModel: PostSearchViewModel) {
+        super.bind(viewModel: viewModel)
+        bindOutput(viewModel)
+        
+        searchBar.rx.searchButtonClicked
+            .subscribe(onNext: { [weak searchBar] in
+                guard let searchText = searchBar?.text else { return }
+                self.viewModel?.searchPostTagInput.accept(searchText)
+                self.searchedTag = searchText
+            })
+            .disposed(by: disposeBag)
+        
+        tapGesture.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.searchBar.resignFirstResponder()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindOutput(_ viewModel: PostSearchViewModel) {
+        viewModel.popularPostKeywordListOutput
+            .asDriver(onErrorJustReturn: [String]())
+            .drive(onNext: { [weak self] popularPostKeywordList in
+                guard let self = self else { return }
+                self.popularSearchTagList = popularPostKeywordList
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.searchPostOutput
+            .asDriver(onErrorJustReturn: [PostDTO]())
+            .drive(onNext: { [weak self] searchPostResponse in
+                if searchPostResponse.isEmpty {
+                    self?.showToast(toastText: "검색 결과가 없습니다.", backgroundColor: .gray300)
+                } else {
+                    guard let searchTag = self?.searchedTag else { return }
+                    guard let tagSearchViewController = self?.makeSearchPostViewController(
+                        tag: searchTag,
+                        postDTOList: searchPostResponse
+                    ) else {
+                        return
+                    }
+                    self?.navigationController?.pushViewController(tagSearchViewController, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func makeSearchPostViewController(
+        tag: String,
+        postDTOList: [PostDTO]
+    ) -> UIViewController {
+        let factory = KeywordPostsVCFactory()
+        let viewController = factory.create(
+            tag: tag,
+            isNavigationBarHidden: false,
+            postDTOList: postDTOList
+        )
+        return viewController
+    }
+    
+    private func setTagGesture() {
+        view.addGestureRecognizer(tapGesture)
+    }
 }
 
-extension SearchViewController {
+extension PostSearchViewController {
     func setTableView(){
         popularSearchTagTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         popularSearchTagTableView.delegate = self
@@ -127,63 +198,35 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+extension PostSearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummy.count
+        return popularSearchTagList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as? SearchTableViewCell else {
+            return UITableViewCell()
+        }
         if indexPath.row < 3 {
             cell.numLabel.textColor = .brandColor
         }
         cell.selectionStyle = .none
-        cell.configCell(dummy[indexPath.row])
+        cell.configCell(self.popularSearchTagList[indexPath.row], indexPath.row)
         return cell
     }
 }
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PostSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        cell.configCell(dummy[indexPath.item])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell()
+        }
+//        cell.configCell(popularSearchTagList[indexPath.item])
         return cell
-    }
-}
-
-struct Trend {
-    let keyword: String
-    let num: String
-}
-
-extension Trend{
-    static func dummy() -> [Trend]{
-        return [Trend(keyword: "iOS",
-                      num: "1"),
-                Trend(keyword: "Android",
-                      num: "2"),
-                Trend(keyword: "Sever",
-                      num: "3"),
-                Trend(keyword: "Design",
-                      num: "4"),
-                Trend(keyword: "알고리즘",
-                      num: "5"),
-                Trend(keyword: "TIL",
-                      num: "6"),
-                Trend(keyword: "프로그래머스",
-                      num: "7"),
-                Trend(keyword: "코딩테스트",
-                      num: "8"),
-                Trend(keyword: "Spring",
-                      num: "9"),
-                Trend(keyword: "CSS",
-                      num: "10"),
-        ]
     }
 }
