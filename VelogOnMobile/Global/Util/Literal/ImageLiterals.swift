@@ -31,6 +31,7 @@ enum ImageLiterals {
     static var subscriberAddIcon: UIImage { .load(name: "addIcon" )}
     static var subscriberImage: UIImage { .load(name: "subscriberImage" )}
     static var tagPlusIcon: UIImage { .load(name: "tagPlusIcon") }
+    static var xMarkIcon: UIImage { .load(name: "xmark") }
     
     
     // MARK: - Exception

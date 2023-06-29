@@ -61,9 +61,18 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         return button
     }()
     
-    private let myTagCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-        collectionView.backgroundColor = .systemPink
+    private lazy var myTagCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize.height = 40
+        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 0)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+    
+        collectionView.register(cell: MyTagCollectionViewCell.self)
+        
         return collectionView
     }()
     
@@ -90,10 +99,8 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setButtonAction()
         hierarchy()
         layout()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,16 +123,18 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     override func bind(viewModel: TagSearchViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
+        
+        
     }
     
     private func bindOutput(_ viewModel: TagSearchViewModel) {
         viewModel.myTagstOutput
-            .asDriver(onErrorJustReturn: [])
-            .drive { myTags in
-                print("☺️")
-                print(myTags)
-            }
-            .disposed(by: disposeBag)
+            .bind(to: myTagCollectionView.rx.items(cellIdentifier: MyTagCollectionViewCell.reuseIdentifier,
+                                                   cellType: MyTagCollectionViewCell.self))
+        { index, tag, cell in
+            cell.dataBind(data: tag)
+        }
+        .disposed(by: disposeBag)
         
         viewModel.popularTagsOutput
             .asDriver(onErrorJustReturn: [])
@@ -137,23 +146,6 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     }
     
     
-}
-
-    
-
-
-
-//MARK: - Action Method
-
-private extension TagSearchViewController {
-    func setButtonAction() {
-//        searchView.dismissBtn.addTarget(self, action: #selector(dismissButtonAction), for: .touchUpInside)
-    }
-    
-    @objc
-    func dismissButtonAction() {
-        self.dismiss(animated: true)
-    }
 }
 
 //MARK: - Custom Method
@@ -235,7 +227,7 @@ private extension TagSearchViewController {
             $0.top.equalTo(myTagLabel.snp.bottom).offset(28)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(16)
-            $0.height.equalTo(40)
+            $0.height.equalTo(50)
         }
         
     }

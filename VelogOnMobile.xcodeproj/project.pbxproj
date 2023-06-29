@@ -10,6 +10,8 @@
 		7CB706D22A32062500083EC6 /* PostSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D12A32062500083EC6 /* PostSearchViewController.swift */; };
 		7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */; };
 		7CB706D62A32067900083EC6 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */; };
+		87187C022A4DF7E200BF05F7 /* MyTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87187C012A4DF7E200BF05F7 /* MyTagCollectionViewCell.swift */; };
+		87187C042A4DF7F200BF05F7 /* PopularTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87187C032A4DF7F200BF05F7 /* PopularTagTableViewCell.swift */; };
 		8745835E2A42184B00954274 /* KeywordPostsVCFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */; };
 		8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */; };
 		8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */; };
@@ -172,6 +174,8 @@
 		7CB706D12A32062500083EC6 /* PostSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchViewController.swift; sourceTree = "<group>"; };
 		7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		7CB706D52A32067900083EC6 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		87187C012A4DF7E200BF05F7 /* MyTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		87187C032A4DF7F200BF05F7 /* PopularTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTagTableViewCell.swift; sourceTree = "<group>"; };
 		8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPostsVCFactory.swift; sourceTree = "<group>"; };
 		8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -926,6 +930,8 @@
 			isa = PBXGroup;
 			children = (
 				91487F4A29FD9838009CFECF /* TagSearchView.swift */,
+				87187C012A4DF7E200BF05F7 /* MyTagCollectionViewCell.swift */,
+				87187C032A4DF7F200BF05F7 /* PopularTagTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1457,6 +1463,7 @@
 				913442342A004795000E1ED1 /* SignAPI.swift in Sources */,
 				916227DE2A46C6E900118018 /* SubscriberUserMainResponse.swift in Sources */,
 				9134421A29FFE692000E1ED1 /* GetTagPostResponse.swift in Sources */,
+				87187C042A4DF7F200BF05F7 /* PopularTagTableViewCell.swift in Sources */,
 				91DEF3DD2A017774001B6A9D /* TagSearchViewModel.swift in Sources */,
 				91ED17872A00E57700158787 /* TagRepository.swift in Sources */,
 				9128B0542A23CADD00FB1252 /* ScrapStorageDTO.swift in Sources */,
@@ -1528,6 +1535,7 @@
 				91487F3929FD8915009CFECF /* ListTableViewCell.swift in Sources */,
 				9128B0282A236E7600FB1252 /* UIButton+Extension.swift in Sources */,
 				8765EFEC2A29DC0200EF6733 /* HomeViewController.swift in Sources */,
+				87187C022A4DF7E200BF05F7 /* MyTagCollectionViewCell.swift in Sources */,
 				7CB706D22A32062500083EC6 /* PostSearchViewController.swift in Sources */,
 				913441EA29FFD649000E1ED1 /* BaseTargetType.swift in Sources */,
 				91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */,

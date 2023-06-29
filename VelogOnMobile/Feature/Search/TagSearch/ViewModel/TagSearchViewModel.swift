@@ -73,7 +73,12 @@ final class TagSearchViewModel: BaseViewModel {
 private extension TagSearchViewModel {
     
     func getMyTagDummy() {
-        let dummy: Observable<[String]> = Observable.just(["나의", "더미", "태그"])
+        let dummy: Observable<[String]> = Observable.just(["나의",
+                                                           "더덤덤덤덤덤",
+                                                           "태그",
+                                                           "나의",
+                                                           "더더더더미미ㅣ미",
+                                                           ""])
                                 
         dummy.bind(to: self.myTagstOutput)
             .disposed(by: self.disposeBag)
