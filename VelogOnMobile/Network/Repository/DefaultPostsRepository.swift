@@ -45,6 +45,24 @@ final class DefaultPostsRepository: BaseRepository, PostsRepository {
         }
     }
     
+    func getOneTagPosts(
+        tag: String,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.getOneTagPosts(tag: tag)) { result in
+            switch result {
+            case.success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getOneTagPosts)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    
     func getPopularPosts(
         completion: @escaping (NetworkResult<Any>) -> Void
     ) {
@@ -54,6 +72,22 @@ final class DefaultPostsRepository: BaseRepository, PostsRepository {
                 let statusCode = response.statusCode
                 let data = response.data
                 let networkResult = self.judgeStatus(by: statusCode, data, responseData: .getPopularPosts)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    func getTrendPosts(
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.trendsPosts) { result in
+            switch result {
+            case.success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .trendPosts)
                 completion(networkResult)
             case .failure(let err):
                 print(err)

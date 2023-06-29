@@ -13,9 +13,9 @@ final class HomeViewController: BaseViewController {
     
     //MARK: - Properties
     
-    private var currentPage: Int = 0 {
+    private var currentIndex: Int = 1 {
         didSet {
-            changeViewController(before: oldValue, after: currentPage)
+            changeViewController(before: oldValue, after: currentIndex)
         }
     }
     
@@ -139,23 +139,29 @@ final class HomeViewController: BaseViewController {
     
     private func setPageViewController() {
         let factory = KeywordPostsVCFactory()
-        dataSourceViewController = []
+        dataSourceViewController = [ColorViewController(color: .black),
+                                    PostsViewController(viewModel: .init(viewType: .trend)),
+                                    PostsViewController(viewModel: .init(viewType: .follow))]
+        
         
         for tag in tags {
             let vc = factory.create(tag: tag)
             dataSourceViewController.append(vc)
         }
         
-        currentPage = 0
+        currentIndex = 1
     }
     
     private func changeViewController(before beforeIndex: Int, after newIndex: Int) {
+        
         let direction: UIPageViewController.NavigationDirection = beforeIndex < newIndex ? .forward : .reverse
-        pageViewController.setViewControllers([dataSourceViewController[currentPage]],
+        
+        
+        pageViewController.setViewControllers([dataSourceViewController[currentIndex]],
                                               direction: direction,
                                               animated: true,
                                               completion: nil)
-        menuBar.isSelected = newIndex
+        menuBar.selectedItem = newIndex
     }
     
     //TODO: - MVVM 리팩시 ViewModel이 담당
@@ -182,21 +188,18 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController: HomeMenuBarDelegate {
-    func menuBar(didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
+    func menuBar(didSelectItemAt item: Int) {
+        if item == 0 {
             let tagSearchVC = TagSearchViewController(viewModel: TagSearchViewModel())
             navigationController?.pushViewController(tagSearchVC, animated: true)
-        case 1:
-            currentPage = indexPath.item
-        default:
             return
         }
-        
+        currentIndex = item
     }
 }
 
 //MARK: - UIPageViewControllerDataSource
+
 extension HomeViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = dataSourceViewController.firstIndex(of: viewController) else { return nil }
@@ -208,7 +211,7 @@ extension HomeViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = dataSourceViewController.firstIndex(of: viewController) else { return nil }
         let previousIndex = currentIndex - 1
-        guard previousIndex >= 0 else { return nil }
+        guard previousIndex >= 1 else { return nil }
         return dataSourceViewController[previousIndex]
     }
 }
@@ -223,6 +226,7 @@ extension HomeViewController: UIPageViewControllerDelegate {
         
         guard let currentVC = pageViewController.viewControllers?.first,
               let currentIndex = dataSourceViewController.firstIndex(of: currentVC) else { return }
-        currentPage = currentIndex
+        self.currentIndex = currentIndex
     }
 }
+

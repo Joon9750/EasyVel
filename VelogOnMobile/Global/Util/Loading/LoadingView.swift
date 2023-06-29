@@ -38,4 +38,22 @@ final class LoadingView {
             }
         }
     }
+    
+    static func showLoadingTemp() -> String {
+        DispatchQueue.main.async {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.last {
+                if let loadingView = window.subviews.first(where: { $0 is UIActivityIndicatorView }) as? UIActivityIndicatorView {
+                    loadingView.startAnimating()
+                    return
+                }
+                let loadingView = UIActivityIndicatorView(style: .medium)
+                loadingView.frame = window.bounds
+                loadingView.color = .darkGray
+                window.addSubview(loadingView)
+                loadingView.startAnimating()
+            }
+        }
+        return ""
+    }
 }

@@ -8,18 +8,5 @@
 import Foundation
 
 struct GetSubscriberPostResponse: Codable {
-    let subscribePostDtoList: [SubscribePostDtoList]?
-}
-
-struct SubscribePostDtoList: Codable {
-    let comment: Int?
-    let date: String?
-    let img: String?
-    let like: Int?
-    let name: String?
-    let subscribed: Bool?
-    let summary: String?
-    let tag: [String]?
-    let title: String?
-    let url: String?
+    let subscribePostDtoList: [PostDTO]?
 }

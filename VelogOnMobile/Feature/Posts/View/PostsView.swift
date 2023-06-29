@@ -9,9 +9,9 @@ import UIKit
 
 import SnapKit
 
-final class KeywordsPostsView: BaseUIView {
+final class PostsView: BaseUIView {
     
-    let keywordsTableView = KeywordsTableView(frame: .null, style: .insetGrouped)
+    let postsTableView = PostsTableView(frame: .null, style: .insetGrouped)
     let keywordsPostsViewExceptionView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = ImageLiterals.emptyPostsList
@@ -21,11 +21,11 @@ final class KeywordsPostsView: BaseUIView {
     
     override func render() {
         self.addSubviews(
-            keywordsTableView,
+            postsTableView,
             keywordsPostsViewExceptionView
         )
         
-        keywordsTableView.snp.makeConstraints {
+        postsTableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         

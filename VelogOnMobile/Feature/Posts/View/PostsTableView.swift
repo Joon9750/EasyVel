@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class KeywordsTableView: UITableView {
+final class PostsTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -22,7 +22,7 @@ final class KeywordsTableView: UITableView {
     }
 
     private func setupTableView() {
-        register(KeywordsTableViewCell.self, forCellReuseIdentifier: KeywordsTableViewCell.identifier)
+        register(PostsTableViewCell.self, forCellReuseIdentifier: PostsTableViewCell.identifier)
         showsVerticalScrollIndicator = true
     }
 }
