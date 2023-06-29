@@ -10,11 +10,13 @@ import Foundation
 final class KeywordPostsVCFactory {
     func create(
         tag: String,
-        isNavigationBarHidden: Bool
+        isNavigationBarHidden: Bool,
+        postDTOList: [PostDTO]?
     ) -> PostsViewController {
         let vc = PostsViewController(
             viewModel: PostsViewModel(viewType: .keyword, tag: tag),
-            isNavigationBarHidden: isNavigationBarHidden
+            isNavigationBarHidden: isNavigationBarHidden,
+            posts: postDTOList
         )
         return vc
     }

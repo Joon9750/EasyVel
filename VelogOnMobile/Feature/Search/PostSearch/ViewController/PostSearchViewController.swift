@@ -17,6 +17,7 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
             self.popularSearchTagTableView.reloadData()
         }
     }
+    private var searchedTag: String = String()
     
     private let flowLayout = UICollectionViewFlowLayout()
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
@@ -115,8 +116,8 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         searchBar.rx.searchButtonClicked
             .subscribe(onNext: { [weak searchBar] in
                 guard let searchText = searchBar?.text else { return }
-                let tagSearchViewController = self.makeSearchPostViewController(tag: searchText)
-                self.navigationController?.pushViewController(tagSearchViewController, animated: true)
+                self.viewModel?.searchPostTagInput.accept(searchText)
+                self.searchedTag = searchText
             })
             .disposed(by: disposeBag)
         
@@ -135,13 +136,36 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
                 self.popularSearchTagList = popularPostKeywordList
             })
             .disposed(by: disposeBag)
+        
+        viewModel.searchPostOutput
+            .asDriver(onErrorJustReturn: [PostDTO]())
+            .drive(onNext: { [weak self] searchPostResponse in
+                if searchPostResponse.isEmpty {
+                    self?.showToast(toastText: "검색 결과가 없습니다.", backgroundColor: .gray300)
+                } else {
+                    guard let searchTag = self?.searchedTag else { return }
+                    guard let tagSearchViewController = self?.makeSearchPostViewController(
+                        tag: searchTag,
+                        postDTOList: searchPostResponse
+                    ) else {
+                        return
+                    }
+                    self?.navigationController?.pushViewController(tagSearchViewController, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func makeSearchPostViewController(
-        tag: String
+        tag: String,
+        postDTOList: [PostDTO]
     ) -> UIViewController {
         let factory = KeywordPostsVCFactory()
-        let viewController = factory.create(tag: tag, isNavigationBarHidden: false)
+        let viewController = factory.create(
+            tag: tag,
+            isNavigationBarHidden: false,
+            postDTOList: postDTOList
+        )
         return viewController
     }
     

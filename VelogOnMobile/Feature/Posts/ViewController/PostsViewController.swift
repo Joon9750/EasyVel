@@ -20,10 +20,12 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
     
     init(
         viewModel: PostsViewModel,
-        isNavigationBarHidden: Bool
+        isNavigationBarHidden: Bool,
+        posts: [PostDTO]?
     ) {
         super.init(viewModel: viewModel)
         self.isNavigationBarHidden = isNavigationBarHidden
+        self.posts = posts
     }
     
     override func viewDidLoad() {
