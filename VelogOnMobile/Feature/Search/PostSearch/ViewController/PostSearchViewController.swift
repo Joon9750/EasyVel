@@ -135,7 +135,7 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         tag: String
     ) -> UIViewController {
         let factory = KeywordPostsVCFactory()
-        let viewController = factory.create(tag: tag)
+        let viewController = factory.create(tag: tag, isNavigationBarHidden: false)
         return viewController
     }
 }

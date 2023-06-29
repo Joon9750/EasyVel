@@ -14,13 +14,29 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
 
     private var posts: [PostDTO]?
     private var isScrapPostsList: [Bool]?
+    private var isNavigationBarHidden = true
     
     private let postsView = PostsView()
+    
+    init(
+        viewModel: PostsViewModel,
+        isNavigationBarHidden: Bool
+    ) {
+        super.init(viewModel: viewModel)
+        self.isNavigationBarHidden = isNavigationBarHidden
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isNavigationBarHidden == false {
+            navigationController?.navigationBar.isHidden = false
+        }
     }
     
     override func render() {

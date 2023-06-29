@@ -140,12 +140,12 @@ final class HomeViewController: BaseViewController {
     private func setPageViewController() {
         let factory = KeywordPostsVCFactory()
         dataSourceViewController = [ColorViewController(color: .black),
-                                    PostsViewController(viewModel: .init(viewType: .trend)),
-                                    PostsViewController(viewModel: .init(viewType: .follow))]
+                                    PostsViewController(viewModel: .init(viewType: .trend), isNavigationBarHidden: true),
+                                    PostsViewController(viewModel: .init(viewType: .follow), isNavigationBarHidden: true)]
         
         
         for tag in tags {
-            let vc = factory.create(tag: tag)
+            let vc = factory.create(tag: tag, isNavigationBarHidden: true)
             dataSourceViewController.append(vc)
         }
         

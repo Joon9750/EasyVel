@@ -8,8 +8,14 @@
 import Foundation
 
 final class KeywordPostsVCFactory {
-    func create(tag: String) -> PostsViewController {
-        let vc = PostsViewController(viewModel: PostsViewModel(viewType: .keyword, tag: tag))
+    func create(
+        tag: String,
+        isNavigationBarHidden: Bool
+    ) -> PostsViewController {
+        let vc = PostsViewController(
+            viewModel: PostsViewModel(viewType: .keyword, tag: tag),
+            isNavigationBarHidden: isNavigationBarHidden
+        )
         return vc
     }
 }
