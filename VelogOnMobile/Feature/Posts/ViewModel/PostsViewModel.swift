@@ -35,8 +35,10 @@ final class PostsViewModel: BaseViewModel {
     var isPostsEmptyOutput = PublishRelay<Bool>()
     var postsListDidScrapOutput = PublishRelay<[Bool]>()
     
-    init(viewType: ViewType,
-         tag: String = "") {
+    init(
+        viewType: ViewType,
+         tag: String = ""
+    ) {
         self.viewType = viewType
         self.tag = tag
         super.init()

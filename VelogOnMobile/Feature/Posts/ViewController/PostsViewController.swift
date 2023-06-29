@@ -154,7 +154,7 @@ extension PostsViewController: UITableViewDelegate {
             url: posts?[index].url
         )
         
-        let webViewModel = WebViewModel(url: selectedCell.url, isPostWebView: true)
+        let webViewModel = WebViewModel(url: selectedCell.url)
         webViewModel.postWriter = posts?[index].name
         webViewModel.storagePost = storagePost
         

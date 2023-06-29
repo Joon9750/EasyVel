@@ -107,8 +107,7 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
         userMainURL: String
     ) {
         let webViewModel = WebViewModel(
-            url: userMainURL,
-            isPostWebView: false
+            url: userMainURL
         )
         let webViewController = WebViewController(viewModel: webViewModel)
         webViewController.isPostWebView = false
