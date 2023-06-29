@@ -72,7 +72,6 @@ final class PostsViewModel: BaseViewModel {
                 return (posts, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
-                self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
@@ -116,7 +115,6 @@ final class PostsViewModel: BaseViewModel {
                 return (posts, isScrapList)
             }
             .subscribe(onNext: { [weak self] postList, isScrapList in
-                self?.isPostsEmptyOutput.accept(self?.checkStorageEmpty(input: postList) ?? false)
                 self?.isPostsEmptyOutput.accept(postList.isEmpty)
                 self?.postsListOutput.accept(postList)
                 self?.postsListDidScrapOutput.accept(isScrapList)
@@ -143,13 +141,6 @@ final class PostsViewModel: BaseViewModel {
         post: StoragePost
     ) -> Bool {
         return realm.checkUniquePost(input: post)
-    }
-
-    private func checkStorageEmpty(
-        input: [PostDTO]?
-    ) -> Bool {
-        if input == nil { return true }
-        else { return false }
     }
 }
 
