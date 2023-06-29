@@ -161,7 +161,7 @@ final class HomeViewController: BaseViewController {
                                               direction: direction,
                                               animated: true,
                                               completion: nil)
-        menuBar.selectedIndexPath = newIndex
+        menuBar.selectedItem = newIndex
     }
     
     //TODO: - MVVM 리팩시 ViewModel이 담당

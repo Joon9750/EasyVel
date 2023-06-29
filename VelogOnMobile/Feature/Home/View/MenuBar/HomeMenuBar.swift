@@ -18,9 +18,9 @@ final class HomeMenuBar: UIView {
     
     weak var delegate: HomeMenuBarDelegate?
     
-    var selectedIndexPath: Int? {
+    var selectedItem: Int? {
         didSet {
-            updateBar(from: selectedIndexPath)
+            updateBar(from: selectedItem)
         }
     }
     
@@ -30,7 +30,7 @@ final class HomeMenuBar: UIView {
     private var tags: [String] = [""] {
         didSet {
             collectionView.reloadData()
-            selectedIndexPath = 1
+            selectedItem = 1
         }
     }
     
