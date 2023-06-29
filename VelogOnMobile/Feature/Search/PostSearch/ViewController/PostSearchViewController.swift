@@ -24,6 +24,9 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     
     private let popularSearchTagTableView = UITableView()
     
+    let tapGesture = UITapGestureRecognizer()
+    let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
+    
     private let recentLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.postSearchViewRecentLabel
@@ -57,6 +60,7 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         
         setTableView()
         setCollectionView()
+        setTagGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,17 +70,8 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     
     override func setupNavigationBar() {
         super.setupNavigationBar()
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
         searchBar.placeholder = TextLiterals.postSearchViewSearchBarPlaceholderText
         self.navigationItem.titleView = searchBar
-
-        searchBar.rx.searchButtonClicked
-            .subscribe(onNext: { [weak searchBar] in
-                guard let searchText = searchBar?.text else { return }
-                let tagSearchViewController = self.makeSearchPostViewController(tag: searchText)
-                self.navigationController?.pushViewController(tagSearchViewController, animated: true)
-            })
-            .disposed(by: disposeBag)
     }
     
     override func render() {
@@ -119,6 +114,20 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     override func bind(viewModel: PostSearchViewModel) {
         super.bind(viewModel: viewModel)
         bindOutput(viewModel)
+        
+        searchBar.rx.searchButtonClicked
+            .subscribe(onNext: { [weak searchBar] in
+                guard let searchText = searchBar?.text else { return }
+                let tagSearchViewController = self.makeSearchPostViewController(tag: searchText)
+                self.navigationController?.pushViewController(tagSearchViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        tapGesture.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.searchBar.resignFirstResponder()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: PostSearchViewModel) {
@@ -137,6 +146,10 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         let factory = KeywordPostsVCFactory()
         let viewController = factory.create(tag: tag, isNavigationBarHidden: false)
         return viewController
+    }
+    
+    private func setTagGesture() {
+        view.addGestureRecognizer(tapGesture)
     }
 }
 
