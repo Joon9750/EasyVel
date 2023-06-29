@@ -12,20 +12,34 @@ import Realm
 
 final class RealmService {
     
-    private let localRealm = try! Realm()
+    private let localRealm: Realm
+    
+    init() {
+        do {
+            localRealm = try Realm()
+            print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location.")
+        } catch {
+            fatalError("Failed to initialize local Realm: \(error)")
+        }
+    }
     
     func setAccessToken(
         accessToken: String
     ) {
-        guard let object = localRealm.objects(AccessTokenDTO.self).first else {
-            let firstAccessToken = AccessTokenDTO(input: accessToken)
-            try! localRealm.write {
-                localRealm.add(firstAccessToken)
+        do {
+            if let object = localRealm.objects(AccessTokenDTO.self).first {
+                try localRealm.write {
+                    object.accessToken = accessToken
+                }
+            } else {
+                let firstAccessToken = AccessTokenDTO(input: accessToken)
+                try localRealm.write {
+                    localRealm.add(firstAccessToken)
+                }
             }
-            return
-        }
-        try! localRealm.write {
-            object.accessToken = accessToken
+        } catch {
+            // Handle the error gracefully
+            print("Failed to set access token: \(error)")
         }
     }
     
@@ -40,21 +54,20 @@ final class RealmService {
     func setAutoSignIn(
         didSignIn: Bool
     ) {
-        guard let object = localRealm.objects(AutoSignInDTO.self).first else {
-            let firstAutoSignIn = AutoSignInDTO(input: true)
-            try! localRealm.write {
-                localRealm.add(firstAutoSignIn)
+        do {
+            if let object = localRealm.objects(AutoSignInDTO.self).first {
+                try localRealm.write {
+                    object.didSignIn = didSignIn
+                }
+            } else {
+                let firstAutoSignIn = AutoSignInDTO(input: true)
+                try localRealm.write {
+                    localRealm.add(firstAutoSignIn)
+                }
             }
-            return
-        }
-        if didSignIn {
-            try! localRealm.write {
-                object.didSignIn = true
-            }
-        } else {
-            try! localRealm.write {
-                object.didSignIn = false
-            }
+        } catch {
+            // Handle the error gracefully
+            print("Failed to set auto sign-in status: \(error)")
         }
     }
     
@@ -63,20 +76,23 @@ final class RealmService {
         guard let didSignIn = object.didSignIn else { return false }
         return didSignIn
     }
-    
+
     func addPost(
         item: StoragePost,
         folderName: String
     ) {
         let post = RealmStoragePost(input: item, folderName: folderName)
-        if localRealm.isEmpty {
-            try! localRealm.write {
-                localRealm.add(post)
+        do {
+            try localRealm.write {
+                if localRealm.isEmpty {
+                    localRealm.add(post)
+                } else {
+                    localRealm.add(post, update: .modified)
+                }
             }
-        } else {
-            try! localRealm.write {
-                localRealm.add(post, update: .modified)
-            }
+        } catch {
+            // Handle the error gracefully
+            print("Failed to add post: \(error)")
         }
     }
     
@@ -84,14 +100,17 @@ final class RealmService {
         item: StorageDTO
     ) {
         let folder = ScrapStorageDTO(input: item)
-        if localRealm.isEmpty {
-            try! localRealm.write {
-                localRealm.add(folder)
+        do {
+            try localRealm.write {
+                if localRealm.isEmpty {
+                    localRealm.add(folder)
+                } else {
+                    localRealm.add(folder, update: .modified)
+                }
             }
-        } else {
-            try! localRealm.write {
-                localRealm.add(folder, update: .modified)
-            }
+        } catch {
+            // Handle the error gracefully
+            print("Failed to add folder: \(error)")
         }
     }
 
@@ -196,8 +215,13 @@ final class RealmService {
         url: String
     ) {
         guard let postToDelete = localRealm.objects(RealmStoragePost.self).filter("url == %@", url).first else { return }
-        try! localRealm.write {
-            localRealm.delete(postToDelete)
+        do {
+            try localRealm.write {
+                localRealm.delete(postToDelete)
+            }
+        } catch {
+            // Handle the error gracefully
+            print("Failed to delete post: \(error)")
         }
     }
 
@@ -292,12 +316,13 @@ final class RealmService {
     }
     
     func deleteAllRealmData() {
-        try! localRealm.write {
-            localRealm.deleteAll()
+        do {
+            try localRealm.write {
+                localRealm.deleteAll()
+            }
+        } catch {
+            // Handle the error gracefully
+            print("Failed to delete all Realm data: \(error)")
         }
-    }
-
-    init() {
-        print("Realm Location: ", localRealm.configuration.fileURL ?? "cannot find location.")
     }
 }

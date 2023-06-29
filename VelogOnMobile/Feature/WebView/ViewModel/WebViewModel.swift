@@ -161,9 +161,9 @@ extension WebViewModel {
                     }
                     observer.onNext(list)
                     observer.onCompleted()
-                case .requestErr(let errResponse):
+                case .requestErr(_):
                     self?.serverFailOutput.accept(true)
-                    observer.onError(errResponse as! Error)
+                    observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
                 default:
                     self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))

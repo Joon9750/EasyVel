@@ -187,7 +187,9 @@ extension ListViewController: UITableViewDataSource {
 
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
+        guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else {
+            return
+        }
         if let subscriberName = cell.listText.text {
             self.viewModel?.subscriberTableViewCellDidTap.accept(subscriberName)
         }
