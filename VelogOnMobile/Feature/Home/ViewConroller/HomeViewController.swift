@@ -183,7 +183,7 @@ final class HomeViewController: BaseViewController {
     @objc
     private func moveToSearchPostViewController() {
         let postSearchViewModel = PostSearchViewModel()
-        let searchPostViewController = SearchViewController(viewModel: postSearchViewModel)
+        let searchPostViewController = PostSearchViewController(viewModel: postSearchViewModel)
         navigationController?.pushViewController(searchPostViewController, animated: true)
     }
 }

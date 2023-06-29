@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxRelay
 
-final class SearchViewController: RxBaseViewController<PostSearchViewModel> {
+final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> {
     
     private var popularSearchTagList: [String] = [] {
         didSet {
@@ -73,6 +73,8 @@ final class SearchViewController: RxBaseViewController<PostSearchViewModel> {
         searchBar.rx.searchButtonClicked
             .subscribe(onNext: { [weak searchBar] in
                 guard let searchText = searchBar?.text else { return }
+                let tagSearchViewController = self.makeSearchPostViewController(tag: searchText)
+                self.navigationController?.pushViewController(tagSearchViewController, animated: true)
             })
             .disposed(by: disposeBag)
     }
@@ -128,9 +130,17 @@ final class SearchViewController: RxBaseViewController<PostSearchViewModel> {
             })
             .disposed(by: disposeBag)
     }
+    
+    private func makeSearchPostViewController(
+        tag: String
+    ) -> UIViewController {
+        let factory = KeywordPostsVCFactory()
+        let viewController = factory.create(tag: tag)
+        return viewController
+    }
 }
 
-extension SearchViewController {
+extension PostSearchViewController {
     func setTableView(){
         popularSearchTagTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         popularSearchTagTableView.delegate = self
@@ -154,7 +164,7 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+extension PostSearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return popularSearchTagList.count
@@ -173,7 +183,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PostSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
