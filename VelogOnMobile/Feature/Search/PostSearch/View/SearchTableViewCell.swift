@@ -47,8 +47,8 @@ final class SearchTableViewCell: BaseTableViewCell {
         }
     }
     
-    func configCell(_ trend: Trend) {
-        keywordLabel.text = trend.keyword
-        numLabel.text = trend.num
+    func configCell(_ trendList: String, _ indexPath: Int) {
+        keywordLabel.text = trendList
+        numLabel.text = String(indexPath)
     }
 }

@@ -14,13 +14,37 @@ final class PostsViewController: RxBaseViewController<PostsViewModel> {
 
     private var posts: [PostDTO]?
     private var isScrapPostsList: [Bool]?
+    private var isNavigationBarHidden = true
     
     private let postsView = PostsView()
+    
+    override init(
+        viewModel: PostsViewModel
+    ) {
+        super.init(viewModel: viewModel)
+    }
+    
+    init(
+        viewModel: PostsViewModel,
+        isNavigationBarHidden: Bool,
+        posts: [PostDTO]
+    ) {
+        super.init(viewModel: viewModel)
+        self.isNavigationBarHidden = isNavigationBarHidden
+        self.posts = posts
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isNavigationBarHidden == false {
+            navigationController?.navigationBar.isHidden = false
+        }
     }
     
     override func render() {
@@ -154,7 +178,7 @@ extension PostsViewController: UITableViewDelegate {
             url: posts?[index].url
         )
         
-        let webViewModel = WebViewModel(url: selectedCell.url, isPostWebView: true)
+        let webViewModel = WebViewModel(url: selectedCell.url)
         webViewModel.postWriter = posts?[index].name
         webViewModel.storagePost = storagePost
         
