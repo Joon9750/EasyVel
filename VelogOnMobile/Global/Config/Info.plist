@@ -14,8 +14,6 @@
 		<string>Pretendard-Light.otf</string>
 		<string>Pretendard-Medium.otf</string>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
