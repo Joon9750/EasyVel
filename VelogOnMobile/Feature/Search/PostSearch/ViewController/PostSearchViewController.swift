@@ -19,13 +19,10 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     }
     
     private let flowLayout = UICollectionViewFlowLayout()
-    
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-    
     private let popularSearchTagTableView = UITableView()
-    
-    let tapGesture = UITapGestureRecognizer()
-    let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
+    private let tapGesture = UITapGestureRecognizer()
+    private let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
     
     private let recentLabel: UILabel = {
         let label = UILabel()
