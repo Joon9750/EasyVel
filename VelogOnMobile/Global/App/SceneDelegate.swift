@@ -46,7 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if realm.checkIsUserSignIn() {
             // MARK: - 자동 로그인 된 유저
-            //let testVC = KeywordsPostsViewController(viewModel: KeywordsPostsViewModel())
+            let testVC = UINavigationController(rootViewController: TagSearchViewController(viewModel: TagSearchViewModel()))
             let rootViewController = UINavigationController(rootViewController: TabBarController())
             window?.rootViewController = rootViewController
             window?.makeKeyAndVisible()

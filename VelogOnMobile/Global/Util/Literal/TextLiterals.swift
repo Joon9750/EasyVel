@@ -33,7 +33,7 @@ enum TextLiterals {
     static let addTagSuccessText: String = "키워드가 추가되었습니다."
     static let addTagRequestErrText: String = "이미 추가된 관심 키워드입니다."
     static let tagTitleLabelText: String = "Add Keyword"
-    static let textFieldPlaceholderText: String = "키워드를 입력해주세요."
+    static let tagSearchPlaceholderText: String = "태그를 추가해보세요."
     
     // MARK: - subscriber search
     

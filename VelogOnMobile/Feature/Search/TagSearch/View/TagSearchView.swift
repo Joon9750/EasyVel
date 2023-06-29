@@ -11,6 +11,7 @@ import SnapKit
 
 final class TagSearchView: BaseUIView {
     
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.tagTitleLabelText
@@ -44,7 +45,7 @@ final class TagSearchView: BaseUIView {
     
     let textField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextLiterals.textFieldPlaceholderText
+        textField.placeholder = TextLiterals.tagSearchPlaceholderText
         textField.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
         return textField
     }()
