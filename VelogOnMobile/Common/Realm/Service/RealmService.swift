@@ -315,6 +315,44 @@ final class RealmService {
         return posts
     }
     
+    // MARK: - post search current tag
+    
+    func addCurrentSearchTag(
+        tag: String
+    ) {
+        let currentSearchDTO = CurrentSearchDTO(currentTag: tag)
+        do {
+            try localRealm.write {
+                if localRealm.isEmpty {
+                    localRealm.add(currentSearchDTO)
+                } else {
+                    localRealm.add(currentSearchDTO, update: .modified)
+                }
+            }
+        } catch {
+            print("Failed to add folder: \(error)")
+        }
+    }
+    
+    func getCurrentSearchTags() ->[String] {
+        let currentSearchTags = localRealm.objects(CurrentSearchDTO.self)
+        return Array(currentSearchTags).map { $0.currentTag ?? String() }
+    }
+    
+    func deleteAllRecentData() {
+        let allCurrentSearchTag = localRealm.objects(CurrentSearchDTO.self)
+        do {
+            try localRealm.write {
+                localRealm.delete(allCurrentSearchTag)
+            }
+        } catch {
+            // Handle the error gracefully
+            print("Failed to delete post: \(error)")
+        }
+    }
+    
+    // MARK: - delete all Data
+    
     func deleteAllRealmData() {
         do {
             try localRealm.write {

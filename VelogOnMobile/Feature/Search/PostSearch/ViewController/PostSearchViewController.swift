@@ -7,6 +7,7 @@
 
 import UIKit
 
+import SnapKit
 import RxSwift
 import RxRelay
 
@@ -15,6 +16,11 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     private var popularSearchTagList: [String] = [] {
         didSet {
             self.popularSearchTagTableView.reloadData()
+        }
+    }
+    private var currentSearchTagList: [String] = [] {
+        didSet {
+            self.recentSearchTagCollectionView.reloadData()
         }
     }
     private var searchedTag: String = String()
@@ -42,6 +48,15 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         button.setTitleColor(.gray200, for: .normal)
         button.titleLabel?.textAlignment = NSTextAlignment.center
         return button
+    }()
+    
+    private let emptyRecentSearchTagExcaptionLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.text = "최근 검색어가 없습니다."
+        label.font = .body_1_M
+        label.textColor = .gray300
+        return label
     }()
     
     private let trendLabel: UILabel = {
@@ -76,6 +91,7 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         view.addSubviews(
             recentLabel,
             deleteButton,
+            emptyRecentSearchTagExcaptionLabel,
             recentSearchTagCollectionView,
             trendLabel,
             popularSearchTagTableView
@@ -83,17 +99,23 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         
         recentLabel.snp.makeConstraints{
             $0.top.equalToSuperview().offset(125)
-            $0.leading.equalToSuperview().offset(35)
+            $0.leading.equalToSuperview().offset(20)
         }
         
         deleteButton.snp.makeConstraints{
             $0.top.equalToSuperview().offset(120)
-            $0.trailing.equalToSuperview().inset(35)
+            $0.trailing.equalToSuperview().inset(20)
         }
+        
+        emptyRecentSearchTagExcaptionLabel.snp.makeConstraints {
+            $0.top.equalTo(recentLabel.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(20)
+        }
+        view.bringSubviewToFront(emptyRecentSearchTagExcaptionLabel)
         
         recentSearchTagCollectionView.snp.makeConstraints{
             $0.top.equalTo(recentLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(25)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(35)
         }
         
@@ -104,7 +126,7 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         
         popularSearchTagTableView.snp.makeConstraints{
             $0.top.equalTo(trendLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(35)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(100)
         }
     }
@@ -118,12 +140,20 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
                 guard let searchText = searchBar?.text else { return }
                 self.viewModel?.searchPostTagInput.accept(searchText)
                 self.searchedTag = searchText
+                
+                self.viewModel?.addCurrentSearchTagInput.accept(searchText)
             })
             .disposed(by: disposeBag)
         
         tapGesture.rx.event
             .subscribe(onNext: { [weak self] _ in
                 self?.searchBar.resignFirstResponder()
+            })
+            .disposed(by: disposeBag)
+        
+        deleteButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel?.deleteAllCurrentSearchTagInput.accept(Void())
             })
             .disposed(by: disposeBag)
     }
@@ -154,6 +184,14 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
                 }
             })
             .disposed(by: disposeBag)
+        
+        viewModel.currentSearchTagListOutput
+            .asDriver(onErrorJustReturn: [String]())
+            .drive(onNext: { [weak self] currentSearchTagList in
+                self?.setEmptyRecentSearchTagExcaptionLabel(isCurrentSearchTagListEmpty: currentSearchTagList.isEmpty)
+                self?.currentSearchTagList = currentSearchTagList
+            })
+            .disposed(by: disposeBag)
     }
     
     private func makeSearchPostViewController(
@@ -171,6 +209,16 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     
     private func setTagGesture() {
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func setEmptyRecentSearchTagExcaptionLabel(
+        isCurrentSearchTagListEmpty: Bool
+    ) {
+        if isCurrentSearchTagListEmpty {
+            emptyRecentSearchTagExcaptionLabel.isHidden = false
+        } else {
+            emptyRecentSearchTagExcaptionLabel.isHidden = true
+        }
     }
 }
 
@@ -212,7 +260,7 @@ extension PostSearchViewController: UITableViewDataSource, UITableViewDelegate {
             cell.numLabel.textColor = .brandColor
         }
         cell.selectionStyle = .none
-        cell.configCell(self.popularSearchTagList[indexPath.row], indexPath.row)
+        cell.configCell(self.popularSearchTagList[indexPath.row], indexPath.row + 1)
         return cell
     }
 }
@@ -220,13 +268,13 @@ extension PostSearchViewController: UITableViewDataSource, UITableViewDelegate {
 extension PostSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.currentSearchTagList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell()
         }
-//        cell.configCell(popularSearchTagList[indexPath.item])
+        cell.configCell(currentSearchTagList[indexPath.row])
         return cell
     }
 }

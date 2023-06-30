@@ -33,7 +33,7 @@ final class SearchCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    func configCell(_ trend: String) {
-        searchwordLabel.text = trend
+    func configCell(_ currentTag: String) {
+        searchwordLabel.text = currentTag
     }
 }
