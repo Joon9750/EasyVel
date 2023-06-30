@@ -7,8 +7,17 @@
 import UIKit
 
 import SnapKit
+import RealmSwift
+import Moya
 
-final class SearchViewController: BaseViewController {
+
+class Search: Object {
+    @Persisted var term: String = ""
+    @Persisted var date: Date = Date()
+}
+
+
+final class SearchViewController: BaseViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     private let dummy = Trend.dummy()
 
@@ -17,6 +26,11 @@ final class SearchViewController: BaseViewController {
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
     private let popularSearchTagTableView = UITableView()
+    
+    private let realm = try! Realm()
+    private var recentSearchTerms: Results<Search>!
+    private let searchController = UISearchController(searchResultsController: nil)
+
     
     private let recentLabel: UILabel = {
         let label = UILabel()
@@ -34,6 +48,7 @@ final class SearchViewController: BaseViewController {
         button.backgroundColor = .white
         button.setTitleColor(.gray200, for: .normal)
         button.titleLabel?.textAlignment = NSTextAlignment.center
+        button.addTarget(self, action: #selector(deleteAllRecentData), for: .touchUpInside)
         return button
     }()
     
@@ -51,6 +66,10 @@ final class SearchViewController: BaseViewController {
 
         setTableView()
         setCollectionView()
+        recentSearchTerms = loadRecentSearchTerms()
+        searchController.searchBar.delegate = self
+
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,8 +80,11 @@ final class SearchViewController: BaseViewController {
     override func setupNavigationBar() {
         super.setupNavigationBar()
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
+        searchBar.delegate = self
         searchBar.placeholder = TextLiterals.postSearchViewSearchBarPlaceholderText
         self.navigationItem.titleView = searchBar
+        
+       
     }
     
     override func render() {
@@ -101,6 +123,52 @@ final class SearchViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(100)
         }
     }
+    
+    private func loadRecentSearchTerms() -> Results<Search> {
+        return realm.objects(Search.self)
+            .sorted(byKeyPath: "date", ascending: false)
+    }
+    
+
+    
+    private func addSearchTerm(_ term: String) {
+        let searchHistory = Search()
+        searchHistory.term = term
+        
+        try! realm.write {
+            realm.add(searchHistory)
+        }
+        recentSearchTerms = loadRecentSearchTerms()
+        recentSearchTagCollectionView.reloadData()
+    }
+
+
+    @objc private func deleteAllRecentData() {
+        try! realm.write {
+            realm.delete(recentSearchTerms)
+        }
+        recentSearchTerms = loadRecentSearchTerms()
+        recentSearchTagCollectionView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchTerm = searchBar.text {
+            let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !trimmedSearchTerm.isEmpty {
+                addSearchTerm(trimmedSearchTerm)
+                searchBar.text = nil
+                searchController.isActive = false
+            }
+        }
+    }
+    
+    @objc(updateSearchResultsForSearchController:)
+    func updateSearchResults(for searchController: UISearchController) {
+
+    }
+    
+    
+    
 }
 
 extension SearchViewController {
@@ -145,17 +213,20 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-  
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return recentSearchTerms.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        cell.configCell(dummy[indexPath.item])
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as! SearchCollectionViewCell
+        let searchTerm = recentSearchTerms[indexPath.item]
+        cell.configCell(searchTerm.term)
         return cell
     }
+    
 }
+
 
 struct Trend {
     let keyword: String

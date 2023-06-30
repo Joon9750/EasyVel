@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C9D67712A4D68F7007F8C41 /* PopularTagsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9D67702A4D68F7007F8C41 /* PopularTagsDTO.swift */; };
 		7CB706D02A3205EC00083EC6 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */; };
 		7CB706D22A32062500083EC6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D12A32062500083EC6 /* SearchViewController.swift */; };
 		7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */; };
@@ -172,6 +173,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C9D67702A4D68F7007F8C41 /* PopularTagsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTagsDTO.swift; sourceTree = "<group>"; };
 		7CB706CF2A3205EC00083EC6 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
 		7CB706D12A32062500083EC6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		7CB706D32A32064900083EC6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -1222,6 +1224,7 @@
 			isa = PBXGroup;
 			children = (
 				91BFF2F42A2776F000F5D13E /* PopularPostsDTO.swift */,
+				7C9D67702A4D68F7007F8C41 /* PopularTagsDTO.swift */,
 			);
 			path = PopularDTO;
 			sourceTree = "<group>";
@@ -1430,6 +1433,7 @@
 			files = (
 				91487EC629FC380A009CFECF /* SignInViewController.swift in Sources */,
 				916E29A82A3EDA45006F5FE9 /* SettingViewModel.swift in Sources */,
+				7C9D67712A4D68F7007F8C41 /* PopularTagsDTO.swift in Sources */,
 				9134423E2A004BA8000E1ED1 /* DefaultSignRepository.swift in Sources */,
 				91487EC229FC380A009CFECF /* AppDelegate.swift in Sources */,
 				913442322A004663000E1ED1 /* PostsAPI.swift in Sources */,
