@@ -48,7 +48,7 @@ final class SearchTableViewCell: BaseTableViewCell {
     }
     
     override func prepareForReuse() {
-        self.numLabel.textColor = .gray700
+        numLabel.textColor = .gray700
     }
     
     func configCell(_ trendList: String, _ indexPath: Int) {
