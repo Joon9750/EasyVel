@@ -84,7 +84,6 @@
 		91487ECE29FC380C009CFECF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91487ECC29FC380C009CFECF /* LaunchScreen.storyboard */; };
 		91487ED729FC38CC009CFECF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED629FC38CC009CFECF /* SnapKit */; };
 		91487EDA29FC3921009CFECF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED929FC3921009CFECF /* Moya */; };
-		91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EE729FC3A19009CFECF /* SignUpViewController.swift */; };
 		91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEE29FC3A4D009CFECF /* SettingViewController.swift */; };
 		91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF129FC3AAE009CFECF /* BaseViewController.swift */; };
 		91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF329FC3AD8009CFECF /* BaseUIView.swift */; };
@@ -250,7 +249,6 @@
 		91487ECA29FC380C009CFECF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91487ECD29FC380C009CFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91487ECF29FC380C009CFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		91487EE729FC3A19009CFECF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		91487EEE29FC3A4D009CFECF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		91487EF129FC3AAE009CFECF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		91487EF329FC3AD8009CFECF /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -739,7 +737,7 @@
 				91487F4E29FD9902009CFECF /* TabBar */,
 				8765EFFB2A2A054D00EF6733 /* Home */,
 				914D8DD72A02B17000516B4C /* WebView */,
-				91BFF2EF2A25D54500F5D13E /* Sign */,
+				91487EE229FC39AF009CFECF /* SignIn */,
 				91BFF2EE2A25D53200F5D13E /* Scrap */,
 				91487F4829FD9663009CFECF /* Search */,
 				91487EE529FC39D8009CFECF /* Posts */,
@@ -777,14 +775,6 @@
 				916E29AF2A3EEE4B006F5FE9 /* View */,
 			);
 			path = SignIn;
-			sourceTree = "<group>";
-		};
-		91487EE329FC39BB009CFECF /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				91487EE729FC3A19009CFECF /* SignUpViewController.swift */,
-			);
-			path = SignUp;
 			sourceTree = "<group>";
 		};
 		91487EE429FC39C3009CFECF /* SubscriberList */ = {
@@ -1204,15 +1194,6 @@
 			path = Scrap;
 			sourceTree = "<group>";
 		};
-		91BFF2EF2A25D54500F5D13E /* Sign */ = {
-			isa = PBXGroup;
-			children = (
-				91487EE329FC39BB009CFECF /* SignUp */,
-				91487EE229FC39AF009CFECF /* SignIn */,
-			);
-			path = Sign;
-			sourceTree = "<group>";
-		};
 		91BFF2F62A27770300F5D13E /* StorageDTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -1438,7 +1419,6 @@
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
-				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
