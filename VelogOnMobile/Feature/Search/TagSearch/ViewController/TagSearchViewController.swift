@@ -13,8 +13,6 @@ import SnapKit
 
 final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
-    //private let searchView = TagSearchView()
-    
     //MARK: - Properties
     
     //MARK: - UI Components
@@ -119,7 +117,8 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         
         let input = TagSearchViewModel.Input(
             searchBarDidEditEvent: searchBar.searchTextField.rx.text.orEmpty.asObservable(),
-            searchTextFieldDidEnd: searchBar.searchTextField.rx.controlEvent(.editingDidEnd).asObservable()
+            searchTextFieldDidEnd: searchBar.searchTextField.rx.controlEvent(.editingDidEnd).asObservable(),
+            myTagCellDidTap: myTagCollectionView.rx.modelSelected(String.self).asObservable()
         )
         
         viewModel.transform(input)
@@ -149,6 +148,15 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
             .disposed(by: disposeBag)
         
         viewModel.tagAddStatusOutput
+            .asDriver(onErrorJustReturn: (Bool(), String()))
+            .drive { isSuccess, message in
+                let toastColor: UIColor = isSuccess ? .brandColor : .gray300
+                self.showToast(toastText: message, backgroundColor: toastColor)
+                self.collectionViewScrollToEnd()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.deleteTagStatusOutPut
             .asDriver(onErrorJustReturn: (Bool(), String()))
             .drive { isSuccess, message in
                 let toastColor: UIColor = isSuccess ? .brandColor : .gray300
@@ -262,54 +270,3 @@ extension TagSearchViewController: UISearchBarDelegate {
     }
     
 }
-
-
-    //    override func bind(viewModel: TagSearchViewModel) {
-    //        super.bind(viewModel: viewModel)
-    //        bindOutput(viewModel)
-    //
-    //        searchView.addTagBtn.rx.tap
-    //            .flatMap { [weak self] _ -> Observable<String> in
-    //                if let text = self?.searchView.textField.text {
-    //                    return .just(text)
-    //                } else {
-    //                    return .empty()
-    //                }
-    //            }
-    //            .bind(to: viewModel.tagAddButtonDidTap)
-    //            .disposed(by: disposeBag)
-    //    }
-    //
-    //    private func bindOutput(_ viewModel: TagSearchViewModel) {
-    //        viewModel.tagAddStatusOutput
-    //            .asDriver(onErrorJustReturn: (false, ""))
-    //            .drive(onNext: { [weak self] isSuccess, statusText in
-    //                switch isSuccess {
-    //                case true:
-    //                    self?.searchView.addStatusLabel.textColor = .brandColor
-    //                    self?.searchView.addStatusLabel.text = statusText
-    //                    self?.updateStatusLabel(text: statusText)
-    //                case false:
-    //                    self?.searchView.addStatusLabel.textColor = .red
-    //                    self?.searchView.addStatusLabel.text = statusText
-    //                    self?.updateStatusLabel(text: statusText)
-    //                }
-    //            })
-    //            .disposed(by: disposeBag)
-    //    }
-    //
-    //    private func updateStatusLabel(text: String) {
-    //        searchView.addStatusLabel.text = text
-    //        delayCompletable(1.5)
-    //            .asDriver(onErrorJustReturn: ())
-    //            .drive(onCompleted: { [weak self] in
-    //                self?.searchView.addStatusLabel.text = TextLiterals.noneText
-    //            })
-    //            .disposed(by: disposeBag)
-    //    }
-    //
-    //    private func delayCompletable(_ seconds: TimeInterval) -> Observable<Void> {
-    //        return Observable<Void>.just(())
-    //                .delay(.seconds(Int(seconds)), scheduler: MainScheduler.instance)
-    //    }
-    //}

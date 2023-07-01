@@ -37,6 +37,7 @@ enum TextLiterals {
     static let tagTitleLabelText: String = "Add Keyword"
     static let tagSearchPlaceholderText: String = "태그를 추가해보세요."
     static let deleteAll = "모두 지우기"
+    static let deleteTagSuccess = "태그가 삭제되었습니다."
     
     // MARK: - subscriber search
     
@@ -173,4 +174,8 @@ enum TextLiterals {
     
     static let settingAlertOkActionText: String = "네"
     static let settingAlertCancelActionText: String = "아니요"
+    
+    //MARK: - Exception
+    
+    static let unknownError = "알 수 없는 오류가 발생했습니다."
 }

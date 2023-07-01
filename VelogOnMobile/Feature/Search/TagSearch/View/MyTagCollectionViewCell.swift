@@ -31,6 +31,7 @@ final class MyTagCollectionViewCell: BaseCollectionViewCell {
     private let xButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiterals.xMarkIcon, for: .normal)
+        button.isUserInteractionEnabled = false
         return button
     }()
     
