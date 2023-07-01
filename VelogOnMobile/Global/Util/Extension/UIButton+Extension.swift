@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIButton {
-    
     func setBackgroundColor(_ color: UIColor, for state: UIControl.State) {
         let minimumSize: CGSize = CGSize(width: 1.0, height: 1.0)
         
@@ -32,5 +31,4 @@ extension UIButton {
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.cgColor
     }
-    
 }
