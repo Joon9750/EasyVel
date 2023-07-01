@@ -38,6 +38,10 @@ enum TextLiterals {
     static let tagSearchPlaceholderText: String = "태그를 추가해보세요."
     static let deleteAll = "모두 지우기"
     static let deleteTagSuccess = "태그가 삭제되었습니다."
+    static let deleteTagActionSheetTitle: String = "태그 삭제"
+    static let deleteTagActionSheetMessage: String = "정말 태그를 삭제하시겠습니까?"
+    static let delete: String = "삭제"
+    static let cancel: String = "취소"
     
     // MARK: - subscriber search
     

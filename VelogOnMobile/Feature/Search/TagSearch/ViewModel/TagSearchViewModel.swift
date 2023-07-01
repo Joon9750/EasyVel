@@ -32,6 +32,8 @@ final class TagSearchViewModel: BaseViewModel {
     var popularTagsOutput = BehaviorRelay<[String]>(value: Array<String>(repeating: "", count: 10))
     var tableViewReload = PublishRelay<Bool>()
     
+    var deleteMyTagAlertPresentOutput = PublishRelay<String>()
+    
     var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     var deleteTagStatusOutPut = PublishRelay<(Bool, String)>()
     
@@ -77,22 +79,25 @@ final class TagSearchViewModel: BaseViewModel {
         
         input.myTagCellDidTap
             .subscribe { [weak self] tag in
-                guard let self else {return}
-                self.requestDeleteTagAPI(tag: tag)
-                    .subscribe(onNext: { [weak self] success in
-                        if success {
-                            let text: String = TextLiterals.deleteTagSuccess
-                            self?.tagAddStatusOutput.accept((success, text))
-                            self?.getMyTags()
-                        } else {
-                            let text: String = TextLiterals.unknownError
-                            self?.tagAddStatusOutput.accept((success, text))
-                        }
-                    })
-                    .disposed(by: self.disposeBag)
+                self?.deleteMyTagAlertPresentOutput.accept(tag)
             }
             .disposed(by: disposeBag)
             
+    }
+    
+    func myTagDeleteEvent(tag: String) {
+        self.requestDeleteTagAPI(tag: tag)
+            .subscribe(onNext: { [weak self] success in
+                if success {
+                    let text: String = TextLiterals.deleteTagSuccess
+                    self?.tagAddStatusOutput.accept((success, text))
+                    self?.getMyTags()
+                } else {
+                    let text: String = TextLiterals.unknownError
+                    self?.tagAddStatusOutput.accept((success, text))
+                }
+            })
+            .disposed(by: self.disposeBag)
     }
     
 }

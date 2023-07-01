@@ -156,6 +156,13 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
             }
             .disposed(by: disposeBag)
         
+        viewModel.deleteMyTagAlertPresentOutput
+            .asDriver(onErrorJustReturn: "")
+            .drive { tag in
+                self.presentDeleteTagAlertVC(tag: tag)
+            }
+            .disposed(by: disposeBag)
+        
         viewModel.deleteTagStatusOutPut
             .asDriver(onErrorJustReturn: (Bool(), String()))
             .drive { isSuccess, message in
@@ -164,6 +171,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
                 self.collectionViewScrollToEnd()
             }
             .disposed(by: disposeBag)
+        
     }
     
     
@@ -258,6 +266,27 @@ private extension TagSearchViewController {
             let offsetX = max(0, contentHeight - self.myTagCollectionView.frame.width)
             self.myTagCollectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
         }
+    }
+    
+    private func presentDeleteTagAlertVC(tag: String) {
+        let actionSheetController = UIAlertController(
+            title: TextLiterals.deleteTagActionSheetTitle,
+            message: TextLiterals.deleteFolderActionSheetMessage,
+            preferredStyle: .alert
+        )
+        let actionDefault = UIAlertAction(
+            title: TextLiterals.delete,
+            style: .destructive,
+            handler: { [weak self] _ in
+                self?.viewModel?.myTagDeleteEvent(tag: tag)
+            })
+        let actionCancel = UIAlertAction(
+            title: TextLiterals.cancel,
+            style: .cancel
+        )
+        actionSheetController.addAction(actionDefault)
+        actionSheetController.addAction(actionCancel)
+        self.present(actionSheetController, animated: true)
     }
     
 }
