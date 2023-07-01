@@ -5,7 +5,7 @@
 //  Created by 홍준혁 on 2023/05/27.
 //
 
-import Foundation
+import UIKit
 
 import RxRelay
 import RxSwift
@@ -28,6 +28,7 @@ final class WebViewModel: BaseViewModel {
     var didSubscribeWriter = PublishRelay<Bool>()
     var urlRequestOutput = PublishRelay<URLRequest>()
     var webViewProgressOutput = PublishRelay<Bool>()
+    var cannotFoundWebViewURLOutput = PublishRelay<Bool>()
     
     init(
         url: String
@@ -42,10 +43,18 @@ final class WebViewModel: BaseViewModel {
         viewDidLoad
             .subscribe(onNext: { [weak self] in
                 guard let webURL = self?.urlString else { return }
-                guard let encodedStr = webURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-                if let PostURL = URL(string: encodedStr) {
-                    self?.urlRequestOutput.accept(URLRequest(url: PostURL))
+                guard let isWebPageCanLoad = self?.checkWebPageCanLoad(from: webURL) else { return }
+                if isWebPageCanLoad {
+                    guard let encodedStr = webURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+                    if let postURL = URL(string: encodedStr) {
+                        self?.urlRequestOutput.accept(URLRequest(url: postURL))
+                        return
+                    }
                 }
+                
+                // MARK: - web url exception
+                LoadingView.hideLoading()
+                self?.cannotFoundWebViewURLOutput.accept(true)
             })
             .disposed(by: disposeBag)
         
@@ -100,6 +109,16 @@ final class WebViewModel: BaseViewModel {
         postWriter: String
     ) -> Bool {
         return subscriberList.contains(postWriter)
+    }
+    
+    private func checkWebPageCanLoad(
+        from urlString: String
+    ) -> Bool {
+        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+            return true
+        } else {
+            return false
+        }
     }
 }
 

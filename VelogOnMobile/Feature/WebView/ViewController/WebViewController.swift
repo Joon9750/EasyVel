@@ -54,16 +54,32 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         return webView
     }()
     
+    private let webViewExceptionView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.webViewException
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     let scrapPopUpView = ScrapPopUpView()
     
     override func render() {
         view = webView
-        view.addSubview(scrapPopUpView)
+        view.addSubviews(
+            scrapPopUpView,
+            webViewExceptionView
+        )
         
         scrapPopUpView.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(82)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(83)
+        }
+        
+        webViewExceptionView.snp.makeConstraints {
+            $0.height.equalTo(202)
+            $0.width.equalTo(182)
+            $0.center.equalToSuperview()
         }
     }
     
@@ -181,6 +197,15 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     LoadingView.hideLoading()
                 } else {
                     LoadingView.showLoading()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.cannotFoundWebViewURLOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] isWrongWebURL in
+                if isWrongWebURL {
+                    self?.webViewExceptionView.isHidden = false
                 }
             })
             .disposed(by: disposeBag)
