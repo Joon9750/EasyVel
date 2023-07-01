@@ -43,7 +43,7 @@ final class WebViewModel: BaseViewModel {
         viewDidLoad
             .subscribe(onNext: { [weak self] in
                 guard let webURL = self?.urlString else { return }
-                let isWebPageCanLoad = webURL.isValidURL
+                guard let isWebPageCanLoad = self?.checkWebPageCanLoad(from: webURL) else { return }
                 if isWebPageCanLoad {
                     guard let encodedStr = webURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
                     if let postURL = URL(string: encodedStr) {
@@ -109,6 +109,16 @@ final class WebViewModel: BaseViewModel {
         postWriter: String
     ) -> Bool {
         return subscriberList.contains(postWriter)
+    }
+    
+    private func checkWebPageCanLoad(
+        from urlString: String
+    ) -> Bool {
+        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
