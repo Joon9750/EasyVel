@@ -21,10 +21,10 @@ final class TagSearchViewModel: BaseViewModel {
 
     // MARK: - Output
     
-    var myTagstOutput = PublishRelay<[String]>()
-    var popularTagsOutput = PublishRelay<[String]>()
-    
-    var tagAddStatusOutput = PublishRelay<(Bool, String)>()
+    var myTagsOutput = PublishRelay<[String]>()
+    var popularTagsOutput = BehaviorRelay<[String]>(value: Array<String>(repeating: "", count: 10))
+    var tableViewReload = PublishRelay<Bool>()
+    var tagAddStatusOutput = PublishSubject<(Bool, String)>()
     
     override init() {
         super.init()
@@ -33,9 +33,10 @@ final class TagSearchViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
-            .subscribe { [weak self] _ in
-                self?.getMyTagDummy()
-                self?.getPopularTagDummy()
+            .observe(on: MainScheduler.instance)
+            .subscribe { _ in
+                self.getPopularTags()
+                self.getMyTags()
             }
             .disposed(by: disposeBag)
         
@@ -74,14 +75,28 @@ private extension TagSearchViewModel {
     
     func getMyTagDummy() {
         let dummy: Observable<[String]> = Observable.just(["나의",
-                                                           "더덤덤덤덤덤",
+                                                           "더덤덤덤덤더",
                                                            "태그",
                                                            "나의",
                                                            "더더더더미미ㅣ미",
-                                                           ""])
+                                                           "태그"])
                                 
-        dummy.bind(to: self.myTagstOutput)
+        dummy.bind(to: self.myTagsOutput)
             .disposed(by: self.disposeBag)
+    }
+    
+    func getMyTags() {
+        requestMyTagAPI().bind(to: self.myTagsOutput)
+            .disposed(by: self.disposeBag)
+    }
+    
+    func getPopularTags() {
+        requestPopularTagsAPI()
+            .subscribe(onNext: { tags in
+                self.popularTagsOutput.accept(tags)
+            })
+            .disposed(by: self.disposeBag)
+            
     }
     
     func getPopularTagDummy() {
@@ -120,7 +135,7 @@ private extension TagSearchViewModel {
         }
     }
         
-    func getTagList() -> Observable<[String]> {
+    func requestMyTagAPI() -> Observable<[String]> {
         return Observable.create { observer in
             NetworkService.shared.tagRepository.getTag() { [weak self] result in
                 switch result {
@@ -143,4 +158,32 @@ private extension TagSearchViewModel {
             return Disposables.create()
         }
     }
+    
+    func requestPopularTagsAPI() -> Observable<[String]> {
+        return Observable.create { observer in
+            NetworkService.shared.postsRepository.getPopularPosts { [weak self] result in
+                switch result {
+                case .success(let response):
+                    guard let list = response as? [String] else {
+                        self?.serverFailOutput.accept(true)
+                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
+                        return
+                    }
+                    print(list)
+                    observer.onNext(list)
+                    observer.onCompleted()
+                    self?.tableViewReload.accept(true)
+                case .requestErr(_):
+                    self?.serverFailOutput.accept(true)
+                    observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
+                default:
+                    self?.serverFailOutput.accept(true)
+                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
 }

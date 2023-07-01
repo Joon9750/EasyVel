@@ -82,7 +82,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         return label
     }()
     
-    private let popularTagTableView: UITableView = {
+    private lazy var popularTagTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(cell: PopularTagTableViewCell.self)
         tableView.backgroundColor = .clear
@@ -109,14 +109,6 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        popularTagTableView.snp.updateConstraints {
-            $0.height.equalTo(popularTagTableView.contentSize.height)
-        }
-    }
-    
     //MARK: - Bind
     
     override func bind(viewModel: TagSearchViewModel) {
@@ -127,22 +119,27 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     }
     
     private func bindOutput(_ viewModel: TagSearchViewModel) {
-        viewModel.myTagstOutput
-            .bind(to: myTagCollectionView.rx.items(cellIdentifier: MyTagCollectionViewCell.reuseIdentifier,
-                                                   cellType: MyTagCollectionViewCell.self))
-        { index, tag, cell in
-            cell.dataBind(data: tag)
-        }
-        .disposed(by: disposeBag)
+        viewModel.myTagsOutput
+            .asDriver(onErrorJustReturn: [])
+            .drive(
+                myTagCollectionView.rx.items(cellIdentifier: MyTagCollectionViewCell.reuseIdentifier,
+                                                   cellType: MyTagCollectionViewCell.self)
+            ) { index, tag, cell in
+                cell.dataBind(data: tag)
+            }
+            .disposed(by: disposeBag)
         
         viewModel.popularTagsOutput
-            .bind(to: popularTagTableView.rx.items(cellIdentifier: PopularTagTableViewCell.reuseIdentifier,
-                                                   cellType: PopularTagTableViewCell.self))
-        { index, tag, cell in
-            cell.dataBind(index: index, data: tag)
-        }
-        .disposed(by: disposeBag)
+            .asDriver(onErrorJustReturn: [])
+            .drive(
+                popularTagTableView.rx.items(cellIdentifier: PopularTagTableViewCell.reuseIdentifier,
+                                                   cellType: PopularTagTableViewCell.self)
+            ) { index, tag, cell in
+                cell.dataBind(index: index, data: tag)
+            }
+            .disposed(by: disposeBag)
     }
+    
     
     
 }
@@ -207,7 +204,7 @@ private extension TagSearchViewController {
             $0.top.equalTo(popularTagLabel.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(80)
-            $0.height.equalTo(popularTagTableView.contentSize.height)
+            //$0.height.equalTo(2000)
         }
         
         //MARK: MyTagView
