@@ -68,6 +68,10 @@ final class TagSearchViewModel: BaseViewModel {
                             let text: String = TextLiterals.addTagSuccessText
                             self?.tagAddStatusOutput.accept((success, text))
                             self?.getMyTags()
+                            NotificationCenter.default.post(
+                                name: Notification.Name("updateHomeVC"),
+                                object: nil
+                            )
                         } else {
                             let text: String = TextLiterals.addTagRequestErrText
                             self?.tagAddStatusOutput.accept((success, text))
@@ -82,6 +86,7 @@ final class TagSearchViewModel: BaseViewModel {
                 self?.deleteMyTagAlertPresentOutput.accept(tag)
             }
             .disposed(by: disposeBag)
+        
             
     }
     
@@ -92,6 +97,10 @@ final class TagSearchViewModel: BaseViewModel {
                     let text: String = TextLiterals.deleteTagSuccess
                     self?.tagAddStatusOutput.accept((success, text))
                     self?.getMyTags()
+                    NotificationCenter.default.post(
+                        name: Notification.Name("updateHomeVC"),
+                        object: nil
+                    )
                 } else {
                     let text: String = TextLiterals.unknownError
                     self?.tagAddStatusOutput.accept((success, text))
