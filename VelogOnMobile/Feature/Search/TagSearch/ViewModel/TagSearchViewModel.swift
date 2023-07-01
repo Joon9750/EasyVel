@@ -13,77 +13,74 @@ import RxSwift
 
 final class TagSearchViewModel: BaseViewModel {
     
+    //MARK: - Properties
+    
     var tagSearchDelegate: TagSearchProtocol?
+    var tag: String?
     
     // MARK: - Input
     
-    let tagAddButtonDidTap = PublishRelay<String>()
+    struct Input {
+        var searchBarDidEditEvent: Observable<String>
+        var searchTextFieldDidEnd : Observable<Void>
+    }
 
     // MARK: - Output
     
     var myTagsOutput = PublishRelay<[String]>()
     var popularTagsOutput = BehaviorRelay<[String]>(value: Array<String>(repeating: "", count: 10))
     var tableViewReload = PublishRelay<Bool>()
-    var tagAddStatusOutput = PublishSubject<(Bool, String)>()
+    
+    var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     
     override init() {
         super.init()
-        makeOutput()
+        
     }
     
-    private func makeOutput() {
+    func transform(_ input: Input) {
+        
         viewWillAppear
-            .observe(on: MainScheduler.instance)
-            .subscribe { _ in
-                self.getPopularTags()
-                self.getMyTags()
+            .subscribe { [weak self] _ in
+                self?.getPopularTags()
+                self?.getMyTags()
             }
             .disposed(by: disposeBag)
         
+        input.searchBarDidEditEvent
+            .subscribe { [weak self] tag in
+                self?.tag = tag
+            }
+            .disposed(by: disposeBag)
         
-//        viewWillDisappear
-//            .flatMapLatest { [weak self] _ -> Observable<[String]> in
-//                return self?.getTagList() ?? .empty()
-//            }
-//            .subscribe(onNext: { [weak self] list in
-//                self?.tagSearchDelegate?.searchTagViewWillDisappear(input: list.reversed())
-//            }, onError: { error in
-//                print(error)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        tagAddButtonDidTap
-//            .flatMapLatest { [weak self] tag in
-//                return self?.addTag(tag: tag) ?? .empty()
-//            }
-//            .subscribe(onNext: { [weak self] success in
-//                if success {
-//                    let text: String = TextLiterals.addTagSuccessText
-//                    self?.tagAddStatusOutput.accept((success, text))
-//                } else {
-//                    let text: String = TextLiterals.addTagRequestErrText
-//                    self?.tagAddStatusOutput.accept((success, text))
-//                }
-//            })
-//            .disposed(by: disposeBag)
+        input.searchTextFieldDidEnd
+            .subscribe(onNext: { [weak self] _ in
+                guard let tag = self?.tag else { return }
+                guard let self else { return }
+                
+                self.addTag(tag: tag)
+                    .subscribe(onNext: { [weak self] success in
+                        if success {
+                            let text: String = TextLiterals.addTagSuccessText
+                            self?.tagAddStatusOutput.accept((success, text))
+                            self?.getMyTags()
+                        } else {
+                            let text: String = TextLiterals.addTagRequestErrText
+                            self?.tagAddStatusOutput.accept((success, text))
+                        }
+                    })
+                    .disposed(by: self.disposeBag)
+            })
+            .disposed(by: disposeBag)
+        
+            
     }
+    
 }
 
 // MARK: - api
 
 private extension TagSearchViewModel {
-    
-    func getMyTagDummy() {
-        let dummy: Observable<[String]> = Observable.just(["나의",
-                                                           "더덤덤덤덤더",
-                                                           "태그",
-                                                           "나의",
-                                                           "더더더더미미ㅣ미",
-                                                           "태그"])
-                                
-        dummy.bind(to: self.myTagsOutput)
-            .disposed(by: self.disposeBag)
-    }
     
     func getMyTags() {
         requestMyTagAPI().bind(to: self.myTagsOutput)
@@ -91,29 +88,10 @@ private extension TagSearchViewModel {
     }
     
     func getPopularTags() {
-        requestPopularTagsAPI()
-            .subscribe(onNext: { tags in
-                self.popularTagsOutput.accept(tags)
-            })
+        requestPopularTagsAPI().bind(to: self.popularTagsOutput)
             .disposed(by: self.disposeBag)
-            
     }
     
-    func getPopularTagDummy() {
-        let dummy: Observable<[String]> = Observable.just(["매우",
-                                                           "인기있는",
-                                                           "태그들",
-                                                           "매우",
-                                                           "인기있는",
-                                                           "태그들",
-                                                           "매우",
-                                                           "인기있는",
-                                                           "태그들",
-                                                           "마지막"])
-                                
-        dummy.bind(to: self.popularTagsOutput)
-            .disposed(by: self.disposeBag)
-    }
     
     func addTag(tag: String) -> Observable<Bool> {
         return Observable.create { observer in

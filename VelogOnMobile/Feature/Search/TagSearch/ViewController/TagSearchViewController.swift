@@ -19,13 +19,15 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
     //MARK: - UI Components
     
-    private let searchBar: UISearchBar = {
+    private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
         searchBar.placeholder = TextLiterals.tagSearchPlaceholderText
         searchBar.searchTextField.textColor = .gray500
         searchBar.setImage(ImageLiterals.tagPlusIcon,
                            for: .search,
                            state: .normal)
+        searchBar.delegate = self
+        searchBar.searchTextField.returnKeyType = .done
         return searchBar
     }()
     
@@ -65,7 +67,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize.height = 40
-        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 0)
+        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 12)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: MyTagCollectionViewCell.self)
@@ -113,9 +115,16 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
     override func bind(viewModel: TagSearchViewModel) {
         super.bind(viewModel: viewModel)
-        bindOutput(viewModel)
         
         
+        let input = TagSearchViewModel.Input(
+            searchBarDidEditEvent: searchBar.searchTextField.rx.text.orEmpty.asObservable(),
+            searchTextFieldDidEnd: searchBar.searchTextField.rx.controlEvent(.editingDidEnd).asObservable()
+        )
+        
+        viewModel.transform(input)
+
+        self.bindOutput(viewModel)
     }
     
     private func bindOutput(_ viewModel: TagSearchViewModel) {
@@ -138,8 +147,16 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
                 cell.dataBind(index: index, data: tag)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.tagAddStatusOutput
+            .asDriver(onErrorJustReturn: (Bool(), String()))
+            .drive { isSuccess, message in
+                let toastColor: UIColor = isSuccess ? .brandColor : .gray300
+                self.showToast(toastText: message, backgroundColor: toastColor)
+                self.collectionViewScrollToEnd()
+            }
+            .disposed(by: disposeBag)
     }
-    
     
     
 }
@@ -204,7 +221,6 @@ private extension TagSearchViewController {
             $0.top.equalTo(popularTagLabel.snp.bottom).offset(16)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(80)
-            //$0.height.equalTo(2000)
         }
         
         //MARK: MyTagView
@@ -226,6 +242,23 @@ private extension TagSearchViewController {
             $0.height.equalTo(50)
         }
         
+    }
+    
+    private func collectionViewScrollToEnd() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let contentHeight = self.myTagCollectionView.contentSize.width
+            let offsetX = max(0, contentHeight - self.myTagCollectionView.frame.width)
+            self.myTagCollectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: true)
+        }
+    }
+    
+}
+
+extension TagSearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
     }
     
 }
