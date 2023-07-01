@@ -22,6 +22,7 @@
 		877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */; };
 		910950522A4F155F00D04D41 /* CurrentSearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */; };
 		910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950572A50117F00D04D41 /* VersionCheckDTO.swift */; };
+		9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950592A5011DD00D04D41 /* VersionCheckAPI.swift */; };
 		910C02FB2A4D7BC5005D5797 /* PostSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
@@ -185,6 +186,7 @@
 		877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSearchDTO.swift; sourceTree = "<group>"; };
 		910950572A50117F00D04D41 /* VersionCheckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckDTO.swift; sourceTree = "<group>"; };
+		910950592A5011DD00D04D41 /* VersionCheckAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckAPI.swift; sourceTree = "<group>"; };
 		910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchViewModel.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
@@ -595,6 +597,7 @@
 				913442312A004663000E1ED1 /* PostsAPI.swift */,
 				913442332A004795000E1ED1 /* SignAPI.swift */,
 				913442352A00491C000E1ED1 /* NotificationAPI.swift */,
+				910950592A5011DD00D04D41 /* VersionCheckAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1450,6 +1453,7 @@
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
 				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
 				9128B05A2A23CC9000FB1252 /* ScrapStorageViewModel.swift in Sources */,
+				9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				916227DA2A454FD800118018 /* SubscriberListResponse.swift in Sources */,
