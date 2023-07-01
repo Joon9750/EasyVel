@@ -43,7 +43,6 @@ final class WebViewModel: BaseViewModel {
         viewDidLoad
             .subscribe(onNext: { [weak self] in
                 guard let webURL = self?.urlString else { return }
-//                let webURL = "dsdf"
                 guard let isWebPageCanLoad = self?.checkWebPageCanLoad(from: webURL) else { return }
                 if isWebPageCanLoad {
                     guard let encodedStr = webURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
@@ -54,7 +53,6 @@ final class WebViewModel: BaseViewModel {
                 }
                 
                 // MARK: - web url exception
-                
                 LoadingView.hideLoading()
                 self?.cannotFoundWebViewURLOutput.accept(true)
             })
