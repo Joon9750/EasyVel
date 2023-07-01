@@ -9,6 +9,7 @@ import Foundation
 
 @frozen
 enum ResponseData {
+    case checkVersion
     case addTag
     case deleteTag
     case getTag

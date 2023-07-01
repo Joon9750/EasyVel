@@ -23,6 +23,8 @@
 		910950522A4F155F00D04D41 /* CurrentSearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */; };
 		910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950572A50117F00D04D41 /* VersionCheckDTO.swift */; };
 		9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950592A5011DD00D04D41 /* VersionCheckAPI.swift */; };
+		9109505C2A5013C100D04D41 /* CheckVersionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109505B2A5013C100D04D41 /* CheckVersionRepository.swift */; };
+		9109505E2A50140C00D04D41 /* DefaultCheckVersionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */; };
 		910C02FB2A4D7BC5005D5797 /* PostSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
@@ -187,6 +189,8 @@
 		910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSearchDTO.swift; sourceTree = "<group>"; };
 		910950572A50117F00D04D41 /* VersionCheckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckDTO.swift; sourceTree = "<group>"; };
 		910950592A5011DD00D04D41 /* VersionCheckAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckAPI.swift; sourceTree = "<group>"; };
+		9109505B2A5013C100D04D41 /* CheckVersionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVersionRepository.swift; sourceTree = "<group>"; };
+		9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCheckVersionRepository.swift; sourceTree = "<group>"; };
 		910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchViewModel.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
@@ -585,6 +589,7 @@
 				9134423B2A004BA2000E1ED1 /* DefaultPostsRepository.swift */,
 				9134423D2A004BA8000E1ED1 /* DefaultSignRepository.swift */,
 				9134423F2A004BB1000E1ED1 /* DefaultNotificationRepository.swift */,
+				9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -592,12 +597,12 @@
 		913441E429FFD5FA000E1ED1 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				910950592A5011DD00D04D41 /* VersionCheckAPI.swift */,
 				913441F329FFD742000E1ED1 /* TagAPI.swift */,
 				9134422F2A004352000E1ED1 /* SubscriberAPI.swift */,
 				913442312A004663000E1ED1 /* PostsAPI.swift */,
 				913442332A004795000E1ED1 /* SignAPI.swift */,
 				913442352A00491C000E1ED1 /* NotificationAPI.swift */,
-				910950592A5011DD00D04D41 /* VersionCheckAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1268,6 +1273,7 @@
 		91ED17852A00E55600158787 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				9109505B2A5013C100D04D41 /* CheckVersionRepository.swift */,
 				91ED17862A00E57700158787 /* TagRepository.swift */,
 				91ED17882A00E58D00158787 /* SubscriberRepository.swift */,
 				91ED178A2A00E59900158787 /* PostsRepository.swift */,
@@ -1426,7 +1432,9 @@
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */,
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
+				9109505C2A5013C100D04D41 /* CheckVersionRepository.swift in Sources */,
 				877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */,
+				9109505E2A50140C00D04D41 /* DefaultCheckVersionRepository.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
