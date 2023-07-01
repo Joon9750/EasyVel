@@ -19,4 +19,3 @@ struct PostDTO: Codable {
     let title: String?
     let url: String?
 }
-
