@@ -21,6 +21,10 @@
 		877ED7C62A4ACC0900D80464 /* TrendPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */; };
 		877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */; };
 		910950522A4F155F00D04D41 /* CurrentSearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */; };
+		910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950572A50117F00D04D41 /* VersionCheckDTO.swift */; };
+		9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950592A5011DD00D04D41 /* VersionCheckAPI.swift */; };
+		9109505C2A5013C100D04D41 /* CheckVersionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109505B2A5013C100D04D41 /* CheckVersionRepository.swift */; };
+		9109505E2A50140C00D04D41 /* DefaultCheckVersionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */; };
 		910C02FB2A4D7BC5005D5797 /* PostSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */; };
 		9128AFE52A2117A200FB1252 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128AFE42A2117A200FB1252 /* WebViewModel.swift */; };
 		9128B0262A236D2800FB1252 /* ScrapPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */; };
@@ -149,7 +153,6 @@
 		91A5C6532A41CC540078D8A9 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91A5C6522A41CC540078D8A9 /* Pretendard-Black.otf */; };
 		91A5C6552A41CC5F0078D8A9 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91A5C6542A41CC5F0078D8A9 /* Pretendard-Light.otf */; };
 		91A5C6572A41CC660078D8A9 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91A5C6562A41CC660078D8A9 /* Pretendard-Medium.otf */; };
-		91BFF2F52A2776F000F5D13E /* PopularPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2F42A2776F000F5D13E /* PopularPostsDTO.swift */; };
 		91BFF2F82A27833C00F5D13E /* PostScrapButtonDidTapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */; };
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
@@ -184,6 +187,10 @@
 		877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendPostsDTO.swift; sourceTree = "<group>"; };
 		877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSearchDTO.swift; sourceTree = "<group>"; };
+		910950572A50117F00D04D41 /* VersionCheckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckDTO.swift; sourceTree = "<group>"; };
+		910950592A5011DD00D04D41 /* VersionCheckAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckAPI.swift; sourceTree = "<group>"; };
+		9109505B2A5013C100D04D41 /* CheckVersionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVersionRepository.swift; sourceTree = "<group>"; };
+		9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCheckVersionRepository.swift; sourceTree = "<group>"; };
 		910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSearchViewModel.swift; sourceTree = "<group>"; };
 		9128AFE42A2117A200FB1252 /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapPopUpView.swift; sourceTree = "<group>"; };
@@ -306,7 +313,6 @@
 		91A5C6522A41CC540078D8A9 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
 		91A5C6542A41CC5F0078D8A9 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		91A5C6562A41CC660078D8A9 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
-		91BFF2F42A2776F000F5D13E /* PopularPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPostsDTO.swift; sourceTree = "<group>"; };
 		91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScrapButtonDidTapped.swift; sourceTree = "<group>"; };
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -423,6 +429,14 @@
 				877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */,
 			);
 			path = PostsDTO;
+			sourceTree = "<group>";
+		};
+		910950562A50116D00D04D41 /* VersionCheckDTO */ = {
+			isa = PBXGroup;
+			children = (
+				910950572A50117F00D04D41 /* VersionCheckDTO.swift */,
+			);
+			path = VersionCheckDTO;
 			sourceTree = "<group>";
 		};
 		910C02F92A4D7BAC005D5797 /* ViewModel */ = {
@@ -570,6 +584,7 @@
 				91ED179C2A00F2FE00158787 /* ResponseData */,
 				91ED179B2A00F2DB00158787 /* BaseRepository */,
 				91ED17852A00E55600158787 /* Protocol */,
+				9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */,
 				913442392A004B9B000E1ED1 /* DefaultSubscriberRepository.swift */,
 				913442372A004B91000E1ED1 /* DefaultTagRepository.swift */,
 				9134423B2A004BA2000E1ED1 /* DefaultPostsRepository.swift */,
@@ -582,6 +597,7 @@
 		913441E429FFD5FA000E1ED1 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				910950592A5011DD00D04D41 /* VersionCheckAPI.swift */,
 				913441F329FFD742000E1ED1 /* TagAPI.swift */,
 				9134422F2A004352000E1ED1 /* SubscriberAPI.swift */,
 				913442312A004663000E1ED1 /* PostsAPI.swift */,
@@ -614,10 +630,10 @@
 		913441F729FFD760000E1ED1 /* ServerDTO */ = {
 			isa = PBXGroup;
 			children = (
+				910950562A50116D00D04D41 /* VersionCheckDTO */,
 				877ED7C72A4AD29500D80464 /* PostsDTO */,
 				877ED7C42A4ACBEB00D80464 /* TrendDTO */,
 				91BFF2F62A27770300F5D13E /* StorageDTO */,
-				91BFF2F32A2776D600F5D13E /* PopularDTO */,
 				91ED17942A00EAE200158787 /* ErrorDTO */,
 				9134421B29FFEAA4000E1ED1 /* NotificationDTO */,
 				9134421629FFDCCF000E1ED1 /* TagDTO */,
@@ -1197,14 +1213,6 @@
 			path = Sign;
 			sourceTree = "<group>";
 		};
-		91BFF2F32A2776D600F5D13E /* PopularDTO */ = {
-			isa = PBXGroup;
-			children = (
-				91BFF2F42A2776F000F5D13E /* PopularPostsDTO.swift */,
-			);
-			path = PopularDTO;
-			sourceTree = "<group>";
-		};
 		91BFF2F62A27770300F5D13E /* StorageDTO */ = {
 			isa = PBXGroup;
 			children = (
@@ -1265,6 +1273,7 @@
 		91ED17852A00E55600158787 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				9109505B2A5013C100D04D41 /* CheckVersionRepository.swift */,
 				91ED17862A00E57700158787 /* TagRepository.swift */,
 				91ED17882A00E58D00158787 /* SubscriberRepository.swift */,
 				91ED178A2A00E59900158787 /* PostsRepository.swift */,
@@ -1423,7 +1432,9 @@
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
 				8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */,
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
+				9109505C2A5013C100D04D41 /* CheckVersionRepository.swift in Sources */,
 				877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */,
+				9109505E2A50140C00D04D41 /* DefaultCheckVersionRepository.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
@@ -1431,6 +1442,7 @@
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
+				910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */,
 				9134421F29FFEAF7000E1ED1 /* BroadcastRequest.swift in Sources */,
 				9166BE982A49E8F600FFC026 /* ServerFailViewController.swift in Sources */,
 				91487F4B29FD9838009CFECF /* TagSearchView.swift in Sources */,
@@ -1449,6 +1461,7 @@
 				9134422329FFF59D000E1ED1 /* SettingTableView.swift in Sources */,
 				9134421129FFDB5D000E1ED1 /* SearchSubscriberResponse.swift in Sources */,
 				9128B05A2A23CC9000FB1252 /* ScrapStorageViewModel.swift in Sources */,
+				9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */,
 				9134421329FFDBE8000E1ED1 /* GetSubscriberPostResponse.swift in Sources */,
 				917BA3522A050903000409B7 /* RealmStoragePost.swift in Sources */,
 				916227DA2A454FD800118018 /* SubscriberListResponse.swift in Sources */,
@@ -1480,7 +1493,6 @@
 				91487F5B29FDA287009CFECF /* PostsTableView.swift in Sources */,
 				91CCEA3C2A0D017A001362AD /* PostTagUIButton.swift in Sources */,
 				91487F2229FC5F2A009CFECF /* TabBarController.swift in Sources */,
-				91BFF2F52A2776F000F5D13E /* PopularPostsDTO.swift in Sources */,
 				917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
 				9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */,
