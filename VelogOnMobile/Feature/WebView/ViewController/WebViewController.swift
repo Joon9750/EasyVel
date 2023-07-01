@@ -54,6 +54,8 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
         return webView
     }()
     
+    private let webViewExceptionView: UIImageView = UIImageView(image: ImageLiterals.webViewException)
+    
     let scrapPopUpView = ScrapPopUpView()
     
     override func render() {
@@ -181,6 +183,15 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     LoadingView.hideLoading()
                 } else {
                     LoadingView.showLoading()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.urlRequestOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { [weak self] isWrongWebURL in
+                if isWrongWebURL {
+                    
                 }
             })
             .disposed(by: disposeBag)
