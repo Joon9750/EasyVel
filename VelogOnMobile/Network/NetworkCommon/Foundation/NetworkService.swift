@@ -11,6 +11,7 @@ final class NetworkService {
 
     private init() {}
     
+    let checkVersionRepository = DefaultCheckVersionRepository()
     let tagRepository = DefaultTagRepository()
     let subscriberRepository = DefaultSubscriberRepository()
     let postsRepository = DefaultPostsRepository()

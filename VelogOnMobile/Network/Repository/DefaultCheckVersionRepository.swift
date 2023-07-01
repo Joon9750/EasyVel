@@ -21,7 +21,7 @@ final class DefaultCheckVersionRepository: BaseRepository, CheckVersionRepositor
             case.success(let response):
                 let statusCode = response.statusCode
                 let data = response.data
-                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .broadCast)
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .checkVersion)
                 completion(networkResult)
             case .failure(let err):
                 print(err)

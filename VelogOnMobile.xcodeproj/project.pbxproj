@@ -584,12 +584,12 @@
 				91ED179C2A00F2FE00158787 /* ResponseData */,
 				91ED179B2A00F2DB00158787 /* BaseRepository */,
 				91ED17852A00E55600158787 /* Protocol */,
+				9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */,
 				913442392A004B9B000E1ED1 /* DefaultSubscriberRepository.swift */,
 				913442372A004B91000E1ED1 /* DefaultTagRepository.swift */,
 				9134423B2A004BA2000E1ED1 /* DefaultPostsRepository.swift */,
 				9134423D2A004BA8000E1ED1 /* DefaultSignRepository.swift */,
 				9134423F2A004BB1000E1ED1 /* DefaultNotificationRepository.swift */,
-				9109505D2A50140C00D04D41 /* DefaultCheckVersionRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";

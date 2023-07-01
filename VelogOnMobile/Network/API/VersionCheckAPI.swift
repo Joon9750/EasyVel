@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum VersionCheckAPI {
-    case .versionCheck
+    case versionCheck
 }
 
 extension VersionCheckAPI: BaseTargetType {

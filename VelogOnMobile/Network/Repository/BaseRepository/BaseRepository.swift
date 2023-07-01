@@ -33,7 +33,7 @@ class BaseRepository {
         let decoder = JSONDecoder()
         switch responseData {
         case .checkVersion:
-            guard let decodedData = try? decoder.decode(String.self, from: data) else {
+            guard let decodedData = try? decoder.decode(VersionCheckDTO.self, from: data) else {
                 return .pathErr
             }
             return .success(decodedData)
