@@ -69,6 +69,15 @@ final class TabBarController: UITabBarController {
             name: Notification.Name("MoveToScrapStorage"),
             object: nil
         )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateHomeVC),
+            name: Notification.Name("updateHomeVC"),
+            object: nil
+        )
+        
+        
     }
     
     @objc
@@ -91,6 +100,11 @@ final class TabBarController: UITabBarController {
                 }
             })
         }
+    }
+    
+    @objc
+    private func updateHomeVC() {
+        self.homeVC.requestGetTagAPI()
     }
     
     private func setUpTabBar(){
