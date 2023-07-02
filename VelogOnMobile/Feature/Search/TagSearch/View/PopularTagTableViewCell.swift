@@ -11,20 +11,6 @@ import SnapKit
 
 final class PopularTagTableViewCell: BaseTableViewCell {
     
-    //MARK: - Properties
-    
-    private var rankData: Int? {
-        didSet {
-            updateRankLabelUI()
-        }
-    }
-    
-    private var tagData: String? {
-        didSet {
-            tagLabel.text = tagData
-        }
-    }
-    
     //MARK: - UI Components
     
     private let rankLabel: UILabel = {
@@ -52,9 +38,12 @@ final class PopularTagTableViewCell: BaseTableViewCell {
     
     //MARK: - Public Method
     
-    func dataBind(index: Int, data: String) {
-        self.rankData = index + 1
-        self.tagData = data
+    func updateUI(index: Int, tag: String) {
+        let rank = index + 1
+        rankLabel.text = String(rank)
+        tagLabel.text = tag
+        
+        updateRankLabelUI(rank: rank)
     }
 }
 
@@ -81,16 +70,15 @@ private extension PopularTagTableViewCell {
         }
     }
     
-    func updateRankLabelUI() {
-        guard let rankData else { return }
-        switch rankData {
+    func updateRankLabelUI(rank: Int) {
+        switch rank {
         case 1...3:
             rankLabel.textColor = .brandColor
         default:
             rankLabel.textColor = .gray700
         }
         
-        rankLabel.text = String(rankData)
+        
     }
     
 }

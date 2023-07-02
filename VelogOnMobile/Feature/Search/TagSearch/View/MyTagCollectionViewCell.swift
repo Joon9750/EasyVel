@@ -11,14 +11,6 @@ import SnapKit
 
 final class MyTagCollectionViewCell: BaseCollectionViewCell {
     
-    //MARK: - Properties
-    
-    private var keyword: String? {
-        didSet {
-            updateUI()
-        }
-    }
-    
     //MARK: - UI Components
     
     private let tagLabel: UILabel = {
@@ -54,8 +46,8 @@ final class MyTagCollectionViewCell: BaseCollectionViewCell {
     
     //MARK: - Public Method
     
-    func dataBind(data: String) {
-        self.keyword = data
+    func updateUI(keyword: String) {
+        tagLabel.text = keyword
     }
 }
 
@@ -81,10 +73,6 @@ private extension MyTagCollectionViewCell {
             $0.leading.equalTo(tagLabel.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(16)
         }
-    }
-    
-    func updateUI() {
-        tagLabel.text = keyword
     }
     
 }

@@ -133,7 +133,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
                 myTagCollectionView.rx.items(cellIdentifier: MyTagCollectionViewCell.reuseIdentifier,
                                                    cellType: MyTagCollectionViewCell.self)
             ) { index, tag, cell in
-                cell.dataBind(data: tag)
+                cell.updateUI(keyword: tag)
             }
             .disposed(by: disposeBag)
         
@@ -143,7 +143,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
                 popularTagTableView.rx.items(cellIdentifier: PopularTagTableViewCell.reuseIdentifier,
                                                    cellType: PopularTagTableViewCell.self)
             ) { index, tag, cell in
-                cell.dataBind(index: index, data: tag)
+                cell.updateUI(index: index, tag: tag)
             }
             .disposed(by: disposeBag)
         
