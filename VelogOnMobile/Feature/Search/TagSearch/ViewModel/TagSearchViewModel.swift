@@ -17,6 +17,7 @@ final class TagSearchViewModel: BaseViewModel {
     
     var tagSearchDelegate: TagSearchProtocol?
     var tag: String?
+    var myTagDidChange: Bool = false
     
     // MARK: - Input
     
@@ -68,10 +69,7 @@ final class TagSearchViewModel: BaseViewModel {
                             let text: String = TextLiterals.addTagSuccessText
                             self?.tagAddStatusOutput.accept((success, text))
                             self?.getMyTags()
-                            NotificationCenter.default.post(
-                                name: Notification.Name("updateHomeVC"),
-                                object: nil
-                            )
+                            self?.myTagDidChange = true
                         } else {
                             let text: String = TextLiterals.addTagRequestErrText
                             self?.tagAddStatusOutput.accept((success, text))
@@ -87,6 +85,17 @@ final class TagSearchViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
         
+        viewWillDisappear
+            .subscribe{[weak self] _ in
+                guard let self else { return }
+                if self.myTagDidChange {
+                    NotificationCenter.default.post(
+                        name: Notification.Name("updateHomeVC"),
+                        object: nil
+                    )
+                }
+                
+            }
             
     }
     
@@ -97,10 +106,7 @@ final class TagSearchViewModel: BaseViewModel {
                     let text: String = TextLiterals.deleteTagSuccess
                     self?.tagAddStatusOutput.accept((success, text))
                     self?.getMyTags()
-                    NotificationCenter.default.post(
-                        name: Notification.Name("updateHomeVC"),
-                        object: nil
-                    )
+                    self?.myTagDidChange = true
                 } else {
                     let text: String = TextLiterals.unknownError
                     self?.tagAddStatusOutput.accept((success, text))
