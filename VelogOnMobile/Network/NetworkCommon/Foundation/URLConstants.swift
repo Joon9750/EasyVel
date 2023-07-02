@@ -8,6 +8,7 @@
 import Foundation
 
 struct URLConstants {
+    static let versionCheck = "/launch"
     static let tag = "/tag"
     static let subscriber = "/subscribe"
     static let sign = "/sign-api"

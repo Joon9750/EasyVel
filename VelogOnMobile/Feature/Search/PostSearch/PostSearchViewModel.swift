@@ -12,14 +12,19 @@ import RxSwift
 
 final class PostSearchViewModel: BaseViewModel {
     
+    let realm = RealmService()
+    
     // MARK: - Input
     
     let searchPostTagInput = PublishRelay<String>()
+    let addCurrentSearchTagInput = PublishRelay<String>()
+    let deleteAllCurrentSearchTagInput = PublishRelay<Void>()
     
     // MARK: - Output
     
     var popularPostKeywordListOutput = PublishRelay<[String]>()
     var searchPostOutput = PublishRelay<[PostDTO]>()
+    var currentSearchTagListOutput = PublishRelay<[String]>()
     
     override init() {
         super.init()
@@ -27,7 +32,7 @@ final class PostSearchViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
-        viewDidLoad
+        viewWillAppear
             .flatMapLatest { [weak self] _ -> Observable<[String]> in
                 guard let self = self else { return Observable.empty() }
                 return self.getPopularPostKeyword()
@@ -35,6 +40,9 @@ final class PostSearchViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] popularPostKeywordList in
                 guard let self = self else { return }
                 self.popularPostKeywordListOutput.accept(popularPostKeywordList)
+                
+                let currentSearchTagList = self.getCurrentSearchTags()
+                self.currentSearchTagListOutput.accept(currentSearchTagList)
             })
             .disposed(by: disposeBag)
         
@@ -48,6 +56,31 @@ final class PostSearchViewModel: BaseViewModel {
                 self.searchPostOutput.accept(postDto)
             })
             .disposed(by: disposeBag)
+        
+        addCurrentSearchTagInput
+            .subscribe(onNext: { [weak self] searchedTag in
+                guard let self = self else { return }
+                self.realm.addCurrentSearchTag(tag: searchedTag)
+                
+                let currentSearchTagList = self.getCurrentSearchTags()
+                self.currentSearchTagListOutput.accept(currentSearchTagList)
+            })
+            .disposed(by: disposeBag)
+        
+        deleteAllCurrentSearchTagInput
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.realm.deleteAllRealmData()
+                
+                let afterDeleteCurrentSearchTags = self.getCurrentSearchTags()
+                self.currentSearchTagListOutput.accept(afterDeleteCurrentSearchTags)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func getCurrentSearchTags() -> [String] {
+        let currentSearchTagList = realm.getCurrentSearchTags()
+        return currentSearchTagList.reversed()
     }
 }
 
