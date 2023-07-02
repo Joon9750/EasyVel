@@ -15,7 +15,6 @@ final class TagSearchViewModel: BaseViewModel {
     
     //MARK: - Properties
     
-    var tagSearchDelegate: TagSearchProtocol?
     var tag: String?
     var myTagDidChange: Bool = false
     
@@ -31,7 +30,6 @@ final class TagSearchViewModel: BaseViewModel {
     
     var myTagsOutput = PublishRelay<[String]>()
     var popularTagsOutput = BehaviorRelay<[String]>(value: Array<String>(repeating: "", count: 10))
-    var tableViewReload = PublishRelay<Bool>()
     
     var deleteMyTagAlertPresentOutput = PublishRelay<String>()
     
@@ -94,8 +92,8 @@ final class TagSearchViewModel: BaseViewModel {
                         object: nil
                     )
                 }
-                
             }
+            .disposed(by: disposeBag)
             
     }
     
@@ -189,7 +187,6 @@ private extension TagSearchViewModel {
                     print(list)
                     observer.onNext(list)
                     observer.onCompleted()
-                    self?.tableViewReload.accept(true)
                 case .requestErr(_):
                     self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
