@@ -75,10 +75,6 @@ final class HomeMenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
     //MARK: - Custom Method
     
     func dataBind(_ type: MenuType, keyword: String?) {
