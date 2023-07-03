@@ -15,8 +15,8 @@ final class TagSearchViewModel: BaseViewModel {
     
     //MARK: - Properties
     
-    var tagSearchDelegate: TagSearchProtocol?
     var tag: String?
+    var myTagDidChange: Bool = false
     
     // MARK: - Input
     
@@ -30,7 +30,6 @@ final class TagSearchViewModel: BaseViewModel {
     
     var myTagsOutput = PublishRelay<[String]>()
     var popularTagsOutput = BehaviorRelay<[String]>(value: Array<String>(repeating: "", count: 10))
-    var tableViewReload = PublishRelay<Bool>()
     
     var deleteMyTagAlertPresentOutput = PublishRelay<String>()
     
@@ -68,10 +67,7 @@ final class TagSearchViewModel: BaseViewModel {
                             let text: String = TextLiterals.addTagSuccessText
                             self?.tagAddStatusOutput.accept((success, text))
                             self?.getMyTags()
-                            NotificationCenter.default.post(
-                                name: Notification.Name("updateHomeVC"),
-                                object: nil
-                            )
+                            self?.myTagDidChange = true
                         } else {
                             let text: String = TextLiterals.addTagRequestErrText
                             self?.tagAddStatusOutput.accept((success, text))
@@ -87,6 +83,17 @@ final class TagSearchViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
         
+        viewWillDisappear
+            .subscribe{[weak self] _ in
+                guard let self else { return }
+                if self.myTagDidChange {
+                    NotificationCenter.default.post(
+                        name: Notification.Name("updateHomeVC"),
+                        object: nil
+                    )
+                }
+            }
+            .disposed(by: disposeBag)
             
     }
     
@@ -97,10 +104,7 @@ final class TagSearchViewModel: BaseViewModel {
                     let text: String = TextLiterals.deleteTagSuccess
                     self?.tagAddStatusOutput.accept((success, text))
                     self?.getMyTags()
-                    NotificationCenter.default.post(
-                        name: Notification.Name("updateHomeVC"),
-                        object: nil
-                    )
+                    self?.myTagDidChange = true
                 } else {
                     let text: String = TextLiterals.unknownError
                     self?.tagAddStatusOutput.accept((success, text))
@@ -183,7 +187,6 @@ private extension TagSearchViewModel {
                     print(list)
                     observer.onNext(list)
                     observer.onCompleted()
-                    self?.tableViewReload.accept(true)
                 case .requestErr(_):
                     self?.serverFailOutput.accept(true)
                     observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
