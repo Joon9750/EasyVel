@@ -61,8 +61,8 @@ final class TagSearchViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] _ in
                 guard let tag = self?.addTag else { return }
                 guard let self else { return }
-                
-                self.addTag(tag: tag)
+                guard tag.isValidText else { return }
+                self.requestAddTagAPI(tag: tag)
                     .subscribe(onNext: { [weak self] success in
                         if success {
                             let text: String = TextLiterals.addTagSuccessText
@@ -133,7 +133,7 @@ private extension TagSearchViewModel {
     }
     
     
-    func addTag(tag: String) -> Observable<Bool> {
+    func requestAddTagAPI(tag: String) -> Observable<Bool> {
         return Observable.create { observer in
             NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
                 switch result {
