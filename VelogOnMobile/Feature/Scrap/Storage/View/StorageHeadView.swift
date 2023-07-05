@@ -50,9 +50,16 @@ final class StorageHeadView: BaseUIView {
         return button
     }()
     
+    let viewPopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiterals.viewPopButtonIcon, for: .normal)
+        return button
+    }()
+    
     override func render() {
         self.addSubviews(
             titleLabel,
+            viewPopButton,
             lineView,
             gray100View
         )
@@ -67,8 +74,13 @@ final class StorageHeadView: BaseUIView {
             $0.centerX.equalToSuperview()
         }
         
+        viewPopButton.snp.makeConstraints {
+            $0.centerY.equalTo(titleLabel)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
         lineView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(15)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(30)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview()
         }
@@ -91,6 +103,6 @@ final class StorageHeadView: BaseUIView {
     }
     
     override func configUI() {
-        self.backgroundColor = .gray100
+        self.backgroundColor = .white
     }
 }

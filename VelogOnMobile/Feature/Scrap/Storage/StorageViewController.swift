@@ -21,11 +21,6 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
     override func render() {
         self.view = storageView
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-    }
   
     override func bind(viewModel: StorageViewModel) {
         super.bind(viewModel: viewModel)
@@ -57,6 +52,12 @@ final class StorageViewController: RxBaseViewController<StorageViewModel> {
                     )
                     self?.storageTableViewDidScroll.toggle()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        storageView.storageHeadView.viewPopButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
     }
