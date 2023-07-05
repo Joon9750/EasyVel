@@ -11,13 +11,13 @@ import SnapKit
 
 enum AlertType {
     case deleteTag
-    case cancelFollow
+    case unsubscribe
     
     var title: String {
         switch self {
         case .deleteTag:
             return "정말 태그를 삭제하시겠습니까?"
-        case .cancelFollow:
+        case .unsubscribe:
             return "정말 팔로우를 취소하시겠습니까?"
         }
     }
@@ -26,7 +26,7 @@ enum AlertType {
         switch self {
         case .deleteTag:
             return "삭제하면 글과 사진이 모두 삭제돼요"
-        case .cancelFollow:
+        case .unsubscribe:
             return "회원 탈퇴 시 자동으로 가족에서 탈퇴되고\n   작성한 글과 댓글이 모두 삭제됩니다"
         }
     }
@@ -35,7 +35,7 @@ enum AlertType {
         switch self {
         case .deleteTag:
             return "취소"
-        case .cancelFollow:
+        case .unsubscribe:
             return "아니오"
         }
     }
@@ -44,7 +44,7 @@ enum AlertType {
         switch self {
         case .deleteTag:
             return "삭제"
-        case .cancelFollow:
+        case .unsubscribe:
             return "네"
         }
     }

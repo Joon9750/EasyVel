@@ -11,8 +11,6 @@ import SnapKit
 
 final class ListTableViewCell: BaseTableViewCell {
     
-    static let identifier = "ListTableViewCell"
-    
     var unSubscribeButtonDidTap: ((String) -> Void)?
     
     let subscriberImage: UIImageView = {
@@ -22,7 +20,7 @@ final class ListTableViewCell: BaseTableViewCell {
         return imageView
     }()
     
-    let listText: UILabel = {
+    let subscriberLabel: UILabel = {
         let label = UILabel()
         label.tintColor = .gray700
         label.font = .body_2_M
@@ -43,7 +41,7 @@ final class ListTableViewCell: BaseTableViewCell {
     override func render() {
         self.contentView.addSubviews(
             subscriberImage,
-            listText,
+            subscriberLabel,
             unSubscribeButton
         )
         
@@ -53,7 +51,7 @@ final class ListTableViewCell: BaseTableViewCell {
             $0.size.equalTo(48)
         }
         
-        listText.snp.makeConstraints {
+        subscriberLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(subscriberImage.snp.trailing).offset(12)
         }
@@ -68,11 +66,22 @@ final class ListTableViewCell: BaseTableViewCell {
     
     override func configUI() {
         self.backgroundColor = .gray100
+        selectionStyle = .none
+    }
+    
+    func updateUI(data: SubscriberListResponse) {
+        if data.img == "" {
+            subscriberImage.image = ImageLiterals.subscriberImage
+        } else {
+            let subscriberImageURL = URL(string: data.img ?? String())
+            subscriberImage.kf.setImage(with: subscriberImageURL)
+        }
+        subscriberLabel.text = data.name
     }
     
     @objc
     private func unSubscribeButtonTapped() {
-        if let subscriberName = listText.text {
+        if let subscriberName = subscriberLabel.text {
             unSubscribeButtonDidTap?(subscriberName)
         }
     }
