@@ -58,6 +58,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         button.setTitle(TextLiterals.deleteAll, for: .normal)
         button.setTitleColor( .gray200, for: .normal)
         button.titleLabel?.font = .caption_1_M
+        button.isHidden = true //TODO: 마이태그 <모두 지우기> 기능 존재 유무에 따라 hidden값 처리. 1차 릴리즈엔 hidden 처리
         return button
     }()
     

@@ -99,8 +99,8 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         view.addSubviews(
             recentLabel,
             deleteButton,
-            emptyRecentSearchTagExcaptionLabel,
             recentSearchTagCollectionView,
+            emptyRecentSearchTagExcaptionLabel,
             lineView,
             trendLabel,
             popularSearchTagTableView
@@ -116,16 +116,15 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
             $0.trailing.equalToSuperview().inset(20)
         }
         
-        emptyRecentSearchTagExcaptionLabel.snp.makeConstraints {
-            $0.top.equalTo(recentLabel.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(20)
-        }
-        view.bringSubviewToFront(emptyRecentSearchTagExcaptionLabel)
-        
         recentSearchTagCollectionView.snp.makeConstraints{
             $0.top.equalTo(recentLabel.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(35)
+        }
+        
+        emptyRecentSearchTagExcaptionLabel.snp.makeConstraints {
+            $0.verticalEdges.equalTo(recentSearchTagCollectionView)
+            $0.leading.equalToSuperview().inset(20)
         }
         
         lineView.snp.makeConstraints {
