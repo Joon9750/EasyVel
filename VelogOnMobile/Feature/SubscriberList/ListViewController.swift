@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
-import Kingfisher
 
 final class ListViewController: RxBaseViewController<ListViewModel> {
 
@@ -58,9 +57,7 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
                                                    cellType: ListTableViewCell.self)
             ) { index, data, cell in
                 cell.updateUI(data: data)
-                cell.unSubscribeButtonDidTap = { name in
-                    viewModel.unsubscriberButtonDidTap.accept(name)
-                }
+                cell.delegate = self
             }
             .disposed(by: disposeBag)
         
@@ -147,6 +144,14 @@ extension ListViewController: SubscriberSearchProtocol {
     ) {
         self.viewModel?.subscriberList = subscriberList
     }
+}
+
+extension ListViewController: ListTableViewCellDelegate {
+    func unsubscribeButtonDidTap(name: String) {
+        viewModel?.unsubscriberButtonDidTap.accept(name)
+    }
+    
+    
 }
 
 extension ListViewController: VelogAlertViewControllerDelegate {

@@ -9,9 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol ListTableViewCellDelegate: AnyObject {
+    func unsubscribeButtonDidTap(name: String)
+}
+
 final class ListTableViewCell: BaseTableViewCell {
     
-    var unSubscribeButtonDidTap: ((String) -> Void)?
+    weak var delegate: ListTableViewCellDelegate?
     
     let subscriberImage: UIImageView = {
         let imageView = UIImageView()
@@ -81,8 +85,7 @@ final class ListTableViewCell: BaseTableViewCell {
     
     @objc
     private func unSubscribeButtonTapped() {
-        if let subscriberName = subscriberLabel.text {
-            unSubscribeButtonDidTap?(subscriberName)
-        }
+        guard let name = subscriberLabel.text else { return }
+        delegate?.unsubscribeButtonDidTap(name: name)
     }
 }
