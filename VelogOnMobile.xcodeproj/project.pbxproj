@@ -17,7 +17,6 @@
 		8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */; };
 		8765EFF02A29EA6D00EF6733 /* HomeMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */; };
 		8765EFF42A29ECDE00EF6733 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF32A29ECDE00EF6733 /* String+Extension.swift */; };
-		8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */; };
 		8765F0012A2A05B100EF6733 /* empty in Resources */ = {isa = PBXBuildFile; fileRef = 8765F0002A2A05B100EF6733 /* empty */; };
 		877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */; };
 		877ED7C62A4ACC0900D80464 /* TrendPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */; };
@@ -86,7 +85,6 @@
 		91487ECE29FC380C009CFECF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91487ECC29FC380C009CFECF /* LaunchScreen.storyboard */; };
 		91487ED729FC38CC009CFECF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED629FC38CC009CFECF /* SnapKit */; };
 		91487EDA29FC3921009CFECF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 91487ED929FC3921009CFECF /* Moya */; };
-		91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EE729FC3A19009CFECF /* SignUpViewController.swift */; };
 		91487EEF29FC3A4D009CFECF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EEE29FC3A4D009CFECF /* SettingViewController.swift */; };
 		91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF129FC3AAE009CFECF /* BaseViewController.swift */; };
 		91487EF429FC3AD8009CFECF /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91487EF329FC3AD8009CFECF /* BaseUIView.swift */; };
@@ -183,7 +181,6 @@
 		8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuBar.swift; sourceTree = "<group>"; };
 		8765EFF32A29ECDE00EF6733 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		8765F0002A2A05B100EF6733 /* empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = empty; sourceTree = "<group>"; };
 		877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendPostsDTO.swift; sourceTree = "<group>"; };
@@ -252,7 +249,6 @@
 		91487ECA29FC380C009CFECF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91487ECD29FC380C009CFECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91487ECF29FC380C009CFECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		91487EE729FC3A19009CFECF /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		91487EEE29FC3A4D009CFECF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		91487EF129FC3AAE009CFECF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		91487EF329FC3AD8009CFECF /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
@@ -356,19 +352,11 @@
 		7CB706C62A3202EB00083EC6 /* PostSearch */ = {
 			isa = PBXGroup;
 			children = (
-				910C02F92A4D7BAC005D5797 /* ViewModel */,
-				91E7ED412A39B97F009AA343 /* ViewController */,
 				91E7ED422A39B990009AA343 /* View */,
+				7CB706D12A32062500083EC6 /* PostSearchViewController.swift */,
+				910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */,
 			);
 			path = PostSearch;
-			sourceTree = "<group>";
-		};
-		8745835C2A42183A00954274 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */,
-			);
-			path = Factory;
 			sourceTree = "<group>";
 		};
 		8765EFFB2A2A054D00EF6733 /* Home */ = {
@@ -376,24 +364,16 @@
 			children = (
 				8765EFFF2A2A059D00EF6733 /* ViewModel */,
 				8765EFFE2A2A059700EF6733 /* View */,
-				8765EFFD2A2A058600EF6733 /* ViewConroller */,
+				8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		8765EFFD2A2A058600EF6733 /* ViewConroller */ = {
-			isa = PBXGroup;
-			children = (
-				8765EFEB2A29DC0200EF6733 /* HomeViewController.swift */,
-				8765EFF52A29FA8C00EF6733 /* ColorViewController.swift */,
-			);
-			path = ViewConroller;
 			sourceTree = "<group>";
 		};
 		8765EFFE2A2A059700EF6733 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8765F0042A2A05DA00EF6733 /* MenuBar */,
+				8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */,
+				877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -404,15 +384,6 @@
 				8765F0002A2A05B100EF6733 /* empty */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		8765F0042A2A05DA00EF6733 /* MenuBar */ = {
-			isa = PBXGroup;
-			children = (
-				8765EFEF2A29EA6D00EF6733 /* HomeMenuBar.swift */,
-				877ED7C22A4AAED500D80464 /* HomeMenuCollectionViewCell.swift */,
-			);
-			path = MenuBar;
 			sourceTree = "<group>";
 		};
 		877ED7C42A4ACBEB00D80464 /* TrendDTO */ = {
@@ -439,37 +410,13 @@
 			path = VersionCheckDTO;
 			sourceTree = "<group>";
 		};
-		910C02F92A4D7BAC005D5797 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				910C02FA2A4D7BC5005D5797 /* PostSearchViewModel.swift */,
-			);
-			name = ViewModel;
-			sourceTree = "<group>";
-		};
-		9128AFE22A21178600FB1252 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9128AFE42A2117A200FB1252 /* WebViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		9128AFE32A21179000FB1252 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		9128B0242A236D1600FB1252 /* ScrapFolderBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				9128B03D2A237DFB00FB1252 /* DataSource */,
-				9128B02F2A23772A00FB1252 /* ViewModel */,
-				9128B02C2A2376E700FB1252 /* ViewController */,
 				9128B02B2A2376BB00FB1252 /* View */,
+				9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */,
+				9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */,
+				9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */,
 			);
 			path = ScrapFolderBottomSheet;
 			sourceTree = "<group>";
@@ -483,36 +430,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		9128B02C2A2376E700FB1252 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				9128B02D2A2376FB00FB1252 /* ScrapFolderBottomSheetViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		9128B02F2A23772A00FB1252 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9128B0312A23778400FB1252 /* ScrapFolderBottomSheetViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		9128B0302A23774700FB1252 /* ScrapPopUp */ = {
 			isa = PBXGroup;
 			children = (
 				9128B0252A236D2800FB1252 /* ScrapPopUpView.swift */,
 			);
 			path = ScrapPopUp;
-			sourceTree = "<group>";
-		};
-		9128B03D2A237DFB00FB1252 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				9128B03E2A237E1800FB1252 /* ScrapFolderBottomSheetDataSource.swift */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		9128B0442A23BBED00FB1252 /* ReusableView */ = {
@@ -526,10 +449,10 @@
 		9128B0482A23C58400FB1252 /* ScrapStorage */ = {
 			isa = PBXGroup;
 			children = (
-				9128B0502A23CA4800FB1252 /* DataSource */,
-				9128B0582A23CC8300FB1252 /* ViewModel */,
-				9128B0572A23CC7900FB1252 /* ViewController */,
 				9128B04F2A23CA4000FB1252 /* View */,
+				9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */,
+				9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */,
+				9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */,
 			);
 			path = ScrapStorage;
 			sourceTree = "<group>";
@@ -541,30 +464,6 @@
 				9128B04B2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9128B0502A23CA4800FB1252 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				9128B0512A23CA5E00FB1252 /* ScrapStorageCollectionViewDataSource.swift */,
-			);
-			path = DataSource;
-			sourceTree = "<group>";
-		};
-		9128B0572A23CC7900FB1252 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				9128B0552A23CC7400FB1252 /* ScrapStorageViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		9128B0582A23CC8300FB1252 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9128B0592A23CC9000FB1252 /* ScrapStorageViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		913441E229FFD5BE000E1ED1 /* Network */ = {
@@ -696,14 +595,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		9134422129FFEF7E000E1ED1 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91487EEE29FC3A4D009CFECF /* SettingViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		91487EB529FC380A009CFECF = {
 			isa = PBXGroup;
 			children = (
@@ -725,7 +616,7 @@
 			isa = PBXGroup;
 			children = (
 				916E29B52A408CC3006F5FE9 /* VelogOnMobile.entitlements */,
-				916FDCFA2A17E9E700BB1E16 /* Common */,
+				917BA34F2A0508DF000409B7 /* Realm */,
 				913441E229FFD5BE000E1ED1 /* Network */,
 				91487EDE29FC3946009CFECF /* Feature */,
 				91487EDF29FC3950009CFECF /* Global */,
@@ -752,6 +643,8 @@
 		91487EDF29FC3950009CFECF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				91487EF029FC3AA3009CFECF /* Base */,
+				917BA3842A07C2B7000409B7 /* Protocol */,
 				916FDCFB2A17EA0700BB1E16 /* App */,
 				916FDCFC2A17EA2A00BB1E16 /* Config */,
 				91487EE129FC399E009CFECF /* Resource */,
@@ -769,30 +662,12 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		91487EE229FC39AF009CFECF /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				916E29AC2A3EE901006F5FE9 /* ViewModel */,
-				916E29AB2A3EE8F9006F5FE9 /* ViewController */,
-				916E29AF2A3EEE4B006F5FE9 /* View */,
-			);
-			path = SignIn;
-			sourceTree = "<group>";
-		};
-		91487EE329FC39BB009CFECF /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				91487EE729FC3A19009CFECF /* SignUpViewController.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
 		91487EE429FC39C3009CFECF /* SubscriberList */ = {
 			isa = PBXGroup;
 			children = (
-				91487F4129FD8ABF009CFECF /* ViewModel */,
-				91487F3F29FD8A95009CFECF /* ViewController */,
 				91487F3E29FD895D009CFECF /* View */,
+				91487F3629FD88E7009CFECF /* ListViewController.swift */,
+				91487F4229FD8AC9009CFECF /* ListViewModel.swift */,
 			);
 			path = SubscriberList;
 			sourceTree = "<group>";
@@ -800,10 +675,10 @@
 		91487EE529FC39D8009CFECF /* Posts */ = {
 			isa = PBXGroup;
 			children = (
-				914D8DCF2A028ADE00516B4C /* ViewModel */,
-				8745835C2A42183A00954274 /* Factory */,
-				91487F5F29FDA2F8009CFECF /* ViewController */,
 				91487F5E29FDA2F0009CFECF /* View */,
+				8745835D2A42184B00954274 /* KeywordPostsVCFactory.swift */,
+				91487F5C29FDA2C0009CFECF /* PostsViewController.swift */,
+				914D8DD02A028AED00516B4C /* PostsViewModel.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -811,9 +686,9 @@
 		91487EE629FC39E8009CFECF /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				916E29A62A3EDA34006F5FE9 /* ViewModel */,
-				9134422129FFEF7E000E1ED1 /* ViewController */,
 				9134422029FFEF74000E1ED1 /* View */,
+				91487EEE29FC3A4D009CFECF /* SettingViewController.swift */,
+				916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -870,9 +745,9 @@
 		91487F2B29FD07F7009CFECF /* SubscriberSearch */ = {
 			isa = PBXGroup;
 			children = (
-				914D8DCC2A02416300516B4C /* ViewModel */,
-				91487F5529FDA227009CFECF /* ViewController */,
-				91487F5629FDA231009CFECF /* View */,
+				91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */,
+				91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */,
+				914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */,
 			);
 			path = SubscriberSearch;
 			sourceTree = "<group>";
@@ -888,22 +763,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		91487F3F29FD8A95009CFECF /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91487F3629FD88E7009CFECF /* ListViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		91487F4129FD8ABF009CFECF /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				91487F4229FD8AC9009CFECF /* ListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		91487F4829FD9663009CFECF /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -917,9 +776,9 @@
 		91487F4929FD966B009CFECF /* TagSearch */ = {
 			isa = PBXGroup;
 			children = (
-				91DEF3DB2A017764001B6A9D /* ViewModel */,
-				91487F5329FDA213009CFECF /* ViewController */,
 				91487F5429FDA21F009CFECF /* View */,
+				91487F4C29FD9858009CFECF /* TagSearchViewController.swift */,
+				91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */,
 			);
 			path = TagSearch;
 			sourceTree = "<group>";
@@ -932,35 +791,11 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		91487F5329FDA213009CFECF /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91487F4C29FD9858009CFECF /* TagSearchViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		91487F5429FDA21F009CFECF /* View */ = {
 			isa = PBXGroup;
 			children = (
 				87187C012A4DF7E200BF05F7 /* MyTagCollectionViewCell.swift */,
 				87187C032A4DF7F200BF05F7 /* PopularTagTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		91487F5529FDA227009CFECF /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91487F2C29FD0812009CFECF /* SubscriberSearchViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		91487F5629FDA231009CFECF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				91487F2E29FD1A66009CFECF /* SubscriberSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -975,35 +810,11 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		91487F5F29FDA2F8009CFECF /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91487F5C29FDA2C0009CFECF /* PostsViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		914D8DCC2A02416300516B4C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				914D8DCD2A02417C00516B4C /* SubscriberSearchViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		914D8DCF2A028ADE00516B4C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				914D8DD02A028AED00516B4C /* PostsViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		914D8DD72A02B17000516B4C /* WebView */ = {
 			isa = PBXGroup;
 			children = (
-				9128AFE22A21178600FB1252 /* ViewModel */,
-				9128AFE32A21179000FB1252 /* ViewController */,
+				914D8DD82A02B22A00516B4C /* WebViewController.swift */,
+				9128AFE42A2117A200FB1252 /* WebViewModel.swift */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -1024,53 +835,11 @@
 			path = ServerFailView;
 			sourceTree = "<group>";
 		};
-		916E29A62A3EDA34006F5FE9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		916E29AB2A3EE8F9006F5FE9 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				91487EC529FC380A009CFECF /* SignInViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		916E29AC2A3EE901006F5FE9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		916E29AF2A3EEE4B006F5FE9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				916E29B02A3EEE60006F5FE9 /* SignInView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		916FDCFA2A17E9E700BB1E16 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				917BA34F2A0508DF000409B7 /* Realm */,
-				917BA3842A07C2B7000409B7 /* Protocol */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		916FDCFB2A17EA0700BB1E16 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				91487EC129FC380A009CFECF /* AppDelegate.swift */,
 				91487EC329FC380A009CFECF /* SceneDelegate.swift */,
-				91487EF029FC3AA3009CFECF /* Base */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1115,9 +884,9 @@
 		917BA32F2A03D8C2000409B7 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				917BA3462A050635000409B7 /* ViewModel */,
-				917BA3372A03E332000409B7 /* ViewController */,
 				917BA3362A03E325000409B7 /* View */,
+				917BA3302A03D8EF000409B7 /* StorageViewController.swift */,
+				917BA3442A050631000409B7 /* StorageViewModel.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1133,37 +902,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		917BA3372A03E332000409B7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				917BA3302A03D8EF000409B7 /* StorageViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		917BA3462A050635000409B7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				917BA3442A050631000409B7 /* StorageViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		917BA34F2A0508DF000409B7 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				917BA3532A0509C9000409B7 /* Service */,
+				917BA3542A0509D8000409B7 /* RealmService.swift */,
 				916FDCFE2A17EBC700BB1E16 /* RealmDTO */,
 			);
 			path = Realm;
-			sourceTree = "<group>";
-		};
-		917BA3532A0509C9000409B7 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				917BA3542A0509D8000409B7 /* RealmService.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		917BA3842A07C2B7000409B7 /* Protocol */ = {
@@ -1207,8 +952,9 @@
 		91BFF2EF2A25D54500F5D13E /* Sign */ = {
 			isa = PBXGroup;
 			children = (
-				91487EE329FC39BB009CFECF /* SignUp */,
-				91487EE229FC39AF009CFECF /* SignIn */,
+				916E29B02A3EEE60006F5FE9 /* SignInView.swift */,
+				91487EC529FC380A009CFECF /* SignInViewController.swift */,
+				916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1237,28 +983,12 @@
 			path = Haptic;
 			sourceTree = "<group>";
 		};
-		91DEF3DB2A017764001B6A9D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				91DEF3DC2A017774001B6A9D /* TagSearchViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		91E442A22A110190008CB516 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				91E442A32A110191008CB516 /* XCTest.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		91E7ED412A39B97F009AA343 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				7CB706D12A32062500083EC6 /* PostSearchViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		91E7ED422A39B990009AA343 /* View */ = {
@@ -1430,7 +1160,6 @@
 				9134421D29FFEAC9000E1ED1 /* BroadcastResponse.swift in Sources */,
 				917BA3552A0509D8000409B7 /* RealmService.swift in Sources */,
 				91487EFB29FC3B6A009CFECF /* UIColor+Extension.swift in Sources */,
-				8765EFF62A29FA8C00EF6733 /* ColorViewController.swift in Sources */,
 				9128B0462A23BD3800FB1252 /* ScrapPopUpDelegate.swift in Sources */,
 				9109505C2A5013C100D04D41 /* CheckVersionRepository.swift in Sources */,
 				877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */,
@@ -1438,7 +1167,6 @@
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
-				91487EE829FC3A19009CFECF /* SignUpViewController.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
@@ -1696,7 +1424,7 @@
 				CODE_SIGN_ENTITLEMENTS = VelogOnMobile/VelogOnMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T6DNHAHXG9;
+				DEVELOPMENT_TEAM = D96A3BCL3R;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
@@ -1710,7 +1438,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuneHyeokHong.VelogOnMobile1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JuneHyeokHong.VelogOnMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1726,7 +1454,7 @@
 				CODE_SIGN_ENTITLEMENTS = VelogOnMobile/VelogOnMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = D96A3BCL3R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
