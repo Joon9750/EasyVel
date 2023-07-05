@@ -19,8 +19,7 @@ final class ListTableViewCell: BaseTableViewCell {
     
     let subscriberImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 20.0
-        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -41,6 +40,13 @@ final class ListTableViewCell: BaseTableViewCell {
         button.addTarget(self, action: #selector(unSubscribeButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    //MARK: - Life Cycle
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        subscriberImage.makeRounded(ratio: 2)
+    }
     
     override func render() {
         self.contentView.addSubviews(
