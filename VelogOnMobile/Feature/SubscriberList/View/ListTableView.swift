@@ -27,5 +27,6 @@ final class ListTableView: UITableView {
         isHidden = true
         rowHeight = 62
         backgroundColor = .gray100
+        contentInset.top = 20
     }
 }

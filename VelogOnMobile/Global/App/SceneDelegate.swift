@@ -58,7 +58,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         // MARK: - check auto signIn
-        
+        let rootViewController = UINavigationController(rootViewController: TabBarController())
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+        return 
         if realm.checkIsUserSignIn() {
             // MARK: - 자동 로그인 된 유저
             let rootViewController = UINavigationController(rootViewController: TabBarController())
