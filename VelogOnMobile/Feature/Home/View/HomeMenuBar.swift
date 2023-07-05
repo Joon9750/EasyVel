@@ -27,12 +27,17 @@ final class HomeMenuBar: UIView {
     private var menuData = HomeMenuCollectionViewCell.MenuType.allCases
     
     
-    private var tags: [String] = [""] {
+    private var tags: [String] = [] {
         didSet {
+            calculateCellSize()
             collectionView.reloadData()
             selectedItem = 1
         }
     }
+    
+    private var menuSizes: [CGSize] = [CGSize(width: 65, height: 40),
+                                       CGSize(width: 75, height: 40),
+                                       CGSize(width: 75, height: 40)]
     
     //MARK: - UI Components
     
@@ -88,29 +93,30 @@ private extension HomeMenuBar {
     }
     
     func hierarchy() {
-        addSubview(collectionView)
-        addSubview(underLine)
-        addSubview(tintLine)
+        addSubviews(collectionView,underLine)
+        
+        collectionView.addSubview(tintLine)
+        
     }
     
     func layout() {
+        self.layoutIfNeeded()
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
         underLine.snp.makeConstraints {
             $0.bottom.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(1)
+            $0.horizontalEdges.equalTo(collectionView)
+            $0.size.equalTo(1)
         }
         
         tintLine.snp.makeConstraints {
-            $0.bottom.equalTo(collectionView)
-            $0.leading.equalTo(collectionView).offset(65)
-            $0.width.equalTo(65)
+            $0.bottom.equalTo(underLine).offset(-1)
+            $0.leading.equalToSuperview().offset(65)
+            $0.width.equalTo(75)
             $0.height.equalTo(3)
         }
-    
     }
     
     func setDelegate() {
@@ -123,25 +129,51 @@ private extension HomeMenuBar {
     }
     
     func updateBar(from index: Int?) {
-        self.layoutIfNeeded()
         guard let index else { return }
         let indexPath = IndexPath(item: index, section: 0)
         
         collectionView.selectItem(at: indexPath,
                                   animated: true,
                                   scrollPosition: .centeredHorizontally)
-        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeMenuCollectionViewCell else { return }
         
-        tintLine.snp.remakeConstraints { make in
-            make.bottom.equalTo(collectionView.snp.bottom)
-            make.leading.equalTo(cell.snp.leading)
-            make.trailing.equalTo(cell.snp.trailing)
-            make.height.equalTo(3)
+        updateTintBar(index: index)
+    }
+    
+    func updateTintBar(index: Int) {
+        
+        var leading: CGFloat = 0
+        
+        for i in 0..<index {
+            leading += menuSizes[i].width
+        }
+        
+        layoutIfNeeded()
+        
+        tintLine.snp.remakeConstraints { $0
+            $0.bottom.equalTo(underLine).offset(-1)
+            $0.leading.equalToSuperview().offset(leading)
+            $0.width.equalTo(menuSizes[index])
+            $0.height.equalTo(3)
         }
         
         UIView.animate(withDuration: 0.3) {
             self.layoutIfNeeded()
         }
+    }
+    
+    func calculateCellSize() {
+        var sizes = [CGSize(width: 65, height: 40),
+                         CGSize(width: 75, height: 40),
+                         CGSize(width: 75, height: 40)]
+        
+        for tag in tags {
+            let cell = HomeMenuCollectionViewCell()
+            cell.dataBind(.tag, keyword: tag)
+            let size =  cell.sizeFittingWith(cellHeight: 40)
+            sizes.append(size)
+        }
+        
+        menuSizes = sizes
     }
 }
 
@@ -184,19 +216,8 @@ extension HomeMenuBar: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.item {
-        case 0:
-            return CGSize(width: 65, height: 40)
-        case 1...2:
-            let cell = HomeMenuCollectionViewCell()
-            cell.dataBind(menuData[indexPath.item], keyword: nil)
-            return cell.sizeFittingWith(cellHeight: 40)
-        default:
-            let cell = HomeMenuCollectionViewCell()
-            cell.dataBind(.tag, keyword: tags[indexPath.item - 3])
-            return cell.sizeFittingWith(cellHeight: 40)
-        }
         
+        return menuSizes[indexPath.item]
     }
     
     func collectionView(_ collectionView: UICollectionView,
