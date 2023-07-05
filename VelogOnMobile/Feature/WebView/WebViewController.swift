@@ -21,7 +21,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     var isPostWebView: Bool = false
     
     var realm = RealmService()
-    
+
     private let scrapButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
