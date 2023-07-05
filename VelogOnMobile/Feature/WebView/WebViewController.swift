@@ -25,7 +25,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     private let scrapButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-        button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+        button.setImage(ImageLiterals.bookMark, for: .normal)
         return button
     }()
     
@@ -114,7 +114,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                 }
                 guard let didScrap = self?.didScrap else { return }
                 if didScrap {
-                    self?.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+                    self?.scrapButton.setImage(ImageLiterals.bookMarkFill, for: .normal)
                     if let postData = self?.postData {
                         self?.realm.addPost(
                             item: postData,
@@ -123,7 +123,7 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
                     }
                     self?.scrapButtonTapped()
                 } else {
-                    self?.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+                    self?.scrapButton.setImage(ImageLiterals.bookMark, for: .normal)
                     if let postData = self?.postData,
                        let postDataUrl = postData.url {
                         self?.viewModel?.didUnScrap.accept(postDataUrl)
@@ -229,9 +229,9 @@ final class WebViewController: RxBaseViewController<WebViewModel> {
     ) {
         self.didScrap = didScrap
         if didScrap {
-            self.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+            self.scrapButton.setImage(ImageLiterals.bookMarkFill, for: .normal)
         } else {
-            self.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+            self.scrapButton.setImage(ImageLiterals.bookMark, for: .normal)
         }
     }
     

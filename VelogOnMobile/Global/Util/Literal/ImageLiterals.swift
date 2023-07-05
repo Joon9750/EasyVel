@@ -15,14 +15,17 @@ enum ImageLiterals {
     
     // MARK: - tabBar
     
-    static var homeTabIcon: UIImage { .load(name: "homeIcon") }
-    static var listTabIcon: UIImage { .load(name: "listIcon") }
-    static var unSaveBookMarkIcon: UIImage { .load(name: "bookmarkUnsave") }
-    static var settingTabIcon: UIImage { .load(name: "settingIcon") }
+    static var home: UIImage { .load(name: "home") }
+    static var homeFill: UIImage { .load(name: "home.fill") }
+    static var list: UIImage { .load(name: "list") }
+    static var listFill: UIImage { .load(name: "list.fill") }
+    static var bookMark: UIImage { .load(name: "bookmark") }
+    static var bookMarkFill: UIImage { .load(name: "bookmark.fill") }
+    static var my: UIImage { .load(name: "my") }
+    static var myFill: UIImage { .load(name: "my.fill") }
     
     // MARK: - icon
     
-    static var saveBookMarkIcon: UIImage { .load(name: "bookmarkSave") }
     static var searchIcon: UIImage { .load(name: "search") }
     static var plusFolder: UIImage { .load(name: "plusFolder") }
     static var activePlusFolder: UIImage { .load(name: "activePlusFolder") }

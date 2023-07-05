@@ -66,7 +66,7 @@ final class PostsTableViewCell: BaseTableViewCell {
     
     let scrapButton : UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+        button.setImage(ImageLiterals.bookMark, for: .normal)
         return button
     }()
     
@@ -164,7 +164,7 @@ final class PostsTableViewCell: BaseTableViewCell {
     }
     
     func updateButton() {
-        let image = isTapped ? ImageLiterals.saveBookMarkIcon : ImageLiterals.unSaveBookMarkIcon
+        let image = isTapped ? ImageLiterals.bookMarkFill : ImageLiterals.bookMark
         scrapButton.setImage(image, for: .normal)
     }
     

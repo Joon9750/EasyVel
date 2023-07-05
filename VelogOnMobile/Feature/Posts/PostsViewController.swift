@@ -195,9 +195,9 @@ extension PostsViewController: UITableViewDelegate {
             self?.isScrapPostsList?[index] = !didScrap
             selectedCell.isTapped = didScrap
             if didScrap {
-                selectedCell.scrapButton.setImage(ImageLiterals.saveBookMarkIcon, for: .normal)
+                selectedCell.scrapButton.setImage(ImageLiterals.bookMarkFill, for: .normal)
             } else {
-                selectedCell.scrapButton.setImage(ImageLiterals.unSaveBookMarkIcon, for: .normal)
+                selectedCell.scrapButton.setImage(ImageLiterals.bookMark, for: .normal)
             }
         }
     }
