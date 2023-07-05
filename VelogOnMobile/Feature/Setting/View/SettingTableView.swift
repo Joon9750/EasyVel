@@ -20,10 +20,12 @@ final class SettingTableView: UITableView {
 
     private func setupTableView() {
         register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.cellId)
+        delegate = self
         dataSource = self
         separatorStyle = .singleLine
+        separatorColor = .gray200
         showsVerticalScrollIndicator = false
-        backgroundColor = .white
+        backgroundColor = .gray100
         isScrollEnabled = false
     }
 }
@@ -46,8 +48,11 @@ extension SettingTableView: UITableViewDataSource {
         }
         return cell
     }
+}
+
+extension SettingTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
+        return 60
     }
 }
