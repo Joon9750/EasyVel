@@ -14,7 +14,14 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
 
     let disposeBag = DisposeBag()
     var viewModel: VM?
-
+    
+    private lazy var backButton = UIBarButtonItem(
+        image: ImageLiterals.viewPopButtonIcon,
+        style: .plain,
+        target: self,
+        action: #selector(backButtonTapped)
+    )
+    
     public init(viewModel: VM) {
         super.init(nibName: nil, bundle: nil)
         bind(viewModel: viewModel)
@@ -44,15 +51,21 @@ public class RxBaseViewController<VM: BaseViewBindable>: UIViewController {
     
     func render() {}
     
-    func setupNavigationBar() {
+    func setupNavigationBar() { 
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.topItem?.title = TextLiterals.noneText
+        navigationItem.leftBarButtonItem = backButton
     }
     
     func setupNavigationPopGesture() {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    @objc
+    func backButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func bind(viewModel: VM) {
