@@ -137,7 +137,7 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
     
     @objc
     private func scrollToTop() {
-        listView.listTableView.setContentOffset(.zero, animated: true)
+        listView.listTableView.setContentOffset( .init(x: 0, y: -20), animated: true)
     }
 }
 
