@@ -39,6 +39,12 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
             }
             .bind(to: viewModel.subscriberAddButtonDidTap)
             .disposed(by: disposeBag)
+        
+        searchView.searchSubscriberTextField.rx.text.orEmpty.asObservable()
+            .subscribe { [weak self] text in
+                self?.searchView.addSubscriberButton.isEnabled = text.isValidText
+            }
+            .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: SubscriberSearchViewModel) {
@@ -57,6 +63,8 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
                 }
             })
             .disposed(by: disposeBag)
+        
+        String()
     }
     
     private func updateStatusLabel(text: String) {
