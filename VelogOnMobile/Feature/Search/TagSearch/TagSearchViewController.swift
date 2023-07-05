@@ -156,10 +156,12 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
             }
             .disposed(by: disposeBag)
         
-        viewModel.deleteMyTagAlertPresentOutput
-            .asDriver(onErrorJustReturn: "")
-            .drive { tag in
-                self.presentDeleteTagAlertVC(tag: tag)
+        viewModel.presentDeleteMyTagAlertOutput
+            .asDriver(onErrorJustReturn: false)
+            .drive { bool in
+                let alertVC = VelogAlertViewController(alertType: .deleteTag,
+                                                       delegate: self)
+                self.present(alertVC, animated: false)
             }
             .disposed(by: disposeBag)
         
@@ -268,27 +270,6 @@ private extension TagSearchViewController {
         }
     }
     
-    private func presentDeleteTagAlertVC(tag: String) {
-        let actionSheetController = UIAlertController(
-            title: TextLiterals.deleteTagActionSheetTitle,
-            message: TextLiterals.deleteFolderActionSheetMessage,
-            preferredStyle: .alert
-        )
-        let actionDefault = UIAlertAction(
-            title: TextLiterals.delete,
-            style: .destructive,
-            handler: { [weak self] _ in
-                self?.viewModel?.myTagDeleteEvent(tag: tag)
-            })
-        let actionCancel = UIAlertAction(
-            title: TextLiterals.cancel,
-            style: .cancel
-        )
-        actionSheetController.addAction(actionDefault)
-        actionSheetController.addAction(actionCancel)
-        self.present(actionSheetController, animated: true)
-    }
-    
 }
 
 extension TagSearchViewController: UISearchBarDelegate {
@@ -296,6 +277,14 @@ extension TagSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.text = ""
+    }
+    
+}
+
+extension TagSearchViewController: VelogAlertViewControllerDelegate {
+    
+    func yesButtonDidTap() {
+        viewModel?.myTagDeleteEvent()
     }
     
 }
