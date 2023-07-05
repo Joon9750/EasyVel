@@ -64,8 +64,8 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     private lazy var myTagCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize.height = 40
-        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 12)
+        layout.estimatedItemSize.height = 36
+        layout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: MyTagCollectionViewCell.self)
