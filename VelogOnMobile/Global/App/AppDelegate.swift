@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        RealmService().setAccessToken(accessToken: "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZWx0c3BsaXQiLCJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWF0IjoxNjg4NTQ0OTExLCJleHAiOjE3NjYzMDQ5MTF9.dSLm4vd2XFrkN35aKUNgaFKdaL6RYHtfle8tSOrllL8")
         // Override point for customization after application launch.
         return true
     }
