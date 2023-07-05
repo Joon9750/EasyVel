@@ -59,9 +59,10 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
     }
     
     private func pushToSignInView() {
+        
         let signInViewModel = SignInViewModel()
         let signInViewController = SignInViewController(viewModel: signInViewModel)
-        self.navigationController?.pushViewController(signInViewController, animated: true)
+        UIApplication.shared.changeRootViewController(signInViewController)
     }
 }
 

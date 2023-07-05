@@ -22,6 +22,7 @@
 		877ED7C62A4ACC0900D80464 /* TrendPostsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */; };
 		877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */; };
 		87DC47882A556867007823CB /* VelogAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47872A556867007823CB /* VelogAlertViewController.swift */; };
+		87DC478A2A560857007823CB /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47892A560857007823CB /* UIApplication+Extension.swift */; };
 		910950522A4F155F00D04D41 /* CurrentSearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */; };
 		910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950572A50117F00D04D41 /* VersionCheckDTO.swift */; };
 		9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950592A5011DD00D04D41 /* VersionCheckAPI.swift */; };
@@ -187,6 +188,7 @@
 		877ED7C52A4ACC0900D80464 /* TrendPostsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendPostsDTO.swift; sourceTree = "<group>"; };
 		877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		87DC47872A556867007823CB /* VelogAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelogAlertViewController.swift; sourceTree = "<group>"; };
+		87DC47892A560857007823CB /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSearchDTO.swift; sourceTree = "<group>"; };
 		910950572A50117F00D04D41 /* VersionCheckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckDTO.swift; sourceTree = "<group>"; };
 		910950592A5011DD00D04D41 /* VersionCheckAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckAPI.swift; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				8765EFED2A29E62600EF6733 /* UIFont+Extension.swift */,
 				8765EFF32A29ECDE00EF6733 /* String+Extension.swift */,
 				916227D72A44569500118018 /* UITextField+Extension.swift */,
+				87DC47892A560857007823CB /* UIApplication+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1222,6 +1225,7 @@
 				91487F5D29FDA2C0009CFECF /* PostsViewController.swift in Sources */,
 				913442292A0001EC000E1ED1 /* PostsView.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
+				87DC478A2A560857007823CB /* UIApplication+Extension.swift in Sources */,
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
 				91487F1229FC47CE009CFECF /* UIView+Extension.swift in Sources */,
 				91487EC429FC380A009CFECF /* SceneDelegate.swift in Sources */,
