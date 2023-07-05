@@ -284,7 +284,7 @@ extension TagSearchViewController: UISearchBarDelegate {
 
 extension TagSearchViewController: VelogAlertViewControllerDelegate {
     
-    func yesButtonDidTap() {
+    func yesButtonDidTap(_ alertType: AlertType) {
         viewModel?.myTagDeleteEvent()
     }
     

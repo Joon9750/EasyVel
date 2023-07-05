@@ -155,7 +155,7 @@ extension ListViewController: ListTableViewCellDelegate {
 }
 
 extension ListViewController: VelogAlertViewControllerDelegate {
-    func yesButtonDidTap() {
+    func yesButtonDidTap(_ alertType: AlertType) {
         viewModel?.deleteSubscribeEvent.accept(())
     }
     
