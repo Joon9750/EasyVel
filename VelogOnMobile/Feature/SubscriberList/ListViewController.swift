@@ -10,16 +10,10 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
-import Kingfisher
 
 final class ListViewController: RxBaseViewController<ListViewModel> {
 
     private let listView = ListView()
-    private var subscriberList: [SubscriberListResponse]? {
-        didSet {
-            self.listView.listTableView.reloadData()
-        }
-    }
     
     override func render() {
         self.view = listView
@@ -28,18 +22,12 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setDelegate()
         setNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-    }
-    
-    func setDelegate() {
-        listView.listTableView.dataSource = self
-        listView.listTableView.delegate = self
     }
 
     override func bind(viewModel: ListViewModel) {
@@ -51,14 +39,26 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
                 self?.searchSubcriberButtonTapped()
             })
             .disposed(by: disposeBag)
+        
+        listView.listTableView.rx.modelSelected(SubscriberListResponse.self).asObservable()
+            .subscribe{ data in
+                viewModel.subscriberTableViewCellDidTap.accept(data.name)
+            }
+            .disposed(by: disposeBag)
+            
+            
     }
     
     private func bindOutput(_ viewModel: ListViewModel) {
         viewModel.subscriberListOutput
             .asDriver(onErrorJustReturn: [])
-            .drive(onNext: { [weak self] data in
-                self?.subscriberList = data
-            })
+            .drive(
+                listView.listTableView.rx.items(cellIdentifier: ListTableViewCell.reuseIdentifier,
+                                                   cellType: ListTableViewCell.self)
+            ) { index, data, cell in
+                cell.updateUI(data: data)
+                cell.delegate = self
+            }
             .disposed(by: disposeBag)
         
         viewModel.isListEmptyOutput
@@ -77,6 +77,16 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
             .drive(onNext: { [weak self] subscriberUserMainURL in
                 self?.pushSubscriberUserMainViewController(userMainURL: subscriberUserMainURL)
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.presentUnsubscribeAlertOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive { [weak self] bool in
+                guard let self else { return } 
+                let alertVC = VelogAlertViewController(alertType: .unsubscribe,
+                                                       delegate: self)
+                self.present(alertVC, animated: false)
+            }
             .disposed(by: disposeBag)
     }
 
@@ -113,29 +123,6 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
     
-    private func presentUnSubscriberAlert(
-        unSubscriberName: String
-    ) {
-        let alertController = UIAlertController(
-            title: TextLiterals.unSubscriberAlertTitle,
-            message: TextLiterals.unSubscriberAlertMessage,
-            preferredStyle: .alert
-        )
-        let actionDefault = UIAlertAction(
-            title: TextLiterals.unSubscriberAlertOkActionText,
-            style: .destructive,
-            handler: { [weak self] _ in
-                self?.viewModel?.subscriberDeleteButtonDidTap.accept(unSubscriberName)
-            })
-        let actionCancel = UIAlertAction(
-            title: TextLiterals.unSubscriberAlertCancelActionText,
-            style: .cancel
-        )
-        alertController.addAction(actionDefault)
-        alertController.addAction(actionCancel)
-        self.present(alertController, animated: true)
-    }
-    
     private func setNotification() {
         NotificationCenter.default.addObserver(
             self,
@@ -147,7 +134,7 @@ final class ListViewController: RxBaseViewController<ListViewModel> {
     
     @objc
     private func scrollToTop() {
-        listView.listTableView.setContentOffset(.zero, animated: true)
+        listView.listTableView.setContentOffset( .init(x: 0, y: -20), animated: true)
     }
 }
 
@@ -155,41 +142,22 @@ extension ListViewController: SubscriberSearchProtocol {
     func searchSubscriberViewWillDisappear(
         subscriberList: [SubscriberListResponse]
     ) {
-        self.subscriberList = subscriberList
         self.viewModel?.subscriberList = subscriberList
     }
 }
 
-extension ListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subscriberList?.count ?? 0
+extension ListViewController: ListTableViewCellDelegate {
+    func unsubscribeButtonDidTap(name: String) {
+        viewModel?.unsubscriberButtonDidTap.accept(name)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier) as? ListTableViewCell ?? ListTableViewCell()
-        let row = indexPath.row
-        cell.selectionStyle = .none
-        if subscriberList?[row].img == "" {
-            cell.subscriberImage.image = ImageLiterals.subscriberImage
-        } else {
-            let subscriberImageURL = URL(string: subscriberList?[row].img ?? String())
-            cell.subscriberImage.kf.setImage(with: subscriberImageURL)
-        }
-        cell.listText.text = subscriberList?[row].name
-        cell.unSubscribeButtonDidTap = { [weak self] subscriberName in
-            self?.presentUnSubscriberAlert(unSubscriberName: subscriberName)
-        }
-        return cell
-    }
+    
 }
 
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ListTableViewCell else {
-            return
-        }
-        if let subscriberName = cell.listText.text {
-            self.viewModel?.subscriberTableViewCellDidTap.accept(subscriberName)
-        }
+extension ListViewController: VelogAlertViewControllerDelegate {
+    func yesButtonDidTap(_ alertType: AlertType) {
+        viewModel?.deleteSubscribeEvent.accept(())
     }
+    
+    
 }

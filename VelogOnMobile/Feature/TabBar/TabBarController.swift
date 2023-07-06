@@ -121,10 +121,19 @@ final class TabBarController: UITabBarController {
         let ViewControllers:[UIViewController] = [homeVC,listVC,storageVC,settingVC]
         self.setViewControllers(ViewControllers, animated: true)
 
-        homeVC.tabBarItem.image = ImageLiterals.homeTabIcon
-        listVC.tabBarItem.image = ImageLiterals.listTabIcon
-        storageVC.tabBarItem.image = ImageLiterals.unSaveBookMarkIcon
-        settingVC.tabBarItem.image = ImageLiterals.settingTabIcon
+        
+        homeVC.tabBarItem = UITabBarItem(title: "홈",
+                                               image: ImageLiterals.home,
+                                               selectedImage: ImageLiterals.homeFill)
+        listVC.tabBarItem = UITabBarItem(title: "팔로우",
+                                               image: ImageLiterals.list,
+                                               selectedImage: ImageLiterals.listFill)
+        storageVC.tabBarItem = UITabBarItem(title: "스크랩",
+                                                  image: ImageLiterals.bookMark,
+                                                  selectedImage: ImageLiterals.bookMarkFill)
+        settingVC.tabBarItem = UITabBarItem(title: "설정",
+                                                  image: ImageLiterals.my,
+                                                  selectedImage: ImageLiterals.myFill)
         
         self.hidesBottomBarWhenPushed = false
         viewWillLayoutSubviews()

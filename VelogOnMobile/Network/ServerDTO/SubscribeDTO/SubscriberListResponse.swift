@@ -9,5 +9,5 @@ import Foundation
 
 struct SubscriberListResponse: Codable {
     let img: String?
-    let name: String?
+    let name: String
 }

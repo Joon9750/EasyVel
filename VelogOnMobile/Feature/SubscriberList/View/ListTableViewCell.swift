@@ -9,20 +9,21 @@ import UIKit
 
 import SnapKit
 
+protocol ListTableViewCellDelegate: AnyObject {
+    func unsubscribeButtonDidTap(name: String)
+}
+
 final class ListTableViewCell: BaseTableViewCell {
     
-    static let identifier = "ListTableViewCell"
-    
-    var unSubscribeButtonDidTap: ((String) -> Void)?
+    weak var delegate: ListTableViewCellDelegate?
     
     let subscriberImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 20.0
-        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    let listText: UILabel = {
+    let subscriberLabel: UILabel = {
         let label = UILabel()
         label.tintColor = .gray700
         label.font = .body_2_M
@@ -40,10 +41,17 @@ final class ListTableViewCell: BaseTableViewCell {
         return button
     }()
     
+    //MARK: - Life Cycle
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        subscriberImage.makeRounded(ratio: 2)
+    }
+    
     override func render() {
         self.contentView.addSubviews(
             subscriberImage,
-            listText,
+            subscriberLabel,
             unSubscribeButton
         )
         
@@ -53,7 +61,7 @@ final class ListTableViewCell: BaseTableViewCell {
             $0.size.equalTo(48)
         }
         
-        listText.snp.makeConstraints {
+        subscriberLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(subscriberImage.snp.trailing).offset(12)
         }
@@ -68,12 +76,22 @@ final class ListTableViewCell: BaseTableViewCell {
     
     override func configUI() {
         self.backgroundColor = .gray100
+        selectionStyle = .none
+    }
+    
+    func updateUI(data: SubscriberListResponse) {
+        if data.img == "" {
+            subscriberImage.image = ImageLiterals.subscriberImage
+        } else {
+            let subscriberImageURL = URL(string: data.img ?? String())
+            subscriberImage.kf.setImage(with: subscriberImageURL)
+        }
+        subscriberLabel.text = data.name
     }
     
     @objc
     private func unSubscribeButtonTapped() {
-        if let subscriberName = listText.text {
-            unSubscribeButtonDidTap?(subscriberName)
-        }
+        guard let name = subscriberLabel.text else { return }
+        delegate?.unsubscribeButtonDidTap(name: name)
     }
 }

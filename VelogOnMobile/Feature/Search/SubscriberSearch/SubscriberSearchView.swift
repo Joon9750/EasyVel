@@ -19,16 +19,6 @@ final class SubscriberSearchView: BaseUIView {
         return label
     }()
     
-    let addSubscriberBtn: UIButton = {
-        let button = UIButton()
-        button.setTitle(TextLiterals.addButtonText, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 4
-        button.backgroundColor = .brandColor
-        button.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo", size: 16)
-        return button
-    }()
-    
     let dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -44,20 +34,26 @@ final class SubscriberSearchView: BaseUIView {
     
     let searchSubscriberTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "팔로우를 추가해보시오."
+        textField.placeholder = "팔로우를 추가해보세요."
         textField.font = .body_1_M
         textField.backgroundColor = .gray100
+        textField.makeRounded(radius: 4)
         textField.addLeftPadding(leftPaddingWidth: 35)
         return textField
     }()
     
     let addSubscriberButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .brandColor
         button.setTitle("추가", for: .normal)
-        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .body_1_M
-        button.layer.cornerRadius = 10
+        
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundColor(.brandColor, for: .normal)
+        
+        button.setTitleColor(.gray300, for: .disabled)
+        button.setBackgroundColor(.gray100, for: .disabled)
+        button.makeRounded(radius: 6)
+        button.isEnabled = false
         return button
     }()
     

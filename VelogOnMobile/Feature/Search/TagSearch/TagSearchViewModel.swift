@@ -15,7 +15,8 @@ final class TagSearchViewModel: BaseViewModel {
     
     //MARK: - Properties
     
-    var tag: String?
+    var addTag: String?
+    var deleteTag: String?
     var myTagDidChange: Bool = false
     
     // MARK: - Input
@@ -31,7 +32,7 @@ final class TagSearchViewModel: BaseViewModel {
     var myTagsOutput = PublishRelay<[String]>()
     var popularTagsOutput = BehaviorRelay<[String]>(value: Array<String>(repeating: "", count: 10))
     
-    var deleteMyTagAlertPresentOutput = PublishRelay<String>()
+    var presentDeleteMyTagAlertOutput = PublishRelay<Bool>()
     
     var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     var deleteTagStatusOutPut = PublishRelay<(Bool, String)>()
@@ -52,16 +53,16 @@ final class TagSearchViewModel: BaseViewModel {
         
         input.searchBarDidEditEvent
             .subscribe { [weak self] tag in
-                self?.tag = tag
+                self?.addTag = tag
             }
             .disposed(by: disposeBag)
         
         input.searchTextFieldDidEnd
             .subscribe(onNext: { [weak self] _ in
-                guard let tag = self?.tag else { return }
+                guard let tag = self?.addTag else { return }
                 guard let self else { return }
-                
-                self.addTag(tag: tag)
+                guard tag.isValidText else { return }
+                self.requestAddTagAPI(tag: tag)
                     .subscribe(onNext: { [weak self] success in
                         if success {
                             let text: String = TextLiterals.addTagSuccessText
@@ -79,7 +80,8 @@ final class TagSearchViewModel: BaseViewModel {
         
         input.myTagCellDidTap
             .subscribe { [weak self] tag in
-                self?.deleteMyTagAlertPresentOutput.accept(tag)
+                self?.deleteTag = tag
+                self?.presentDeleteMyTagAlertOutput.accept(true)
             }
             .disposed(by: disposeBag)
         
@@ -97,7 +99,8 @@ final class TagSearchViewModel: BaseViewModel {
             
     }
     
-    func myTagDeleteEvent(tag: String) {
+    func myTagDeleteEvent() {
+        guard let tag = self.deleteTag else { return }
         self.requestDeleteTagAPI(tag: tag)
             .subscribe(onNext: { [weak self] success in
                 if success {
@@ -130,7 +133,7 @@ private extension TagSearchViewModel {
     }
     
     
-    func addTag(tag: String) -> Observable<Bool> {
+    func requestAddTagAPI(tag: String) -> Observable<Bool> {
         return Observable.create { observer in
             NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
                 switch result {

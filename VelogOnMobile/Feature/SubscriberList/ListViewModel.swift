@@ -14,18 +14,21 @@ final class ListViewModel: BaseViewModel {
     
     var subscriberList: [SubscriberListResponse]?
     var isListEmpty: Bool = Bool()
+    var tempDeleteSubscriber: String?
     
     // MARK: - Output
 
     var subscriberListOutput = PublishRelay<[SubscriberListResponse]>()
     var isListEmptyOutput = PublishRelay<Bool>()
     var subscriberUserMainURLOutput = PublishRelay<String>()
+    var presentUnsubscribeAlertOutput = PublishRelay<Bool>()
     
     // MARK: - Input
     
-    let subscriberDeleteButtonDidTap = PublishRelay<String>()
     let refreshSubscriberList = PublishRelay<Bool>()
     let subscriberTableViewCellDidTap = PublishRelay<String>()
+    let unsubscriberButtonDidTap = PublishRelay<String>()
+    let deleteSubscribeEvent = PublishRelay<Void>()
     
     // MARK: - init
     
@@ -43,17 +46,18 @@ final class ListViewModel: BaseViewModel {
             })
             .disposed(by: disposeBag)
         
-        subscriberDeleteButtonDidTap
-            .subscribe(onNext: { [weak self] subscriber in
-                guard let self = self else { return }
+        deleteSubscribeEvent
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self,
+                      let tempDeleteSubscriber = tempDeleteSubscriber else { return }
                 if let subscriberList = self.subscriberList {
                     let reloadSubscriberList = subscriberList.filter {
-                        $0.name != subscriber
+                        $0.name != tempDeleteSubscriber
                     }
                     self.subscriberList = reloadSubscriberList
                     self.subscriberListOutput.accept(reloadSubscriberList)
                 }
-                self.deleteSubscriber(targetName: subscriber) { [weak self] _ in
+                self.deleteSubscriber(targetName: tempDeleteSubscriber) { [weak self] _ in
                     self?.getListData()
                 }
             })
@@ -76,6 +80,13 @@ final class ListViewModel: BaseViewModel {
                     self?.subscriberUserMainURLOutput.accept(userMainURL)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        unsubscriberButtonDidTap
+            .subscribe { name in
+                self.tempDeleteSubscriber = name
+                self.presentUnsubscribeAlertOutput.accept(true)
+            }
             .disposed(by: disposeBag)
     }
     

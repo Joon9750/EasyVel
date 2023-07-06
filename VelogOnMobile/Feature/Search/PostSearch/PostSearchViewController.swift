@@ -27,9 +27,11 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
     
     private let flowLayout = UICollectionViewFlowLayout()
     private lazy var recentSearchTagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    
     private let popularSearchTagTableView = UITableView()
     private let tapGesture = UITapGestureRecognizer()
     private let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 280, height: 0))
+    
     
     private let recentLabel: UILabel = {
         let label = UILabel()
@@ -57,6 +59,12 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         label.font = .body_1_M
         label.textColor = .gray300
         return label
+    }()
+    
+    private let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray100
+        return view
     }()
     
     private let trendLabel: UILabel = {
@@ -91,8 +99,9 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         view.addSubviews(
             recentLabel,
             deleteButton,
-            emptyRecentSearchTagExcaptionLabel,
             recentSearchTagCollectionView,
+            emptyRecentSearchTagExcaptionLabel,
+            lineView,
             trendLabel,
             popularSearchTagTableView
         )
@@ -107,21 +116,26 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
             $0.trailing.equalToSuperview().inset(20)
         }
         
-        emptyRecentSearchTagExcaptionLabel.snp.makeConstraints {
-            $0.top.equalTo(recentLabel.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(20)
-        }
-        view.bringSubviewToFront(emptyRecentSearchTagExcaptionLabel)
-        
         recentSearchTagCollectionView.snp.makeConstraints{
             $0.top.equalTo(recentLabel.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(35)
         }
         
+        emptyRecentSearchTagExcaptionLabel.snp.makeConstraints {
+            $0.verticalEdges.equalTo(recentSearchTagCollectionView)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        lineView.snp.makeConstraints {
+            $0.top.equalTo(recentSearchTagCollectionView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(6)
+        }
+        
         trendLabel.snp.makeConstraints{
-            $0.top.equalTo(recentSearchTagCollectionView.snp.bottom).offset(20)
-            $0.leading.equalToSuperview().offset(35)
+            $0.top.equalTo(lineView.snp.bottom).offset(24)
+            $0.leading.equalToSuperview().offset(20)
         }
         
         popularSearchTagTableView.snp.makeConstraints{
@@ -239,10 +253,12 @@ extension PostSearchViewController {
         recentSearchTagCollectionView.delegate = self
         recentSearchTagCollectionView.dataSource = self
         
+        
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 100, height: 30)
-        flowLayout.minimumLineSpacing = 10
+        flowLayout.estimatedItemSize.height = 30
         flowLayout.minimumInteritemSpacing = 10
+        flowLayout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
+        
     }
 }
 

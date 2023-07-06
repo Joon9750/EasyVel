@@ -20,12 +20,16 @@ class PostTagUIButton: UIButton {
         super.init(coder: aDecoder)
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        self.makeRounded(ratio: 2)
+    }
+    
     func setupButton() {
         self.backgroundColor = .brandColor
         self.setTitleColor(.white, for: .normal)
-        self.layer.cornerRadius = 8
         self.titleLabel?.font = .caption_1_M
-        self.contentEdgeInsets = UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)
+        self.contentEdgeInsets = UIEdgeInsets(top: 2, left: 12, bottom: 2, right: 12)
         self.isHidden = true
     }
 }

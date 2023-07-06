@@ -58,14 +58,15 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         button.setTitle(TextLiterals.deleteAll, for: .normal)
         button.setTitleColor( .gray200, for: .normal)
         button.titleLabel?.font = .caption_1_M
+        button.isHidden = true //TODO: 마이태그 <모두 지우기> 기능 존재 유무에 따라 hidden값 처리. 1차 릴리즈엔 hidden 처리
         return button
     }()
     
     private lazy var myTagCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize.height = 40
-        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 12)
+        layout.estimatedItemSize.height = 36
+        layout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: MyTagCollectionViewCell.self)
@@ -156,10 +157,12 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
             }
             .disposed(by: disposeBag)
         
-        viewModel.deleteMyTagAlertPresentOutput
-            .asDriver(onErrorJustReturn: "")
-            .drive { tag in
-                self.presentDeleteTagAlertVC(tag: tag)
+        viewModel.presentDeleteMyTagAlertOutput
+            .asDriver(onErrorJustReturn: false)
+            .drive { bool in
+                let alertVC = VelogAlertViewController(alertType: .deleteTag,
+                                                       delegate: self)
+                self.present(alertVC, animated: false)
             }
             .disposed(by: disposeBag)
         
@@ -268,27 +271,6 @@ private extension TagSearchViewController {
         }
     }
     
-    private func presentDeleteTagAlertVC(tag: String) {
-        let actionSheetController = UIAlertController(
-            title: TextLiterals.deleteTagActionSheetTitle,
-            message: TextLiterals.deleteFolderActionSheetMessage,
-            preferredStyle: .alert
-        )
-        let actionDefault = UIAlertAction(
-            title: TextLiterals.delete,
-            style: .destructive,
-            handler: { [weak self] _ in
-                self?.viewModel?.myTagDeleteEvent(tag: tag)
-            })
-        let actionCancel = UIAlertAction(
-            title: TextLiterals.cancel,
-            style: .cancel
-        )
-        actionSheetController.addAction(actionDefault)
-        actionSheetController.addAction(actionCancel)
-        self.present(actionSheetController, animated: true)
-    }
-    
 }
 
 extension TagSearchViewController: UISearchBarDelegate {
@@ -296,6 +278,14 @@ extension TagSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.text = ""
+    }
+    
+}
+
+extension TagSearchViewController: VelogAlertViewControllerDelegate {
+    
+    func yesButtonDidTap(_ alertType: AlertType) {
+        viewModel?.myTagDeleteEvent()
     }
     
 }

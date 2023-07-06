@@ -28,19 +28,19 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
         
         settingView.tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] indexPath in
-                if indexPath.row == 0 {
-                    self?.presentAlert(
-                        title: TextLiterals.signOutAlertTitle,
-                        message: TextLiterals.signOutAlertMessage,
-                        touchedIndexPath: indexPath.row
-                    )
-                } else if indexPath.row == 1 {
-                    self?.presentAlert(
-                        title: TextLiterals.withdrawalAlertTitle,
-                        message: TextLiterals.withdrawalAlertMessage,
-                        touchedIndexPath: indexPath.row
-                    )
+                guard let self else { return }
+                let alertType: AlertType
+                switch indexPath.row {
+                case 0:
+                    alertType = .signOut
+                case 1:
+                    alertType = .withdrawal
+                default:
+                    return
                 }
+                let alertVC = VelogAlertViewController(alertType: alertType,
+                                                       delegate: self)
+                present(alertVC, animated: false)
             })
             .disposed(by: disposeBag)
     }
@@ -58,39 +58,26 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
             .disposed(by: disposeBag)
     }
     
-    private func presentAlert(
-        title: String,
-        message: String,
-        touchedIndexPath: Int
-    ) {
-        let alertController = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-        let actionDefault = UIAlertAction(
-            title: TextLiterals.settingAlertOkActionText,
-            style: .destructive,
-            handler: { [weak self] _ in
-                if touchedIndexPath == 0 {
-                    self?.viewModel?.signOutCellDidTouched.accept(true)
-                    self?.pushToSignInView()
-                } else if touchedIndexPath == 1 {
-                    self?.viewModel?.withdrawalCellDidTouched.accept(true)
-                }
-            })
-        let actionCancel = UIAlertAction(
-            title: TextLiterals.settingAlertCancelActionText,
-            style: .cancel
-        )
-        alertController.addAction(actionDefault)
-        alertController.addAction(actionCancel)
-        self.present(alertController, animated: true)
-    }
-    
     private func pushToSignInView() {
+        
         let signInViewModel = SignInViewModel()
         let signInViewController = SignInViewController(viewModel: signInViewModel)
-        self.navigationController?.pushViewController(signInViewController, animated: true)
+        UIApplication.shared.changeRootViewController(signInViewController)
     }
+}
+
+extension SettingViewController: VelogAlertViewControllerDelegate {
+    func yesButtonDidTap(_ alertType: AlertType) {
+        switch alertType {
+        case .signOut:
+            viewModel?.signOutCellDidTouched.accept(true)
+            pushToSignInView()
+        case .withdrawal:
+            viewModel?.withdrawalCellDidTouched.accept(true)
+        default:
+            return
+        }
+    }
+    
+    
 }

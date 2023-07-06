@@ -49,6 +49,7 @@ final class PostSearchViewModel: BaseViewModel {
         searchPostTagInput
             .flatMap { [weak self] searchTag -> Observable<[PostDTO]> in
                 guard let self = self else { return Observable.empty() }
+                guard searchTag.isValidText else { return Observable.empty() }
                 return self.getOneTagPosts(tag: searchTag)
             }
             .subscribe(onNext: { [weak self] postDto in
@@ -60,6 +61,7 @@ final class PostSearchViewModel: BaseViewModel {
         addCurrentSearchTagInput
             .subscribe(onNext: { [weak self] searchedTag in
                 guard let self = self else { return }
+                guard searchedTag.isValidText else { return }
                 self.realm.addCurrentSearchTag(tag: searchedTag)
                 
                 let currentSearchTagList = self.getCurrentSearchTags()

@@ -82,17 +82,17 @@ final class ScrapStorageView: BaseUIView {
         buttonBackView.addSubview(addFolderButton)
         
         headView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(172)
+            $0.top.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(171)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(76)
-            $0.leading.equalToSuperview().offset(17)
+            $0.top.equalTo(safeAreaLayoutGuide).offset(32)
+            $0.leading.equalToSuperview().offset(20)
         }
         
         vertiLineView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(171)
+            $0.top.equalTo(headView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1)
         }
