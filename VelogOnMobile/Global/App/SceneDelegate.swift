@@ -29,12 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
         
-        // MARK: - get appLatestVersion
+        //MARK: - get appLatestVersion
         
-        self.getLatestVersion()
+        getLatestVersion()
         
         // MARK: - check network
         
@@ -42,37 +40,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // MARK: - realm folder
         
-        if checkAllPostIsUnique() {
-            addInitialData()
-        }
+        if checkAllPostIsUnique() { addInitialData() }
         
-        // MARK: - fix me : set access token
+        // MARK: - 자동 로그인
         
-        if realm.getAccessToken() == "" {
-            // MARK: - 초기 유저
-            let signInViewModel = SignInViewModel()
-            let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
-            window?.rootViewController = rootViewController
-            window?.makeKeyAndVisible()
-            return
-        }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
         
-        // MARK: - check auto signIn
+        let splashVC = SplashViewController(
+            viewModel: SplashViewModel(
+                useCase: DefaultSplashUseCase(
+                    repository: DefaultUserRepository(
+                        service: DefaultSignRepository()
+                    )
+                )
+            )
+        )
         
-        if realm.checkIsUserSignIn() {
-            // MARK: - 자동 로그인 된 유저
-            let rootViewController = UINavigationController(rootViewController: TabBarController())
-            window?.rootViewController = rootViewController
-            window?.makeKeyAndVisible()
-            return
-        } else {
-            // MARK: - 자동 로그인 이후 로그아웃한 유저
-            let signInViewModel = SignInViewModel()
-            let rootViewController = UINavigationController(rootViewController: SignInViewController(viewModel: signInViewModel))
-            window?.rootViewController = rootViewController
-            window?.makeKeyAndVisible()
-            return
-        }
+        window?.rootViewController = splashVC
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

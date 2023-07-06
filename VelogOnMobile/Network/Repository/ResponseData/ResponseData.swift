@@ -28,4 +28,6 @@ enum ResponseData {
     case getPopularPosts
     case getSubscriberUserMain
     case trendPosts
+    case refreshToken
 }
+

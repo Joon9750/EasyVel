@@ -11,4 +11,5 @@ protocol SignRepository {
     func signIn(body: SignInRequest, completion: @escaping (NetworkResult<Any>) -> Void)
     func signOut(completion: @escaping (NetworkResult<Any>) -> Void)
     func signUp(body: SignUpRequest, completion: @escaping (NetworkResult<Any>) -> Void)
+    func refreshToken(token: String, completion: @escaping (NetworkResult<Any>) -> Void)
 }

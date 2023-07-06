@@ -23,6 +23,12 @@
 		877ED7CB2A4AD2EC00D80464 /* PostDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */; };
 		87DC47882A556867007823CB /* VelogAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47872A556867007823CB /* VelogAlertViewController.swift */; };
 		87DC478A2A560857007823CB /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47892A560857007823CB /* UIApplication+Extension.swift */; };
+		87DC478E2A56F85E007823CB /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC478D2A56F85E007823CB /* AuthManager.swift */; };
+		87DC47912A5713F4007823CB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47902A5713F4007823CB /* SplashViewController.swift */; };
+		87DC47932A5713FB007823CB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47922A5713FB007823CB /* SplashViewModel.swift */; };
+		87DC47952A572BE5007823CB /* SplashUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47942A572BE5007823CB /* SplashUseCase.swift */; };
+		87DC47992A572ECF007823CB /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47982A572ECF007823CB /* UserRepository.swift */; };
+		87DC479C2A573349007823CB /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC479B2A573349007823CB /* AuthError.swift */; };
 		910950522A4F155F00D04D41 /* CurrentSearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */; };
 		910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950572A50117F00D04D41 /* VersionCheckDTO.swift */; };
 		9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950592A5011DD00D04D41 /* VersionCheckAPI.swift */; };
@@ -189,6 +195,12 @@
 		877ED7CA2A4AD2EC00D80464 /* PostDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDTO.swift; sourceTree = "<group>"; };
 		87DC47872A556867007823CB /* VelogAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelogAlertViewController.swift; sourceTree = "<group>"; };
 		87DC47892A560857007823CB /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		87DC478D2A56F85E007823CB /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		87DC47902A5713F4007823CB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		87DC47922A5713FB007823CB /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		87DC47942A572BE5007823CB /* SplashUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUseCase.swift; sourceTree = "<group>"; };
+		87DC47982A572ECF007823CB /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		87DC479B2A573349007823CB /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSearchDTO.swift; sourceTree = "<group>"; };
 		910950572A50117F00D04D41 /* VersionCheckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckDTO.swift; sourceTree = "<group>"; };
 		910950592A5011DD00D04D41 /* VersionCheckAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckAPI.swift; sourceTree = "<group>"; };
@@ -412,6 +424,33 @@
 				87DC47872A556867007823CB /* VelogAlertViewController.swift */,
 			);
 			path = VelogAlertViewController;
+			sourceTree = "<group>";
+		};
+		87DC478C2A56F854007823CB /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				87DC478D2A56F85E007823CB /* AuthManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		87DC478F2A5713BE007823CB /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				87DC47902A5713F4007823CB /* SplashViewController.swift */,
+				87DC47922A5713FB007823CB /* SplashViewModel.swift */,
+				87DC47942A572BE5007823CB /* SplashUseCase.swift */,
+				87DC47982A572ECF007823CB /* UserRepository.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		87DC479A2A573342007823CB /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				87DC479B2A573349007823CB /* AuthError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		910950562A50116D00D04D41 /* VersionCheckDTO */ = {
@@ -639,6 +678,7 @@
 		91487EDE29FC3946009CFECF /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				87DC478F2A5713BE007823CB /* Splash */,
 				91487F4E29FD9902009CFECF /* TabBar */,
 				8765EFFB2A2A054D00EF6733 /* Home */,
 				914D8DD72A02B17000516B4C /* WebView */,
@@ -655,6 +695,7 @@
 		91487EDF29FC3950009CFECF /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				87DC479A2A573342007823CB /* Error */,
 				91487EF029FC3AA3009CFECF /* Base */,
 				917BA3842A07C2B7000409B7 /* Protocol */,
 				916FDCFB2A17EA0700BB1E16 /* App */,
@@ -868,6 +909,7 @@
 		916FDCFD2A17EA7500BB1E16 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				87DC478C2A56F854007823CB /* Manager */,
 				87DC47862A556852007823CB /* VelogAlertViewController */,
 				9166BE962A49E8D800FFC026 /* ServerFailView */,
 				9166BE932A498A9C00FFC026 /* ShowToast */,
@@ -1179,6 +1221,7 @@
 				877ED7C32A4AAED500D80464 /* HomeMenuCollectionViewCell.swift in Sources */,
 				9109505E2A50140C00D04D41 /* DefaultCheckVersionRepository.swift in Sources */,
 				913442302A004352000E1ED1 /* SubscriberAPI.swift in Sources */,
+				87DC47932A5713FB007823CB /* SplashViewModel.swift in Sources */,
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
@@ -1224,6 +1267,7 @@
 				917BA3432A0503D5000409B7 /* StoragePost.swift in Sources */,
 				91487F5D29FDA2C0009CFECF /* PostsViewController.swift in Sources */,
 				913442292A0001EC000E1ED1 /* PostsView.swift in Sources */,
+				87DC479C2A573349007823CB /* AuthError.swift in Sources */,
 				91487EF229FC3AAE009CFECF /* BaseViewController.swift in Sources */,
 				87DC478A2A560857007823CB /* UIApplication+Extension.swift in Sources */,
 				913441E729FFD622000E1ED1 /* MoyaLoggerPlugin.swift in Sources */,
@@ -1238,6 +1282,7 @@
 				917BA3332A03D8F7000409B7 /* StorageView.swift in Sources */,
 				91487EF629FC3AEF009CFECF /* BaseTableViewCell.swift in Sources */,
 				9134421529FFDC9C000E1ED1 /* UnSubsribeResponse.swift in Sources */,
+				87DC47992A572ECF007823CB /* UserRepository.swift in Sources */,
 				87DC47882A556867007823CB /* VelogAlertViewController.swift in Sources */,
 				9134420529FFD965000E1ED1 /* SignInResponse.swift in Sources */,
 				913441F429FFD742000E1ED1 /* TagAPI.swift in Sources */,
@@ -1245,6 +1290,7 @@
 				91ED17932A00EA8F00158787 /* ErrorResponse.swift in Sources */,
 				910C02FB2A4D7BC5005D5797 /* PostSearchViewModel.swift in Sources */,
 				91487F5229FDA143009CFECF /* SettingTableViewCell.swift in Sources */,
+				87DC47952A572BE5007823CB /* SplashUseCase.swift in Sources */,
 				7CB706D42A32064900083EC6 /* SearchTableViewCell.swift in Sources */,
 				8745835E2A42184B00954274 /* KeywordPostsVCFactory.swift in Sources */,
 				913441F029FFD6FB000E1ED1 /* NetworkService.swift in Sources */,
@@ -1266,9 +1312,11 @@
 				91ED178B2A00E59900158787 /* PostsRepository.swift in Sources */,
 				91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */,
 				91487F3B29FD892B009CFECF /* ListTableView.swift in Sources */,
+				87DC478E2A56F85E007823CB /* AuthManager.swift in Sources */,
 				916227D82A44569500118018 /* UITextField+Extension.swift in Sources */,
 				917BA3882A07C541000409B7 /* SubscriberSearchProtocol.swift in Sources */,
 				913441EE29FFD6E3000E1ED1 /* NetworkResult.swift in Sources */,
+				87DC47912A5713F4007823CB /* SplashViewController.swift in Sources */,
 				916E29AE2A3EE90F006F5FE9 /* SignInViewModel.swift in Sources */,
 				9158618D2A2E04BF00461F9A /* ScrapPostAddInFolderProtocol.swift in Sources */,
 				9128B05C2A23DCEF00FB1252 /* StorageDTO.swift in Sources */,
@@ -1440,7 +1488,7 @@
 				CODE_SIGN_ENTITLEMENTS = VelogOnMobile/VelogOnMobile.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = D96A3BCL3R;
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VelogOnMobile/Global/Config/Info.plist;
@@ -1454,7 +1502,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.JuneHyeokHong.VelogOnMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JuneHyeokHong.VelogOnMobile1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
