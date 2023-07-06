@@ -12,7 +12,20 @@ import RxSwift
 
 final class PostSearchViewModel: BaseViewModel {
     
-    let realm = RealmService()
+    private let realm = RealmService()
+    
+    private let popularTagList: [String] = [
+        "알고리즘",
+        "JavaScript",
+        "TIL",
+        "Java",
+        "React",
+        "백준",
+        "python",
+        "프로그래머스",
+        "코딩테스트",
+        "Spring"
+    ]
     
     // MARK: - Input
     
@@ -33,13 +46,9 @@ final class PostSearchViewModel: BaseViewModel {
     
     private func makeOutput() {
         viewWillAppear
-            .flatMapLatest { [weak self] _ -> Observable<[String]> in
-                guard let self = self else { return Observable.empty() }
-                return self.getPopularPostKeyword()
-            }
-            .subscribe(onNext: { [weak self] popularPostKeywordList in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.popularPostKeywordListOutput.accept(popularPostKeywordList)
+                self.popularPostKeywordListOutput.accept(self.popularTagList)
                 
                 let currentSearchTagList = self.getCurrentSearchTags()
                 self.currentSearchTagListOutput.accept(currentSearchTagList)
@@ -87,30 +96,6 @@ final class PostSearchViewModel: BaseViewModel {
 }
 
 extension PostSearchViewModel {
-    func getPopularPostKeyword() -> Observable<[String]> {
-        return Observable.create { observer in
-            NetworkService.shared.postsRepository.getPopularPosts() { [weak self] result in
-                switch result {
-                case .success(let response):
-                    guard let result = response as? [String] else {
-                        self?.serverFailOutput.accept(true)
-                        observer.onCompleted()
-                        return
-                    }
-                    observer.onNext(result)
-                    observer.onCompleted()
-                case .requestErr(_):
-                    self?.serverFailOutput.accept(true)
-                    observer.onCompleted()
-                default:
-                    self?.serverFailOutput.accept(true)
-                    observer.onCompleted()
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
     func getOneTagPosts(tag: String) -> Observable<[PostDTO]> {
         return Observable.create { observer in
             NetworkService.shared.postsRepository.getOneTagPosts(tag: tag) { [weak self] result in
