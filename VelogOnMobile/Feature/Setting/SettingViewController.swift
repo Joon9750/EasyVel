@@ -52,7 +52,10 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 if didSuccess {
                     self?.pushToSignInView()
                 } else {
+                    
                     // MARK: - 회원탈퇴 실패
+                    self?.showToast(toastText: "회원탈퇴에 실패하였습니다.",
+                                   backgroundColor: .gray200)
                 }
             })
             .disposed(by: disposeBag)
