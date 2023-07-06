@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="signInIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hDP-M7-W64">
-                                <rect key="frame" x="114" y="324" width="165" height="204"/>
+                                <rect key="frame" x="114" y="254" width="165" height="204"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="165" id="jM1-8U-sRX"/>
                                     <constraint firstAttribute="height" constant="204" id="rfx-bB-8vU"/>
@@ -28,7 +28,7 @@
                         <color key="backgroundColor" red="0.11764705882352941" green="0.78431372549019607" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hDP-M7-W64" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CeB-jL-A3W"/>
-                            <constraint firstItem="hDP-M7-W64" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GXh-Td-oJc"/>
+                            <constraint firstItem="hDP-M7-W64" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-70" id="edp-7l-4zh"/>
                         </constraints>
                     </view>
                 </viewController>

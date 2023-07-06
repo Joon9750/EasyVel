@@ -30,7 +30,8 @@ final class SplashViewController: RxBaseViewController<SplashViewModel> {
         view.addSubview(imageView)
         
         imageView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-70)
             $0.width.equalTo(165)
             $0.height.equalTo(204)
         }
