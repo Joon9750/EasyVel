@@ -42,8 +42,8 @@ final class SplashViewController: RxBaseViewController<SplashViewModel> {
         super.bind(viewModel: viewModel)
         
         let input = SplashViewModel.Input(
-            viewDidLoad:
-                self.rx.methodInvoked(#selector(UIViewController.viewDidLoad)).map { _ in }
+            viewDidAppear:
+                self.rx.methodInvoked(#selector(UIViewController.viewDidAppear)).map { _ in }
         )
         
         let output = self.viewModel?.transform(from: input, disposeBag: disposeBag)

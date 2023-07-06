@@ -19,7 +19,7 @@ final class SplashViewModel: BaseViewModel {
     private let useCase: SplashUseCase
     
     struct Input {
-        let viewDidLoad: Observable<Void>
+        let viewDidAppear: Observable<Void>
     }
     
     struct Output {
@@ -37,7 +37,7 @@ final class SplashViewModel: BaseViewModel {
     func transform(from input: Input, disposeBag: DisposeBag) -> Output {
         let output = Output()
         
-        input.viewDidLoad
+        input.viewDidAppear
             .subscribe(onNext: { [weak self] in
                 self?.useCase.autoLogin()
                     .subscribe(onNext: { isSuccess in
