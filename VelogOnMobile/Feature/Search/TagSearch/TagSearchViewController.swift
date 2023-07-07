@@ -48,7 +48,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     private let myTagLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.myTag
-        label.font = .headline
+        label.font = .body_2_B
         label.textColor = .gray700
         return label
     }()
@@ -66,7 +66,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize.height = 36
-        layout.sectionInset = .init(top: 0, left: 20, bottom: 0, right: 20)
+        layout.sectionInset = .init(top: 0, left: 12, bottom: 0, right: 12)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: MyTagCollectionViewCell.self)
@@ -87,9 +87,9 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         let tableView = UITableView()
         tableView.register(cell: PopularTagTableViewCell.self)
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.isScrollEnabled = false
-        tableView.rowHeight = 30
+        tableView.rowHeight = 40
         return tableView
     }()
     
@@ -232,20 +232,20 @@ private extension TagSearchViewController {
         }
         
         popularTagLabel.snp.makeConstraints {
-            $0.top.equalTo(myTagView.snp.bottom).offset(44)
+            $0.top.equalTo(myTagView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(20)
         }
         
         popularTagTableView.snp.makeConstraints {
-            $0.top.equalTo(popularTagLabel.snp.bottom).offset(16)
+            $0.top.equalTo(popularTagLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview().inset(80)
+            $0.bottom.equalToSuperview().inset(100)
         }
         
         //MARK: MyTagView
         
         myTagLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(24)
+            $0.top.equalToSuperview().inset(20)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -255,7 +255,7 @@ private extension TagSearchViewController {
         }
         
         myTagCollectionView.snp.makeConstraints {
-            $0.top.equalTo(myTagLabel.snp.bottom).offset(28)
+            $0.top.equalTo(myTagLabel.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(50)

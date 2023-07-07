@@ -241,10 +241,10 @@ extension PostSearchViewController {
         popularSearchTagTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         popularSearchTagTableView.delegate = self
         popularSearchTagTableView.dataSource = self
-        popularSearchTagTableView.separatorStyle = .none
-        popularSearchTagTableView.rowHeight = UITableView.automaticDimension
-        popularSearchTagTableView.estimatedRowHeight = UITableView.automaticDimension
+        popularSearchTagTableView.separatorStyle = .singleLine
+        popularSearchTagTableView.rowHeight = 40
         popularSearchTagTableView.showsVerticalScrollIndicator = false
+        popularSearchTagTableView.isScrollEnabled = false
     }
     
     func setCollectionView() {
