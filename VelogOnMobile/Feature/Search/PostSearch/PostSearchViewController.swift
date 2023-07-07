@@ -241,7 +241,7 @@ extension PostSearchViewController {
         popularSearchTagTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearchTableViewCell")
         popularSearchTagTableView.delegate = self
         popularSearchTagTableView.dataSource = self
-        popularSearchTagTableView.separatorStyle = .singleLine
+        popularSearchTagTableView.separatorStyle = .none
         popularSearchTagTableView.rowHeight = 40
         popularSearchTagTableView.showsVerticalScrollIndicator = false
         popularSearchTagTableView.isScrollEnabled = false

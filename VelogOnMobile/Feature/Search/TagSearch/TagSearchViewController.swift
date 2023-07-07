@@ -87,7 +87,7 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         let tableView = UITableView()
         tableView.register(cell: PopularTagTableViewCell.self)
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.isScrollEnabled = false
         tableView.rowHeight = 40
         return tableView
