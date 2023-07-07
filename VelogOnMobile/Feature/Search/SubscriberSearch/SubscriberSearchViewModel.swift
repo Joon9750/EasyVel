@@ -13,9 +13,9 @@ import RxSwift
 final class SubscriberSearchViewModel: BaseViewModel {
     
     var subscriberSearchDelegate: SubscriberSearchProtocol?
-    var subscriberList: [SubscriberListResponse]?
-    var searchSubscriberName: String?
-    var searchSubscriberImageURL: String?
+    private var subscriberList: [SubscriberListResponse]?
+    private var searchSubscriberName: String?
+    private var searchSubscriberImageURL: String?
 
     // MARK: - Output
     

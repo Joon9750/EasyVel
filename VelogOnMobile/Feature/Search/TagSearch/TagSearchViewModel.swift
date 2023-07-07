@@ -15,9 +15,22 @@ final class TagSearchViewModel: BaseViewModel {
     
     //MARK: - Properties
     
-    var addTag: String?
-    var deleteTag: String?
-    var myTagDidChange: Bool = false
+    private var addTag: String?
+    private var deleteTag: String?
+    private var myTagDidChange: Bool = false
+    
+    private let popularTagList: [String] = [
+        "알고리즘",
+        "JavaScript",
+        "TIL",
+        "Java",
+        "React",
+        "백준",
+        "python",
+        "프로그래머스",
+        "코딩테스트",
+        "Spring"
+    ]
     
     // MARK: - Input
     
@@ -46,8 +59,8 @@ final class TagSearchViewModel: BaseViewModel {
         
         viewWillAppear
             .subscribe { [weak self] _ in
-                self?.getPopularTags()
                 self?.getMyTags()
+                self?.popularTagsOutput.accept(self?.popularTagList ?? [String]())
             }
             .disposed(by: disposeBag)
         
@@ -127,12 +140,6 @@ private extension TagSearchViewModel {
             .disposed(by: self.disposeBag)
     }
     
-    func getPopularTags() {
-        requestPopularTagsAPI().bind(to: self.popularTagsOutput)
-            .disposed(by: self.disposeBag)
-    }
-    
-    
     func requestAddTagAPI(tag: String) -> Observable<Bool> {
         return Observable.create { observer in
             NetworkService.shared.tagRepository.addTag(tag: tag) { [weak self] result in
@@ -177,31 +184,6 @@ private extension TagSearchViewModel {
         }
     }
     
-    func requestPopularTagsAPI() -> Observable<[String]> {
-        return Observable.create { observer in
-            NetworkService.shared.postsRepository.getPopularPosts { [weak self] result in
-                switch result {
-                case .success(let response):
-                    guard let list = response as? [String] else {
-                        self?.serverFailOutput.accept(true)
-                        observer.onError(NSError(domain: "ParsingError", code: 0, userInfo: nil))
-                        return
-                    }
-                    print(list)
-                    observer.onNext(list)
-                    observer.onCompleted()
-                case .requestErr(_):
-                    self?.serverFailOutput.accept(true)
-                    observer.onError(NSError(domain: "requestErr", code: 0, userInfo: nil))
-                default:
-                    self?.serverFailOutput.accept(true)
-                    observer.onError(NSError(domain: "UnknownError", code: 0, userInfo: nil))
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
     func requestDeleteTagAPI(tag: String) -> Observable<Bool> {
         return Observable.create { observer in
             NetworkService.shared.tagRepository.deleteTag(tag: tag) { [weak self] result in
@@ -221,6 +203,4 @@ private extension TagSearchViewModel {
             return Disposables.create()
         }
     }
-    
-    
 }
