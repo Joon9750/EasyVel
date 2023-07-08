@@ -97,7 +97,8 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             .drive(onNext: { [weak self] isAlreadyHave in
                 self?.showToast(
                     toastText: TextLiterals.alreadyHaveFolderToastText,
-                    backgroundColor: .gray300
+                    backgroundColor: .gray300,
+                    height: Int(self?.keyboardHeight ?? CGFloat())
                 )
             })
             .disposed(by: disposeBag)
@@ -110,6 +111,11 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             name: UIResponder.keyboardWillShowNotification,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification, object: nil
+        )
     }
     
     @objc
@@ -118,6 +124,10 @@ final class ScrapFolderBottomSheetViewController: RxBaseViewController<ScrapFold
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height
         }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        keyboardHeight = 0.0
     }
 
     private func setupSheet() {
