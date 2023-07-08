@@ -12,10 +12,6 @@ Velog 웹 서비스를 모바일로 만들었습니다.
 
 https://www.behance.net/gallery/161537145/Velog-In-Mobile
 
-## Activity Graph
-
-![Alt](https://repobeats.axiom.co/api/embed/7c608d4f1c761be32c999fc378d60f23f98a90f8.svg "Repobeats analytics image")
-
 ## 🔍 주요 기능
 
 #### 1. Velog 트랜드 글 보기 
@@ -53,6 +49,10 @@ https://www.behance.net/gallery/161537145/Velog-In-Mobile
  Realm  | 로컬 DB | master | SPM
  SnapKit | UI Layout | master | SPM
  Kingfisher  | 이미지 캐싱 | master | SPM
+
+## Activity Graph
+
+![Alt](https://repobeats.axiom.co/api/embed/7c608d4f1c761be32c999fc378d60f23f98a90f8.svg "Repobeats analytics image")
  
 ## 💪 iOS Developers
 
