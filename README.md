@@ -1,4 +1,4 @@
-## 💨 프로젝트 소개 
+## 프로젝트 소개 
 
 Velog는 개발자들이 애용하는 기술 블로그 웹 서비스입니다. 
 
@@ -10,7 +10,7 @@ Velog 웹 서비스를 모바일로 만들었습니다.
 
 https://www.behance.net/gallery/161537145/Velog-In-Mobile
 
-## 🔍 주요 기능
+## 주요 기능
 
 #### 1. Velog 트랜드 글 보기 
 
@@ -36,9 +36,9 @@ https://www.behance.net/gallery/161537145/Velog-In-Mobile
 - 글을 스크랩할 수 있고 스크랩 뷰에서 모아볼 수 있어요
 - 스크랩 폴더를 만들고 글들을 폴더에 넣을 수 있어요
 
-## 🏛 Architecture : MVVM-C
+## Architecture : MVVM
 
-## 🛠 Library
+## Library
 
 라이브러리 | 사용 목적 | Version | Management Tool
 :---------:|:----------:|:---------: |:---------:
@@ -52,7 +52,7 @@ https://www.behance.net/gallery/161537145/Velog-In-Mobile
 
 ![Alt](https://repobeats.axiom.co/api/embed/7c608d4f1c761be32c999fc378d60f23f98a90f8.svg "Repobeats analytics image")
  
-## 💪 iOS Developers
+## iOS Developers
 
 | 홍준혁 | 주현아 | 장석우 |
 | :---------:|:----------:|:----------:|
