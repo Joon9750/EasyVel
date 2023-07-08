@@ -24,6 +24,8 @@ final class SignInView: BaseUIView {
     let realAppleSignInButton = ASAuthorizationAppleIDButton(type: .signIn, style: .black)
     
     override func render() {
+        signInViewImage.contentMode = .scaleAspectFit
+        
         self.addSubviews(
             signInViewImage,
             realAppleSignInButton,
@@ -32,9 +34,9 @@ final class SignInView: BaseUIView {
         
         signInViewImage.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(233)
+            $0.centerY.equalToSuperview().offset(-70)
             $0.height.equalTo(204)
-            $0.width.equalTo(148)
+            $0.width.equalTo(165)
         }
         
         realAppleSignInButton.snp.makeConstraints {

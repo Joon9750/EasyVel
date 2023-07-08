@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 final class DefaultSignRepository: BaseRepository, SignRepository {
-    
+  
     let provider = MoyaProvider<SignAPI>(plugins: [MoyaLoggerPlugin()])
     
     func signIn(
@@ -62,4 +62,22 @@ final class DefaultSignRepository: BaseRepository, SignRepository {
             }
         }
     }
+    
+    func refreshToken(
+        token: String,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.refreshToken(token: token)) { result in
+            switch result {
+            case.success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                let networkResult = self.judgeStatus(by: statusCode, data, responseData: .refreshToken)
+                completion(networkResult)
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
 }

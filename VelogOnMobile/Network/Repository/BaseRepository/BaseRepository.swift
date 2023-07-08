@@ -111,6 +111,12 @@ class BaseRepository {
                 return .pathErr
             }
             return .success(decodedData)
+        case .refreshToken:
+            guard let data = String(data: data, encoding: .utf8) else {
+                return .decodedErr
+            }
+            return .success(data)
+            
         }
     }
 }

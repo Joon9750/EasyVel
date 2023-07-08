@@ -35,6 +35,7 @@ final class SettingViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] didTouched in
                 if didTouched {
                     self?.realm.setAutoSignIn(didSignIn: false)
+                    self?.realm.setAccessToken(accessToken: "")
                 }
             })
             .disposed(by: disposeBag)
@@ -64,6 +65,9 @@ final class SettingViewModel: BaseViewModel {
 // MARK: - api
 
 extension SettingViewModel {
+    
+    //MARK: - Fix Me: signOut 항상 참을 반환하는 오류
+    
     func signOut(
         body: SignOutRequest
     ) -> Observable<Bool> {
