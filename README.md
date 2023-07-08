@@ -1,5 +1,3 @@
-<img width="856" alt="스크린샷 2023-06-07 오전 3 04 43" src="https://github.com/hongjunehuke/VelogOniOS/assets/83629193/7ef5eb2b-f8a3-4e0e-88fa-a9ac94f422f7">
-
 ## 💨 프로젝트 소개 
 
 Velog는 개발자들이 애용하는 기술 블로그 웹 서비스입니다. 
