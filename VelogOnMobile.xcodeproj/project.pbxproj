@@ -29,6 +29,7 @@
 		87DC47952A572BE5007823CB /* SplashUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47942A572BE5007823CB /* SplashUseCase.swift */; };
 		87DC47992A572ECF007823CB /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC47982A572ECF007823CB /* UserRepository.swift */; };
 		87DC479C2A573349007823CB /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC479B2A573349007823CB /* AuthError.swift */; };
+		87DC479E2A59B1F6007823CB /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DC479D2A59B1F6007823CB /* SignInUseCase.swift */; };
 		910950522A4F155F00D04D41 /* CurrentSearchDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */; };
 		910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950572A50117F00D04D41 /* VersionCheckDTO.swift */; };
 		9109505A2A5011DD00D04D41 /* VersionCheckAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910950592A5011DD00D04D41 /* VersionCheckAPI.swift */; };
@@ -201,6 +202,7 @@
 		87DC47942A572BE5007823CB /* SplashUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashUseCase.swift; sourceTree = "<group>"; };
 		87DC47982A572ECF007823CB /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		87DC479B2A573349007823CB /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		87DC479D2A59B1F6007823CB /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		910950512A4F155F00D04D41 /* CurrentSearchDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSearchDTO.swift; sourceTree = "<group>"; };
 		910950572A50117F00D04D41 /* VersionCheckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckDTO.swift; sourceTree = "<group>"; };
 		910950592A5011DD00D04D41 /* VersionCheckAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCheckAPI.swift; sourceTree = "<group>"; };
@@ -1011,6 +1013,7 @@
 				916E29B02A3EEE60006F5FE9 /* SignInView.swift */,
 				91487EC529FC380A009CFECF /* SignInViewController.swift */,
 				916E29AD2A3EE90F006F5FE9 /* SignInViewModel.swift */,
+				87DC479D2A59B1F6007823CB /* SignInUseCase.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -1298,6 +1301,7 @@
 				8765EFEE2A29E62600EF6733 /* UIFont+Extension.swift in Sources */,
 				9128B04C2A23C7A100FB1252 /* ScrapStorageCollectionViewCell.swift in Sources */,
 				913442402A004BB1000E1ED1 /* DefaultNotificationRepository.swift in Sources */,
+				87DC479E2A59B1F6007823CB /* SignInUseCase.swift in Sources */,
 				91487F4329FD8AC9009CFECF /* ListViewModel.swift in Sources */,
 				9128B0432A23B50500FB1252 /* ReusableView.swift in Sources */,
 				91ED179A2A00F00800158787 /* BaseRepository.swift in Sources */,
