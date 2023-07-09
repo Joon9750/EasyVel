@@ -96,7 +96,7 @@ final class ListViewModel: BaseViewModel {
             .subscribe(onNext: { [weak self] subscriberList in
                 self?.subscriberList = subscriberList
                 self?.subscriberListOutput.accept(subscriberList)
-                let subscriberNameList = subscriberList.map { $0.name ?? String() }
+                let subscriberNameList = subscriberList.map { $0.name }
                 self?.checkListIsEmpty(subsciberList: subscriberNameList)
             })
             .disposed(by: disposeBag)

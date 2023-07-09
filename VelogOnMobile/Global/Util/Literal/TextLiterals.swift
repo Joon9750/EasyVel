@@ -170,6 +170,11 @@ enum TextLiterals {
     
     // MARK: - setting view
     
+    static let userInformationProcessingpPolicyText: String = "개인정보 처리방침"
+    static let userInformationProcessingpPolicyWebUrl: String = "https://relieved-centaur-a76.notion.site/a45df2df95cf4df6a94309442b26e22d"
+    static let provisionText: String = "이용약관"
+    static let provisionWebUrl: String = "https://relieved-centaur-a76.notion.site/6173206801894b8da07833ef42c937d6"
+    
     static let signOutAlertTitle: String = "로그아웃"
     static let signOutAlertMessage: String = "정말 로그아웃 하시겠습니까?"
     

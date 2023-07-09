@@ -31,21 +31,47 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 guard let self else { return }
                 let alertType: AlertType
                 switch indexPath.row {
-                case 0:
-                    alertType = .signOut
                 case 1:
+                    let webViewModel = WebViewModel(url: TextLiterals.userInformationProcessingpPolicyWebUrl)
+                    let webViewController = WebViewController(viewModel: webViewModel)
+                    self.navigationController?.pushViewController(webViewController, animated: true)
+                    break
+                case 2:
+                    let webViewModel = WebViewModel(url: TextLiterals.provisionWebUrl)
+                    let webViewController = WebViewController(viewModel: webViewModel)
+                    self.navigationController?.pushViewController(webViewController, animated: true)
+                    break
+                case 3:
+                    alertType = .signOut
+                    let alertVC = VelogAlertViewController(
+                        alertType: alertType,
+                        delegate: self
+                    )
+                    present(alertVC, animated: false)
+                case 4:
                     alertType = .withdrawal
+                    let alertVC = VelogAlertViewController(
+                        alertType: alertType,
+                        delegate: self
+                    )
+                    present(alertVC, animated: false)
                 default:
                     return
                 }
-                let alertVC = VelogAlertViewController(alertType: alertType,
-                                                       delegate: self)
-                present(alertVC, animated: false)
             })
             .disposed(by: disposeBag)
     }
     
     private func bindOutput(_ viewModel: SettingViewModel) {
+        viewModel.userLocalVersionOutput
+            .asDriver(onErrorJustReturn: String())
+            .drive(onNext: { [weak self] userVersion in
+                self?.settingView.tableView.setUserVersionTableCell(
+                    userVersion: userVersion
+                )
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.didWithdrawalSuccess
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] didSuccess in
@@ -54,15 +80,16 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 } else {
                     
                     // MARK: - 회원탈퇴 실패
-                    self?.showToast(toastText: "회원탈퇴에 실패하였습니다.",
-                                   backgroundColor: .gray200)
+                    self?.showToast(
+                        toastText: "회원탈퇴에 실패하였습니다.",
+                        backgroundColor: .gray200
+                    )
                 }
             })
             .disposed(by: disposeBag)
     }
     
     private func pushToSignInView() {
-        
         let signInVM = SignInViewModel(
             useCase: DefaultSignInUseCase(
                 repository: DefaultUserRepository(
@@ -87,6 +114,4 @@ extension SettingViewController: VelogAlertViewControllerDelegate {
             return
         }
     }
-    
-    
 }

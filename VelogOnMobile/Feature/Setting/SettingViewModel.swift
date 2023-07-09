@@ -13,9 +13,17 @@ import RxRelay
 final class SettingViewModel: BaseViewModel {
     
     let realm = RealmService()
+    private var userLocalVersion: String? {
+        guard let dictionary = Bundle.main.infoDictionary,
+              let version = dictionary["CFBundleShortVersionString"] as? String else { return nil }
+
+        let versionAndBuild: String = "버전 정보: \(version)"
+        return versionAndBuild
+    }
     
     // MARK: - Output
     
+    let userLocalVersionOutput = PublishRelay<String>()
     
     // MARK: - Input
     
@@ -31,6 +39,14 @@ final class SettingViewModel: BaseViewModel {
     }
     
     private func makeOutput() {
+        viewWillAppear
+            .subscribe(onNext: { [weak self] in
+                if let userLocalVersion = self?.userLocalVersion {
+                    self?.userLocalVersionOutput.accept(userLocalVersion)
+                }
+            })
+            .disposed(by: disposeBag)
+        
         signOutCellDidTouched
             .subscribe(onNext: { [weak self] didTouched in
                 if didTouched {

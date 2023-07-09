@@ -64,7 +64,7 @@ final class WebViewModel: BaseViewModel {
                 return self.getSubscriberList()
             })
             .map { subscriberList -> [String] in
-                return subscriberList.map { $0.name ?? String() }
+                return subscriberList.map { $0.name }
             }
             .subscribe(onNext: { [weak self] subscriberNameList in
                 guard let didPostWriterSubscribe = self?.didPostWriterSubscribe(
