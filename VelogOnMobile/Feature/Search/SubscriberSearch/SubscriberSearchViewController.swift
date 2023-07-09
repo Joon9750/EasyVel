@@ -63,8 +63,6 @@ final class SubscriberSearchViewController: RxBaseViewController<SubscriberSearc
                 }
             })
             .disposed(by: disposeBag)
-        
-        String()
     }
     
     private func updateStatusLabel(text: String) {

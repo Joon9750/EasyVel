@@ -32,15 +32,32 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 let alertType: AlertType
                 switch indexPath.row {
                 case 0:
-                    alertType = .signOut
+                    let webViewModel = WebViewModel(url: TextLiterals.userInformationProcessingpPolicyWebUrl)
+                    let webViewController = WebViewController(viewModel: webViewModel)
+                    self.navigationController?.pushViewController(webViewController, animated: true)
+                    break
                 case 1:
+                    let webViewModel = WebViewModel(url: TextLiterals.provisionWebUrl)
+                    let webViewController = WebViewController(viewModel: webViewModel)
+                    self.navigationController?.pushViewController(webViewController, animated: true)
+                    break
+                case 2:
+                    alertType = .signOut
+                    let alertVC = VelogAlertViewController(
+                        alertType: alertType,
+                        delegate: self
+                    )
+                    present(alertVC, animated: false)
+                case 3:
                     alertType = .withdrawal
+                    let alertVC = VelogAlertViewController(
+                        alertType: alertType,
+                        delegate: self
+                    )
+                    present(alertVC, animated: false)
                 default:
                     return
                 }
-                let alertVC = VelogAlertViewController(alertType: alertType,
-                                                       delegate: self)
-                present(alertVC, animated: false)
             })
             .disposed(by: disposeBag)
     }
@@ -62,7 +79,6 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
     }
     
     private func pushToSignInView() {
-        
         let signInViewModel = SignInViewModel()
         let signInViewController = SignInViewController(viewModel: signInViewModel)
         UIApplication.shared.changeRootViewController(signInViewController)
@@ -81,6 +97,4 @@ extension SettingViewController: VelogAlertViewControllerDelegate {
             return
         }
     }
-    
-    
 }

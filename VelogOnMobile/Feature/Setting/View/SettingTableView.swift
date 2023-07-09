@@ -32,7 +32,7 @@ final class SettingTableView: UITableView {
 
 extension SettingTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,8 +42,10 @@ extension SettingTableView: UITableViewDataSource {
         cell.selectionStyle = .none
         let row = indexPath.row
         switch row {
-        case 0: cell.buttonLabel.text = TextLiterals.settingSignOutText
-        case 1: cell.buttonLabel.text = TextLiterals.settingWithdrawalText
+        case 0: cell.buttonLabel.text = TextLiterals.userInformationProcessingpPolicyText
+        case 1: cell.buttonLabel.text = TextLiterals.provisionText
+        case 2: cell.buttonLabel.text = TextLiterals.settingSignOutText
+        case 3: cell.buttonLabel.text = TextLiterals.settingWithdrawalText
         default: return cell
         }
         return cell
