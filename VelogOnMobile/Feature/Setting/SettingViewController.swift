@@ -31,24 +31,24 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 guard let self else { return }
                 let alertType: AlertType
                 switch indexPath.row {
-                case 0:
+                case 1:
                     let webViewModel = WebViewModel(url: TextLiterals.userInformationProcessingpPolicyWebUrl)
                     let webViewController = WebViewController(viewModel: webViewModel)
                     self.navigationController?.pushViewController(webViewController, animated: true)
                     break
-                case 1:
+                case 2:
                     let webViewModel = WebViewModel(url: TextLiterals.provisionWebUrl)
                     let webViewController = WebViewController(viewModel: webViewModel)
                     self.navigationController?.pushViewController(webViewController, animated: true)
                     break
-                case 2:
+                case 3:
                     alertType = .signOut
                     let alertVC = VelogAlertViewController(
                         alertType: alertType,
                         delegate: self
                     )
                     present(alertVC, animated: false)
-                case 3:
+                case 4:
                     alertType = .withdrawal
                     let alertVC = VelogAlertViewController(
                         alertType: alertType,
@@ -63,6 +63,15 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
     }
     
     private func bindOutput(_ viewModel: SettingViewModel) {
+        viewModel.userLocalVersionOutput
+            .asDriver(onErrorJustReturn: String())
+            .drive(onNext: { [weak self] userVersion in
+                self?.settingView.tableView.setUserVersionTableCell(
+                    userVersion: userVersion
+                )
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.didWithdrawalSuccess
             .asDriver(onErrorJustReturn: Bool())
             .drive(onNext: { [weak self] didSuccess in
