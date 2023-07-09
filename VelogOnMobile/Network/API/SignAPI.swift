@@ -10,6 +10,7 @@ import Foundation
 import Moya
 
 enum SignAPI {
+    case appleSignIn(identityToken: String)
     case signIn(body: SignInRequest)
     case signOut
     case signUp(body: SignUpRequest)
@@ -19,6 +20,8 @@ enum SignAPI {
 extension SignAPI: BaseTargetType {
     var path: String {
         switch self {
+        case .appleSignIn:
+            return URLConstants.sign + "/apple-login"
         case .signIn:
             return URLConstants.sign + "/sign-in"
         case .signOut:
@@ -32,13 +35,17 @@ extension SignAPI: BaseTargetType {
     
     var method: Moya.Method {
         switch self {
-        case .signIn, .signOut, .signUp, .refreshToken:
+        case .appleSignIn, .signIn, .signOut, .signUp, .refreshToken:
             return .post
         }
     }
     
     var task: Moya.Task {
         switch self {
+        case .appleSignIn(let identityToken):
+            return .requestParameters(parameters: ["authorization_code": "",
+                                                   "identity_token": identityToken],
+                                      encoding: JSONEncoding.default)
         case .signIn(let body):
             return .requestJSONEncodable(body)
         case .signOut:
@@ -47,6 +54,16 @@ extension SignAPI: BaseTargetType {
             return .requestJSONEncodable(body)
         case .refreshToken(let token):
             return .requestJSONEncodable(token)
+        }
+        
+    }
+    var headers: [String : String]? {
+        switch self {
+        case .appleSignIn:
+            return ["Content-Type": "application/json"]
+        default:
+            return [ "Content-Type": "application/json",
+                     "X-AUTH-TOKEN": RealmService().getAccessToken()]
         }
     }
 }

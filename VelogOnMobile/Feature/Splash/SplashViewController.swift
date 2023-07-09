@@ -60,7 +60,13 @@ final class SplashViewController: RxBaseViewController<SplashViewModel> {
                     let tabNVC = UINavigationController(rootViewController: tabVC)
                     UIApplication.shared.changeRootViewController(tabNVC)
                 } else {
-                    let signInVM = SignInViewModel()
+                    let signInVM = SignInViewModel(
+                        useCase: DefaultSignInUseCase(
+                            repository: DefaultUserRepository(
+                                service: DefaultSignRepository()
+                            )
+                        )
+                    )
                     let signInVC = SignInViewController(viewModel: signInVM)
                     let signInNVC = UINavigationController(rootViewController: signInVC)
                     UIApplication.shared.changeRootViewController(signInNVC)
