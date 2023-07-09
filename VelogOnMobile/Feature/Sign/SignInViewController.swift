@@ -17,24 +17,33 @@ final class SignInViewController: RxBaseViewController<SignInViewModel> {
     
     override func render() {
         view = signInView
+        target()
+    }
+    
+    private func target() {
+        signInView.appleSignInButton.addTarget(self, action: #selector(handleAppleLogin), for: .touchUpInside)
     }
     
     override func bind(viewModel: SignInViewModel) {
         super.bind(viewModel: viewModel)
         
-        signInView.appleSignInButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.viewModel?.appleSignInButtonTapped.accept(true)
-                self?.pushToTabBarController()
-            })
-            .disposed(by: disposeBag)
-        
-        signInView.realAppleSignInButton.addTarget(self, action: #selector(handleAppleLogin), for: .touchUpInside)
+        bindOutput(viewModel)
     }
     
-    private func pushToTabBarController() {
-        let tabBarController = TabBarController()
-        self.navigationController?.pushViewController(tabBarController, animated: true)
+    private func bindOutput(_ viewModel: SignInViewModel) {
+        viewModel.appleLoginOutput
+            .asDriver(onErrorJustReturn: Bool())
+            .drive(onNext: { isSuccess in
+                if isSuccess {
+                    let tabVC = TabBarController()
+                    let tabNVC = UINavigationController(rootViewController: tabVC)
+                    UIApplication.shared.changeRootViewController(tabNVC)
+                }
+                else {
+                    self.showToast(toastText: "로그인에 실패하였습니다.", backgroundColor: .gray300)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -57,20 +66,18 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
             guard let code = credential.authorizationCode else { return }
-            let codeStr = String(data: code, encoding: .utf8)
             
             let idToken = credential.identityToken!
             let tokeStr = String(data: idToken, encoding: .utf8)
 
-            let user = credential.user
-            
-            print("codeStr",codeStr)
-            print("tokeStr",tokeStr)
+            guard let tokeStr else { return }
+            viewModel?.didCompleteWithAuthorization.accept(tokeStr)
         }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("error")
+        showToast(toastText: "애플 로그인 오류가 발생했습니다.", backgroundColor: .gray200)
     }
 }

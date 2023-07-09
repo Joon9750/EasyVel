@@ -81,8 +81,14 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
     }
     
     private func pushToSignInView() {
-        let signInViewModel = SignInViewModel()
-        let signInViewController = SignInViewController(viewModel: signInViewModel)
+        let signInVM = SignInViewModel(
+            useCase: DefaultSignInUseCase(
+                repository: DefaultUserRepository(
+                    service: DefaultSignRepository()
+                )
+            )
+        )
+        let signInViewController = SignInViewController(viewModel: signInVM)
         UIApplication.shared.changeRootViewController(signInViewController)
     }
 }

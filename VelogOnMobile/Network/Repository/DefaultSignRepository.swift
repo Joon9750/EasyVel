@@ -80,4 +80,66 @@ final class DefaultSignRepository: BaseRepository, SignRepository {
         }
     }
     
+    func appleSignIn(
+        identityToken: String,
+        completion: @escaping (NetworkResult<Any>) -> Void
+    ) {
+        provider.request(.appleSignIn(identityToken: identityToken)) { result in
+            switch result {
+            case.success(let response):
+                let statusCode = response.statusCode
+                let data = response.data
+                
+                let decoder = JSONDecoder()
+                
+                switch statusCode {
+                case 200..<300:
+                    guard let decodedData = try? decoder.decode(SignInResponse.self, from: data) else {
+                        completion(.decodedErr)
+                        return
+                    }
+                    completion(.success(decodedData))
+                    
+                case 400..<500:
+                    self.provider.request(.appleSignIn(identityToken: identityToken)) { result in
+                        switch result {
+                        case .success(let response):
+                            let statusCode = response.statusCode
+                            let data = response.data
+                            switch statusCode {
+                            case 200..<300:
+                                guard let decodedData = try? decoder.decode(SignInResponse.self, from: data) else {
+                                    completion(.decodedErr)
+                                    return
+                                }
+                                completion(.success(decodedData))
+                                
+                            case 400..<500:
+                                completion(.pathErr)
+                            case 500:
+                                completion(.serverErr)
+                            default:
+                                completion(.networkFail)
+                                //MARK: - retry
+                            }
+                            
+                        case .failure:
+                            completion(.networkFail)
+                        }
+                       
+                        return
+                    }
+                        
+                case 500:
+                    completion(.serverErr)
+                default:
+                    completion(.networkFail)
+                }
+                
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
 }

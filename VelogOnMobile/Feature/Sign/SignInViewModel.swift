@@ -12,23 +12,44 @@ import RxRelay
 
 final class SignInViewModel: BaseViewModel {
     
-    let realm = RealmService()
+    private let useCase: SignInUseCase
     
-    // MARK: - Input
+    //MARK: - Input
     
-    let appleSignInButtonTapped = PublishRelay<Bool>()
+    let didCompleteWithAuthorization = PublishRelay<String>()
     
-    override init() {
+    //MARK: - Output
+    
+    let appleLoginOutput = PublishRelay<Bool>()
+    
+    //MARK: - Life Cycle
+
+    init(useCase: SignInUseCase) {
+        self.useCase = useCase
         super.init()
+        
         makeOutput()
     }
     
     private func makeOutput() {
-        appleSignInButtonTapped
-            .subscribe(onNext: { [weak self] didTapped in
-                self?.realm.setAutoSignIn(didSignIn: true)
-                // MARK: - access token fix me
-                self?.realm.setAccessToken(accessToken: "")
+        didCompleteWithAuthorization
+            .subscribe(onNext: { [weak self] identityToken in
+                self?.appleLogin(identityToken)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension SignInViewModel {
+    
+    func appleLogin(_ identityToken:String) {
+        useCase.appleLogin(identityToken)
+            .subscribe(onNext: { [weak self] isSuccess in
+                self?.appleLoginOutput.accept(isSuccess)
+            }, onError: { [weak self] error in
+                guard let error = error as? AuthError else { return }
+                self?.appleLoginOutput.accept(false)
+                print("⚠️⚠️\(error.description)⚠️⚠️")
             })
             .disposed(by: disposeBag)
     }
