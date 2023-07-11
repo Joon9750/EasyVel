@@ -36,10 +36,8 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                     self.navigationController?.pushViewController(settingPolicyViewController, animated: true)
                     break
                 case 2:
-                    let webViewModel = WebViewModel(url: TextLiterals.provisionWebUrl)
-                    let webViewController = WebViewController(viewModel: webViewModel)
-                    webViewController.isPostWebView = false
-                    self.navigationController?.pushViewController(webViewController, animated: true)
+                    let settingUsingPolicyViewController = SettingUsingPolicyViewController()
+                    self.navigationController?.pushViewController(settingUsingPolicyViewController, animated: true)
                     break
                 case 3:
                     alertType = .signOut

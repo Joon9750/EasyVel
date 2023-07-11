@@ -162,6 +162,7 @@
 		91A5C6552A41CC5F0078D8A9 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91A5C6542A41CC5F0078D8A9 /* Pretendard-Light.otf */; };
 		91A5C6572A41CC660078D8A9 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91A5C6562A41CC660078D8A9 /* Pretendard-Medium.otf */; };
 		91BE70662A5D7B9B008886DD /* SettingPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BE70652A5D7B9B008886DD /* SettingPolicyViewController.swift */; };
+		91BE70682A5D8043008886DD /* SettingUsingPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BE70672A5D8043008886DD /* SettingUsingPolicyViewController.swift */; };
 		91BFF2F82A27833C00F5D13E /* PostScrapButtonDidTapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */; };
 		91CC1D2C2A0A7D40006BF786 /* JoinGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */; };
 		91CC1D4C2A0AD7C2006BF786 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */; };
@@ -330,6 +331,7 @@
 		91A5C6542A41CC5F0078D8A9 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		91A5C6562A41CC660078D8A9 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		91BE70652A5D7B9B008886DD /* SettingPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPolicyViewController.swift; sourceTree = "<group>"; };
+		91BE70672A5D8043008886DD /* SettingUsingPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUsingPolicyViewController.swift; sourceTree = "<group>"; };
 		91BFF2F72A27833C00F5D13E /* PostScrapButtonDidTapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScrapButtonDidTapped.swift; sourceTree = "<group>"; };
 		91CC1D2B2A0A7D40006BF786 /* JoinGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupRequest.swift; sourceTree = "<group>"; };
 		91CC1D4B2A0AD7C2006BF786 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 				91487EEE29FC3A4D009CFECF /* SettingViewController.swift */,
 				916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */,
 				91BE70652A5D7B9B008886DD /* SettingPolicyViewController.swift */,
+				91BE70672A5D8043008886DD /* SettingUsingPolicyViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1231,6 +1234,7 @@
 				91CCEA602A0E9CC9001362AD /* HapticService.swift in Sources */,
 				9134420929FFDA32000E1ED1 /* SignOutRequest.swift in Sources */,
 				91487F0229FC3C16009CFECF /* SizeLiterals.swift in Sources */,
+				91BE70682A5D8043008886DD /* SettingUsingPolicyViewController.swift in Sources */,
 				91487EF829FC3B01009CFECF /* BaseCollectionViewCell.swift in Sources */,
 				91ED17912A00E92800158787 /* ResponseData.swift in Sources */,
 				910950582A50117F00D04D41 /* VersionCheckDTO.swift in Sources */,
