@@ -222,7 +222,7 @@ extension StorageViewController: UITableViewDelegate {
         guard let url = selectedCell?.url else { return }
         let webViewModel = WebViewModel(url: url)
         let webViewController = WebViewController(viewModel: webViewModel)
-        webViewController.isPostWebView = true
+        webViewController.isPostWebView = false
         navigationController?.pushViewController(webViewController, animated: true)
     }
 }
