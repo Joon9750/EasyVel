@@ -31,13 +31,7 @@ enum AlertType {
     
     var canel: String {
         switch self {
-        case .deleteTag:
-            return "취소"
-        case .unsubscribe:
-            return "아니오"
-        case .signOut:
-            return "취소"
-        case .withdrawal:
+        case .deleteTag, .unsubscribe, .signOut, .withdrawal:
             return "아니오"
         }
     }
