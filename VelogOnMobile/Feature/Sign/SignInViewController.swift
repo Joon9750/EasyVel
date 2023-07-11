@@ -66,9 +66,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate, ASAuthorizati
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
-            guard let code = credential.authorizationCode else { return }
-            
             let idToken = credential.identityToken!
             let tokeStr = String(data: idToken, encoding: .utf8)
 

@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import RxSwift
 
 enum AlertType {
     case deleteTag
@@ -53,7 +54,6 @@ enum AlertType {
             return "회원 탈퇴"
         }
     }
-    
 }
 
 protocol VelogAlertViewControllerDelegate: AnyObject {
@@ -77,6 +77,15 @@ final class VelogAlertViewController: UIViewController {
     private let cancelButton = UIButton()
     private let yesButton = UIButton()
     
+    //MARK: - tap Gesture
+    
+    private let dismissTapGesture = UITapGestureRecognizer()
+    
+    //MARK: - Observer
+    
+    private lazy var dissmissTapObservable = dismissTapGesture.rx.event.asObservable()
+    private let disposeBag = DisposeBag()
+    
     //MARK: - Life Cycle
     
     init(alertType: AlertType, delegate: VelogAlertViewControllerDelegate) {
@@ -94,6 +103,8 @@ final class VelogAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bind()
+        setTapGesture()
         target()
         
         style()
@@ -104,9 +115,21 @@ final class VelogAlertViewController: UIViewController {
     
     //MARK: - Custom Method
     
+    private func bind() {
+        dissmissTapObservable
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: false)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     private func target() {
         yesButton.addTarget(self, action: #selector(yesButtonDidTap), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
+    }
+    
+    private func setTapGesture() {
+        dimmedView.addGestureRecognizer(dismissTapGesture)
     }
     
     private func style() {
