@@ -32,13 +32,13 @@ final class SettingViewController: RxBaseViewController<SettingViewModel> {
                 let alertType: AlertType
                 switch indexPath.row {
                 case 1:
-                    let webViewModel = WebViewModel(url: TextLiterals.userInformationProcessingpPolicyWebUrl)
-                    let webViewController = WebViewController(viewModel: webViewModel)
-                    self.navigationController?.pushViewController(webViewController, animated: true)
+                    let settingPolicyViewController = SettingPolicyViewController()
+                    self.navigationController?.pushViewController(settingPolicyViewController, animated: true)
                     break
                 case 2:
                     let webViewModel = WebViewModel(url: TextLiterals.provisionWebUrl)
                     let webViewController = WebViewController(viewModel: webViewModel)
+                    webViewController.isPostWebView = false
                     self.navigationController?.pushViewController(webViewController, animated: true)
                     break
                 case 3:
