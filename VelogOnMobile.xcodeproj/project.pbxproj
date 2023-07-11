@@ -746,10 +746,8 @@
 			isa = PBXGroup;
 			children = (
 				9134422029FFEF74000E1ED1 /* View */,
-				91487EEE29FC3A4D009CFECF /* SettingViewController.swift */,
+				91BE70692A5D83BD008886DD /* ViewController */,
 				916E29A72A3EDA45006F5FE9 /* SettingViewModel.swift */,
-				91BE70652A5D7B9B008886DD /* SettingPolicyViewController.swift */,
-				91BE70672A5D8043008886DD /* SettingUsingPolicyViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1000,6 +998,16 @@
 				91A5C64A2A41CC470078D8A9 /* Pretendard-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		91BE70692A5D83BD008886DD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91487EEE29FC3A4D009CFECF /* SettingViewController.swift */,
+				91BE70652A5D7B9B008886DD /* SettingPolicyViewController.swift */,
+				91BE70672A5D8043008886DD /* SettingUsingPolicyViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		91BFF2EE2A25D53200F5D13E /* Scrap */ = {
