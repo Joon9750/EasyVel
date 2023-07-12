@@ -2,6 +2,8 @@
 
 https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485
 
+버전 1.0.0
+
 ## 프로젝트 소개 
 
 더 이상 흩어져 있는 기술 블로그 글들로 인해 불편함을 느끼지 마세요!
