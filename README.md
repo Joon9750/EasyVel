@@ -1,8 +1,6 @@
-## 앱 스토어 
+## 앱 스토어 링크 : [App Store](https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485)
 
 <img width="168" alt="스크린샷 2023-07-12 오후 8 12 09" src="https://github.com/hongjunehuke/EasyVel/assets/83629193/2a592ec8-44a3-4f04-866f-eb37b70b85b4">
-
-https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485
 
 ## 버전 기록
 
