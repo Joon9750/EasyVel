@@ -1,4 +1,4 @@
-## 앱 스토어 링크 : [App Store](https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485)
+## 🍎 앱 스토어 링크 : [App Store](https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485)
 
 <img width="168" alt="스크린샷 2023-07-12 오후 8 12 09" src="https://github.com/hongjunehuke/EasyVel/assets/83629193/2a592ec8-44a3-4f04-866f-eb37b70b85b4">
 
@@ -6,15 +6,13 @@
 
 1.0.0 - 첫 출시
 
-## 프로젝트 소개 
+## 프로젝트 소개 : [Behance](https://www.behance.net/gallery/161537145/Velog-In-Mobile)
 
 더 이상 흩어져 있는 기술 블로그 글들로 인해 불편함을 느끼지 마세요!
 
 어디에서든 원하는 기술 블로그 작성자를 팔로우하고, 관심 있는 태그를 저장하여 블로그 글을 확인해 보세요.
 
 ** 버전 1.0에서는 Velog만을 지원하고 있습니다. **
-
-https://www.behance.net/gallery/161537145/Velog-In-Mobile
 
 ## 주요 기능
 
