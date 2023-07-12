@@ -1,8 +1,8 @@
 ## 앱 스토어 
 
-https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485
-
 버전 1.0.0
+
+https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485
 
 ## 프로젝트 소개 
 
