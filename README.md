@@ -1,8 +1,12 @@
 ## 앱 스토어 
 
-버전 1.0.0
+<img width="168" alt="스크린샷 2023-07-12 오후 8 12 09" src="https://github.com/hongjunehuke/EasyVel/assets/83629193/2a592ec8-44a3-4f04-866f-eb37b70b85b4">
 
 https://apps.apple.com/kr/app/%EC%9D%B4%EC%A7%80%EB%B2%A8-easyvel/id6448953485
+
+## 버전 기록
+
+1.0.0 - 첫 출시
 
 ## 프로젝트 소개 
 
