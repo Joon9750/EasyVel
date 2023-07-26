@@ -13,6 +13,7 @@ import RxRelay
 
 final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> {
     
+    private var keyboardHeight: CGFloat = 0.0
     private var popularSearchTagList: [String] = [] {
         didSet {
             self.popularSearchTagTableView.reloadData()
@@ -82,6 +83,7 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
         setTableView()
         setCollectionView()
         setTagGesture()
+        setKeyBoardNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,7 +187,11 @@ final class PostSearchViewController: RxBaseViewController<PostSearchViewModel> 
             .asDriver(onErrorJustReturn: [PostDTO]())
             .drive(onNext: { [weak self] searchPostResponse in
                 if searchPostResponse.isEmpty {
-                    self?.showToast(toastText: "검색 결과가 없습니다.", backgroundColor: .gray300)
+                    self?.showToast(
+                        toastText: "검색 결과가 없습니다.",
+                        backgroundColor: .gray300,
+                        height: Int(self?.keyboardHeight ?? CGFloat())
+                    )
                 } else {
                     guard let searchTag = self?.searchedTag else { return }
                     guard let tagSearchViewController = self?.makeSearchPostViewController(
@@ -292,5 +298,35 @@ extension PostSearchViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         cell.configCell(currentSearchTagList[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - keyboard height
+
+extension PostSearchViewController {
+    private func setKeyBoardNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification, object: nil
+        )
+    }
+    
+    @objc
+    func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardHeight = keyboardRectangle.height
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        keyboardHeight = 0.0
     }
 }

@@ -49,6 +49,7 @@ final class TagSearchViewModel: BaseViewModel {
     
     var tagAddStatusOutput = PublishRelay<(Bool, String)>()
     var deleteTagStatusOutPut = PublishRelay<(Bool, String)>()
+    var myTagsEmpty = PublishRelay<Bool>()
     
     override init() {
         super.init()
@@ -136,8 +137,14 @@ final class TagSearchViewModel: BaseViewModel {
 private extension TagSearchViewModel {
     
     func getMyTags() {
-        requestMyTagAPI().bind(to: self.myTagsOutput)
-            .disposed(by: self.disposeBag)
+        requestMyTagAPI()
+            .subscribe(onNext: { [weak self] myTags in
+                self?.myTagsEmpty.accept(myTags.isEmpty)
+                self?.myTagsOutput.accept(myTags)
+            }, onError: { error in
+                print(error)
+            })
+            .disposed(by: disposeBag)
     }
     
     func requestAddTagAPI(tag: String) -> Observable<Bool> {
@@ -148,7 +155,7 @@ private extension TagSearchViewModel {
                     observer.onNext(true)
                     observer.onCompleted()
                 case .requestErr(_):
-                    self?.serverFailOutput.accept(true)
+                    // MARK: - 이미 추가된 관심태그 예외
                     observer.onNext(false)
                     observer.onCompleted()
                 default:

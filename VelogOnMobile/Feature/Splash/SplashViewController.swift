@@ -15,7 +15,7 @@ import SnapKit
 //MARK: - [Clean Architecture] Presentation Layer
 
 final class SplashViewController: RxBaseViewController<SplashViewModel> {
-    
+
     //MARK: - UI Components
     
     private let imageView = UIImageView(image: ImageLiterals.signInViewImage)
@@ -74,6 +74,4 @@ final class SplashViewController: RxBaseViewController<SplashViewModel> {
             })
             .disposed(by: disposeBag)
     }
-    
-    
 }

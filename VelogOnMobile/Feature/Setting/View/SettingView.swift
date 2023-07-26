@@ -49,7 +49,7 @@ final class SettingView: BaseUIView {
         
         headView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(171)
+            $0.height.equalTo(130)
         }
         
         titleLabel.snp.makeConstraints {

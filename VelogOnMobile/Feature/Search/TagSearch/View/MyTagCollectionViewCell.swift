@@ -16,7 +16,7 @@ final class MyTagCollectionViewCell: BaseCollectionViewCell {
     private let tagLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .body_2_M
+        label.font = .body_1_M
         return label
     }()
     
@@ -26,7 +26,6 @@ final class MyTagCollectionViewCell: BaseCollectionViewCell {
         button.isUserInteractionEnabled = false
         return button
     }()
-    
     
     //MARK: - Life Cycle
 
@@ -43,7 +42,6 @@ final class MyTagCollectionViewCell: BaseCollectionViewCell {
         self.makeRounded(ratio: 2)
     }
     
-    
     //MARK: - Public Method
     
     func updateUI(keyword: String) {
@@ -54,26 +52,21 @@ final class MyTagCollectionViewCell: BaseCollectionViewCell {
 //MARK: - Private Method
 
 private extension MyTagCollectionViewCell {
-    
     func hierarchy() {
-        
         contentView.addSubviews(tagLabel,
                                 xButton)
-        
     }
     
     func layout() {
         tagLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(12)
+            $0.leading.equalToSuperview().inset(15)
         }
         
         xButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalTo(tagLabel.snp.trailing).offset(8)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.centerY.equalTo(tagLabel)
+            $0.leading.equalTo(tagLabel.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(10)
         }
     }
-    
 }
-
