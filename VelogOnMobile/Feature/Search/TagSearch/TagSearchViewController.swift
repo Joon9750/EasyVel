@@ -276,7 +276,7 @@ private extension TagSearchViewController {
         popularTagTableView.snp.makeConstraints {
             $0.top.equalTo(popularTagLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview().inset(100)
+            $0.bottom.equalToSuperview().inset(70)
         }
         
         //MARK: MyTagView
