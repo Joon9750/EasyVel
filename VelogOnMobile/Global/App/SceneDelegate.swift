@@ -15,24 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private var errorWindow: UIWindow?
     private var networkMonitor: NetworkMonitor = NetworkMonitor()
     private var realm = RealmService()
-    
-    private var userLocalVersion: String? {
-        guard let dictionary = Bundle.main.infoDictionary,
-            let version = dictionary["CFBundleShortVersionString"] as? String,
-            let build = dictionary["CFBundleVersion"] as? String else {return nil}
-
-        let versionAndBuild: String = "vserion: \(version), build: \(build)"
-        return versionAndBuild
-    }
-    
-    private var appLatestVersion: String?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        //MARK: - get appLatestVersion
-        
-        getLatestVersion()
         
         // MARK: - check network
         
@@ -148,22 +132,5 @@ private extension SceneDelegate {
         let folderName = "모든 게시글"
         let folder = realm.objects(ScrapStorageDTO.self).filter("folderName == %@", folderName)
         return folder.isEmpty
-    }
-}
-
-// MARK: - api
-
-private extension SceneDelegate {
-    func getLatestVersion() {
-        NetworkService.shared.checkVersionRepository.getVersion {
-            result in
-            switch result {
-            case .success(let response):
-                guard let response = response as? VersionCheckDTO else { return }
-                self.appLatestVersion = response.version
-            default :
-                return
-            }
-        }
     }
 }

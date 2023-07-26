@@ -15,6 +15,23 @@ import RealmSwift
 import Realm
 
 final class TabBarController: UITabBarController {
+    
+    private var userLocalVersion: String? {
+        guard let dictionary = Bundle.main.infoDictionary,
+            let version = dictionary["CFBundleShortVersionString"] as? String else {return nil}
+        let versionAndBuild: String = version
+        return versionAndBuild
+    }
+    private var appLatestVersion: String? {
+        didSet {
+            if let userLocalVersion = userLocalVersion,
+               let appLatestVersion = appLatestVersion {
+                if checkUpdateAvailable(userLocalVersion: userLocalVersion, appLatestVersion: appLatestVersion) {
+                    presentUpdateAlertVC()
+                }
+            }
+        }
+    }
 
     // MARK: - viewModel properties
     
@@ -39,13 +56,14 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getLatestVersion()
         setUpTabBar()
         setDelegate()
         setLayout()
         setNotificationCenter()
 //        self.resetDB()
     }
-
+    
     private func setLayout() {
         view.addSubview(scrapPopUpView)
         
@@ -168,6 +186,52 @@ extension TabBarController: ScrapPopUpDelegate {
         let folderViewController = ScrapFolderBottomSheetViewController(viewModel: viewModel)
         folderViewController.modalPresentationStyle = .pageSheet
         self.present(folderViewController, animated: true)
+    }
+}
+
+extension TabBarController {
+    private func checkUpdateAvailable(
+        userLocalVersion: String,
+        appLatestVersion: String
+    ) -> Bool {
+        let userLocalVersionArray: [Int] = userLocalVersion.split(separator: ".").map { Int($0) ?? 0 }
+        let appLatestVersionArray: [Int] = appLatestVersion.split(separator: ".").map { Int($0) ?? 0 }
+        
+        if userLocalVersionArray[0] < appLatestVersionArray[0] {
+            return true
+        } else {
+            return userLocalVersionArray[1] < appLatestVersionArray[1] ? true : false
+        }
+    }
+    
+    private func presentUpdateAlertVC() {
+        let alertVC = UIAlertController(title: "업데이트", message: "업데이트가 필요합니다.", preferredStyle: .alert)
+        let alertAtion = UIAlertAction(title: "업데이트", style: .default) { _ in
+            let appleID = "6448953485"
+            guard let url = URL(string: "itms-apps://itunes.apple.com/app/\(appleID)") else { return }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+        alertVC.addAction(alertAtion)
+
+        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+        alertVC.addAction(cancelAction)
+
+        present(alertVC, animated: true)
+    }
+    
+    func getLatestVersion() {
+        NetworkService.shared.checkVersionRepository.getVersion {
+            result in
+            switch result {
+            case .success(let response):
+                guard let response = response as? VersionCheckDTO else { return }
+                self.appLatestVersion = response.version
+            default :
+                return
+            }
+        }
     }
 }
 
