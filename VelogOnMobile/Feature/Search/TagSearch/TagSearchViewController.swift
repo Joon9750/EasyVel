@@ -263,7 +263,7 @@ private extension TagSearchViewController {
         }
         
         lineView.snp.makeConstraints {
-            $0.top.equalTo(myTagView.snp.bottom).offset(16)
+            $0.top.equalTo(myTagCollectionView.snp.bottom).offset(15)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(6)
         }
