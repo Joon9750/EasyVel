@@ -215,7 +215,7 @@ extension TabBarController {
         }
         alertVC.addAction(alertAtion)
 
-        let cancelAction = UIAlertAction(title: "취소", style: .destructive, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         alertVC.addAction(cancelAction)
 
         present(alertVC, animated: true)
