@@ -53,11 +53,9 @@ final class ScrapStorageView: BaseUIView {
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: (SizeLiterals.screenWidth - 50) / 2, height: 96)
         layout.minimumLineSpacing = 10
-//        layout.minimumInteritemSpacing = 10
-        
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(cell: ScrapStorageCollectionViewCell.self)
-//        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         collectionView.showsVerticalScrollIndicator = true
         collectionView.backgroundColor = .gray100
         return collectionView
@@ -83,7 +81,7 @@ final class ScrapStorageView: BaseUIView {
         
         headView.snp.makeConstraints {
             $0.top.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(171)
+            $0.height.equalTo(130)
         }
         
         titleLabel.snp.makeConstraints {
