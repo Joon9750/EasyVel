@@ -41,14 +41,14 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
     
     private let myTagView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray100
+        view.backgroundColor = .white
         return view
     }()
     
     private let myTagLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.myTag
-        label.font = .body_2_B
+        label.font = .headline
         label.textColor = .gray700
         return label
     }()
@@ -75,12 +75,27 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         return collectionView
     }()
     
+    private let myTagEmptyLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.text = "저장한 태그가 없습니다."
+        label.font = .body_1_M
+        label.textColor = .gray300
+        return label
+    }()
+    
     private let popularTagLabel: UILabel = {
         let label = UILabel()
         label.text = TextLiterals.popularTag
         label.textColor = .gray700
         label.font = .body_2_B
         return label
+    }()
+    
+    private let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray100
+        return view
     }()
     
     private lazy var popularTagTableView: UITableView = {
@@ -150,7 +165,8 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         
         viewModel.tagAddStatusOutput
             .asDriver(onErrorJustReturn: (Bool(), String()))
-            .drive { isSuccess, message in
+            .drive { [weak self] isSuccess, message in
+                guard let self = self else { return }
                 let toastColor: UIColor = isSuccess ? .brandColor : .gray300
                 self.showToast(toastText: message, backgroundColor: toastColor)
                 self.collectionViewScrollToEnd()
@@ -159,7 +175,8 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         
         viewModel.presentDeleteMyTagAlertOutput
             .asDriver(onErrorJustReturn: false)
-            .drive { bool in
+            .drive { [weak self] bool in
+                guard let self = self else { return }
                 let alertVC = VelogAlertViewController(alertType: .deleteTag,
                                                        delegate: self)
                 self.present(alertVC, animated: false)
@@ -168,13 +185,25 @@ final class TagSearchViewController: RxBaseViewController<TagSearchViewModel> {
         
         viewModel.deleteTagStatusOutPut
             .asDriver(onErrorJustReturn: (Bool(), String()))
-            .drive { isSuccess, message in
+            .drive { [weak self] isSuccess, message in
+                guard let self = self else { return }
                 let toastColor: UIColor = isSuccess ? .brandColor : .gray300
                 self.showToast(toastText: message, backgroundColor: toastColor)
                 self.collectionViewScrollToEnd()
             }
             .disposed(by: disposeBag)
         
+        viewModel.myTagsEmpty
+            .asDriver(onErrorJustReturn: Bool())
+            .drive { [weak self] isEmpty in
+                guard let self = self else { return }
+                if isEmpty {
+                    self.myTagEmptyLabel.isHidden = false
+                } else {
+                    self.myTagEmptyLabel.isHidden = true
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     
@@ -203,12 +232,14 @@ private extension TagSearchViewController {
         scrollView.addSubview(contentView)
         
         contentView.addSubviews(myTagView,
+                                lineView,
                                 popularTagLabel,
                                 popularTagTableView)
         
         myTagView.addSubviews(myTagLabel,
                               removeAllButton,
-                              myTagCollectionView)
+                              myTagCollectionView,
+                              myTagEmptyLabel)
         
     }
     
@@ -231,8 +262,14 @@ private extension TagSearchViewController {
             $0.horizontalEdges.equalToSuperview()
         }
         
+        lineView.snp.makeConstraints {
+            $0.top.equalTo(myTagView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(6)
+        }
+        
         popularTagLabel.snp.makeConstraints {
-            $0.top.equalTo(myTagView.snp.bottom).offset(24)
+            $0.top.equalTo(lineView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -259,6 +296,12 @@ private extension TagSearchViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(50)
+        }
+        
+        myTagEmptyLabel.snp.makeConstraints {
+            $0.top.equalTo(myTagLabel.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(16)
         }
         
     }
