@@ -57,12 +57,23 @@ final class PostSearchViewModel: BaseViewModel {
         
         searchPostTagInput
             .flatMap { [weak self] searchTag -> Observable<[PostDTO]> in
-                guard let self = self else { return Observable.empty() }
-                guard searchTag.isValidText else { return Observable.empty() }
+                LoadingView.showLoading()
+                guard let self = self else {
+                    LoadingView.hideLoading()
+                    return Observable.empty()
+                }
+                guard searchTag.isValidText else {
+                    LoadingView.hideLoading()
+                    return Observable.empty()
+                }
                 return self.getOneTagPosts(tag: searchTag)
             }
             .subscribe(onNext: { [weak self] postDto in
-                guard let self = self else { return }
+                guard let self = self else {
+                    LoadingView.hideLoading()
+                    return
+                }
+                LoadingView.hideLoading()
                 self.searchPostOutput.accept(postDto)
             })
             .disposed(by: disposeBag)
