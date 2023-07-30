@@ -4,6 +4,8 @@
 
 ## 버전 기록
 
+1.1.0 - 앱 안정화 및 버그 수정
+
 1.0.0 - 첫 출시
 
 ## 프로젝트 소개 : [Behance](https://www.behance.net/gallery/161537145/Velog-In-Mobile)
