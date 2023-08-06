@@ -60,10 +60,6 @@
  SnapKit | UI Layout | master | SPM
  Kingfisher  | 이미지 캐싱 | master | SPM
 
-## Activity Graph
-
-![Alt](https://repobeats.axiom.co/api/embed/7c608d4f1c761be32c999fc378d60f23f98a90f8.svg "Repobeats analytics image")
- 
 ## iOS Developers
 
 | 홍준혁 | 주현아 | 장석우 |
