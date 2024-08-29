@@ -59,9 +59,3 @@
  Realm  | 로컬 DB | master | SPM
  SnapKit | UI Layout | master | SPM
  Kingfisher  | 이미지 캐싱 | master | SPM
-
-## iOS Developers
-
-| 홍준혁 | 주현아 | 장석우 |
-| :---------:|:----------:|:----------:|
-| [lms7802](https://github.com/hongjunehuke) | [JuHyeonAh](https://github.com/JuHyeonAh) | [meltsplit](https://github.com/meltsplit)
